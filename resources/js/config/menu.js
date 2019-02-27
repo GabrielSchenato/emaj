@@ -27,7 +27,7 @@ const Menu =  [
     component: 'picker',
     icon: 'settings',
     items: [
-      { name: 'triagem', title: 'Triagem', component: 'components/bottom-sheets' },
+      { name: 'triagem', title: 'Triagem', component: 'pickers/datepicker' },  
     ]
   },
   { divider: true },

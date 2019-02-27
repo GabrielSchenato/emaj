@@ -2341,11 +2341,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es6.array.for-each */ "./node_modules/core-js/modules/es6.array.for-each.js");
 /* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _api_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/api/menu */ "./resources/js/api/menu.js");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es6.array.iterator */ "./node_modules/core-js/modules/es6.array.iterator.js");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es6.promise */ "./node_modules/core-js/modules/es6.promise.js");
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es6.object.assign */ "./node_modules/core-js/modules/es6.object.assign.js");
+/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es7.promise.finally */ "./node_modules/core-js/modules/es7.promise.finally.js");
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _config_menu__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/config/menu */ "./resources/js/config/menu.js");
 
 
 
 
+
+
+
+
+//
+//
 //
 //
 //
@@ -2367,7 +2381,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      title: ''
+      title: ""
     };
   },
   computed: {
@@ -2375,21 +2389,27 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var breadcrumbs = [];
-      _api_menu__WEBPACK_IMPORTED_MODULE_4__["default"].forEach(function (item) {
+      _config_menu__WEBPACK_IMPORTED_MODULE_8__["default"].forEach(function (item) {
         if (item.items) {
           var child = item.items.find(function (i) {
             return i.component === _this.$route.name;
           });
 
           if (child) {
-            breadcrumbs.push(item.title);
-            breadcrumbs.push(child.title);
+            breadcrumbs.push({
+              text: item.title
+            });
+            breadcrumbs.push({
+              text: child.title
+            });
             _this.title = child.title;
           }
         } else {
           if (item.name === _this.$route.name) {
             _this.title = item.title;
-            breadcrumbs.push(item.title);
+            breadcrumbs.push({
+              text: item.title
+            });
           }
         }
       });
@@ -44200,7 +44220,16 @@ var render = function() {
         _c("h3", { staticClass: "pr-3" }, [_vm._v(_vm._s(_vm.title))])
       ]),
       _vm._v(" "),
-      _c("v-breadcrumbs", { attrs: { divider: "-", items: _vm.breadcrumbs } }),
+      _c(
+        "v-breadcrumbs",
+        { attrs: { items: _vm.breadcrumbs, light: "" } },
+        [
+          _c("v-icon", { attrs: { slot: "divider" }, slot: "divider" }, [
+            _vm._v("chevron_right")
+          ])
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("v-spacer"),
       _vm._v(" "),
@@ -88129,276 +88158,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/api/menu.js":
-/*!**********************************!*\
-  !*** ./resources/js/api/menu.js ***!
-  \**********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es6.array.sort */ "./node_modules/core-js/modules/es6.array.sort.js");
-/* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.array.for-each */ "./node_modules/core-js/modules/es6.array.for-each.js");
-/* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1__);
-
-
-var Menu = [{
-  header: 'Apps'
-}, {
-  title: 'Dashboard',
-  group: 'apps',
-  icon: 'dashboard',
-  name: 'Dashboard'
-}, {
-  title: 'Chat',
-  group: 'apps',
-  icon: 'chat_bubble',
-  target: '_blank',
-  name: 'Chat'
-}, {
-  title: 'Inbox',
-  group: 'apps',
-  name: 'Mail',
-  target: '_blank',
-  icon: 'email'
-}, {
-  title: 'Media',
-  group: 'apps',
-  name: 'Media',
-  icon: 'perm_media'
-}, {
-  title: 'Widgets',
-  group: 'widgets',
-  component: 'widgets',
-  icon: 'widgets',
-  items: [{
-    name: 'social',
-    title: 'Social',
-    component: 'components/social'
-  }, {
-    name: 'statistic',
-    title: 'Statistic',
-    badge: 'new',
-    component: 'components/statistic'
-  }, {
-    name: 'chart',
-    title: 'Chart',
-    component: 'components/chart'
-  }, {
-    name: 'list',
-    title: 'List',
-    component: 'components/widget-list'
-  }]
-}, {
-  header: 'UI Elements'
-}, {
-  title: 'General',
-  group: 'components',
-  component: 'components',
-  icon: 'tune',
-  items: [{
-    name: 'alerts',
-    title: 'Alerts',
-    component: 'components/alerts'
-  }, {
-    name: 'avatars',
-    title: 'Avatars',
-    component: 'components/avatars'
-  }, {
-    name: 'badges',
-    title: 'Badges',
-    component: 'components/badges'
-  }, {
-    name: 'buttons',
-    title: 'Buttons',
-    component: 'components/buttons'
-  }, {
-    name: 'cards',
-    title: 'Cards',
-    component: 'components/cards'
-  }, {
-    name: 'carousels',
-    title: 'Carousels',
-    component: 'components/carousels'
-  }, {
-    name: 'chips',
-    title: 'Chips',
-    component: 'components/chips'
-  }, {
-    name: 'dialogs',
-    title: 'Dialogs',
-    component: 'components/dialogs'
-  }, {
-    name: 'icons',
-    title: 'Icons',
-    component: 'components/icons'
-  }, {
-    name: 'tables',
-    title: 'Data Tables',
-    component: 'components/tables'
-  }, {
-    name: 'parallax',
-    title: 'Parallax  image',
-    component: 'components/parallax'
-  }, {
-    name: 'snackbar',
-    title: 'Snackbar',
-    component: 'components/snackbar'
-  }, {
-    name: 'progress',
-    title: 'Progress',
-    component: 'components/progress'
-  }, {
-    name: 'slider',
-    title: 'Slider',
-    component: 'components/sliders'
-  }, {
-    name: 'tooltip',
-    title: 'Tooltip',
-    component: 'components/tooltips'
-  }, {
-    name: 'pagination',
-    title: 'Pagination',
-    component: 'components/paginations'
-  }, {
-    name: 'typography',
-    title: 'Typography',
-    component: 'components/typography'
-  }, {
-    name: 'color',
-    title: 'Color',
-    component: 'components/color'
-  }]
-}, {
-  title: 'Pickers',
-  group: 'pickers',
-  component: 'picker',
-  icon: 'filter_vintage',
-  items: [{
-    name: 'timepicker',
-    title: 'Timepicker',
-    component: 'pickers/timepicker'
-  }, {
-    name: 'datepicker',
-    title: 'Datepicker',
-    component: 'pickers/datepicker'
-  }]
-}, {
-  title: 'Layout',
-  group: 'layout',
-  component: 'layout',
-  icon: 'view_compact',
-  items: [{
-    name: 'bottom-sheets',
-    title: 'Bottom panels',
-    component: 'components/bottom-sheets'
-  }, {
-    name: 'expansion-panels',
-    title: 'Expansion panels',
-    component: 'components/expansion-panels'
-  }, {
-    name: 'footer',
-    title: 'Footer',
-    component: 'components/footer'
-  }, {
-    name: 'lists',
-    title: 'Lists',
-    component: 'components/lists'
-  }, {
-    name: 'jumbotrons',
-    title: 'Jumbotrons',
-    badge: 'new',
-    component: 'components/jumbotrons'
-  }, {
-    name: 'menus',
-    title: 'Menus',
-    component: 'components/menus'
-  }, {
-    name: 'tabs',
-    title: 'Tabs',
-    component: 'components/tabs'
-  }, {
-    name: 'toolbar',
-    title: 'Toolbars',
-    component: 'components/toolbar'
-  }, {
-    name: 'timeline',
-    title: 'Timeline',
-    component: 'components/timeline'
-  }]
-}, {
-  title: 'Forms & Controls',
-  group: 'forms',
-  component: 'forms',
-  icon: 'edit',
-  items: [{
-    name: 'basic',
-    title: 'General',
-    component: 'components/basic-forms'
-  }, {
-    name: 'selects',
-    title: 'Selects',
-    badge: 'new',
-    component: 'components/selects'
-  }, {
-    name: 'selection-controls',
-    title: 'Selection Controls',
-    component: 'components/selection-controls'
-  }, {
-    name: 'text-fields',
-    title: 'Text Fields',
-    component: 'components/text-fields'
-  }, {
-    name: 'steppers',
-    title: 'Steppers',
-    component: 'components/steppers'
-  }, {
-    name: 'editors',
-    title: 'Editors',
-    component: 'components/editors'
-  }]
-}, {
-  divider: true
-}, {
-  header: 'Extras'
-}, {
-  title: 'Pages',
-  group: 'extra',
-  icon: 'list',
-  items: [{
-    name: 'Login',
-    title: 'Login',
-    component: 'Login'
-  }, {
-    name: '404',
-    title: '404',
-    component: 'NotFound'
-  }, {
-    name: '403',
-    title: '403',
-    component: 'AccessDenied'
-  }, {
-    name: '500',
-    title: '500',
-    component: 'ServerError'
-  }]
-}]; // reorder menu
-
-Menu.forEach(function (item) {
-  if (item.items) {
-    item.items.sort(function (x, y) {
-      var textA = x.title.toUpperCase();
-      var textB = y.title.toUpperCase();
-      return textA < textB ? -1 : textA > textB ? 1 : 0;
-    });
-  }
-});
-/* harmony default export */ __webpack_exports__["default"] = (Menu);
-
-/***/ }),
-
 /***/ "./resources/js/api/notification.js":
 /*!******************************************!*\
   !*** ./resources/js/api/notification.js ***!
@@ -88995,18 +88754,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.array.for-each */ "./node_modules/core-js/modules/es6.array.for-each.js");
 /* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es6.array.iterator */ "./node_modules/core-js/modules/es6.array.iterator.js");
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es6.promise */ "./node_modules/core-js/modules/es6.promise.js");
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es6.object.assign */ "./node_modules/core-js/modules/es6.object.assign.js");
-/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es7.promise.finally */ "./node_modules/core-js/modules/es7.promise.finally.js");
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5__);
-
-
-
-
 
 
 var Menu = [{
@@ -89050,7 +88797,7 @@ var Menu = [{
   items: [{
     name: 'triagem',
     title: 'Triagem',
-    component: 'components/bottom-sheets'
+    component: 'pickers/datepicker'
   }]
 }, {
   divider: true
