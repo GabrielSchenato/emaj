@@ -92,7 +92,7 @@ export default {
         }
       },
       {
-        icon: "subdirectory_arrow_right",
+        icon: "exit_to_app",
         href: "#",
         title: "Sair",
         click: e => {

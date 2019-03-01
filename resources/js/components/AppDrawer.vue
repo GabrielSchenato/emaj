@@ -96,7 +96,7 @@ export default {
       return true;
     },
     computeLogo () {
-      return '/images/logo.png';
+      return '/images/logo_branca.png';
     },
 
     sideToolbarColor () {

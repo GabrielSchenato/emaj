@@ -3490,13 +3490,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       loading: false,
       model: {
-        username: 'admin@isockde.com',
-        password: 'password'
+        username: "gabriel@uniplaclages.edu.br",
+        password: "password"
       }
     };
   },
@@ -3506,7 +3513,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.loading = true;
       setTimeout(function () {
-        _this.$router.push('/dashboard');
+        _this.$router.push("/dashboard");
       }, 1000);
     }
   }
@@ -10146,7 +10153,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#login[data-v-12f5395a] {\n  height: 50%;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  content: \"\";\n  z-index: 0;\n}\n", ""]);
+exports.push([module.i, "\n#login[data-v-12f5395a] {\r\n  height: 100%;\r\n  width: 100%;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  content: \"\";\r\n  z-index: 0;\r\n  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),\r\n    url(\"/images/bg_1.jpg\");\n}\n#painel[data-v-12f5395a] {\r\n  background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45));\r\n  color: white;\n}\r\n", ""]);
 
 // exports
 
@@ -16515,7 +16522,10 @@ var render = function() {
                     [
                       _c(
                         "v-card",
-                        { staticClass: "elevation-1 pa-3" },
+                        {
+                          staticClass: "elevation-1 pa-3",
+                          attrs: { id: "painel" }
+                        },
                         [
                           _c(
                             "v-card-text",
@@ -16526,8 +16536,8 @@ var render = function() {
                                 [
                                   _c("img", {
                                     attrs: {
-                                      src: "/static/m.png",
-                                      alt: "Vue Material Admin",
+                                      src: "/images/logo_preta.png",
+                                      alt: "EMAJ",
                                       width: "120",
                                       height: "120"
                                     }
@@ -16536,7 +16546,7 @@ var render = function() {
                                   _c(
                                     "h1",
                                     { staticClass: "flex my-4 primary--text" },
-                                    [_vm._v("Material Admin Template")]
+                                    [_vm._v("EMAJ")]
                                   )
                                 ]
                               ),
@@ -16548,8 +16558,8 @@ var render = function() {
                                     attrs: {
                                       "append-icon": "person",
                                       name: "login",
-                                      label: "Login",
-                                      type: "text"
+                                      label: "E-mail",
+                                      type: "email"
                                     },
                                     model: {
                                       value: _vm.model.username,
@@ -16564,7 +16574,7 @@ var render = function() {
                                     attrs: {
                                       "append-icon": "lock",
                                       name: "password",
-                                      label: "Password",
+                                      label: "Senha",
                                       id: "password",
                                       type: "password"
                                     },
@@ -16586,40 +16596,9 @@ var render = function() {
                           _c(
                             "v-card-actions",
                             [
-                              _c(
-                                "v-btn",
-                                { attrs: { icon: "" } },
-                                [
-                                  _c("v-icon", { attrs: { color: "blue" } }, [
-                                    _vm._v("fa fa-facebook-square fa-lg")
-                                  ])
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                { attrs: { icon: "" } },
-                                [
-                                  _c("v-icon", { attrs: { color: "red" } }, [
-                                    _vm._v("fa fa-google fa-lg")
-                                  ])
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                { attrs: { icon: "" } },
-                                [
-                                  _c(
-                                    "v-icon",
-                                    { attrs: { color: "light-blue" } },
-                                    [_vm._v("fa fa-twitter fa-lg")]
-                                  )
-                                ],
-                                1
-                              ),
+                              _c("a", { attrs: { href: "" } }, [
+                                _vm._v("Esqueceu sua senha?")
+                              ]),
                               _vm._v(" "),
                               _c("v-spacer"),
                               _vm._v(" "),
@@ -16627,13 +16606,22 @@ var render = function() {
                                 "v-btn",
                                 {
                                   attrs: {
+                                    outline: "",
                                     block: "",
                                     color: "primary",
                                     loading: _vm.loading
                                   },
                                   on: { click: _vm.login }
                                 },
-                                [_vm._v("Login")]
+                                [
+                                  _vm._v("Entrar\n                "),
+                                  _c(
+                                    "v-icon",
+                                    { attrs: { right: "", dark: "" } },
+                                    [_vm._v("keyboard_tab")]
+                                  )
+                                ],
+                                1
                               )
                             ],
                             1
