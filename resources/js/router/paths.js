@@ -173,12 +173,12 @@ export default [
     )
   },
   {
-    path: '/components/avatar',
+    path: '/cadastros/clientes',
     meta: { breadcrumb: true },
-    name: 'components/avatars',
+    name: 'cadastros/clientes',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/ui/Avatar.vue`
+      `@/views/cadastros/clientes/Clientes.vue`
     )
   },
   {

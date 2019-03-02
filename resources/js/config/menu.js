@@ -10,12 +10,12 @@ const Menu =  [
   { header: 'Cadastros do Sistema' },
   {
     title: 'Cadastros',
-    group: 'components',
-    component: 'components',
+    group: 'cadastros',
+    component: 'cadastros',
     icon: 'add',
     items: [
       { name: 'usuarios', title: 'Usuários', component: 'cadastros/usuarios' },
-      { name: 'clientes', title: 'Clientes', component: 'components/avatars' },
+      { name: 'clientes', title: 'Clientes', component: 'cadastros/clientes' },
       { name: 'tiposdemandas', title: 'Tipos de Demandas', component: 'cadastros/tiposdemandas' }
     ]
   },
