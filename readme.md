@@ -5,7 +5,7 @@
 
 É uma plataforma para o gerenciamento dos serviços prestados pelo escritório modelo de advocacia da UNIPLAC.
 
-## Construindo utilizando:
+## Construido utilizando:
 
 - [Laravel 5.7]().
 - [VueJS]().
