@@ -316,7 +316,15 @@ export default [
       `@/views/parametros/Triagem.vue`
     )
   },
-
+  {
+    path: '/perfil',
+    meta: { breadcrumb: true },
+    name: 'perfil',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/Perfil.vue`
+    )
+  },
   {
     path: '/components/typography',
     meta: { breadcrumb: true },

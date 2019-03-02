@@ -88,7 +88,6 @@ export default {
         href: "#/perfil",
         title: "Perfil",
         click: e => {
-          console.log(e);
         }
       },
       {

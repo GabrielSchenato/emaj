@@ -2283,9 +2283,7 @@ __webpack_require__.r(__webpack_exports__);
         icon: "account_circle",
         href: "#/perfil",
         title: "Perfil",
-        click: function click(e) {
-          console.log(e);
-        }
+        click: function click(e) {}
       }, {
         icon: "exit_to_app",
         href: "#",
@@ -2330,19 +2328,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_iterable__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es6.array.for-each */ "./node_modules/core-js/modules/es6.array.for-each.js");
 /* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es6.array.iterator */ "./node_modules/core-js/modules/es6.array.iterator.js");
-/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es6.promise */ "./node_modules/core-js/modules/es6.promise.js");
-/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es6.object.assign */ "./node_modules/core-js/modules/es6.object.assign.js");
-/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es7.promise.finally */ "./node_modules/core-js/modules/es7.promise.finally.js");
-/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _config_menu__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/config/menu */ "./resources/js/config/menu.js");
-
-
-
-
+/* harmony import */ var _config_menu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/config/menu */ "./resources/js/config/menu.js");
 
 
 
@@ -2378,7 +2364,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var breadcrumbs = [];
-      _config_menu__WEBPACK_IMPORTED_MODULE_8__["default"].forEach(function (item) {
+      _config_menu__WEBPACK_IMPORTED_MODULE_4__["default"].forEach(function (item) {
         if (item.items) {
           var child = item.items.find(function (i) {
             return i.component === _this.$route.name;
@@ -2402,6 +2388,11 @@ __webpack_require__.r(__webpack_exports__);
           }
         }
       });
+
+      if (this.$route.name === 'perfil') {
+        this.title = 'Perfil';
+      }
+
       return breadcrumbs;
     }
   }
@@ -100000,6 +99991,15 @@ __webpack_require__.r(__webpack_exports__);
   name: 'parametros/triagem',
   component: function component() {
     return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/parametros/Triagem.vue */ "./resources/js/views/parametros/Triagem.vue"));
+  }
+}, {
+  path: '/perfil',
+  meta: {
+    breadcrumb: true
+  },
+  name: 'perfil',
+  component: function component() {
+    return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/Perfil.vue */ "./resources/js/views/Perfil.vue"));
   }
 }, {
   path: '/components/typography',

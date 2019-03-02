@@ -45,6 +45,11 @@ export default {
           }
         }
       });
+
+      if(this.$route.name === 'perfil'){
+        this.title = 'Perfil';
+      }
+      
       return breadcrumbs;
     }
   }
