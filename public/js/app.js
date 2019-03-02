@@ -88732,6 +88732,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.array.for-each */ "./node_modules/core-js/modules/es6.array.for-each.js");
 /* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es6.array.iterator */ "./node_modules/core-js/modules/es6.array.iterator.js");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es6.promise */ "./node_modules/core-js/modules/es6.promise.js");
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es6.object.assign */ "./node_modules/core-js/modules/es6.object.assign.js");
+/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es7.promise.finally */ "./node_modules/core-js/modules/es7.promise.finally.js");
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
 
 
 var Menu = [{
@@ -88753,15 +88765,15 @@ var Menu = [{
   items: [{
     name: 'usuarios',
     title: 'Usuários',
-    component: 'components/alerts'
+    component: 'cadastros/usuarios'
   }, {
     name: 'clientes',
     title: 'Clientes',
     component: 'components/avatars'
   }, {
-    name: 'tipodemanda',
-    title: 'Tipo de Demanda',
-    component: 'components/badges'
+    name: 'tiposdemandas',
+    title: 'Tipos de Demandas',
+    component: 'cadastros/tiposdemandas'
   }]
 }, {
   divider: true
@@ -89204,13 +89216,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   }]
 }, {
-  path: '/components/alert',
+  path: '/cadastros/usuarios',
   meta: {
     breadcrumb: true
   },
-  name: 'components/alerts',
+  name: 'cadastros/usuarios',
   component: function component() {
-    return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/ui/Alert.vue */ "./resources/js/views/ui/Alert.vue"));
+    return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/cadastros/usuarios/Usuarios.vue */ "./resources/js/views/cadastros/usuarios/Usuarios.vue"));
   }
 }, {
   path: '/components/avatar',
@@ -89222,13 +89234,13 @@ __webpack_require__.r(__webpack_exports__);
     return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/ui/Avatar.vue */ "./resources/js/views/ui/Avatar.vue"));
   }
 }, {
-  path: '/components/badge',
+  path: '/cadastros/tiposdemandas',
   meta: {
     breadcrumb: true
   },
-  name: 'components/badges',
+  name: 'cadastros/tiposdemandas',
   component: function component() {
-    return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/ui/Badge.vue */ "./resources/js/views/ui/Badge.vue"));
+    return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '@/views/cadastros/tiposdemandas/TiposDemandas.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
   }
 }, {
   path: '/components/button',

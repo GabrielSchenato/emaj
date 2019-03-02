@@ -164,12 +164,12 @@ export default [
     ]
   },  
   {
-    path: '/components/alert',
+    path: '/cadastros/usuarios',
     meta: { breadcrumb: true },
-    name: 'components/alerts',
+    name: 'cadastros/usuarios',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/ui/Alert.vue`
+      `@/views/cadastros/usuarios/Usuarios.vue`
     )
   },
   {
@@ -182,12 +182,12 @@ export default [
     )
   },
   {
-    path: '/components/badge',
+    path: '/cadastros/tiposdemandas',
     meta: { breadcrumb: true },
-    name: 'components/badges',
+    name: 'cadastros/tiposdemandas',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/ui/Badge.vue`
+      `@/views/cadastros/tiposdemandas/TiposDemandas.vue`
     )
   },
   {

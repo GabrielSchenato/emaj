@@ -14,9 +14,9 @@ const Menu =  [
     component: 'components',
     icon: 'add',
     items: [
-      { name: 'usuarios', title: 'Usuários', component: 'components/alerts' },
+      { name: 'usuarios', title: 'Usuários', component: 'cadastros/usuarios' },
       { name: 'clientes', title: 'Clientes', component: 'components/avatars' },
-      { name: 'tipodemanda', title: 'Tipo de Demanda', component: 'components/badges' }
+      { name: 'tiposdemandas', title: 'Tipos de Demandas', component: 'cadastros/tiposdemandas' }
     ]
   },
   { divider: true },
