@@ -89240,7 +89240,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   name: 'cadastros/tiposdemandas',
   component: function component() {
-    return Promise.resolve().then(function webpackMissingModule() { var e = new Error("Cannot find module '@/views/cadastros/tiposdemandas/TiposDemandas.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; });
+    return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/cadastros/tiposdemandas/TiposDemandas.vue */ "./resources/js/views/cadastros/tiposdemandas/TiposDemandas.vue"));
   }
 }, {
   path: '/components/button',

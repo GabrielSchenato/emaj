@@ -3,7 +3,7 @@
     <v-container grid-list-xl fluid>
       <v-layout row wrap>
         <v-flex sm12>
-          <h3>Usuários Cadastros no Sistema</h3>
+          <h3>Tipos de Demandas Cadastradas no Sistema</h3>
         </v-flex>
         <v-flex lg12>
           <v-card>
@@ -12,7 +12,7 @@
                 <v-icon right dark>add</v-icon>
               </v-btn>
 
-              <usuario ref="usuario"></usuario>
+              <tipo-demanda ref="tipodemanda"></tipo-demanda>
               <confirm ref="confirm"></confirm>
               <v-divider class="mx-2" inset vertical></v-divider>
               <v-text-field
@@ -45,16 +45,8 @@
                     <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
                   </td>
                   <td>{{ props.item.id }}</td>
-                  <td>
-                    <v-avatar size="32">
-                      <img :src="props.item.avatar" alt>
-                    </v-avatar>
-                  </td>
                   <td>{{ props.item.nome }}</td>
-                  <td>{{ props.item.sobrenome }}</td>
-                  <td>{{ props.item.email }}</td>
-                  <td>{{ props.item.telefone }}</td>
-                  <td>{{ props.item.permissao.nome }}</td>
+                  <td>{{ props.item.descricao }}</td>
                   <td>
                     <v-btn depressed outline icon fab dark color="primary" small>
                       <v-icon @click="editItem(props.item)">edit</v-icon>
@@ -79,14 +71,14 @@
 </template>
 
 <script>
-import { Items as Users } from "@/config/user";
+import { Items as TiposDemandas } from "@/config/tiposdemandas";
 import Confirm from "@/components/dialogs/Confirm.vue";
-import Usuario from "@/components/forms/cadastros/Usuario.vue";
+import TipoDemanda from "@/components/forms/cadastros/TipoDemanda.vue";
 
 export default {
   components: {
     Confirm,
-    Usuario
+    TipoDemanda
   },
 
   data: () => ({
@@ -100,28 +92,12 @@ export default {
           value: "id"
         },
         {
-          text: "Avatar",
-          value: "avatar"
-        },
-        {
           text: "Nome",
           value: "nome"
         },
         {
-          text: "Sobrenome",
-          value: "sobrenome"
-        },
-        {
-          text: "E-mail",
-          value: "email"
-        },
-        {
-          text: "Telefone",
-          value: "telefone"
-        },
-        {
-          text: "Nível de Permissão",
-          value: "permissao.nome"
+          text: "Descrição",
+          value: "descricao"
         },
         {
           text: "Ação",
@@ -134,17 +110,11 @@ export default {
     editedIndex: -1,
     editedItem: {
       nome: "",
-      sobrenome: "",
-      email: "",
-      telefone: "",
-      permissao: ""
+      descricao: "",
     },
     defaultItem: {
       nome: "",
-      sobrenome: "",
-      email: "",
-      telefone: "",
-      permissao: ""
+      descricao: "",
     }
   }),
   watch: {
@@ -160,16 +130,16 @@ export default {
   methods: {
     formTitle() {
       return this.editedIndex === -1
-        ? "Adicionar um novo usuário"
-        : "Editar um usuário";
+        ? "Adicionar um novo tipo de demanda"
+        : "Editar uma demanda";
     },
     initialize() {
-      this.items = Users;
+      this.items = TiposDemandas;
     },
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      this.$refs.usuario
+      this.$refs.tipodemanda
         .open(this.formTitle(), this.editedItem, {
           color: "blue"
         })
@@ -181,9 +151,9 @@ export default {
     },
 
     abrirForm() {
-      this.$refs.usuario
+      this.$refs.tipodemanda
         .open(
-          "Adicionar novo usuário",
+          this.formTitle(),
           {},
           {
             color: "blue"
@@ -191,7 +161,7 @@ export default {
         )
         .then(confirm => {
           if (confirm) {
-            this.editedItem = Object.assign({}, this.$refs.usuario.getValues());
+            this.editedItem = Object.assign({}, this.$refs.tipodemanda.getValues());
             this.save();
           }
         });
@@ -200,7 +170,7 @@ export default {
     deleteItem(item) {
       const index = this.items.indexOf(item);
       this.$refs.confirm
-        .open("Deletar", "Você tem certeza que deseja deletar este usuário?", {
+        .open("Deletar", "Você tem certeza que deseja deletar este tipo de demanda?", {
           color: "red"
         })
         .then(confirm => {
