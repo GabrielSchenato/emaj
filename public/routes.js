@@ -8658,6 +8658,129 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/parametros/Triagem.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/parametros/Triagem.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es6.array.iterator */ "./node_modules/core-js/modules/es6.array.iterator.js");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.promise */ "./node_modules/core-js/modules/es6.promise.js");
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es6.object.assign */ "./node_modules/core-js/modules/es6.object.assign.js");
+/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es7.promise.finally */ "./node_modules/core-js/modules/es7.promise.finally.js");
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+vue__WEBPACK_IMPORTED_MODULE_4___default.a.use(vee_validate__WEBPACK_IMPORTED_MODULE_5__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  $_veeValidate: {
+    validator: "new"
+  },
+  data: function data() {
+    return {
+      salvo: null,
+      editedItem: {
+        renda: "1500,00"
+      },
+      defaultItem: {
+        renda: "1500,00"
+      }
+    };
+  },
+  methods: {
+    save: function save() {
+      var _this = this;
+
+      this.$validator.validateAll().then(function (valid) {
+        if (valid) {
+          _this.salvo = true;
+        }
+
+        setTimeout(function () {
+          _this.salvo = false;
+        }, 2500);
+      });
+    },
+    clear: function clear() {
+      this.editedItem.renda = "";
+      this.$validator.reset();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ui/Button.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/ui/Button.vue?vue&type=script&lang=js& ***!
@@ -9576,181 +9699,6 @@ __webpack_require__.r(__webpack_exports__);
     getColorClass: function getColorClass(key) {
       if (['white', 'transparent'].includes(key) || key.indexOf('light') > -1 || key.indexOf('accent') > -1) return 'black--text';
       return 'white--text';
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ui/Datepicker.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/ui/Datepicker.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime-corejs2/core-js/parse-int */ "./node_modules/@babel/runtime-corejs2/core-js/parse-int.js");
-/* harmony import */ var C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es6_regexp_split__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.regexp.split */ "./node_modules/core-js/modules/es6.regexp.split.js");
-/* harmony import */ var core_js_modules_es6_regexp_split__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_regexp_split__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
-/* harmony import */ var core_js_modules_es6_date_to_iso_string__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es6.date.to-iso-string */ "./node_modules/core-js/modules/es6.date.to-iso-string.js");
-/* harmony import */ var core_js_modules_es6_date_to_iso_string__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_date_to_iso_string__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/toConsumableArray.js");
-/* harmony import */ var core_js_modules_es6_array_map__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es6.array.map */ "./node_modules/core-js/modules/es6.array.map.js");
-/* harmony import */ var core_js_modules_es6_array_map__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_map__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_VWidget__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/VWidget */ "./resources/js/components/VWidget.vue");
-
-
-
-
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    VWidget: _components_VWidget__WEBPACK_IMPORTED_MODULE_6__["default"]
-  },
-  data: function data() {
-    return {
-      picker: null,
-      picker2: null,
-      //
-      arrayEvents: null,
-      date1: null,
-      date2: null,
-      //
-      date: null,
-      menu: false,
-      modal: false
-    };
-  },
-  mounted: function mounted() {
-    this.arrayEvents = Object(C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__["default"])(Array(6)).map(function () {
-      var day = Math.floor(Math.random() * 30);
-      var d = new Date();
-      d.setDate(day);
-      return d.toISOString().substr(0, 10);
-    });
-  },
-  methods: {
-    functionEvents: function functionEvents(date) {
-      var _date$split = date.split('-'),
-          _date$split2 = Object(C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_date$split, 3),
-          day = _date$split2[2];
-
-      return C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_parse_int__WEBPACK_IMPORTED_MODULE_0___default()(day, 10) % 3 === 0;
     }
   }
 });
@@ -30158,6 +30106,249 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/parametros/Triagem.vue?vue&type=template&id=ccae5c3a&":
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/parametros/Triagem.vue?vue&type=template&id=ccae5c3a& ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "pageTable" } },
+    [
+      _c(
+        "v-container",
+        { attrs: { "grid-list-xl": "", fluid: "" } },
+        [
+          _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { lg12: "" } },
+                [
+                  _c(
+                    "v-alert",
+                    {
+                      attrs: {
+                        outline: "",
+                        color: "success",
+                        icon: "check_circle",
+                        value: _vm.salvo
+                      }
+                    },
+                    [_vm._v("Parâmetros salvo com sucesso.")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-card",
+                    [
+                      _c(
+                        "v-toolbar",
+                        {
+                          attrs: {
+                            card: "",
+                            prominent: "",
+                            extended: "",
+                            color: "primary",
+                            dark: "",
+                            "extension-height": "15px"
+                          }
+                        },
+                        [
+                          _c("v-toolbar-title", { staticClass: "headline" }, [
+                            _vm._v("Parâmetros da Triagem")
+                          ]),
+                          _vm._v(" "),
+                          _c("v-spacer")
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-text",
+                        [
+                          _c(
+                            "v-form",
+                            { ref: "form", attrs: { "lazy-validation": "" } },
+                            [
+                              _c(
+                                "v-layout",
+                                { attrs: { row: "", wrap: "" } },
+                                [
+                                  _c(
+                                    "v-flex",
+                                    { attrs: { xs12: "", sm6: "", md4: "" } },
+                                    [
+                                      _c("v-text-field", {
+                                        directives: [
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
+                                          }
+                                        ],
+                                        attrs: {
+                                          "error-messages": _vm.errors.collect(
+                                            "renda"
+                                          ),
+                                          label: "Renda*",
+                                          "data-vv-name": "renda",
+                                          required: ""
+                                        },
+                                        scopedSlots: _vm._u([
+                                          {
+                                            key: "prepend",
+                                            fn: function() {
+                                              return [
+                                                _c(
+                                                  "v-tooltip",
+                                                  {
+                                                    attrs: {
+                                                      bottom: "",
+                                                      light: "",
+                                                      color: "success"
+                                                    },
+                                                    scopedSlots: _vm._u([
+                                                      {
+                                                        key: "activator",
+                                                        fn: function(ref) {
+                                                          var on = ref.on
+                                                          return [
+                                                            _c(
+                                                              "v-icon",
+                                                              _vm._g({}, on),
+                                                              [
+                                                                _vm._v(
+                                                                  "not_listed_location"
+                                                                )
+                                                              ]
+                                                            )
+                                                          ]
+                                                        }
+                                                      }
+                                                    ])
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      "Utilizado para validar se a renda do cliente está dentro do requerido pelo EMAJ\n                      "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            },
+                                            proxy: true
+                                          }
+                                        ]),
+                                        model: {
+                                          value: _vm.editedItem.renda,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.editedItem,
+                                              "renda",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "editedItem.renda"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("small", [
+                            _vm._v("*Indica os campos que são obrigatórios")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-actions",
+                        { staticClass: "pt-0" },
+                        [
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "green", flat: "flat" },
+                              nativeOn: {
+                                click: function($event) {
+                                  return _vm.save($event)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v("Salvar\n              "),
+                              _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                                _vm._v("check")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "blue", flat: "flat" },
+                              nativeOn: {
+                                click: function($event) {
+                                  return _vm.clear($event)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v("Limpar\n              "),
+                              _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                                _vm._v("delete_sweep")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ui/Button.vue?vue&type=template&id=1385ca84&":
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/ui/Button.vue?vue&type=template&id=1385ca84& ***!
@@ -32786,483 +32977,6 @@ var render = function() {
           })
         ],
         2
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ui/Datepicker.vue?vue&type=template&id=be48fb70&":
-/*!*******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/ui/Datepicker.vue?vue&type=template&id=be48fb70& ***!
-  \*******************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { attrs: { id: "page-datepickers" } },
-    [
-      _c(
-        "v-container",
-        { attrs: { "grid-list-xl": "", fluid: "" } },
-        [
-          _c(
-            "v-layout",
-            { attrs: { row: "", wrap: "" } },
-            [
-              _c(
-                "v-flex",
-                { attrs: { lg6: "", sm12: "" } },
-                [
-                  _c("v-widget", { attrs: { title: "Basic Usage" } }, [
-                    _c(
-                      "div",
-                      {
-                        attrs: { slot: "widget-content" },
-                        slot: "widget-content"
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "flexbox-centering" },
-                          [
-                            _c("v-date-picker", {
-                              attrs: { color: "green lighten-1" },
-                              model: {
-                                value: _vm.picker,
-                                callback: function($$v) {
-                                  _vm.picker = $$v
-                                },
-                                expression: "picker"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-widget",
-                    { staticClass: "mt-3", attrs: { title: "Full Width" } },
-                    [
-                      _c(
-                        "div",
-                        {
-                          attrs: { slot: "widget-content" },
-                          slot: "widget-content"
-                        },
-                        [
-                          _c("v-date-picker", {
-                            attrs: {
-                              landscape: "",
-                              "full-width": "",
-                              color: "green lighten-1"
-                            },
-                            model: {
-                              value: _vm.picker,
-                              callback: function($$v) {
-                                _vm.picker = $$v
-                              },
-                              expression: "picker"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("v-date-picker", {
-                            staticClass: "mt-3",
-                            attrs: {
-                              "full-width": "",
-                              color: "primary lighten-1"
-                            },
-                            model: {
-                              value: _vm.picker,
-                              callback: function($$v) {
-                                _vm.picker = $$v
-                              },
-                              expression: "picker"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-flex",
-                { attrs: { lg6: "", sm12: "" } },
-                [
-                  _c("v-widget", { attrs: { title: "Month Picker" } }, [
-                    _c(
-                      "div",
-                      {
-                        attrs: { slot: "widget-content" },
-                        slot: "widget-content"
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "flexbox-centering" },
-                          [
-                            _c("v-date-picker", {
-                              attrs: { type: "month", color: "teal lighten-1" },
-                              model: {
-                                value: _vm.picker,
-                                callback: function($$v) {
-                                  _vm.picker = $$v
-                                },
-                                expression: "picker"
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "v-widget",
-                    {
-                      staticClass: "mt-3",
-                      attrs: { title: "In dialog and menu" }
-                    },
-                    [
-                      _c(
-                        "div",
-                        {
-                          attrs: { slot: "widget-content" },
-                          slot: "widget-content"
-                        },
-                        [
-                          _c(
-                            "v-container",
-                            [
-                              _c(
-                                "v-layout",
-                                { attrs: { row: "", wrap: "" } },
-                                [
-                                  _c(
-                                    "v-flex",
-                                    { attrs: { xs11: "", sm5: "" } },
-                                    [
-                                      _c(
-                                        "v-menu",
-                                        {
-                                          ref: "menu",
-                                          attrs: {
-                                            lazy: "",
-                                            "close-on-content-click": false,
-                                            transition: "scale-transition",
-                                            "offset-y": "",
-                                            "full-width": "",
-                                            "nudge-right": 40,
-                                            "min-width": "290px",
-                                            "return-value": _vm.date
-                                          },
-                                          on: {
-                                            "update:returnValue": function(
-                                              $event
-                                            ) {
-                                              _vm.date = $event
-                                            },
-                                            "update:return-value": function(
-                                              $event
-                                            ) {
-                                              _vm.date = $event
-                                            }
-                                          },
-                                          model: {
-                                            value: _vm.menu,
-                                            callback: function($$v) {
-                                              _vm.menu = $$v
-                                            },
-                                            expression: "menu"
-                                          }
-                                        },
-                                        [
-                                          _c("v-text-field", {
-                                            attrs: {
-                                              slot: "activator",
-                                              label: "Picker in menu",
-                                              "prepend-icon": "event",
-                                              readonly: ""
-                                            },
-                                            slot: "activator",
-                                            model: {
-                                              value: _vm.date,
-                                              callback: function($$v) {
-                                                _vm.date = $$v
-                                              },
-                                              expression: "date"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-date-picker",
-                                            {
-                                              attrs: {
-                                                "no-title": "",
-                                                scrollable: ""
-                                              },
-                                              model: {
-                                                value: _vm.date,
-                                                callback: function($$v) {
-                                                  _vm.date = $$v
-                                                },
-                                                expression: "date"
-                                              }
-                                            },
-                                            [
-                                              _c("v-spacer"),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    flat: "",
-                                                    color: "primary"
-                                                  },
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.menu = false
-                                                    }
-                                                  }
-                                                },
-                                                [_vm._v("Cancel")]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    flat: "",
-                                                    color: "primary"
-                                                  },
-                                                  on: {
-                                                    click: function($event) {
-                                                      return _vm.$refs.menu.save(
-                                                        _vm.date
-                                                      )
-                                                    }
-                                                  }
-                                                },
-                                                [_vm._v("OK")]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c("v-spacer"),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-flex",
-                                    { attrs: { xs11: "", sm5: "" } },
-                                    [
-                                      _c(
-                                        "v-dialog",
-                                        {
-                                          ref: "dialog",
-                                          attrs: {
-                                            persistent: "",
-                                            lazy: "",
-                                            "full-width": "",
-                                            width: "290px",
-                                            "return-value": _vm.date
-                                          },
-                                          on: {
-                                            "update:returnValue": function(
-                                              $event
-                                            ) {
-                                              _vm.date = $event
-                                            },
-                                            "update:return-value": function(
-                                              $event
-                                            ) {
-                                              _vm.date = $event
-                                            }
-                                          },
-                                          model: {
-                                            value: _vm.modal,
-                                            callback: function($$v) {
-                                              _vm.modal = $$v
-                                            },
-                                            expression: "modal"
-                                          }
-                                        },
-                                        [
-                                          _c("v-text-field", {
-                                            attrs: {
-                                              slot: "activator",
-                                              label: "Picker in dialog",
-                                              "prepend-icon": "event",
-                                              readonly: ""
-                                            },
-                                            slot: "activator",
-                                            model: {
-                                              value: _vm.date,
-                                              callback: function($$v) {
-                                                _vm.date = $$v
-                                              },
-                                              expression: "date"
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-date-picker",
-                                            {
-                                              attrs: { scrollable: "" },
-                                              model: {
-                                                value: _vm.date,
-                                                callback: function($$v) {
-                                                  _vm.date = $$v
-                                                },
-                                                expression: "date"
-                                              }
-                                            },
-                                            [
-                                              _c("v-spacer"),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    flat: "",
-                                                    color: "primary"
-                                                  },
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.modal = false
-                                                    }
-                                                  }
-                                                },
-                                                [_vm._v("Cancel")]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-btn",
-                                                {
-                                                  attrs: {
-                                                    flat: "",
-                                                    color: "primary"
-                                                  },
-                                                  on: {
-                                                    click: function($event) {
-                                                      return _vm.$refs.dialog.save(
-                                                        _vm.date
-                                                      )
-                                                    }
-                                                  }
-                                                },
-                                                [_vm._v("OK")]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-widget",
-                    { staticClass: "mt-3", attrs: { title: "Events" } },
-                    [
-                      _c(
-                        "div",
-                        {
-                          attrs: { slot: "widget-content" },
-                          slot: "widget-content"
-                        },
-                        [
-                          _c(
-                            "v-container",
-                            [
-                              _c(
-                                "v-layout",
-                                { attrs: { wrap: "" } },
-                                [
-                                  _c(
-                                    "v-flex",
-                                    {
-                                      staticClass: "my-3",
-                                      attrs: { xs12: "", sm12: "" }
-                                    },
-                                    [
-                                      _c("v-date-picker", {
-                                        attrs: {
-                                          "full-width": "",
-                                          "event-color": "green lighten-1",
-                                          events: _vm.arrayEvents
-                                        },
-                                        model: {
-                                          value: _vm.date1,
-                                          callback: function($$v) {
-                                            _vm.date1 = $$v
-                                          },
-                                          expression: "date1"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
       )
     ],
     1
@@ -46973,6 +46687,98 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/parametros/Triagem.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/views/parametros/Triagem.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Triagem_vue_vue_type_template_id_ccae5c3a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Triagem.vue?vue&type=template&id=ccae5c3a& */ "./resources/js/views/parametros/Triagem.vue?vue&type=template&id=ccae5c3a&");
+/* harmony import */ var _Triagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Triagem.vue?vue&type=script&lang=js& */ "./resources/js/views/parametros/Triagem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
+/* harmony import */ var _C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuetify_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib */ "./node_modules/vuetify/lib/index.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Triagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Triagem_vue_vue_type_template_id_ccae5c3a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Triagem_vue_vue_type_template_id_ccae5c3a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* vuetify-loader */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VAlert: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VAlert"],VBtn: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCard"],VCardActions: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCardActions"],VCardText: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCardText"],VContainer: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VContainer"],VFlex: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VFlex"],VForm: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VForm"],VIcon: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VIcon"],VLayout: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VLayout"],VSpacer: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VSpacer"],VTextField: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VTextField"],VToolbar: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VToolbar"],VToolbarTitle: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VToolbarTitle"],VTooltip: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VTooltip"]})
+
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/parametros/Triagem.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/parametros/Triagem.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/views/parametros/Triagem.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Triagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vuetify-loader/lib/loader.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./Triagem.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/parametros/Triagem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Triagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/parametros/Triagem.vue?vue&type=template&id=ccae5c3a&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/views/parametros/Triagem.vue?vue&type=template&id=ccae5c3a& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Triagem_vue_vue_type_template_id_ccae5c3a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vuetify-loader/lib/loader.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./Triagem.vue?vue&type=template&id=ccae5c3a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/parametros/Triagem.vue?vue&type=template&id=ccae5c3a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Triagem_vue_vue_type_template_id_ccae5c3a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Triagem_vue_vue_type_template_id_ccae5c3a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/views/ui/Button.vue":
 /*!******************************************!*\
   !*** ./resources/js/views/ui/Button.vue ***!
@@ -47445,92 +47251,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Colors_vue_vue_type_template_id_2ec861fc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Colors_vue_vue_type_template_id_2ec861fc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/views/ui/Datepicker.vue":
-/*!**********************************************!*\
-  !*** ./resources/js/views/ui/Datepicker.vue ***!
-  \**********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Datepicker_vue_vue_type_template_id_be48fb70___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Datepicker.vue?vue&type=template&id=be48fb70& */ "./resources/js/views/ui/Datepicker.vue?vue&type=template&id=be48fb70&");
-/* harmony import */ var _Datepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Datepicker.vue?vue&type=script&lang=js& */ "./resources/js/views/ui/Datepicker.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-/* harmony import */ var _C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
-/* harmony import */ var _C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib */ "./node_modules/vuetify/lib/index.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Datepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Datepicker_vue_vue_type_template_id_be48fb70___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Datepicker_vue_vue_type_template_id_be48fb70___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* vuetify-loader */
-
-
-
-
-
-
-
-
-
-
-_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VContainer: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VContainer"],VDatePicker: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VDatePicker"],VDialog: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VDialog"],VFlex: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VFlex"],VLayout: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VLayout"],VMenu: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VMenu"],VSpacer: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VSpacer"],VTextField: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VTextField"]})
-
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/views/ui/Datepicker.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/views/ui/Datepicker.vue?vue&type=script&lang=js&":
-/*!***********************************************************************!*\
-  !*** ./resources/js/views/ui/Datepicker.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Datepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vuetify-loader/lib/loader.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./Datepicker.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ui/Datepicker.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Datepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/views/ui/Datepicker.vue?vue&type=template&id=be48fb70&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/views/ui/Datepicker.vue?vue&type=template&id=be48fb70& ***!
-  \*****************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Datepicker_vue_vue_type_template_id_be48fb70___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vuetify-loader/lib/loader.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./Datepicker.vue?vue&type=template&id=be48fb70& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ui/Datepicker.vue?vue&type=template&id=be48fb70&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Datepicker_vue_vue_type_template_id_be48fb70___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Datepicker_vue_vue_type_template_id_be48fb70___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

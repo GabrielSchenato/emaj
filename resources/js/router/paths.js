@@ -308,14 +308,15 @@ export default [
     )
   },
   {
-    path: '/pickers/datepicker',
+    path: '/parametros/triagem',
     meta: { breadcrumb: true },
-    name: 'pickers/datepicker',
+    name: 'parametros/triagem',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/ui/Datepicker.vue`
+      `@/views/parametros/Triagem.vue`
     )
   },
+
   {
     path: '/components/typography',
     meta: { breadcrumb: true },

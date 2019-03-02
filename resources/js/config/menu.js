@@ -23,11 +23,11 @@ const Menu =  [
   { header: 'Parametrização do Sistema' },
   {
     title: 'Parâmetros',
-    group: 'pickers',
-    component: 'picker',
+    group: 'paramentros',
+    component: 'parametros',
     icon: 'settings',
     items: [
-      { name: 'triagem', title: 'Triagem', component: 'pickers/datepicker' },  
+      { name: 'triagem', title: 'Triagem', component: 'parametros/triagem' },  
     ]
   },
   { divider: true },

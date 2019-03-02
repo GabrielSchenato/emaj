@@ -2281,7 +2281,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       items: [{
         icon: "account_circle",
-        href: "#",
+        href: "#/perfil",
         title: "Perfil",
         click: function click(e) {
           console.log(e);
@@ -99352,6 +99352,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_sort__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.array.for-each */ "./node_modules/core-js/modules/es6.array.for-each.js");
 /* harmony import */ var core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_for_each__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es6.array.iterator */ "./node_modules/core-js/modules/es6.array.iterator.js");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es6.promise */ "./node_modules/core-js/modules/es6.promise.js");
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es6.object.assign */ "./node_modules/core-js/modules/es6.object.assign.js");
+/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es7.promise.finally */ "./node_modules/core-js/modules/es7.promise.finally.js");
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+
 
 
 var Menu = [{
@@ -99389,13 +99401,13 @@ var Menu = [{
   header: 'Parametrização do Sistema'
 }, {
   title: 'Parâmetros',
-  group: 'pickers',
-  component: 'picker',
+  group: 'paramentros',
+  component: 'parametros',
   icon: 'settings',
   items: [{
     name: 'triagem',
     title: 'Triagem',
-    component: 'pickers/datepicker'
+    component: 'parametros/triagem'
   }]
 }, {
   divider: true
@@ -99981,13 +99993,13 @@ __webpack_require__.r(__webpack_exports__);
     return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/ui/Pagination.vue */ "./resources/js/views/ui/Pagination.vue"));
   }
 }, {
-  path: '/pickers/datepicker',
+  path: '/parametros/triagem',
   meta: {
     breadcrumb: true
   },
-  name: 'pickers/datepicker',
+  name: 'parametros/triagem',
   component: function component() {
-    return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/ui/Datepicker.vue */ "./resources/js/views/ui/Datepicker.vue"));
+    return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/parametros/Triagem.vue */ "./resources/js/views/parametros/Triagem.vue"));
   }
 }, {
   path: '/components/typography',
