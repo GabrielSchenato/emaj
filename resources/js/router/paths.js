@@ -353,12 +353,12 @@ export default [
     )
   },
   {
-    path: '/layout/expansion-panel',
+    path: '/movimentos/fichastriagem',
     meta: { breadcrumb: true },
-    name: 'components/expansion-panels',
+    name: 'movimentos/fichastriagem',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/layout/ExpansionPanels.vue`
+      `@/views/movimentos/FichasTriagem.vue`
     )
   },
   {

@@ -99403,13 +99403,13 @@ var Menu = [{
   header: 'Movimentação do Sistema'
 }, {
   title: 'Movimentos',
-  group: 'layout',
-  component: 'layout',
+  group: 'movimentos',
+  component: 'movimentos',
   icon: 'compare_arrows',
   items: [{
-    name: 'fichatriagem',
-    title: 'Ficha de Triagem',
-    component: 'components/expansion-panels'
+    name: 'fichastriagem',
+    title: 'Fichas de Triagem',
+    component: 'movimentos/fichastriagem'
   }]
 }, {
   header: 'Estatísticas'
@@ -100026,13 +100026,13 @@ __webpack_require__.r(__webpack_exports__);
     return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/layout/BottomSheets.vue */ "./resources/js/views/layout/BottomSheets.vue"));
   }
 }, {
-  path: '/layout/expansion-panel',
+  path: '/movimentos/fichastriagem',
   meta: {
     breadcrumb: true
   },
-  name: 'components/expansion-panels',
+  name: 'movimentos/fichastriagem',
   component: function component() {
-    return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/layout/ExpansionPanels.vue */ "./resources/js/views/layout/ExpansionPanels.vue"));
+    return Promise.all(/*! import() | routes */[__webpack_require__.e("vendors~routes"), __webpack_require__.e("routes")]).then(__webpack_require__.bind(null, /*! @/views/movimentos/FichasTriagem.vue */ "./resources/js/views/movimentos/FichasTriagem.vue"));
   }
 }, {
   path: '/layout/footer',

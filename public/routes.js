@@ -2549,6 +2549,374 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es6_array_index_of__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es6.array.index-of */ "./node_modules/core-js/modules/es6.array.index-of.js");
+/* harmony import */ var core_js_modules_es6_array_index_of__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_index_of__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es6_array_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.array.filter */ "./node_modules/core-js/modules/es6.array.filter.js");
+/* harmony import */ var core_js_modules_es6_array_filter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_filter__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime-corejs2/core-js/promise */ "./node_modules/@babel/runtime-corejs2/core-js/promise.js");
+/* harmony import */ var C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime-corejs2/core-js/object/assign */ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js");
+/* harmony import */ var C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _config_clientes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/config/clientes */ "./resources/js/config/clientes.js");
+/* harmony import */ var _config_tiposdemandas__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/config/tiposdemandas */ "./resources/js/config/tiposdemandas.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+vue__WEBPACK_IMPORTED_MODULE_6___default.a.use(vee_validate__WEBPACK_IMPORTED_MODULE_7__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  $_veeValidate: {
+    validator: "new"
+  },
+  data: function data() {
+    return {
+      dialog: false,
+      step: 1,
+      resolve: null,
+      reject: null,
+      avatar: null,
+      clientes: _config_clientes__WEBPACK_IMPORTED_MODULE_4__["Items"],
+      tiposdemandas: _config_tiposdemandas__WEBPACK_IMPORTED_MODULE_5__["Items"],
+      editedItem: {
+        avatar: "",
+        nome: "",
+        sobrenome: "",
+        email: "",
+        telefone: "",
+        permissao: ""
+      },
+      formTitle: null,
+      options: {
+        color: "primary",
+        width: 1000,
+        zIndex: 1000
+      }
+    };
+  },
+  watch: {
+    search: function search(val) {
+      val && this.querySelections(val);
+    }
+  },
+  methods: {
+    getValues: function getValues() {
+      return this.editedItem;
+    },
+    open: function open(title, item, options) {
+      var _this = this;
+
+      this.dialog = true;
+      this.formTitle = title;
+      this.editedItem = item;
+      this.options = C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_3___default()(this.options, options);
+      return new C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_2___default.a(function (resolve, reject) {
+        _this.resolve = resolve;
+        _this.reject = reject;
+      });
+    },
+    validaDados: function validaDados(names, step) {
+      var _this2 = this;
+
+      this.$validator.validateAll(names).then(function (valid) {
+        if (valid) {
+          _this2.step = step;
+        }
+      });
+    },
+    save: function save() {
+      var _this3 = this;
+
+      this.$validator.validateAll().then(function (valid) {
+        if (valid) {
+          _this3.resolve(true);
+
+          _this3.dialog = false;
+        }
+      });
+    },
+    cancel: function cancel() {
+      this.resolve(false);
+      this.dialog = false;
+    },
+    clear: function clear() {
+      this.editedItem.nomecompleto = "";
+      this.$validator.reset();
+    },
+    querySelections: function querySelections(v) {
+      var _this4 = this;
+
+      this.loading = true; // Simulated ajax query
+
+      setTimeout(function () {
+        _this4.permissoes = _this4.permissoes.filter(function (e) {
+          return (e.nome || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
+        });
+        _this4.loading = false;
+      }, 500);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/widgets/card/NameCard.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/widgets/card/NameCard.vue?vue&type=script&lang=js& ***!
@@ -6679,97 +7047,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/layout/ExpansionPanels.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/layout/ExpansionPanels.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_VWidget__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/VWidget */ "./resources/js/components/VWidget.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    VWidget: _components_VWidget__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
-  data: function data() {
-    return {};
-  },
-  computed: {},
-  methods: {}
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/layout/Footers.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/layout/Footers.vue?vue&type=script&lang=js& ***!
@@ -8147,6 +8424,236 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {},
   methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/movimentos/FichasTriagem.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/movimentos/FichasTriagem.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime-corejs2/core-js/object/assign */ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js");
+/* harmony import */ var C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es6_array_index_of__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es6.array.index-of */ "./node_modules/core-js/modules/es6.array.index-of.js");
+/* harmony import */ var core_js_modules_es6_array_index_of__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_index_of__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es6.array.iterator */ "./node_modules/core-js/modules/es6.array.iterator.js");
+/* harmony import */ var core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_array_iterator__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es6.promise */ "./node_modules/core-js/modules/es6.promise.js");
+/* harmony import */ var core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_promise__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es6.object.assign */ "./node_modules/core-js/modules/es6.object.assign.js");
+/* harmony import */ var core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_object_assign__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es7.promise.finally */ "./node_modules/core-js/modules/es7.promise.finally.js");
+/* harmony import */ var core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es7_promise_finally__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _config_fichastriagem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/config/fichastriagem */ "./resources/js/config/fichastriagem.js");
+/* harmony import */ var _components_dialogs_Confirm_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/dialogs/Confirm.vue */ "./resources/js/components/dialogs/Confirm.vue");
+/* harmony import */ var _components_forms_movimentos_FichaTriagem_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/forms/movimentos/FichaTriagem.vue */ "./resources/js/components/forms/movimentos/FichaTriagem.vue");
+
+
+
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Confirm: _components_dialogs_Confirm_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    FichaTriagem: _components_forms_movimentos_FichaTriagem_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+  },
+  data: function data() {
+    return {
+      dialog: false,
+      search: "",
+      complex: {
+        selected: [],
+        headers: [{
+          text: "ID",
+          value: "id"
+        }, {
+          text: "Cliente",
+          value: "cliente"
+        }, {
+          text: "Parte Contrária",
+          value: "partecontraria"
+        }, {
+          text: "Status",
+          value: "status"
+        }, {
+          text: "Data",
+          value: "data"
+        }, {
+          text: "Ação",
+          value: "",
+          sortable: false
+        }]
+      },
+      items: [],
+      editedIndex: -1,
+      editedItem: {
+        cliente: "",
+        partecontraria: "",
+        status: "",
+        data: ""
+      },
+      defaultItem: {
+        cliente: "",
+        partecontraria: "",
+        status: "",
+        data: ""
+      }
+    };
+  },
+  watch: {
+    dialog: function dialog(val) {
+      val || this.close();
+    }
+  },
+  created: function created() {
+    this.initialize();
+  },
+  methods: {
+    formTitle: function formTitle() {
+      return this.editedIndex === -1 ? "Adicionar uma nova ficha de triagem" : "Editar uma ficha de triagem";
+    },
+    initialize: function initialize() {
+      this.items = _config_fichastriagem__WEBPACK_IMPORTED_MODULE_6__["Items"];
+    },
+    editItem: function editItem(item) {
+      var _this = this;
+
+      this.$refs.fichatriagem.step = 1;
+      this.editedIndex = this.items.indexOf(item);
+      this.editedItem = C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, item);
+      this.$refs.fichatriagem.open(this.formTitle(), this.editedItem, {
+        color: "blue"
+      }).then(function (confirm) {
+        if (confirm) {
+          _this.save();
+        }
+      });
+    },
+    abrirForm: function abrirForm() {
+      var _this2 = this;
+
+      this.$refs.fichatriagem.open(this.formTitle(), {}, {
+        color: "blue"
+      }).then(function (confirm) {
+        if (confirm) {
+          _this2.editedItem = C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, _this2.$refs.fichatriagem.getValues());
+
+          _this2.save();
+        }
+      });
+    },
+    deleteItem: function deleteItem(item) {
+      var _this3 = this;
+
+      var index = this.items.indexOf(item);
+      this.$refs.confirm.open("Deletar", "Você tem certeza que deseja deletar esta ficha de triagem?", {
+        color: "red"
+      }).then(function (confirm) {
+        if (confirm) _this3.items.splice(index, 1);
+      });
+    },
+    close: function close() {
+      var _this4 = this;
+
+      this.dialog = false;
+      setTimeout(function () {
+        _this4.editedItem = C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()({}, _this4.defaultItem);
+        _this4.editedIndex = -1;
+      }, 300);
+    },
+    save: function save() {
+      if (this.editedIndex > -1) {
+        C_Users_gabri_Documents_emaj_node_modules_babel_runtime_corejs2_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default()(this.items[this.editedIndex], this.editedItem);
+      } else {
+        this.items.push(this.editedItem);
+      }
+
+      this.close();
+    }
+  }
 });
 
 /***/ }),
@@ -17216,6 +17723,1132 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=template&id=78479f7d&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=template&id=78479f7d& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      style: { zIndex: _vm.options.zIndex },
+      attrs: { "max-width": _vm.options.width },
+      on: {
+        keydown: function($event) {
+          if (
+            !$event.type.indexOf("key") &&
+            _vm._k($event.keyCode, "esc", 27, $event.key, ["Esc", "Escape"])
+          ) {
+            return null
+          }
+          return _vm.cancel($event)
+        }
+      },
+      model: {
+        value: _vm.dialog,
+        callback: function($$v) {
+          _vm.dialog = $$v
+        },
+        expression: "dialog"
+      }
+    },
+    [
+      _c(
+        "v-card",
+        [
+          _c(
+            "v-toolbar",
+            {
+              attrs: { dark: "", color: _vm.options.color, dense: "", flat: "" }
+            },
+            [
+              _c("v-toolbar-title", { staticClass: "white--text" }, [
+                _vm._v(_vm._s(_vm.formTitle))
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c(
+                "v-container",
+                { attrs: { "grid-list-md": "" } },
+                [
+                  _c(
+                    "v-layout",
+                    { attrs: { wrap: "" } },
+                    [
+                      _c(
+                        "v-flex",
+                        { attrs: { xs12: "" } },
+                        [
+                          _c(
+                            "v-stepper",
+                            {
+                              model: {
+                                value: _vm.step,
+                                callback: function($$v) {
+                                  _vm.step = $$v
+                                },
+                                expression: "step"
+                              }
+                            },
+                            [
+                              _c(
+                                "v-stepper-header",
+                                [
+                                  _c(
+                                    "v-stepper-step",
+                                    {
+                                      attrs: {
+                                        step: "1",
+                                        complete: _vm.step > 1,
+                                        editable: ""
+                                      }
+                                    },
+                                    [_vm._v("Dados das Partes")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("v-divider"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-stepper-step",
+                                    {
+                                      attrs: {
+                                        step: "2",
+                                        complete: _vm.step > 2,
+                                        editable: _vm.step > 1
+                                      }
+                                    },
+                                    [_vm._v("Informações")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("v-divider"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-stepper-step",
+                                    {
+                                      attrs: {
+                                        step: "3",
+                                        complete: _vm.step > 3,
+                                        editable: _vm.step > 2
+                                      }
+                                    },
+                                    [_vm._v("Termo de Aceite")]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-stepper-items",
+                                [
+                                  _c(
+                                    "v-stepper-content",
+                                    { attrs: { step: "1" } },
+                                    [
+                                      _c(
+                                        "v-card",
+                                        [
+                                          _c(
+                                            "v-card-text",
+                                            [
+                                              _c(
+                                                "v-card",
+                                                [
+                                                  _c("v-card-text", [
+                                                    _c(
+                                                      "form",
+                                                      [
+                                                        _c(
+                                                          "v-container",
+                                                          {
+                                                            attrs: {
+                                                              "grid-list-md": ""
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "v-layout",
+                                                              {
+                                                                attrs: {
+                                                                  wrap: ""
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "v-flex",
+                                                                  {
+                                                                    attrs: {
+                                                                      xs12: "",
+                                                                      sm6: "",
+                                                                      md6: ""
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-autocomplete",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "validate",
+                                                                            rawName:
+                                                                              "v-validate",
+                                                                            value:
+                                                                              "required",
+                                                                            expression:
+                                                                              "'required'"
+                                                                          }
+                                                                        ],
+                                                                        attrs: {
+                                                                          label:
+                                                                            "Cliente*",
+                                                                          items:
+                                                                            _vm.clientes,
+                                                                          "item-text":
+                                                                            "nomecompleto",
+                                                                          "item-value":
+                                                                            "id",
+                                                                          "error-messages": _vm.errors.collect(
+                                                                            "cliente"
+                                                                          ),
+                                                                          "data-vv-name":
+                                                                            "cliente",
+                                                                          required:
+                                                                            "",
+                                                                          "no-data-text":
+                                                                            "Nenhuma informação encontrada."
+                                                                        },
+                                                                        model: {
+                                                                          value:
+                                                                            _vm
+                                                                              .editedItem
+                                                                              .cliente,
+                                                                          callback: function(
+                                                                            $$v
+                                                                          ) {
+                                                                            _vm.$set(
+                                                                              _vm.editedItem,
+                                                                              "cliente",
+                                                                              $$v
+                                                                            )
+                                                                          },
+                                                                          expression:
+                                                                            "editedItem.cliente"
+                                                                        }
+                                                                      }
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "v-flex",
+                                                                  {
+                                                                    attrs: {
+                                                                      xs12: "",
+                                                                      sm6: "",
+                                                                      md6: ""
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-autocomplete",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "validate",
+                                                                            rawName:
+                                                                              "v-validate",
+                                                                            value:
+                                                                              "required",
+                                                                            expression:
+                                                                              "'required'"
+                                                                          }
+                                                                        ],
+                                                                        attrs: {
+                                                                          label:
+                                                                            "Parte Contrária*",
+                                                                          items:
+                                                                            _vm.clientes,
+                                                                          "item-text":
+                                                                            "nomecompleto",
+                                                                          "item-value":
+                                                                            "id",
+                                                                          "error-messages": _vm.errors.collect(
+                                                                            "parte contrária"
+                                                                          ),
+                                                                          "data-vv-name":
+                                                                            "parte contrária",
+                                                                          required:
+                                                                            "",
+                                                                          "no-data-text":
+                                                                            "Nenhuma informação encontrada."
+                                                                        },
+                                                                        model: {
+                                                                          value:
+                                                                            _vm
+                                                                              .editedItem
+                                                                              .partecontraria,
+                                                                          callback: function(
+                                                                            $$v
+                                                                          ) {
+                                                                            _vm.$set(
+                                                                              _vm.editedItem,
+                                                                              "partecontraria",
+                                                                              $$v
+                                                                            )
+                                                                          },
+                                                                          expression:
+                                                                            "editedItem.partecontraria"
+                                                                        }
+                                                                      }
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
+                                                        )
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("small", [
+                                                      _vm._v(
+                                                        "*Indica os campos que são obrigatórios"
+                                                      )
+                                                    ])
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-actions",
+                                        { staticClass: "pt-0" },
+                                        [
+                                          _c("v-spacer"),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: { color: "primary" },
+                                              nativeOn: {
+                                                click: function($event) {
+                                                  return _vm.validaDados(
+                                                    [
+                                                      "cliente",
+                                                      "parte contrária"
+                                                    ],
+                                                    2
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Continuar\n                      "
+                                              ),
+                                              _c(
+                                                "v-icon",
+                                                {
+                                                  attrs: { right: "", dark: "" }
+                                                },
+                                                [_vm._v("arrow_forward")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-stepper-content",
+                                    { attrs: { step: "2" } },
+                                    [
+                                      _c(
+                                        "v-card",
+                                        [
+                                          _c(
+                                            "v-card-text",
+                                            [
+                                              _c(
+                                                "v-card",
+                                                [
+                                                  _c("v-card-text", [
+                                                    _c(
+                                                      "form",
+                                                      [
+                                                        _c(
+                                                          "v-container",
+                                                          {
+                                                            attrs: {
+                                                              "grid-list-md": ""
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "v-layout",
+                                                              {
+                                                                attrs: {
+                                                                  wrap: ""
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "v-flex",
+                                                                  {
+                                                                    attrs: {
+                                                                      xs12: "",
+                                                                      sm6: "",
+                                                                      md6: ""
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-select",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "validate",
+                                                                            rawName:
+                                                                              "v-validate",
+                                                                            value:
+                                                                              "required",
+                                                                            expression:
+                                                                              "'required'"
+                                                                          }
+                                                                        ],
+                                                                        attrs: {
+                                                                          items: [
+                                                                            "Sim",
+                                                                            "Não"
+                                                                          ],
+                                                                          label:
+                                                                            "Já foi atendido pelo escritório?*",
+                                                                          "error-messages": _vm.errors.collect(
+                                                                            "já foi atendido pelo escritório"
+                                                                          ),
+                                                                          "data-vv-name":
+                                                                            "já foi atendido pelo escritório",
+                                                                          required:
+                                                                            ""
+                                                                        },
+                                                                        model: {
+                                                                          value:
+                                                                            _vm
+                                                                              .editedItem
+                                                                              .jafoiatendido,
+                                                                          callback: function(
+                                                                            $$v
+                                                                          ) {
+                                                                            _vm.$set(
+                                                                              _vm.editedItem,
+                                                                              "jafoiatendido",
+                                                                              $$v
+                                                                            )
+                                                                          },
+                                                                          expression:
+                                                                            "editedItem.jafoiatendido"
+                                                                        }
+                                                                      }
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "v-flex",
+                                                                  {
+                                                                    attrs: {
+                                                                      xs12: "",
+                                                                      sm6: "",
+                                                                      md6: ""
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-autocomplete",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "validate",
+                                                                            rawName:
+                                                                              "v-validate",
+                                                                            value:
+                                                                              "required",
+                                                                            expression:
+                                                                              "'required'"
+                                                                          }
+                                                                        ],
+                                                                        attrs: {
+                                                                          label:
+                                                                            "Tipo de Demanda*",
+                                                                          items:
+                                                                            _vm.tiposdemandas,
+                                                                          "item-text":
+                                                                            "nome",
+                                                                          "item-value":
+                                                                            "id",
+                                                                          "error-messages": _vm.errors.collect(
+                                                                            "tipo de demanda"
+                                                                          ),
+                                                                          "data-vv-name":
+                                                                            "tipo de demanda",
+                                                                          required:
+                                                                            "",
+                                                                          "no-data-text":
+                                                                            "Nenhuma informação encontrada."
+                                                                        },
+                                                                        model: {
+                                                                          value:
+                                                                            _vm
+                                                                              .editedItem
+                                                                              .tipodemanda,
+                                                                          callback: function(
+                                                                            $$v
+                                                                          ) {
+                                                                            _vm.$set(
+                                                                              _vm.editedItem,
+                                                                              "tipodemanda",
+                                                                              $$v
+                                                                            )
+                                                                          },
+                                                                          expression:
+                                                                            "editedItem.tipodemanda"
+                                                                        }
+                                                                      }
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "v-flex",
+                                                                  {
+                                                                    attrs: {
+                                                                      xs12: ""
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-text-field",
+                                                                      {
+                                                                        attrs: {
+                                                                          label:
+                                                                            "Outras Informações"
+                                                                        },
+                                                                        model: {
+                                                                          value:
+                                                                            _vm
+                                                                              .editedItem
+                                                                              .outrasinformacoes,
+                                                                          callback: function(
+                                                                            $$v
+                                                                          ) {
+                                                                            _vm.$set(
+                                                                              _vm.editedItem,
+                                                                              "outrasinformacoes",
+                                                                              $$v
+                                                                            )
+                                                                          },
+                                                                          expression:
+                                                                            "editedItem.outrasinformacoes"
+                                                                        }
+                                                                      }
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
+                                                        )
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("small", [
+                                                      _vm._v(
+                                                        "*Indica os campos que são obrigatórios"
+                                                      )
+                                                    ])
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-actions",
+                                        { staticClass: "pt-0" },
+                                        [
+                                          _c("v-spacer"),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: { color: "primary" },
+                                              nativeOn: {
+                                                click: function($event) {
+                                                  return _vm.validaDados(
+                                                    [
+                                                      "já foi atendido pelo escritório",
+                                                      "tipo de demanda"
+                                                    ],
+                                                    3
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Continuar\n                      "
+                                              ),
+                                              _c(
+                                                "v-icon",
+                                                {
+                                                  attrs: { right: "", dark: "" }
+                                                },
+                                                [_vm._v("arrow_forward")]
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: { flat: "" },
+                                              nativeOn: {
+                                                click: function($event) {
+                                                  _vm.step = 1
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Voltar\n                      "
+                                              ),
+                                              _c(
+                                                "v-icon",
+                                                {
+                                                  attrs: { right: "", dark: "" }
+                                                },
+                                                [_vm._v("arrow_back")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-stepper-content",
+                                    { attrs: { step: "3" } },
+                                    [
+                                      _c(
+                                        "v-card",
+                                        [
+                                          _c(
+                                            "v-card-text",
+                                            [
+                                              _c(
+                                                "v-card",
+                                                [
+                                                  _c("v-card-text", [
+                                                    _c(
+                                                      "form",
+                                                      [
+                                                        _c(
+                                                          "v-container",
+                                                          {
+                                                            attrs: {
+                                                              "grid-list-md": ""
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "v-layout",
+                                                              {
+                                                                attrs: {
+                                                                  wrap: ""
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "v-flex",
+                                                                  {
+                                                                    attrs: {
+                                                                      xs12: ""
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-alert",
+                                                                      {
+                                                                        attrs: {
+                                                                          outline:
+                                                                            "",
+                                                                          color:
+                                                                            "info",
+                                                                          value: true,
+                                                                          icon:
+                                                                            "warning"
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "span",
+                                                                          {
+                                                                            staticClass:
+                                                                              "headline text-uppercase"
+                                                                          },
+                                                                          [
+                                                                            _vm._v(
+                                                                              "\n                                      Declaro para os devidos fins que tenho ciência e estou de pleno\n                                      acordo que serei atendido(a) por estagiário(s) do curso de direito\n                                      da 8°, 9° e 10° fase, sob orientação de professor orientador.\n                                    "
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                ),
+                                                                _vm._v(" "),
+                                                                _c(
+                                                                  "v-flex",
+                                                                  {
+                                                                    attrs: {
+                                                                      xs12: ""
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-checkbox",
+                                                                      {
+                                                                        directives: [
+                                                                          {
+                                                                            name:
+                                                                              "validate",
+                                                                            rawName:
+                                                                              "v-validate",
+                                                                            value:
+                                                                              "required",
+                                                                            expression:
+                                                                              "'required'"
+                                                                          }
+                                                                        ],
+                                                                        attrs: {
+                                                                          "error-messages": _vm.errors.collect(
+                                                                            "termo de aceite"
+                                                                          ),
+                                                                          "data-vv-name":
+                                                                            "termo de aceite",
+                                                                          required:
+                                                                            ""
+                                                                        },
+                                                                        scopedSlots: _vm._u(
+                                                                          [
+                                                                            {
+                                                                              key:
+                                                                                "label",
+                                                                              fn: function() {
+                                                                                return [
+                                                                                  _c(
+                                                                                    "div",
+                                                                                    [
+                                                                                      _vm._v(
+                                                                                        "Eu tenho ciência e aceito.*"
+                                                                                      )
+                                                                                    ]
+                                                                                  )
+                                                                                ]
+                                                                              },
+                                                                              proxy: true
+                                                                            }
+                                                                          ]
+                                                                        ),
+                                                                        model: {
+                                                                          value:
+                                                                            _vm
+                                                                              .editedItem
+                                                                              .termoaceite,
+                                                                          callback: function(
+                                                                            $$v
+                                                                          ) {
+                                                                            _vm.$set(
+                                                                              _vm.editedItem,
+                                                                              "termoaceite",
+                                                                              $$v
+                                                                            )
+                                                                          },
+                                                                          expression:
+                                                                            "editedItem.termoaceite"
+                                                                        }
+                                                                      }
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
+                                                        )
+                                                      ],
+                                                      1
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("small", [
+                                                      _vm._v(
+                                                        "*Indica os campos que são obrigatórios"
+                                                      )
+                                                    ])
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-actions",
+                                        { staticClass: "pt-0" },
+                                        [
+                                          _c("v-spacer"),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: { color: "primary" },
+                                              nativeOn: {
+                                                click: function($event) {
+                                                  return _vm.validaDados(
+                                                    ["termo de aceite"],
+                                                    4
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Continuar\n                      "
+                                              ),
+                                              _c(
+                                                "v-icon",
+                                                {
+                                                  attrs: { right: "", dark: "" }
+                                                },
+                                                [_vm._v("arrow_forward")]
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: { flat: "" },
+                                              nativeOn: {
+                                                click: function($event) {
+                                                  _vm.step = 2
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Voltar\n                      "
+                                              ),
+                                              _c(
+                                                "v-icon",
+                                                {
+                                                  attrs: { right: "", dark: "" }
+                                                },
+                                                [_vm._v("arrow_back")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-stepper-content",
+                                    { attrs: { step: "4" } },
+                                    [
+                                      _c(
+                                        "v-card",
+                                        [
+                                          _c(
+                                            "v-card-text",
+                                            [
+                                              _c(
+                                                "v-card",
+                                                [
+                                                  _c("v-card-text", [
+                                                    _c(
+                                                      "form",
+                                                      [
+                                                        _c(
+                                                          "v-container",
+                                                          {
+                                                            attrs: {
+                                                              "grid-list-md": ""
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "v-layout",
+                                                              {
+                                                                attrs: {
+                                                                  wrap: ""
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "v-flex",
+                                                                  {
+                                                                    attrs: {
+                                                                      xs12: ""
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _c(
+                                                                      "v-alert",
+                                                                      {
+                                                                        attrs: {
+                                                                          outline:
+                                                                            "",
+                                                                          color:
+                                                                            "success",
+                                                                          value: true,
+                                                                          icon:
+                                                                            "check_circle"
+                                                                        }
+                                                                      },
+                                                                      [
+                                                                        _c(
+                                                                          "span",
+                                                                          {
+                                                                            staticClass:
+                                                                              "headline text-uppercase"
+                                                                          },
+                                                                          [
+                                                                            _vm._v(
+                                                                              "Processo realizado com sucesso, clique em salvar para gravar os dados."
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      ]
+                                                                    )
+                                                                  ],
+                                                                  1
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          ],
+                                                          1
+                                                        )
+                                                      ],
+                                                      1
+                                                    )
+                                                  ])
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-actions",
+                                        { staticClass: "pt-0" },
+                                        [
+                                          _c("v-spacer"),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: { flat: "" },
+                                              nativeOn: {
+                                                click: function($event) {
+                                                  _vm.step = 3
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "Voltar\n                      "
+                                              ),
+                                              _c(
+                                                "v-icon",
+                                                {
+                                                  attrs: { right: "", dark: "" }
+                                                },
+                                                [_vm._v("arrow_back")]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            { staticClass: "pt-0" },
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "green", flat: "flat" },
+                  nativeOn: {
+                    click: function($event) {
+                      return _vm.save($event)
+                    }
+                  }
+                },
+                [
+                  _vm._v("Salvar\n        "),
+                  _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                    _vm._v("check")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "blue", flat: "flat" },
+                  nativeOn: {
+                    click: function($event) {
+                      return _vm.clear($event)
+                    }
+                  }
+                },
+                [
+                  _vm._v("Limpar\n        "),
+                  _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                    _vm._v("delete_sweep")
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "red", flat: "flat" },
+                  nativeOn: {
+                    click: function($event) {
+                      return _vm.cancel($event)
+                    }
+                  }
+                },
+                [
+                  _vm._v("Cancelar\n        "),
+                  _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                    _vm._v("cancel")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/widgets/card/NameCard.vue?vue&type=template&id=71c03edf&scoped=true&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/widgets/card/NameCard.vue?vue&type=template&id=71c03edf&scoped=true& ***!
@@ -24652,277 +26285,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/layout/ExpansionPanels.vue?vue&type=template&id=494ac2c8&":
-/*!****************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/layout/ExpansionPanels.vue?vue&type=template&id=494ac2c8& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { attrs: { id: "page-expansion-panel" } },
-    [
-      _c(
-        "v-container",
-        { attrs: { "grid-list-xl": "", fluid: "" } },
-        [
-          _c(
-            "v-layout",
-            { attrs: { row: "", wrap: "" } },
-            [
-              _c(
-                "v-flex",
-                { attrs: { lg6: "" } },
-                [
-                  _c("v-widget", { attrs: { title: "Expand" } }, [
-                    _c(
-                      "div",
-                      {
-                        attrs: { slot: "widget-content" },
-                        slot: "widget-content"
-                      },
-                      [
-                        _c(
-                          "v-expansion-panel",
-                          { attrs: { expand: "" } },
-                          _vm._l(5, function(item, i) {
-                            return _c(
-                              "v-expansion-panel-content",
-                              { key: i, attrs: { value: item === 2 } },
-                              [
-                                _c(
-                                  "div",
-                                  { attrs: { slot: "header" }, slot: "header" },
-                                  [_vm._v("Item")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-card",
-                                  [
-                                    _c(
-                                      "v-card-text",
-                                      { staticClass: "grey lighten-3" },
-                                      [
-                                        _vm._v(
-                                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          }),
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-flex",
-                { attrs: { lg6: "" } },
-                [
-                  _c("v-widget", { attrs: { title: "Accordion" } }, [
-                    _c(
-                      "div",
-                      {
-                        attrs: { slot: "widget-content" },
-                        slot: "widget-content"
-                      },
-                      [
-                        _c(
-                          "v-expansion-panel",
-                          { attrs: { focusable: "" } },
-                          _vm._l(5, function(item, i) {
-                            return _c(
-                              "v-expansion-panel-content",
-                              { key: i },
-                              [
-                                _c(
-                                  "div",
-                                  { attrs: { slot: "header" }, slot: "header" },
-                                  [_vm._v("Item")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-card",
-                                  [
-                                    _c("v-card-text", [
-                                      _vm._v(
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                      )
-                                    ])
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          }),
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-flex",
-                { attrs: { lg12: "" } },
-                [
-                  _c("v-widget", { attrs: { title: "Popout" } }, [
-                    _c(
-                      "div",
-                      {
-                        attrs: { slot: "widget-content" },
-                        slot: "widget-content"
-                      },
-                      [
-                        _c(
-                          "v-container",
-                          [
-                            _c(
-                              "v-layout",
-                              { attrs: { row: "", wrap: "" } },
-                              [
-                                _c(
-                                  "v-flex",
-                                  { attrs: { xs12: "", lg5: "", "mb-3": "" } },
-                                  [
-                                    _c(
-                                      "v-expansion-panel",
-                                      { attrs: { popout: "" } },
-                                      _vm._l(5, function(item, i) {
-                                        return _c(
-                                          "v-expansion-panel-content",
-                                          { key: i },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                attrs: { slot: "header" },
-                                                slot: "header"
-                                              },
-                                              [_vm._v("Item")]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-card",
-                                              [
-                                                _c("v-card-text", [
-                                                  _vm._v(
-                                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                                  )
-                                                ])
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      }),
-                                      1
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-flex",
-                                  {
-                                    attrs: {
-                                      xs12: "",
-                                      lg5: "",
-                                      "offset-lg2": ""
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "v-expansion-panel",
-                                      { attrs: { inset: "" } },
-                                      _vm._l(5, function(item, i) {
-                                        return _c(
-                                          "v-expansion-panel-content",
-                                          { key: i },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                attrs: { slot: "header" },
-                                                slot: "header"
-                                              },
-                                              [_vm._v("Item")]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-card",
-                                              [
-                                                _c("v-card-text", [
-                                                  _vm._v(
-                                                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                                  )
-                                                ])
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
-                                        )
-                                      }),
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/layout/Footers.vue?vue&type=template&id=48037972&":
 /*!********************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/layout/Footers.vue?vue&type=template&id=48037972& ***!
@@ -28497,6 +29859,279 @@ var render = function() {
                             ],
                             1
                           )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/movimentos/FichasTriagem.vue?vue&type=template&id=649fbda6&":
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/movimentos/FichasTriagem.vue?vue&type=template&id=649fbda6& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "pageTable" } },
+    [
+      _c(
+        "v-container",
+        { attrs: { "grid-list-xl": "", fluid: "" } },
+        [
+          _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c("v-flex", { attrs: { sm12: "" } }, [
+                _c("h3", [_vm._v("Fichas de Triagem Cadastradas no Sistema")])
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { lg12: "" } },
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c(
+                        "v-toolbar",
+                        { attrs: { card: "", color: "white" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "primary", dark: "" },
+                              on: { click: _vm.abrirForm }
+                            },
+                            [
+                              _vm._v("Adicionar\n              "),
+                              _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                                _vm._v("add")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("ficha-triagem", { ref: "fichatriagem" }),
+                          _vm._v(" "),
+                          _c("confirm", { ref: "confirm" }),
+                          _vm._v(" "),
+                          _c("v-divider", {
+                            staticClass: "mx-2",
+                            attrs: { inset: "", vertical: "" }
+                          }),
+                          _vm._v(" "),
+                          _c("v-text-field", {
+                            staticClass: "hidden-sm-and-down",
+                            attrs: {
+                              flat: "",
+                              clearable: "",
+                              solo: "",
+                              "prepend-icon": "search",
+                              placeholder: "Buscar...",
+                              "hide-details": ""
+                            },
+                            model: {
+                              value: _vm.search,
+                              callback: function($$v) {
+                                _vm.search = $$v
+                              },
+                              expression: "search"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-divider"),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-text",
+                        { staticClass: "pa-0" },
+                        [
+                          _c("v-data-table", {
+                            staticClass: "elevation-1",
+                            attrs: {
+                              headers: _vm.complex.headers,
+                              search: _vm.search,
+                              items: _vm.items,
+                              "rows-per-page-items": [
+                                10,
+                                25,
+                                50,
+                                { text: "Todos", value: -1 }
+                              ],
+                              "item-key": "id",
+                              "select-all": "",
+                              "rows-per-page-text": "Linhas por página",
+                              "no-results-text":
+                                "Nenhum registro correspondente encontrado"
+                            },
+                            scopedSlots: _vm._u([
+                              {
+                                key: "items",
+                                fn: function(props) {
+                                  return [
+                                    _c(
+                                      "td",
+                                      [
+                                        _c("v-checkbox", {
+                                          attrs: {
+                                            primary: "",
+                                            "hide-details": ""
+                                          },
+                                          model: {
+                                            value: props.selected,
+                                            callback: function($$v) {
+                                              _vm.$set(props, "selected", $$v)
+                                            },
+                                            expression: "props.selected"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(props.item.id))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(props.item.cliente))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(props.item.partecontraria))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(_vm._s(props.item.status))
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(props.item.data))]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              depressed: "",
+                                              outline: "",
+                                              icon: "",
+                                              fab: "",
+                                              dark: "",
+                                              color: "primary",
+                                              small: ""
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "v-icon",
+                                              {
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.editItem(
+                                                      props.item
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [_vm._v("edit")]
+                                            )
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              depressed: "",
+                                              outline: "",
+                                              icon: "",
+                                              fab: "",
+                                              dark: "",
+                                              color: "pink",
+                                              small: ""
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "v-icon",
+                                              {
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.deleteItem(
+                                                      props.item
+                                                    )
+                                                  }
+                                                }
+                                              },
+                                              [_vm._v("delete")]
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                }
+                              },
+                              {
+                                key: "pageText",
+                                fn: function(props) {
+                                  return [
+                                    _vm._v(
+                                      "Mostrando " +
+                                        _vm._s(props.pageStart) +
+                                        " - " +
+                                        _vm._s(props.pageStop) +
+                                        " de " +
+                                        _vm._s(props.itemsLength)
+                                    )
+                                  ]
+                                }
+                              }
+                            ]),
+                            model: {
+                              value: _vm.complex.selected,
+                              callback: function($$v) {
+                                _vm.$set(_vm.complex, "selected", $$v)
+                              },
+                              expression: "complex.selected"
+                            }
+                          })
                         ],
                         1
                       )
@@ -41305,6 +42940,106 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/forms/movimentos/FichaTriagem.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/forms/movimentos/FichaTriagem.vue ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FichaTriagem_vue_vue_type_template_id_78479f7d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FichaTriagem.vue?vue&type=template&id=78479f7d& */ "./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=template&id=78479f7d&");
+/* harmony import */ var _FichaTriagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FichaTriagem.vue?vue&type=script&lang=js& */ "./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
+/* harmony import */ var _C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuetify_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib */ "./node_modules/vuetify/lib/index.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FichaTriagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FichaTriagem_vue_vue_type_template_id_78479f7d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FichaTriagem_vue_vue_type_template_id_78479f7d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* vuetify-loader */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VAlert: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VAlert"],VAutocomplete: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VAutocomplete"],VBtn: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCard"],VCardActions: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCardActions"],VCardText: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCardText"],VCheckbox: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCheckbox"],VContainer: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VContainer"],VDialog: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VDialog"],VDivider: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VDivider"],VFlex: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VFlex"],VIcon: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VIcon"],VLayout: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VLayout"],VSelect: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VSelect"],VSpacer: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VSpacer"],VStepper: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VStepper"],VStepperContent: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VStepperContent"],VStepperHeader: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VStepperHeader"],VStepperItems: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VStepperItems"],VStepperStep: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VStepperStep"],VTextField: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VTextField"],VToolbar: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VToolbar"],VToolbarTitle: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VToolbarTitle"]})
+
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/forms/movimentos/FichaTriagem.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FichaTriagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FichaTriagem.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FichaTriagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=template&id=78479f7d&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=template&id=78479f7d& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FichaTriagem_vue_vue_type_template_id_78479f7d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FichaTriagem.vue?vue&type=template&id=78479f7d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/forms/movimentos/FichaTriagem.vue?vue&type=template&id=78479f7d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FichaTriagem_vue_vue_type_template_id_78479f7d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FichaTriagem_vue_vue_type_template_id_78479f7d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/widgets/card/NameCard.vue":
 /*!***********************************************************!*\
   !*** ./resources/js/components/widgets/card/NameCard.vue ***!
@@ -42851,6 +44586,39 @@ var Items = [{
 
 /***/ }),
 
+/***/ "./resources/js/config/fichastriagem.js":
+/*!**********************************************!*\
+  !*** ./resources/js/config/fichastriagem.js ***!
+  \**********************************************/
+/*! exports provided: Items */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Items", function() { return Items; });
+var Items = [{
+  'id': 1,
+  'cliente': 'João Da Mata',
+  'partecontraria': 'Maria Delta',
+  'status': 'Encaminhado para o aluno',
+  'data': '30/05/2019'
+}, {
+  'id': 2,
+  'cliente': 'Neymar Junior',
+  'partecontraria': 'Vitor Sunto',
+  'status': 'Encaminhado para o aluno',
+  'data': '30/03/2019'
+}, {
+  'id': 3,
+  'cliente': 'Joana Belta',
+  'partecontraria': 'Pedrinho Vaz',
+  'status': 'Aguardando encaminhamento para aluno',
+  'data': '30/09/2019'
+}];
+
+
+/***/ }),
+
 /***/ "./resources/js/config/telefones.js":
 /*!******************************************!*\
   !*** ./resources/js/config/telefones.js ***!
@@ -44360,90 +46128,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/layout/ExpansionPanels.vue":
-/*!*******************************************************!*\
-  !*** ./resources/js/views/layout/ExpansionPanels.vue ***!
-  \*******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExpansionPanels_vue_vue_type_template_id_494ac2c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExpansionPanels.vue?vue&type=template&id=494ac2c8& */ "./resources/js/views/layout/ExpansionPanels.vue?vue&type=template&id=494ac2c8&");
-/* harmony import */ var _ExpansionPanels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExpansionPanels.vue?vue&type=script&lang=js& */ "./resources/js/views/layout/ExpansionPanels.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-/* harmony import */ var _C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
-/* harmony import */ var _C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib */ "./node_modules/vuetify/lib/index.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExpansionPanels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExpansionPanels_vue_vue_type_template_id_494ac2c8___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExpansionPanels_vue_vue_type_template_id_494ac2c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* vuetify-loader */
-
-
-
-
-
-
-
-
-_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VCard: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCard"],VCardText: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCardText"],VContainer: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VContainer"],VExpansionPanel: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VExpansionPanel"],VExpansionPanelContent: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VExpansionPanelContent"],VFlex: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VFlex"],VLayout: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VLayout"]})
-
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/views/layout/ExpansionPanels.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/views/layout/ExpansionPanels.vue?vue&type=script&lang=js&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/views/layout/ExpansionPanels.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpansionPanels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vuetify-loader/lib/loader.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./ExpansionPanels.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/layout/ExpansionPanels.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpansionPanels_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/views/layout/ExpansionPanels.vue?vue&type=template&id=494ac2c8&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/views/layout/ExpansionPanels.vue?vue&type=template&id=494ac2c8& ***!
-  \**************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpansionPanels_vue_vue_type_template_id_494ac2c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vuetify-loader/lib/loader.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./ExpansionPanels.vue?vue&type=template&id=494ac2c8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/layout/ExpansionPanels.vue?vue&type=template&id=494ac2c8&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpansionPanels_vue_vue_type_template_id_494ac2c8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_ExpansionPanels_vue_vue_type_template_id_494ac2c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/views/layout/Footers.vue":
 /*!***********************************************!*\
   !*** ./resources/js/views/layout/Footers.vue ***!
@@ -45195,6 +46879,95 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Toolbar_vue_vue_type_template_id_71b8ad35_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Toolbar_vue_vue_type_template_id_71b8ad35_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/movimentos/FichasTriagem.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/views/movimentos/FichasTriagem.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FichasTriagem_vue_vue_type_template_id_649fbda6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FichasTriagem.vue?vue&type=template&id=649fbda6& */ "./resources/js/views/movimentos/FichasTriagem.vue?vue&type=template&id=649fbda6&");
+/* harmony import */ var _FichasTriagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FichasTriagem.vue?vue&type=script&lang=js& */ "./resources/js/views/movimentos/FichasTriagem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
+/* harmony import */ var _C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuetify_lib__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib */ "./node_modules/vuetify/lib/index.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FichasTriagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FichasTriagem_vue_vue_type_template_id_649fbda6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FichasTriagem_vue_vue_type_template_id_649fbda6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* vuetify-loader */
+
+
+
+
+
+
+
+
+
+
+
+
+
+_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCard"],VCardText: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCardText"],VCheckbox: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VCheckbox"],VContainer: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VContainer"],VDataTable: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VDataTable"],VDivider: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VDivider"],VFlex: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VFlex"],VIcon: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VIcon"],VLayout: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VLayout"],VTextField: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VTextField"],VToolbar: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VToolbar"]})
+
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/movimentos/FichasTriagem.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/movimentos/FichasTriagem.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/views/movimentos/FichasTriagem.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FichasTriagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vuetify-loader/lib/loader.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./FichasTriagem.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/movimentos/FichasTriagem.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FichasTriagem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/movimentos/FichasTriagem.vue?vue&type=template&id=649fbda6&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/views/movimentos/FichasTriagem.vue?vue&type=template&id=649fbda6& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FichasTriagem_vue_vue_type_template_id_649fbda6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vuetify-loader/lib/loader.js!../../../../node_modules/vue-loader/lib??vue-loader-options!./FichasTriagem.vue?vue&type=template&id=649fbda6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/views/movimentos/FichasTriagem.vue?vue&type=template&id=649fbda6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FichasTriagem_vue_vue_type_template_id_649fbda6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_FichasTriagem_vue_vue_type_template_id_649fbda6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
