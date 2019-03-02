@@ -6,7 +6,7 @@
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CMaterial+Icons' rel="stylesheet">
         <script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Laravel</title>
+        <title>EMAJ</title>
 
     </head>
     <body>
