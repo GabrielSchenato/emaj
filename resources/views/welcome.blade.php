@@ -7,7 +7,7 @@
         <script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="shortcut icon" href="/favicon.ico" />
-        <title>{{ env('APP_NAME') }} - (Versão:. {{ env('APP_VERSION') }})</title>
+        <title>{{ env('APP_NAME') }} - (Versão:. {{ config('app.version') }})</title>
 
     </head>
     <body>
