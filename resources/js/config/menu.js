@@ -23,7 +23,7 @@ const Menu =  [
   { header: 'Parametrização do Sistema' },
   {
     title: 'Parâmetros',
-    group: 'paramentros',
+    group: 'parametros',
     component: 'parametros',
     icon: 'settings',
     items: [
