@@ -182,11 +182,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Emaj\Providers\AppServiceProvider::class,
+        Emaj\Providers\AuthServiceProvider::class,
+        // Emaj\Providers\BroadcastServiceProvider::class,
+        Emaj\Providers\EventServiceProvider::class,
+        Emaj\Providers\RouteServiceProvider::class,
 
     ],
 
