@@ -11,6 +11,20 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/portal', function () {
     return view('inicio');
+});*/
+
+
+
+Route::namespace('Institucional')
+        ->group(function () {
+            Route::get('/', 'HomeController@index')->name('institucional.home');
+            Route::get('/sobre', 'SobreController@index')->name('institucional.sobre');
+});
+
+
+Route::namespace('Portal')
+        ->group(function () {
+            Route::get('/portal', 'PortalController@index')->name('portal.home');
 });
