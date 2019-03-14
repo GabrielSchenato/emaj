@@ -3,7 +3,7 @@
 namespace Emaj\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\App;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -11,9 +11,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(\Illuminate\Http\Request $request)
     {
-
+        if (!$request->secure() && App::environment() === 'production') {
+            \URL::forceScheme('https');
+        }
     }
 
     /**
