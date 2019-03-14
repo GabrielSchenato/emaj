@@ -11,7 +11,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(\Illuminate\Http\Request $request)
+    public function boot()
     {
     }
 
