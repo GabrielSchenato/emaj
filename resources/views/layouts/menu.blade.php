@@ -15,16 +15,9 @@
                 <li class="nav-item"><a href="{{ route('institucional.sobre') }}" class="nav-link">Sobre</a></li>
                 <li class="nav-item"><a href="practice-areas.html" class="nav-link">Como Funciona</a></li>
                 <li class="nav-item"><a href="attorneys.html" class="nav-link">Contato</a></li>
-                <li class="nav-item"><a href="{{ route('portal.home') }}/#" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="{{ route('portal.home') }}/" class="nav-link">Login</a></li>
             </ul>
         </div>
     </div>
 </nav>
 <!-- END nav -->
-
-
-<!-- loader -->
-<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-            stroke="#F96D00" /></svg></div>

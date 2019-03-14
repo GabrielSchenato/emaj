@@ -42,7 +42,7 @@
 
 <body>
 
-
+        @include('layouts.loader')
         @include('layouts.menu')
         
         @yield('content')
