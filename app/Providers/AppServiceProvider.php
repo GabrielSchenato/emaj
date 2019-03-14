@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if(Request::secure()) {
+        if(!empty($_SERVER['HTTPS'])) {
             \URL::forceScheme('https');
         }
     }
