@@ -564,18 +564,17 @@ export default {
       this.$validator.reset();
     },
     buscar: function() {
-      this.naoLocalizado = false;
+      var self = this;
+      self.naoLocalizado = false;
 
       if (/^[0-9]{5}[0-9]{3}$/.test(this.cep)) {
-        $.getJSON("https://viacep.com.br/ws/" + this.cep + "/json/", function(
-          endereco
-        ) {
+        $.getJSON("https://viacep.com.br/ws/" + this.cep + "/json/", function(endereco) {
           if (endereco.erro) {
-            this.endereco = {};
-            this.naoLocalizado = true;
+            self.endereco = {};
+            self.naoLocalizado = true;
             return;
           }
-          this.endereco = endereco;
+          self.endereco = endereco;
         });
       }
     },
