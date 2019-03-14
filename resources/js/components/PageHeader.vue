@@ -4,8 +4,14 @@
       <h3 class="pr-3">{{title}}</h3>
     </div>
 
-    <v-breadcrumbs :items="breadcrumbs" light>
-      <v-icon slot="divider">chevron_right</v-icon>
+    <v-breadcrumbs divider="-">
+      <v-breadcrumbs-item>
+        <v-icon>home</v-icon>
+      </v-breadcrumbs-item>
+      <v-breadcrumbs-item
+        v-for="(breadcrumb, index) in breadcrumbs"
+        :key="index"
+      >{{breadcrumbs[index]}}</v-breadcrumbs-item>
     </v-breadcrumbs>
 
     <v-spacer></v-spacer>
@@ -34,22 +40,22 @@ export default {
             return i.component === this.$route.name;
           });
           if (child) {
-            breadcrumbs.push({ text: item.title });
-            breadcrumbs.push({ text: child.title });   
+            breadcrumbs.push(item.title);
+            breadcrumbs.push(child.title);
             this.title = child.title;
           }
         } else {
           if (item.name === this.$route.name) {
             this.title = item.title;
-            breadcrumbs.push({ text: item.title });
+            breadcrumbs.push(item.title);
           }
         }
       });
 
-      if(this.$route.name === 'perfil'){
-        this.title = 'Perfil';
+      if (this.$route.name === "perfil") {
+        this.title = "Perfil";
       }
-      
+
       return breadcrumbs;
     }
   }
