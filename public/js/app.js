@@ -2352,12 +2352,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2377,20 +2371,26 @@ __webpack_require__.r(__webpack_exports__);
           });
 
           if (child) {
-            breadcrumbs.push(item.title);
-            breadcrumbs.push(child.title);
+            breadcrumbs.push({
+              text: item.title
+            });
+            breadcrumbs.push({
+              text: child.title
+            });
             _this.title = child.title;
           }
         } else {
           if (item.name === _this.$route.name) {
             _this.title = item.title;
-            breadcrumbs.push(item.title);
+            breadcrumbs.push({
+              text: item.title
+            });
           }
         }
       });
 
-      if (this.$route.name === "perfil") {
-        this.title = "Perfil";
+      if (this.$route.name === 'perfil') {
+        this.title = 'Perfil';
       }
 
       return breadcrumbs;
@@ -54539,17 +54539,13 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-breadcrumbs",
-        { attrs: { divider: "-" } },
+        { attrs: { items: _vm.breadcrumbs, light: "" } },
         [
-          _c("v-breadcrumbs-item", [_c("v-icon", [_vm._v("home")])], 1),
-          _vm._v(" "),
-          _vm._l(_vm.breadcrumbs, function(breadcrumb, index) {
-            return _c("v-breadcrumbs-item", { key: index }, [
-              _vm._v(_vm._s(_vm.breadcrumbs[index]))
-            ])
-          })
+          _c("v-icon", { attrs: { slot: "divider" }, slot: "divider" }, [
+            _vm._v("chevron_right")
+          ])
         ],
-        2
+        1
       ),
       _vm._v(" "),
       _c("v-spacer"),
@@ -98915,8 +98911,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-
-_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBreadcrumbs: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VBreadcrumbs"],VBreadcrumbsItem: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VBreadcrumbsItem"],VBtn: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VIcon: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VIcon"],VLayout: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VLayout"],VSpacer: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VSpacer"]})
+_C_Users_gabri_Documents_emaj_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBreadcrumbs: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VBreadcrumbs"],VBtn: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VIcon: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VIcon"],VLayout: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VLayout"],VSpacer: vuetify_lib__WEBPACK_IMPORTED_MODULE_4__["VSpacer"]})
 
 
 /* hot reload */

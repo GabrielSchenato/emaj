@@ -12264,7 +12264,7 @@ exports.push([module.i, "\nh1[data-v-e5d8970e] {\n  font-size: 150px;\n  line-he
 
 exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "\n#login[data-v-12f5395a] {\r\n  height: 100%;\r\n  width: 100%;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  content: \"\";\r\n  z-index: 0;\r\n  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),\r\n    url(\"/images/bg_1.jpg\");\n}\n#painel[data-v-12f5395a] {\r\n  background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45));\r\n  color: white;\n}\r\n", ""]);
+exports.push([module.i, "\n#login[data-v-12f5395a] {\r\n  height: 100%;\r\n  width: 100%;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  content: \"\";\r\n  z-index: 0;\r\n  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),\r\n    url(\"/images/bg_1.jpg\");\n}\n#painel[data-v-12f5395a] {\r\n  /*background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45));\r\n  color: white;*/\r\n  opacity: 0.7;\n}\r\n", ""]);
 
 
 

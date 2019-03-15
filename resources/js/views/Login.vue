@@ -77,7 +77,8 @@ export default {
 }
 
 #painel {
-  background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45));
-  color: white;
+  /*background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45));
+  color: white;*/
+  opacity: 0.7;
 }
 </style>
