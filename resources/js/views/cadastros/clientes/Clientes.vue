@@ -12,7 +12,7 @@
                 <v-icon right dark>add</v-icon>
               </v-btn>
 
-              <cliente ref="cliente"></cliente>
+              <cliente-dialog ref="clienteDialog"></cliente-dialog>
               <confirm ref="confirm"></confirm>
               <v-divider class="mx-2" inset vertical></v-divider>
               <v-text-field
@@ -75,12 +75,12 @@
 <script>
 import { Items as Clientes } from "@/config/clientes";
 import Confirm from "@/components/dialogs/Confirm.vue";
-import Cliente from "@/components/forms/cadastros/Cliente.vue";
+import ClienteDialog from "@/components/cadastros/dialogs/ClienteDialog.vue";
 
 export default {
   components: {
     Confirm,
-    Cliente
+    ClienteDialog
   },
 
   data: () => ({
@@ -153,7 +153,7 @@ export default {
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      this.$refs.cliente
+      this.$refs.clienteDialog
         .open(this.formTitle(), this.editedItem, {
           color: "blue"
         })
@@ -165,7 +165,7 @@ export default {
     },
 
     abrirForm() {
-      this.$refs.cliente
+      this.$refs.clienteDialog
         .open(
           this.formTitle(),
           {},
@@ -175,7 +175,7 @@ export default {
         )
         .then(confirm => {
           if (confirm) {
-            this.editedItem = Object.assign({}, this.$refs.cliente.getValues());
+            this.editedItem = Object.assign({}, this.$refs.clienteDialog.getValues());
             this.save();
           }
         });

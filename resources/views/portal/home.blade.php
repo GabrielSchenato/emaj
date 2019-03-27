@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">    
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700%7CMaterial+Icons' rel="stylesheet">
-        <script src="https://cdn.bootcss.com/echarts/4.0.4/echarts-en.min.js"></script>
+        <link rel="stylesheet" href="{{mix('/css/app.css')}}">
+        <script src="{{ asset('js/echarts-en.min.js') }}"></script>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="shortcut icon" href="/favicon.ico" />
         <title>{{ config('app.name') }} - (Versão:. {{ config('app.version') }})</title>

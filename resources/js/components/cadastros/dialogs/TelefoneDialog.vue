@@ -12,26 +12,18 @@
       <v-card-text>
         <v-container grid-list-md>
           <v-layout wrap>
-            <v-flex xs12 sm6 md4>
-              <v-text-field v-model="editedItem.tipo" label="Tipo"></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md4>
-              <v-text-field v-model="editedItem.descricao" label="Descrição"></v-text-field>
-            </v-flex>
-
-             <v-flex xs12 sm6 md4>
-              <v-text-field v-model="editedItem.numero" label="Número"></v-text-field>
-            </v-flex>
+            <telefone-form ref="telefoneForm" v-model="telefone"></telefone-form>
           </v-layout>
         </v-container>
       </v-card-text>
       <v-card-actions class="pt-0">
         <v-spacer></v-spacer>
-        <v-btn color="green" flat="flat" @click.native="save">Salvar
-          <v-icon right dark>check</v-icon>
+        <v-btn color="green" flat="flat" @click.native="telefoneContinue">
+          {{ buttonTitle }}
+          <v-icon right dark>control_point</v-icon>
         </v-btn>
-        <v-btn color="red" flat="flat" @click.native="cancel">Cancelar
+        <v-btn color="red" flat="flat" @click.native="cancel">
+          Cancelar
           <v-icon right dark>cancel</v-icon>
         </v-btn>
       </v-card-actions>
@@ -40,17 +32,19 @@
 </template>
 
 <script>
+import TelefoneForm from "@/components/cadastros/forms/TelefoneForm.vue";
+
 export default {
+  components: {
+    TelefoneForm
+  },
   data: () => ({
+    telefone: {},
     dialog: false,
     resolve: null,
     reject: null,
-    editedItem: {
-      tipo: "",
-      descricao: "",
-      numero: ""
-    },
     formTitle: null,
+    buttonTitle: null,
     options: {
       color: "primary",
       width: 1000,
@@ -59,23 +53,30 @@ export default {
   }),
   methods: {
     getValues() {
-      return this.editedItem;
+      return this.telefone;
     },
     open(title, item, options) {
       this.dialog = true;
       this.formTitle = title;
-      this.editedItem = item;
+      this.telefone = item;
+      this.buttonTitle = this.telefone.id ? "Atualizar" : "Inserir";
       this.options = Object.assign(this.options, options);
       return new Promise((resolve, reject) => {
         this.resolve = resolve;
         this.reject = reject;
       });
     },
-    save() {
-      this.resolve(true);
-      this.dialog = false;
+    telefoneContinue() {
+      this.$refs.telefoneForm.$validator.validateAll().then(valid => {
+        if (valid) {
+          this.resolve(true);
+          this.dialog = false;
+        }
+      });
     },
     cancel() {
+      this.telefone = {};
+      this.$refs.telefoneForm.$validator.reset();
       this.resolve(false);
       this.dialog = false;
     }

@@ -244,9 +244,6 @@
 import { Items as Clientes } from "@/config/clientes";
 import { Items as TiposDemandas } from "@/config/tiposdemandas";
 import Vue from "vue";
-import VeeValidate from "vee-validate";
-
-Vue.use(VeeValidate);
 
 export default {
   $_veeValidate: {

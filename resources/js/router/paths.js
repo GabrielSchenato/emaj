@@ -1,3 +1,4 @@
+import Login from "@/views/Login.vue";
 export default [
 
   {
@@ -48,10 +49,7 @@ export default [
       public: true,
     },
     name: 'Login',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/Login.vue`
-    )
+    component: Login
   },
   {
     path: '/',
