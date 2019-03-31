@@ -22,13 +22,13 @@
       :nudge-bottom="14"
       transition="scale-transition"
     >
-      <v-btn icon flat slot="activator">
+      <!-- <v-btn icon flat slot="activator">
         <v-badge color="red" overlap>
           <span slot="badge">3</span>
           <v-icon medium>notifications</v-icon>
         </v-badge>
       </v-btn>
-      <notification-list></notification-list>
+      <notification-list></notification-list> -->
     </v-menu>
     <v-menu offset-y origin="center center" :nudge-bottom="10" transition="scale-transition">
       <v-btn icon large flat slot="activator">
@@ -74,12 +74,12 @@
   </v-toolbar>
 </template>
 <script>
-import NotificationList from "@/components/widgets/list/NotificationList";
+//import NotificationList from "@/components/widgets/list/NotificationList";
 import Util from "@/util";
 export default {
   name: "app-toolbar",
   components: {
-    NotificationList
+    //NotificationList
   },
   data: () => ({
     items: [

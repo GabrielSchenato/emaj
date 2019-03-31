@@ -9,10 +9,7 @@
     width="260"
     >
     <v-toolbar color="primary darken-1" dark>
-      <img v-bind:src="computeLogo" height="50" alt="EMAJ">
-      <v-toolbar-title class="ml-0 pl-3">
-        <span class="hidden-sm-and-down" id="emaj">EMAJ</span>
-      </v-toolbar-title>        
+      <img v-bind:src="computeLogo" height="65" width="180" alt="EMAJ">     
     </v-toolbar>
     <vue-perfect-scrollbar class="drawer-menu--scroll" :settings="scrollSettings">
       <v-list dense expand>
@@ -96,7 +93,7 @@ export default {
       return true;
     },
     computeLogo () {
-      return '/images/logo_branca.png';
+      return '/images/logo_emaj_branco.svg';
     },
 
     sideToolbarColor () {
@@ -141,7 +138,4 @@ export default {
   .drawer-menu--scroll
     height: calc(100vh - 48px)
     overflow: auto
-#emaj
-  font-size: 35px
-  padding-left: 20px;
 </style>

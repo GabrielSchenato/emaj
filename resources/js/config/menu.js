@@ -41,7 +41,7 @@ const Menu =  [
       { name: 'fichastriagem', title: 'Fichas de Triagem', component: 'movimentos/fichastriagem' },
     ]
   },  
-  { header: 'Estatísticas' },
+  /*{ header: 'Estatísticas' },
   { divider: true },
   {
     title: 'Relatórios',
@@ -50,7 +50,7 @@ const Menu =  [
     icon: 'description',
     items: [
     ]
-  },
+  },*/
   { divider: true },
   { header: 'Extras' },
   {

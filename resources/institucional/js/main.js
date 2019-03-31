@@ -119,13 +119,13 @@ AOS.init({
 			if (st > 150) {
 				if (!navbar.hasClass('scrolled')) {
 					navbar.addClass('scrolled');
-					$('#logo').attr("src", "/images/logo_preta.png");
+					$('#logo_emaj_uniplac').attr("src", "/images/logo_emaj_uniplac_preto.png");
 				}
 			}
 			if (st < 150) {
 				if (navbar.hasClass('scrolled')) {
 					navbar.removeClass('scrolled sleep');
-					$('#logo').attr("src", "/images/logo_branca.png");
+					$('#logo_emaj_uniplac').attr("src", "/images/logo_emaj_uniplac_branco.png");
 				}
 			}
 			if (st > 350) {

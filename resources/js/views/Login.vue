@@ -7,8 +7,8 @@
             <v-card class="elevation-1 pa-3" id="painel">
               <v-card-text>
                 <div class="layout column align-center">
-                  <img src="/images/logo_preta.png" alt="EMAJ" width="120" height="120">
-                  <h1 class="flex my-4 primary--text">EMAJ</h1>
+                  <img src="/images/logo_emaj_preto.png" alt="EMAJ" width="400" height="200">
+                  <h1 class="flex my-4 primary--text">ACESSAR O PAINEL</h1>
                 </div>
                 <v-form>
                   <v-text-field
@@ -29,9 +29,10 @@
                 </v-form>
               </v-card-text>
               <v-card-actions>
-                <a href="">Esqueceu sua senha?</a>
+                <a href>Esqueceu sua senha?</a>
                 <v-spacer></v-spacer>
-                <v-btn outline block color="primary" @click="login" :loading="loading">Entrar
+                <v-btn outline block color="primary" @click="login" :loading="loading">
+                  Entrar
                   <v-icon right dark>keyboard_tab</v-icon>
                 </v-btn>
               </v-card-actions>
