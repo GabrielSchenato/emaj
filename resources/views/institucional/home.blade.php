@@ -8,7 +8,7 @@
           <div class="col-md-10 text-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
           	<h2 class="subheading" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Escritório Modelo de Assistência Jurídica – EMAJ</h2>
             <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-            	<span>Assistência jurídica</span> <span>gratuita à</span> <span>população carente</span>
+            	<span>Assistência jurídica</span> <span>gratuita à</span> <span>população hipossuficiente</span>
             </h1>
             <p><a href="#" class="btn btn-primary py-3 px-4">Fazer um agendamento</a></p>
           </div>
@@ -23,28 +23,28 @@
             <div class="icon"><span class="flaticon-auction"></span></div>
             <div class="media-body">
               <h3 class="heading mb-3"><a href="#">Cumprimento de Sentença</a></h3>
-              <p>Breve descrição do servico.</p>
+              <p>Breve descrição do serviço.</p>
             </div>
           </div>
           <div class="col-md-3 text-center services align-self-stretch ftco-animate p-4">
             <div class="icon"><span class="flaticon-lawyer"></span></div>
             <div class="media-body">
               <h3 class="heading mb-3"><a href="#">Alvará Judicial</a></h3>
-              <p>Breve descrição do servico.</p>
+              <p>Breve descrição do serviço.</p>
             </div>
           </div>
           <div class="col-md-3 text-center services align-self-stretch ftco-animate p-4">
             <div class="icon"><span class="flaticon-money"></span></div>
             <div class="media-body">
               <h3 class="heading mb-3"><a href="#">Cobrança</a></h3>
-              <p>Breve descrição do servico.</p>
+              <p>Breve descrição do serviço.</p>
             </div>
           </div>
           <div class="col-md-3 text-center services align-self-stretch ftco-animate p-4">
             <div class="icon"><span class="ion-ios-help-circle-outline"></span></div>
             <div class="media-body">
               <h3 class="heading mb-3"><a href="#">Consulta Jurídica</a></h3>
-              <p>Breve descrição do servico.</p>
+              <p>Breve descrição do serviço.</p>
             </div>
           </div>
         </div>
