@@ -30,8 +30,8 @@
                     <div class="opening-hours">
                         <h4>Atendimentos:</h4>
                         <p class="pl-3">
-                            <span>Segunda – Sexta : 09:00 às 19:00</span>
-                            <span>Sábado : 09:00 ao 12:00</span>
+                            <span>Segunda – Sexta : 08:00 ao 12:00</span>
+                            <span>Segunda - Quinta : 13:30 ao 17:30</span>
                         </p>
                         <h4>Agendamentos via internet:</h4>
                         <p class="pl-3">

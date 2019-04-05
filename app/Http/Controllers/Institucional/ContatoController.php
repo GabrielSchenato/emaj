@@ -16,12 +16,12 @@ use Emaj\Http\Controllers\Controller;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class HomeController extends Controller
+class ContatoController extends Controller
 {
 
     public function __invoke()
     {
-        return view('institucional.home');
+        return view('institucional.contato');
     }
 
 }

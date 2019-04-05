@@ -19,8 +19,10 @@
 
 Route::namespace('Institucional')
         ->group(function () {
-            Route::get('/', 'HomeController@index')->name('institucional.home');
-            Route::get('/sobre', 'SobreController@index')->name('institucional.sobre');
+            Route::get('/', 'HomeController')->name('institucional.home');
+            Route::get('/sobre', 'SobreController')->name('institucional.sobre');
+            Route::get('/como-funciona', 'ComoFuncionaController')->name('institucional.como_funciona');
+            Route::get('/contato', 'ContatoController')->name('institucional.contato');
 });
 
 
