@@ -7,9 +7,7 @@ use Emaj\Http\Controllers\Controller;
 /**
  * Classe responsável por gerenciar a requisições das páginas
  *
- * 
- *
- * PHP version 7.1
+ * PHP version 7.2
  *
  * @category   Controller
  * @package    Portal
@@ -18,17 +16,12 @@ use Emaj\Http\Controllers\Controller;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-
 class PortalController extends Controller
 {
 
-    /**
-     * Mostra a página login do portal
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __invoke()
     {
         return view('portal.home');
     }
+
 }

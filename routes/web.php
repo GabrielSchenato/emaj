@@ -28,5 +28,5 @@ Route::namespace('Institucional')
 
 Route::namespace('Portal')
         ->group(function () {
-            Route::get('/portal', 'PortalController@index')->name('portal.home');
+            Route::get('/portal', 'PortalController')->name('portal.home');
 });
