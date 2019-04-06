@@ -47,7 +47,7 @@ mix.styles([
     'resources/institucional/css/flaticon.css',
     'resources/institucional/css/icomoon.css',
     'resources/institucional/css/style.css'
-], 'public/css/all.css');
+], 'public/css/institucional.css');
 
 
 mix.scripts([
@@ -66,4 +66,4 @@ mix.scripts([
     'resources/institucional/js/scrollax.min.js',
     //'resources/institucional/js/google-map.js',
     'resources/institucional/js/main.js'
-], 'public/js/all.js');
+], 'public/js/institucional.js');

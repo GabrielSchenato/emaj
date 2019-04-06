@@ -1,6 +1,14 @@
 /node_modules
 /public/hot
 /public/storage
+/public/css/institucional.css
+/public/css/app.css
+/public/js/institucional.js
+/public/js/app.js
+/public/0.js
+/public/1.js
+/public/routes.js
+/public/vendors~routes.js
 /storage/*.key
 /vendor
 .env
