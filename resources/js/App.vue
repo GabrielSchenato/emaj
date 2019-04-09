@@ -38,13 +38,16 @@
       </transition>
     </template>
     <v-snackbar
-      :timeout="3000"
-      bottom
+      :timeout="snackbar.timeout"
+      auto-height
+      top
       right
+      multi-line
       :color="snackbar.color"
       v-model="snackbar.show"
+      v-bind:style="{ zIndex: 1001 }"
     >
-      {{ snackbar.text }}
+      <v-icon dark>{{ snackbar.icon }}</v-icon> &nbsp; {{ snackbar.text }}
       <v-btn dark flat @click.native="snackbar.show = false" icon> 
         <v-icon>close</v-icon>
       </v-btn>
@@ -71,6 +74,8 @@ export default {
       show: false,
       text: '',
       color: '',
+      timeout: 3000,
+      icon: ''
     }
   }),
 

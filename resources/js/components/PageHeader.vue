@@ -29,8 +29,8 @@ export default {
     breadcrumbs: function() {
       let breadcrumbs = [];
       menu.forEach(item => {
-        if (item.items) {
-          let child = item.items.find(i => {
+        if (item.itens) {
+          let child = item.itens.find(i => {
             return i.component === this.$route.name;
           });
           if (child) {

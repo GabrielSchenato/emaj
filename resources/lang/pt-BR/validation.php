@@ -134,5 +134,10 @@ return [
     | of "email". This simply helps us make messages a little cleaner.
     |
     */
-    'attributes' => [],
+    'attributes' => [
+        'email' => 'e-mail',
+        'password' => 'senha',
+        'role' => 'nível de permissão',
+        'descricao' => 'descrição'
+    ],
 ];
