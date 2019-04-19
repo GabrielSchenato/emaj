@@ -30,3 +30,9 @@ Route::namespace('Portal')
         ->group(function () {
             Route::get('/portal', 'PortalController')->name('portal.home');
 });
+
+Route::get('/email', function () {
+    $user = \Emaj\Entities\Cadastro\User::find(1);
+ 
+    return new \Emaj\Mail\UserMailable($user, 'safd55');
+});

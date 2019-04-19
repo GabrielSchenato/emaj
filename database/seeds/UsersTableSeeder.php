@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\Emaj\Entity\Cadastro\User::class, 5)->create();
+        factory(\Emaj\Entities\Cadastro\User::class, 5)->create();
     }
 
 }

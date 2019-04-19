@@ -55,10 +55,18 @@
                                     <td>{{ props.item.telefone }}</td>
                                     <td>{{ props.item.role | formataRole }}</td>
                                     <td>
-                                    <v-btn depressed outline icon fab dark color="primary" small>
+                                    <v-btn 
+                                        depressed outline icon fab dark
+                                        color="primary"
+                                        small
+                                        :disabled="props.item.id == $auth.user().id">
                                         <v-icon @click="editar(props.item.id)">edit</v-icon>
                                     </v-btn>
-                                    <v-btn depressed outline icon fab dark color="pink" small>
+                                    <v-btn 
+                                        depressed outline icon fab dark 
+                                        color="pink"
+                                        small
+                                        :disabled="props.item.id == $auth.user().id || (props.item.role == 'admin' && $auth.user().role == 'secretaria')">
                                         <v-icon @click="deletar(props.item)">delete</v-icon>
                                     </v-btn>
                                     </td>

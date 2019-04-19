@@ -12,7 +12,7 @@ use function response;
  * PHP version 7.2
  *
  * @category   Trait
- * @package    Util\Traits
+ * @package    Traits
  * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @link       https://www.uniplaclages.edu.br/
@@ -21,10 +21,19 @@ use function response;
 trait ApiController
 {
 
+    /**
+     *
+     * @var \Prettus\Repository\Eloquent\BaseRepository
+     */
+    protected $repository;
+    
+    protected $registro;
+
     public function index(Request $request)
     {
         $data = $request->all();
         $limit = $data['limit'] ?? 20;
+        $columns = $data['columns'] ?? ['*'];
         $order = $data['order'] ?? null;
 
         if ($order) {
@@ -33,47 +42,26 @@ trait ApiController
         $order[0] = $order[0] ?? 'id';
         $order[1] = $order[1] ?? 'asc';
 
-        $where = $data['where'] ?? [];
-        $like = $data['like'] ?? null;
-
-        if ($like) {
-            $like = explode(',', $like);
-            $like[1] = '%' . $like[1] . '%';
-        }
-        $users = $this->model
-                ->orderBy($order[0], $order[1])
-                ->where(function ($query) use ($like) {
-                    if ($like) {
-                        return $query->where($like[0], 'like', $like[1]);
-                    }
-                    return $query;
-                })
-                ->where($where)
-                ->with($this->relationships())
-                ->paginate($limit);
-        return response()->json($users);
+        return $this->repository->with($this->relationships())->orderBy($order[0], $order[1])->paginate($limit, $columns);
     }
 
     public function show($id)
     {
-        $result = $this->model
-                ->with($this->relationships())
-                ->findOrFail($id);
-        return response()->json($result);
+        return $this->repository->with($this->relationships())->find($id);
     }
 
     public function store(Request $request)
     {
         $data = $request->all();
+
         if ($errors = $this->hasErrors($data)) {
             return response()->json([
                         'status' => 'error',
                         'errors' => $errors
                             ], 422);
         }
-
-        $result = $this->model->create($data);
-        return response()->json($result);
+        $this->registro = $this->repository->create($data);
+        return $this->registro;
     }
 
     public function update(Request $request, $id)
@@ -85,16 +73,12 @@ trait ApiController
                         'errors' => $errors
                             ], 422);
         }
-        $result = $this->model->findOrFail($id);
-        $result->update($data);
-        return response()->json($result);
+        return $this->repository->update($data, $id);
     }
 
     public function destroy($id)
     {
-        $result = $this->model->findOrFail($id);
-        $result->delete();
-        return response()->json($result);
+        return response()->json($this->repository->delete($id));
     }
 
     protected function relationships()
@@ -111,10 +95,10 @@ trait ApiController
      * @param array $data
      * @return array|void
      */
-    private function hasErrors($data)
+    protected function hasErrors($data)
     {
-        if (method_exists($this->model, 'getRules')) {
-            $validator = Validator::make($data, $this->model->getRules($data));
+        if (method_exists($this->repository, 'getRules')) {
+            $validator = Validator::make($data, $this->repository->getRules($data));
             if ($validator->fails()) {
                 return $validator->errors();
             }

@@ -2,15 +2,26 @@
 
 namespace Emaj\Http\Controllers\Api\V1;
 
-use Emaj\Entity\Cadastro\User;
 use Emaj\Http\Controllers\Controller;
+use Emaj\Repositories\Cadastro\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use function response;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
+
+    /**
+     *
+     * @var UserRepository
+     */
+    private $repository;
+
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+    }
 
     public function login(Request $request)
     {
@@ -42,11 +53,30 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        $user = User::find(Auth::user()->id);
+        $user = $this->repository->find(Auth::user()->id);
         return response()->json([
                     'status' => 'success',
                     'data' => $user
         ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+        unset($data['role']);
+
+        $v = Validator::make($data, ['nome_completo' => 'required|min:5',
+                    'email' => ['required', 'email', Rule::unique('users')->ignore($id)],
+                    'password' => 'required|min:6|confirmed',
+                    'avatar' => 'nullable',
+                    'telefone' => 'required|min:8']);
+        if ($v->fails()) {
+            return response()->json([
+                        'status' => 'error',
+                        'errors' => $v->errors()
+                            ], 422);
+        }
+        return $this->repository->update($data, $id);
     }
 
     public function refresh()

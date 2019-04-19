@@ -5,7 +5,7 @@
             <v-flex xs10 offset-xs5>
                 <image-input v-model="usuario.avatar">
                     <div slot="activator">
-                        <v-avatar size="150px" v-ripple v-if="usuario.avatar" class="mb-3">
+                        <v-avatar size="150px" v-ripple v-if="usuario.avatar && getAvatar" class="mb-3">
                             <img :src="getAvatar" alt="avatar">
                         </v-avatar>
                         <v-avatar size="150px" v-ripple v-else-if="!avatar" class="grey lighten-3 mb-3">
@@ -86,6 +86,7 @@
                     @input="$emit('input', usuario)"
                     item-value="id"
                     item-text="nome"
+                    :disabled="$auth.user().role == 'secretaria' && usuario.role == 'admin'"
                     ></v-select>
             </v-flex>
 
@@ -101,6 +102,13 @@
                     required
                     @input="$emit('input', usuario)"
                     type="password"
+                    :append-icon="show1 ? 'visibility' : 'visibility_off'"
+                    :append-outer-icon="'cached'"
+                    :type="show1 ? 'text' : 'password'"
+                    counter
+                    hint="Ao menos 6 caracteres"
+                    @click:append="show1 = !show1"
+                    @click:append-outer="randPassword(0,0,6)"
                     ></v-text-field>
             </v-flex>
 
@@ -117,6 +125,11 @@
                     required
                     @input="$emit('input', usuario)"
                     type="password"
+                    :append-icon="show2 ? 'visibility' : 'visibility_off'"
+                    :type="show2 ? 'text' : 'password'"
+                    counter
+                    hint="Ao menos 6 caracteres"
+                    @click:append="show2 = !show2"
                     ></v-text-field>
             </v-flex>
 
@@ -140,11 +153,14 @@
         },
         data() {
             return {
+                show1: false,
+                show2: false,
                 usuario: Object.assign({}, this.value), //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
                 avatar: null,
                 roles: [{
                         id: 'admin',
-                        nome: 'Administrador'
+                        nome: 'Administrador',
+                        disabled: this.$auth.ready() && this.$auth.user().role != 'admin'
                     },
                     {
 
@@ -170,11 +186,31 @@
             getAvatar() {
                 if (this.usuario.avatar.imageURL)
                     return this.usuario.avatar.imageURL;
-                
-                return 'data:image/jpeg;base64,' + this.usuario.avatar.avatar;
+                if (this.usuario.avatar.avatar && this.usuario.avatar)
+                    return 'data:image/jpeg;base64,' + this.usuario.avatar.avatar;
+                return null;
             }
         },
         methods: {
+            randPassword(letters, numbers, either) {
+                var chars = [
+                    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", // letters
+                    "0123456789", // numbers
+                    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" // either
+                ];
+
+                let password = [letters, numbers, either].map(function (len, i) {
+                    return Array(len).fill(chars[i]).map(function (x) {
+                        return x[Math.floor(Math.random() * x.length)];
+                    }).join('');
+                }).concat().join('').split('').sort(function () {
+                    return 0.5 - Math.random();
+                }).join('');
+
+                this.usuario.password = password;
+                this.usuario.password_confirmation = password;
+                this.$emit('input', this.usuario);
+            }
         }
     };
 </script>

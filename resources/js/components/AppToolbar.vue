@@ -98,7 +98,9 @@
             },
             getAvatar(){
                 if(this.$auth.ready()){
-                    return 'data:image/jpeg;base64,' + this.$auth.user().avatar;
+                    if(this.$auth.user().avatar)
+                        return 'data:image/jpeg;base64,' + this.$auth.user().avatar;
+                    return null;
                 }
             }
         },

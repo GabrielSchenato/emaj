@@ -1,10 +1,9 @@
 <?php
 
-namespace Emaj\Http\Controllers\Api\V1;
+namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
-use Emaj\Entity\Cadastro\TipoDemanda;
-use Emaj\Http\Controllers\Controller;
-use Emaj\Util\Traits\ApiController;
+use Emaj\Http\Controllers\CrudController;
+use Emaj\Repositories\Cadastro\TipoDemandaRepository;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -12,22 +11,20 @@ use Emaj\Util\Traits\ApiController;
  * PHP version 7.2
  *
  * @category   Controller
- * @package    Api\V1
+ * @package    Cadastro
  * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class TipoDemandasController extends Controller
+class TipoDemandasController extends CrudController
 {
 
-    use ApiController;
+    protected $repository;
 
-    protected $model;
-
-    public function __construct(TipoDemanda $model)
+    public function __construct(TipoDemandaRepository $repository)
     {
-        $this->model = $model;
+        $this->repository = $repository;
     }
 
 }

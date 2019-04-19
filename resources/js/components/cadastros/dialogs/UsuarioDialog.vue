@@ -75,7 +75,7 @@
                 formData.append('role', this.usuario.role);
                 formData.append('password', this.usuario.password);
                 formData.append('password_confirmation', this.usuario.password_confirmation);
-                if (this.usuario.avatar.imageFile) {
+                if (this.usuario.avatar) {
                     formData.append('image_url', this.usuario.avatar.imageFile);
                 }
                 return formData;

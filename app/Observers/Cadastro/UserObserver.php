@@ -2,7 +2,7 @@
 
 namespace Emaj\Observers\Cadastro;
 
-use Emaj\Entity\Cadastro\User;
+use Emaj\Entities\Cadastro\User;
 use Illuminate\Support\Facades\Hash;
 
 /**

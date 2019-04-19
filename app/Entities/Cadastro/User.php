@@ -1,11 +1,10 @@
 <?php
 
-namespace Emaj\Entity\Cadastro;
+namespace Emaj\Entities\Cadastro;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Validation\Rule;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
@@ -55,19 +54,6 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     public function getJWTIdentifier()
     {
         return $this->getKey();
-    }
-
-    public static function getRules($data)
-    {
-        $id = isset($data['id']) ? $data['id'] : null;
-        return [
-            'nome_completo' => 'required|min:5',
-            'email' => ['required', 'email', Rule::unique('users')->ignore($id)],
-            'password' => 'required|min:6|confirmed',
-            'role' => ['required', Rule::in(['admin', 'secretaria', 'aluno'])],
-            'avatar' => 'nullable',
-            'telefone' => 'required|min:8',
-        ];
     }
 
 }

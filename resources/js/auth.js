@@ -12,5 +12,5 @@ import router from '@websanova/vue-auth/drivers/router/vue-router.2.x'
             logoutData: {url: 'auth/logout', method: 'POST', redirect: '/', makeRequest: true},
             fetchData: {url: 'auth/user', method: 'GET', enabled: true},
             refreshData: {url: 'auth/refresh', method: 'GET', enabled: true, interval: 30}
-        }
+        };
 export default config

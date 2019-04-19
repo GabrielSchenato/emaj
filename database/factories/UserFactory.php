@@ -1,6 +1,6 @@
 <?php
 
-use Emaj\Entity\Cadastro\User;
+use Emaj\Entities\Cadastro\User;
 use Faker\Generator as Faker;
 
 /*

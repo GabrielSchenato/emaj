@@ -1,6 +1,6 @@
 <?php
 
-namespace Emaj\Entity\Cadastro;
+namespace Emaj\Entities\Cadastro;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,12 +22,5 @@ class TipoDemanda extends Model
     protected $fillable = [
         'nome', 'descricao'
     ];
-
-    public static function getRules($data)
-    {
-        return [
-            'nome' => 'required|min:5|max:30'
-        ];
-    }
 
 }

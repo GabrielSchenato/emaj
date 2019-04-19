@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'EMAJ'),
+    'name' => env('APP_NAME', 'Escritório Modelo de Assistência Jurídica - EMAJ'),
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +179,8 @@ return [
          * Package Service Providers...
          */
 
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */

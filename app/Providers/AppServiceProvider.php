@@ -2,7 +2,7 @@
 
 namespace Emaj\Providers;
 
-use Emaj\Entity\Cadastro\User;
+use Emaj\Entities\Cadastro\User;
 use Emaj\Observers\Cadastro\UserObserver;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register(RepositoryServiceProvider::class);
     }
 
 }

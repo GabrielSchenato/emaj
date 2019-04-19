@@ -1,11 +1,12 @@
 <?php
 
-namespace Emaj\Http\Controllers\Api\V1;
+namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
-use Emaj\Entity\Cadastro\User;
-use Emaj\Http\Controllers\Controller;
-use Emaj\Util\Traits\ApiController;
+use Emaj\Http\Controllers\CrudController;
+use Emaj\Mail\UserMailable;
+use Emaj\Repositories\Cadastro\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -13,22 +14,36 @@ use Illuminate\Http\Request;
  * PHP version 7.2
  *
  * @category   Controller
- * @package    Api\V1
+ * @package    Cadastro
  * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class UsersController extends Controller
+class UsersController extends CrudController
 {
 
-    use ApiController;
 
-    protected $model;
+    protected $repository;
 
-    public function __construct(User $model)
+    public function __construct(UserRepository $repository)
     {
-        $this->model = $model;
+        $this->repository = $repository;
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->all();
+
+        if ($errors = $this->hasErrors($data)) {
+            return response()->json([
+                        'status' => 'error',
+                        'errors' => $errors
+                            ], 422);
+        }
+        $this->registro = $this->repository->create($data);
+        Mail::to($data['email'])->send(new UserMailable($this->registro, $data['password']));
+        return $this->registro;      
     }
 
     public function me()
@@ -36,7 +51,7 @@ class UsersController extends Controller
         $result = \Auth::user();
         $user = [];
         if ($result) {
-            $user = User::find($result->id);
+            $user = $this->repository->find($result->id);
         }
 
         return response()->json($user);

@@ -24,6 +24,7 @@ Route::prefix('v1/auth')
             Route::get('refresh', 'AuthController@refresh');
             Route::group(['middleware' => 'auth:api'], function() {
                 Route::get('user', 'AuthController@user');
+                Route::put('user/{id}', 'AuthController@update');
                 Route::post('logout', 'AuthController@logout');
             });
         });
@@ -34,7 +35,7 @@ Route::prefix('v1')
         ->namespace('Api\V1')
         ->group(function () {
             Route::apiResources([
-                'usuarios' => 'UsersController',
-                'tipodemandas' => 'TipoDemandasController'
+                'usuarios' => 'Cadastro\UsersController',
+                'tipodemandas' => 'Cadastro\TipoDemandasController'
             ]);
         });
