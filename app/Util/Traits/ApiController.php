@@ -27,6 +27,9 @@ trait ApiController
      */
     protected $repository;
     
+    /**
+     * Váriavel responsável por armazenar o registro
+     */
     protected $registro;
 
     public function index(Request $request)
@@ -42,12 +45,14 @@ trait ApiController
         $order[0] = $order[0] ?? 'id';
         $order[1] = $order[1] ?? 'asc';
 
-        return $this->repository->with($this->relationships())->orderBy($order[0], $order[1])->paginate($limit, $columns);
+        $this->registro = $this->repository->with($this->relationships())->orderBy($order[0], $order[1])->paginate($limit, $columns);
+        return $this->registro;
     }
 
     public function show($id)
     {
-        return $this->repository->with($this->relationships())->find($id);
+        $this->registro = $this->repository->with($this->relationships())->find($id);
+        return $this->registro;
     }
 
     public function store(Request $request)
@@ -73,7 +78,8 @@ trait ApiController
                         'errors' => $errors
                             ], 422);
         }
-        return $this->repository->update($data, $id);
+        $this->registro = $this->repository->update($data, $id);
+        return $this->registro;
     }
 
     public function destroy($id)
