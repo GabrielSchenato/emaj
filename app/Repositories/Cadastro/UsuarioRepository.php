@@ -16,7 +16,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-interface UserRepository extends RepositoryInterface
+interface UsuarioRepository extends RepositoryInterface
 {
     //
 }

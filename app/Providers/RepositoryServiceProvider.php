@@ -4,8 +4,8 @@ namespace Emaj\Providers;
 
 use Emaj\Repositories\Cadastro\TipoDemandaRepository;
 use Emaj\Repositories\Cadastro\TipoDemandaRepositoryEloquent;
-use Emaj\Repositories\Cadastro\UserRepository;
-use Emaj\Repositories\Cadastro\UserRepositoryEloquent;
+use Emaj\Repositories\Cadastro\UsuarioRepository;
+use Emaj\Repositories\Cadastro\UsuarioRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -28,6 +28,6 @@ class RepositoryServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->bind(TipoDemandaRepository::class, TipoDemandaRepositoryEloquent::class);
-        $this->app->bind(UserRepository::class, UserRepositoryEloquent::class);
+        $this->app->bind(UsuarioRepository::class, UsuarioRepositoryEloquent::class);
     }
 }

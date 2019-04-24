@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \Emaj\Entities\Cadastro\User::class,
+            'model' => \Emaj\Entities\Cadastro\Usuario::class,
         ],
 
         // 'users' => [

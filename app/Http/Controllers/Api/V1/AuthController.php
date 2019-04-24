@@ -4,6 +4,7 @@ namespace Emaj\Http\Controllers\Api\V1;
 
 use Emaj\Http\Controllers\Controller;
 use Emaj\Repositories\Cadastro\UserRepository;
+use Emaj\Repositories\Cadastro\UsuarioRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -14,11 +15,11 @@ class AuthController extends Controller
 
     /**
      *
-     * @var UserRepository
+     * @var UsuarioRepository
      */
     private $repository;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(UsuarioRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -66,7 +67,7 @@ class AuthController extends Controller
         unset($data['role']);
 
         $v = Validator::make($data, ['nome_completo' => 'required|min:5',
-                    'email' => ['required', 'email', Rule::unique('users')->ignore($id)],
+                    'email' => ['required', 'email', Rule::unique('usuarios')->ignore($id)],
                     'password' => 'required|min:6|confirmed',
                     'avatar' => 'nullable',
                     'telefone' => 'required|min:8']);

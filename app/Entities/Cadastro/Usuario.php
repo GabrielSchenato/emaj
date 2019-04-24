@@ -19,7 +19,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class User extends Authenticatable implements MustVerifyEmail, JWTSubject
+class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
 
     use Notifiable;
@@ -27,6 +27,13 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     public const ADMIN = 'admin';
     public const SECRETARIA = 'secretaria';
     public const ALUNO = 'aluno';
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'usuarios';
 
     /**
      * The attributes that are mass assignable.

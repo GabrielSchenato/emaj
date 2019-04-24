@@ -4,7 +4,7 @@ namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Mail\UserMailable;
-use Emaj\Repositories\Cadastro\UserRepository;
+use Emaj\Repositories\Cadastro\UsuarioRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -26,7 +26,7 @@ class UsersController extends CrudController
 
     protected $repository;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(UsuarioRepository $repository)
     {
         $this->repository = $repository;
     }

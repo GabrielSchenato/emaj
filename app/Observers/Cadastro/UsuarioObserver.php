@@ -2,7 +2,7 @@
 
 namespace Emaj\Observers\Cadastro;
 
-use Emaj\Entities\Cadastro\User;
+use Emaj\Entities\Cadastro\Usuario;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Hash;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class UserObserver
+class UsuarioObserver
 {
-    public function saving(User $user)
+    public function saving(Usuario $user)
     {
         if (request()->hasFile('image_url')) {
             $data = request()->all();

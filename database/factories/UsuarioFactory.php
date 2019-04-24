@@ -1,6 +1,6 @@
 <?php
 
-use Emaj\Entities\Cadastro\User;
+use Emaj\Entities\Cadastro\Usuario;
 use Faker\Generator as Faker;
 
 /*
@@ -14,7 +14,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Usuario::class, function (Faker $faker) {
     $roles = ['admin', 'secretaria', 'aluno'];
     return [
         'nome_completo' => $faker->name,

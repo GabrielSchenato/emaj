@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UsersTableSeeder extends Seeder
+class UsuarioTableSeeder extends Seeder
 {
 
     /**
@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\Emaj\Entities\Cadastro\User::class, 5)->create();
+        factory(\Emaj\Entities\Cadastro\Usuario::class, 5)->create();
     }
 
 }

@@ -31,7 +31,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => Emaj\User::class,
+        'model' => Emaj\Entities\Cadastro\Usuario::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
         'webhook' => [
