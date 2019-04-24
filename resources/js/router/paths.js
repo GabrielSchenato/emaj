@@ -96,12 +96,12 @@ export default [
     )
   },
   {
-    path: '/parametros/triagem',
+    path: '/cadastros/parametrostriagem',
     meta: { breadcrumb: true, auth: {roles: 'admin', redirect: {path: 'login'}, forbiddenRedirect: '/403'} },
-    name: 'parametros/triagem',
+    name: 'cadastros/parametrostriagem',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/parametros/Triagem.vue`
+      `@/views/cadastros/ParametrosTriagem.vue`
     )
   },
   {

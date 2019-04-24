@@ -38,4 +38,6 @@ Route::prefix('v1')
                 'usuarios' => 'Cadastro\UsersController',
                 'tipodemandas' => 'Cadastro\TipoDemandasController'
             ]);
+            Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');
+            Route::post('parametrostriagem', 'Cadastro\ParametrosTriagemController@store');
         });
