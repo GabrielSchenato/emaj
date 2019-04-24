@@ -1,5 +1,5 @@
 <template>
-    <div id="pageTable">
+    <div id="pageTable">   
         <v-container grid-list-xl fluid>
             <v-layout row wrap>
                 <v-flex lg12>

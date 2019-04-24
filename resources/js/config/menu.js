@@ -42,14 +42,14 @@ const Menu =  [
     itens: [
     ]
   },*/
-  /*{ divider: true },
+  { divider: true },
   { header: 'Extras' },
   {
-    title: 'Novidades',
+    title: 'Alterações',
     group: 'apps',
-    name: 'Media',
     icon: 'fiber_new',
-  },*/
+    name: 'Alterações'
+  },
 ];
 // reorder menu
 Menu.forEach((item) => {

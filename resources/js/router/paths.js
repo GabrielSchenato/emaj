@@ -122,4 +122,13 @@ export default [
       `@/views/movimentos/FichasTriagem.vue`
     )
   },
+  {
+    path: '/alteracoes',
+    meta: { breadcrumb: true, auth: true },
+    name: 'Alterações',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/Alteracoes.vue`
+    )
+  },
 ];
