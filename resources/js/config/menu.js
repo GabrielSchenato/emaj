@@ -47,9 +47,9 @@ const Menu =  [
   {
     title: 'Alterações',
     group: 'apps',
-    icon: 'fiber_new',
+    icon: 'new_releases',
     name: 'Alterações'
-  },
+  }
 ];
 // reorder menu
 Menu.forEach((item) => {
