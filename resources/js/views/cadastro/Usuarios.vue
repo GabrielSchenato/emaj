@@ -54,6 +54,7 @@
                                     <td>{{ props.item.email }}</td>
                                     <td>{{ props.item.telefone }}</td>
                                     <td>{{ props.item.role | formataRole }}</td>
+                                    <td>{{ props.item.ativo | formataAtivo }}</td>
                                     <td>
                                     <v-btn 
                                         depressed outline icon fab dark
@@ -87,7 +88,7 @@
 
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
-    import UsuarioDialog from "@/components/cadastros/dialogs/UsuarioDialog.vue";
+    import UsuarioDialog from "@/components/cadastro/dialogs/UsuarioDialog.vue";
 
     export default {
         components: {
@@ -128,6 +129,10 @@
                             value: "role"
                         },
                         {
+                            text: "Ativo?",
+                            value: "ativo"
+                        },
+                        {
                             text: "Ação",
                             value: "",
                             sortable: false
@@ -140,7 +145,7 @@
                 this.$refs.usuarioDialog
                         .open(
                                 'Adicionar um novo usuário',
-                                {},
+                                {ativo: true},
                                 {
                                     color: "blue"
                                 }

@@ -69,39 +69,39 @@ export default [
     )
   },
   {
-    path: '/cadastros/usuarios',
+    path: '/cadastro/usuarios',
     meta: { breadcrumb: true, auth: {roles: ['admin', 'secretaria'], redirect: {path: 'login'}, forbiddenRedirect: '/403'} },
-    name: 'cadastros/usuarios',
+    name: 'cadastro/usuarios',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/cadastros/Usuarios.vue`
+      `@/views/cadastro/Usuarios.vue`
     )
   },
   {
-    path: '/cadastros/clientes',
+    path: '/cadastro/clientes',
     meta: { breadcrumb: true, auth: {roles: ['admin', 'secretaria'], redirect: {path: 'login'}, forbiddenRedirect: '/403'} },
-    name: 'cadastros/clientes',
+    name: 'cadastro/clientes',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/cadastros/Clientes.vue`
+      `@/views/cadastro/Clientes.vue`
     )
   },
   {
-    path: '/cadastros/tipodemandas',
+    path: '/cadastro/tipodemandas',
     meta: { breadcrumb: true, auth: {roles: ['admin', 'secretaria'], redirect: {path: 'login'}, forbiddenRedirect: '/403'} },
-    name: 'cadastros/tipodemandas',
+    name: 'cadastro/tipodemandas',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/cadastros/TipoDemandas.vue`
+      `@/views/cadastro/TipoDemandas.vue`
     )
   },
   {
-    path: '/cadastros/parametrostriagem',
+    path: '/cadastro/parametrostriagem',
     meta: { breadcrumb: true, auth: {roles: 'admin', redirect: {path: 'login'}, forbiddenRedirect: '/403'} },
-    name: 'cadastros/parametrostriagem',
+    name: 'cadastro/parametrostriagem',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/cadastros/ParametrosTriagem.vue`
+      `@/views/cadastro/ParametrosTriagem.vue`
     )
   },
   {

@@ -35,7 +35,7 @@
 </template>
 
 <script>
-    import TipoDemandaForm from "@/components/cadastros/forms/TipoDemandaForm.vue";
+    import TipoDemandaForm from "@/components/cadastro/forms/TipoDemandaForm.vue";
     export default {
         components: {
             TipoDemandaForm

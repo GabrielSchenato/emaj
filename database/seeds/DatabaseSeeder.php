@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsuarioTableSeeder::class);
         $this->call(TipoDemandaTableSeeder::class);
+        $this->call(ParametroTriagemTableSeeder::class);
     }
 }

@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import TelefoneForm from "@/components/cadastros/forms/TelefoneForm.vue";
+import TelefoneForm from "@/components/cadastro/forms/TelefoneForm.vue";
 
 export default {
   components: {

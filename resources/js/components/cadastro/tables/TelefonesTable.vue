@@ -66,7 +66,7 @@
 <script>
 import { Items as Telefones } from "@/config/telefones";
 import Confirm from "@/components/dialogs/Confirm.vue";
-import TelefoneDialog from "@/components/cadastros/dialogs/TelefoneDialog.vue";
+import TelefoneDialog from "@/components/cadastro/dialogs/TelefoneDialog.vue";
 
 export default {
   name: "telefones-table",

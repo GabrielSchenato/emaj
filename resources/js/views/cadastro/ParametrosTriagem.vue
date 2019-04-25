@@ -14,7 +14,7 @@
 
 <script>
 
-    import ParametrosTriagemForm from "@/components/cadastros/forms/ParametrosTriagemForm.vue";
+    import ParametrosTriagemForm from "@/components/cadastro/forms/ParametrosTriagemForm.vue";
     export default {
         components: {
             ParametrosTriagemForm

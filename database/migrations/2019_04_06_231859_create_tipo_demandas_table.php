@@ -17,6 +17,7 @@ class CreateTipoDemandasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome', 30);
             $table->string('descricao', 100)->nullable();
+            $table->boolean('ativo')->default(true);
             $table->timestamps();
         });
     }

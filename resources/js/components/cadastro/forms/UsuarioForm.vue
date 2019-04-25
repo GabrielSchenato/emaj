@@ -95,8 +95,8 @@
                     name="password"
                     id="password"
                     v-model="usuario.password"
-                    label="Senha*"
-                    v-validate="'required'"
+                    :label="'Senha' + getConfig.asterisco"
+                    v-validate="{required: getConfig.required }"
                     :error-messages="errors.collect('senha')"
                     data-vv-name="senha"
                     required
@@ -118,8 +118,8 @@
                     name="password_confirmation"
                     id="password_confirmation"
                     v-model="usuario.password_confirmation"
-                    label="Confirmar Senha*"
-                    v-validate="'required'"
+                    :label="'Confirmar Senha' + getConfig.asterisco"
+                    v-validate="{required: getConfig.required }"
                     :error-messages="errors.collect('confirmar senha')"
                     data-vv-name="confirmar senha"
                     required
@@ -131,6 +131,16 @@
                     hint="Ao menos 6 caracteres"
                     @click:append="show2 = !show2"
                     ></v-text-field>
+            </v-flex>
+
+            <v-flex xs12 sm6 md1>
+                <v-checkbox
+                    name="ativo"
+                    id="ativo"
+                    v-model="usuario.ativo"
+                    label="Ativo?"
+                    @change="$emit('input', usuario)"
+                    ></v-checkbox>
             </v-flex>
 
         </v-layout>
@@ -189,6 +199,12 @@
                 if (this.usuario.avatar.avatar && this.usuario.avatar)
                     return 'data:image/jpeg;base64,' + this.usuario.avatar.avatar;
                 return null;
+            },
+            getConfig() {
+                return {
+                    required: this.usuario.id ? false : true,
+                    asterisco: this.usuario.id ? '' : '*'
+                };
             }
         },
         methods: {

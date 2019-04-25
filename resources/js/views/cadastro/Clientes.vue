@@ -75,7 +75,7 @@
 <script>
 import { Items as Clientes } from "@/config/clientes";
 import Confirm from "@/components/dialogs/Confirm.vue";
-import ClienteDialog from "@/components/cadastros/dialogs/ClienteDialog.vue";
+import ClienteDialog from "@/components/cadastro/dialogs/ClienteDialog.vue";
 
 export default {
   components: {

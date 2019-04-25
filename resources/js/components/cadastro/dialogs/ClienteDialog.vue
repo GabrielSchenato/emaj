@@ -217,10 +217,10 @@
 <script>
 import Vue from "vue";
 import VeeValidate from "vee-validate";
-import InformacoesPessoaisForm from "@/components/cadastros/forms/InformacoesPessoaisForm.vue";
-import EnderecoForm from "@/components/cadastros/forms/EnderecoForm.vue";
-import ComposicaoFamiliarForm from "@/components/cadastros/forms/ComposicaoFamiliarForm.vue";
-import TelefonesTable from "@/components/cadastros/tables/TelefonesTable.vue";
+import InformacoesPessoaisForm from "@/components/cadastro/forms/InformacoesPessoaisForm.vue";
+import EnderecoForm from "@/components/cadastro/forms/EnderecoForm.vue";
+import ComposicaoFamiliarForm from "@/components/cadastro/forms/ComposicaoFamiliarForm.vue";
+import TelefonesTable from "@/components/cadastro/tables/TelefonesTable.vue";
 
 Vue.use(VeeValidate);
 

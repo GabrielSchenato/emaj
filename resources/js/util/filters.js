@@ -32,3 +32,9 @@ Vue.filter('formataRole', function (value) {
         }
     }
 });
+
+Vue.filter('formataAtivo', function (value) {
+    if (value)
+        return 'Sim';
+    return 'Não';
+});

@@ -20,7 +20,7 @@ class TipoDemanda extends Model
 {
 
     protected $fillable = [
-        'nome', 'descricao'
+        'nome', 'descricao', 'ativo'
     ];
 
 }

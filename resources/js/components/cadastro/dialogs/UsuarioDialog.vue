@@ -35,7 +35,7 @@
 </template>
 
 <script>
-    import UsuarioForm from "@/components/cadastros/forms/UsuarioForm.vue";
+    import UsuarioForm from "@/components/cadastro/forms/UsuarioForm.vue";
     export default {
         components: {
             UsuarioForm
@@ -54,6 +54,7 @@
             }),
         methods: {
             open(title, item, options) {
+                this.$refs.usuarioForm.$validator.errors.clear();
                 this.dialog = true;
                 this.formTitle = title;
                 this.usuario = item;
@@ -72,6 +73,7 @@
                 formData.append('nome_completo', this.usuario.nome_completo);
                 formData.append('email', this.usuario.email);
                 formData.append('telefone', this.usuario.telefone);
+                formData.append('ativo', this.usuario.ativo ? 1 : 0);
                 formData.append('role', this.usuario.role);
                 formData.append('password', this.usuario.password);
                 formData.append('password_confirmation', this.usuario.password_confirmation);
@@ -118,6 +120,7 @@
                 this.resolve(false);
                 this.dialog = false;
                 this.$refs.usuarioForm.usuario = {};
+                this.$refs.usuarioForm.$validator.errors.clear();
             },
             clear() {
                 this.usuario = {};

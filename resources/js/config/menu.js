@@ -10,14 +10,14 @@ const Menu =  [
   { header: 'Cadastros do Sistema', role: ['admin', 'secretaria'] },
   {
     title: 'Cadastros',
-    group: 'cadastros',
-    component: 'cadastros',
+    group: 'cadastro',
+    component: 'cadastro',
     icon: 'add',
     itens: [
-      { name: 'usuarios', title: 'Usuários', component: 'cadastros/usuarios', role: ['admin', 'secretaria'] },
-      { name: 'clientes', title: 'Clientes', component: 'cadastros/clientes', role: ['admin', 'secretaria'] },
-      { name: 'tipodemandas', title: 'Tipo de Demandas', component: 'cadastros/tipodemandas', role: ['admin', 'secretaria'] },
-      { name: 'parametrostriagem', title: 'Parâmetros da Triagem', component: 'cadastros/parametrostriagem', role: ['admin'] }
+      { name: 'usuarios', title: 'Usuários', component: 'cadastro/usuarios', role: ['admin', 'secretaria'] },
+      { name: 'clientes', title: 'Clientes', component: 'cadastro/clientes', role: ['admin', 'secretaria'] },
+      { name: 'tipodemandas', title: 'Tipo de Demandas', component: 'cadastro/tipodemandas', role: ['admin', 'secretaria'] },
+      { name: 'parametrostriagem', title: 'Parâmetros da Triagem', component: 'cadastro/parametrostriagem', role: ['admin'] }
     ],
     role: ['admin', 'secretaria']
   },

@@ -26,7 +26,7 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md6>
+            <v-flex xs12 sm6 md5>
                 <v-text-field
                     name="descricao"
                     id="descricao"
@@ -35,6 +35,17 @@
                     @input="$emit('input', tipoDemanda)"
                     ></v-text-field>
             </v-flex>
+            
+            <v-flex xs12 sm6 md1>
+               <v-checkbox
+                    name="ativo"
+                    id="ativo"
+                    v-model="tipoDemanda.ativo"
+                    label="Ativo?"
+                    @change="$emit('input', tipoDemanda)"
+                    ></v-checkbox>
+            </v-flex>
+            
         </v-layout>
     </v-form>
 </template>

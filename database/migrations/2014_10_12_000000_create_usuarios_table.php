@@ -21,6 +21,7 @@ class CreateUsuariosTable extends Migration
             $table->string('password');
             $table->enum('role', ['admin', 'secretaria', 'aluno']);
             $table->string('telefone', 15);
+            $table->boolean('ativo')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

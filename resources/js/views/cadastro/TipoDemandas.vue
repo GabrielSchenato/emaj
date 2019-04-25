@@ -46,6 +46,7 @@
                                     <td>{{ props.item.id }}</td>
                                     <td>{{ props.item.nome }}</td>
                                     <td>{{ props.item.descricao }}</td>
+                                    <td>{{ props.item.ativo | formataAtivo }}</td>
                                     <td>{{ props.item.created_at | formataData }}</td>
                                     <td>{{ props.item.updated_at | formataData }}</td>
                                     <td>
@@ -73,7 +74,7 @@
 
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
-    import TipoDemandaDialog from "@/components/cadastros/dialogs/TipoDemandaDialog.vue";
+    import TipoDemandaDialog from "@/components/cadastro/dialogs/TipoDemandaDialog.vue";
 
     export default {
         components: {
@@ -101,6 +102,10 @@
                             value: "descricao"
                         },
                         {
+                            text: "Ativo?",
+                            value: "ativo"
+                        },
+                        {
                             text: "Criado em",
                             value: "created_at"
                         },
@@ -121,7 +126,7 @@
                 this.$refs.tipoDemandaDialog
                         .open(
                                 'Adicionar um novo tipo de demanda',
-                                {},
+                                {ativo:true},
                                 {
                                     color: "blue"
                                 }
