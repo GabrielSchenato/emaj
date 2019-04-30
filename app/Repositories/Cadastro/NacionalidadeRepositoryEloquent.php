@@ -2,7 +2,7 @@
 
 namespace Emaj\Repositories\Cadastro;
 
-use Emaj\Entities\Cadastro\Endereco;
+use Emaj\Entities\Cadastro\Nacionalidade;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
@@ -28,7 +28,7 @@ class NacionalidadeRepositoryEloquent extends BaseRepository implements Nacional
      */
     public function model()
     {
-        return Endereco::class;
+        return Nacionalidade::class;
     }
 
     /**

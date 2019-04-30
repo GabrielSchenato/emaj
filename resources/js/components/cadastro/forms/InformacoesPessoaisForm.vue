@@ -21,7 +21,7 @@
                     @change="$emit('input', informacoesPessoais)"
                     ></v-checkbox>
             </v-flex>
-            
+
             <v-flex xs12 sm6 md5>
                 <v-text-field
                     name="nome_completo"
@@ -119,18 +119,22 @@
                     ></v-select>
             </v-flex>
 
-            <v-flex xs12 sm6 md3>
-                <v-select
+            <v-flex xs12 sm6 md3>            
+                <v-autocomplete
                     name="nacionalidade_id"
                     id="nacionalidade_id"
-                    :items="[1, 2]"
+                    :items="nacionalidades"
+                    :filter="customFilter"
+                    item-text="nome"
+                    item-value="id"
+                    no-data-text="Não há registros para serem exibidos."
                     label="Nacionalidade*"
                     v-model="informacoesPessoais.nacionalidade_id"
                     v-validate="{required: true }"
                     :error-messages="errors.collect('nacionalidade')"
                     data-vv-name="nacionalidade"
                     @input="$emit('input', informacoesPessoais)"
-                    ></v-select>
+                    ></v-autocomplete>
             </v-flex>
 
             <v-flex xs12 sm6 md5>
@@ -196,7 +200,7 @@
             value: {
                 type: [Object]
             },
-            getConfig: { type: Function }
+            getConfig: {type: Function}
         },
         data() {
             return {
@@ -233,7 +237,8 @@
                         id: 'viúvo',
                         nome: 'Viúvo'
 
-                    }]
+                    }],
+                nacionalidades: []
             };
         },
         watch: {
@@ -245,7 +250,19 @@
             }
         },
         methods: {
-            
+            customFilter(item, queryText, itemText) {
+                const textOne = item.nome.toLowerCase();
+                //const textTwo = item.abbr.toLowerCase();
+                const searchText = queryText.toLowerCase();
+
+                return textOne.indexOf(searchText) > -1 /*||
+                        textTwo.indexOf(searchText) > -1*/;
+            }
+        },
+        mounted() {
+            window.axios.get('nacionalidades').then(response => {
+                this.nacionalidades = response.data;
+            });
         }
     };
 </script>

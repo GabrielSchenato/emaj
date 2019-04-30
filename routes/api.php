@@ -42,4 +42,5 @@ Route::prefix('v1')
             Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');
             Route::post('parametrostriagem', 'Cadastro\ParametrosTriagemController@store');
             Route::delete('telefones/{id}', 'Cadastro\TelefonesController@destroy');
+            Route::get('nacionalidades', 'Cadastro\NacionalidadesController@index');
         });
