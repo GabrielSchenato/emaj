@@ -36,8 +36,10 @@ Route::prefix('v1')
         ->group(function () {
             Route::apiResources([
                 'usuarios' => 'Cadastro\UsersController',
-                'tipodemandas' => 'Cadastro\TipoDemandasController'
+                'tipodemandas' => 'Cadastro\TipoDemandasController',
+                'clientes' => 'Cadastro\ClientesController'
             ]);
             Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');
             Route::post('parametrostriagem', 'Cadastro\ParametrosTriagemController@store');
+            Route::delete('telefones/{id}', 'Cadastro\TelefonesController@destroy');
         });

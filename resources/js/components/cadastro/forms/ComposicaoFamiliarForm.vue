@@ -17,8 +17,8 @@
           name="renda_familiar"
           id="renda_familiar"
           v-model="composicaoFamiliar.renda_familiar"
-          label="Renda Familiar*"
-          v-validate="'required'"
+          :label="'Renda Familiar' + this.getConfig().asterisco"
+          v-validate="{required: this.getConfig().required }"
           :error-messages="errors.collect('renda familiar')"
           data-vv-name="renda familiar"
           required
@@ -32,8 +32,8 @@
           name="casa"
           id="casa"
           v-model="composicaoFamiliar.casa"
-          label="Casa*"
-          v-validate="'required'"
+          :label="'Casa' + this.getConfig().asterisco"
+          v-validate="{required: this.getConfig().required }"
           :error-messages="errors.collect('casa')"
           data-vv-name="casa"
           required
@@ -119,8 +119,8 @@
           name="outros_bens"
           id="outros_bens"
           v-model="composicaoFamiliar.outros_bens"
-          label="Outros Bens*"
-          v-validate="'required'"
+          :label="'Outros Bens' + this.getConfig().asterisco"
+          v-validate="{required: this.getConfig().required }"
           :error-messages="errors.collect('outros bens')"
           data-vv-name="outros bens"
           required
@@ -133,8 +133,8 @@
           name="dividas"
           id="dividas"
           v-model="composicaoFamiliar.dividas"
-          label="Dívidas*"
-          v-validate="'required'"
+          :label="'Dívidas' + this.getConfig().asterisco"
+          v-validate="{required: this.getConfig().required }"
           :error-messages="errors.collect('dívidas')"
           data-vv-name="dívidas"
           required
@@ -147,8 +147,8 @@
           name="despesas"
           id="despesas"
           v-model="composicaoFamiliar.despesas"
-          label="Despesas*"
-          v-validate="'required'"
+          :label="'Despesas' + this.getConfig().asterisco"
+          v-validate="{required: this.getConfig().required }"
           :error-messages="errors.collect('despesas')"
           data-vv-name="despesas"
           required
@@ -161,8 +161,8 @@
           name="valor_patrimonio"
           id="valor_patrimonio"
           v-model="composicaoFamiliar.valor_patrimonio"
-          label="Valor do Patrimônio*"
-          v-validate="'required'"
+          :label="'Valor do Patrimônio' + this.getConfig().asterisco"
+          v-validate="{required: this.getConfig().required }"
           :error-messages="errors.collect('valor do patrimônio')"
           data-vv-name="valor do patrimônio"
           required
@@ -190,8 +190,9 @@ export default {
   },
   props: {
     value: {
-      type: [Object]
-    }
+      type: [Object]      
+    },
+    getConfig: { type: Function }
   },
   data() {
     return {

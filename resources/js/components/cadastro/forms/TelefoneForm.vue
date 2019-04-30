@@ -12,7 +12,7 @@
         ></v-text-field>
       </v-flex>
 
-      <v-flex xs12 sm6 md2>
+      <v-flex xs12 sm6 md4>
         <v-text-field
           name="tipo"
           id="tipo"
@@ -40,30 +40,15 @@
          ></v-text-field>
       </v-flex>
 
-      <v-flex xs12 sm6 md1>
-         <v-text-field
-          name="ddd"
-          id="ddd"
-          v-model="telefone.ddd"
-          label="DDD*"
-          v-validate="'required'"
-          :error-messages="errors.collect('DDD')"
-          data-vv-name="DDD"
-          required
-          type="number"
-          @input="$emit('input', telefone)"
-         ></v-text-field>
-      </v-flex>
-
       <v-flex xs12 sm6 md4>
          <v-text-field
-          name="numero"
-          id="numero"
-          v-model="telefone.numero"
-          label="Número*"
+          name="telefone"
+          id="telefone"
+          v-model="telefone.telefone"
+          label="Telefone*"
           v-validate="'required'"
-          :error-messages="errors.collect('número')"
-          data-vv-name="número"
+          :error-messages="errors.collect('telefone')"
+          data-vv-name="telefone"
           required
           type="number"
           @input="$emit('input', telefone)"
