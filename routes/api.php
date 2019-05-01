@@ -34,11 +34,18 @@ Route::prefix('v1')
         ->middleware('auth')
         ->namespace('Api\V1')
         ->group(function () {
+            
+            Route::get('clientes/autocomplete', 'Cadastro\ClientesController@autocomplete');
+            Route::get('tipodemandas/autocomplete', 'Cadastro\TipoDemandasController@autocomplete');
+            Route::get('tipostatus/autocomplete', 'Cadastro\TipoStatusController@autocomplete');
+            Route::get('usuarios/autocomplete', 'Cadastro\UsuariosController@autocomplete');
+            
             Route::apiResources([
-                'usuarios' => 'Cadastro\UsersController',
+                'usuarios' => 'Cadastro\UsuariosController',
                 'tipodemandas' => 'Cadastro\TipoDemandasController',
                 'tipostatus' => 'Cadastro\TipoStatusController',
-                'clientes' => 'Cadastro\ClientesController'
+                'clientes' => 'Cadastro\ClientesController',
+                'fichatriagens' => 'Movimento\FichaTriagensController'
             ]);
             Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');
             Route::post('parametrostriagem', 'Cadastro\ParametrosTriagemController@store');

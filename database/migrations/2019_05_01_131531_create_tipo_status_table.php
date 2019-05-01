@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTipoStatusTable extends Migration
+class CreateTipoStatusTable extends Migration
 {
 
     /**
@@ -16,7 +16,7 @@ class AddTipoStatusTable extends Migration
     {
         Schema::create('tipo_status', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome', 30);
+            $table->string('nome', 50);
             $table->string('cor')->nullable();
             $table->boolean('ativo')->default(true);
             $table->timestamps();

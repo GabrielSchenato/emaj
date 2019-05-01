@@ -2,6 +2,7 @@
 
 namespace Emaj\Entities\Cadastro;
 
+use Emaj\Entities\Movimento\FichaTriagem;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,9 +26,16 @@ class TipoStatus extends Model
      * @var string
      */
     protected $table = 'tipo_status';
-    
     protected $fillable = [
         'nome', 'cor', 'ativo'
     ];
+
+    /**
+     * Pega todas as ficha de triagens associados a esse tipo de demanda.
+     */
+    public function ficha_triagens()
+    {
+        return $this->hasMany(FichaTriagem::class);
+    }
 
 }

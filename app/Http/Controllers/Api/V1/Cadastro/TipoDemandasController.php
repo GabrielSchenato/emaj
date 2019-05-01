@@ -27,4 +27,15 @@ class TipoDemandasController extends CrudController
         $this->repository = $repository;
     }
 
+    /**
+     * Retorna todos os dados para os autocomplete
+     * 
+     * @return array
+     */
+    public function autocomplete()
+    {
+        $this->registro = $this->repository->all();
+        return $this->registro;
+    }
+
 }

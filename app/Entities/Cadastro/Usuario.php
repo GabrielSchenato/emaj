@@ -2,6 +2,7 @@
 
 namespace Emaj\Entities\Cadastro;
 
+use Emaj\Entities\Movimento\FichaTriagem;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -63,4 +64,12 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
         return $this->getKey();
     }
 
+    /**
+     * Pega todas as Ficha de Triagens associados a esse aluno.
+     */
+    public function ficha_triagens()
+    {
+        return $this->hasMany(FichaTriagem::class, 'aluno_id');
+    }
+    
 }

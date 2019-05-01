@@ -26,11 +26,11 @@ const Menu =  [
   { header: 'Movimentação do Sistema' },
   {
     title: 'Movimentos',
-    group: 'movimentos',
-    component: 'movimentos',
+    group: 'movimento',
+    component: 'movimento',
     icon: 'compare_arrows',
     itens: [
-      { name: 'fichastriagem', title: 'Fichas de Triagem', component: 'movimentos/fichastriagem' },
+      { name: 'fichatriagens', title: 'Ficha de Triagens', component: 'movimento/fichatriagens' },
     ]
   },  
   /*{ header: 'Estatísticas' },

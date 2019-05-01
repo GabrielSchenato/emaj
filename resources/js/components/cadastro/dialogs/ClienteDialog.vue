@@ -89,7 +89,7 @@
                                                             <br>
                                                             <br>
                                                             <br>
-                                                            <v-btn color="blue" dark @click.native="informacoesPessoaisClear" :disabled="informacoesPessoais.id != null">
+                                                            <v-btn color="blue" :dark="informacoesPessoais.id == null" @click.native="informacoesPessoaisClear" :disabled="informacoesPessoais.id != null">
                                                                    Limpar
                                                                    <v-icon right dark>delete_sweep</v-icon>
                                                             </v-btn>
@@ -111,7 +111,8 @@
                                                                                         ref="enderecoForm"
                                                                                         v-model="endereco"    
                                                                                         :getConfig="getConfig"
-                                                                                        >                                                                                </endereco-form>
+                                                                                        >                                                                                
+                                                                                    </endereco-form>
                                                                                 </v-layout>
                                                                             </v-container>
                                                                         </form>
@@ -125,7 +126,7 @@
                                                             <br>
                                                             <br>
                                                             <br>
-                                                            <v-btn color="blue" dark @click.native="enderecoClear" :disabled="endereco.id != null">
+                                                            <v-btn color="blue" :dark="informacoesPessoais.id == null" @click.native="enderecoClear" :disabled="endereco.id != null">
                                                                    Limpar
                                                                    <v-icon right dark>delete_sweep</v-icon>
                                                             </v-btn>
@@ -165,7 +166,7 @@
                                                             <br>
                                                             <br>
                                                             <br>
-                                                            <v-btn color="blue" dark @click.native="composicaoFamiliarClear" :disabled="composicaoFamiliar.id != null">
+                                                            <v-btn color="blue" :dark="informacoesPessoais.id == null" @click.native="composicaoFamiliarClear" :disabled="composicaoFamiliar.id != null">
                                                                    Limpar
                                                                    <v-icon right dark>delete_sweep</v-icon>
                                                             </v-btn>

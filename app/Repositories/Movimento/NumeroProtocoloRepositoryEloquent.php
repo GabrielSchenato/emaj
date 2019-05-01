@@ -1,25 +1,26 @@
 <?php
 
-namespace Emaj\Repositories\Cadastro;
+namespace Emaj\Repositories\Movimento;
 
-use Emaj\Entities\Cadastro\TipoStatus;
+use Emaj\Entities\Movimento\NumeroProtocolo;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
- * Repository responsável por gerenciar a entidade Tipo Status
+ * Repository responsável por gerenciar a entidade Número Protocolo
  *
  * PHP version 7.2
  *
  * @category   Repository
- * @package    Cadastro
+ * @package    Movimento
  * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class TipoStatusRepositoryEloquent extends BaseRepository implements TipoStatusRepository
+class NumeroProtocoloRepositoryEloquent extends BaseRepository implements NumeroProtocoloRepository
 {
+
     /**
      * Specify Model class name
      *
@@ -27,7 +28,7 @@ class TipoStatusRepositoryEloquent extends BaseRepository implements TipoStatusR
      */
     public function model()
     {
-        return TipoStatus::class;
+        return NumeroProtocolo::class;
     }
 
     /**
@@ -37,11 +38,11 @@ class TipoStatusRepositoryEloquent extends BaseRepository implements TipoStatusR
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
     public static function getRules($data)
     {
         return [
-            'nome' => 'required|min:5|max:50'
         ];
     }
+
 }

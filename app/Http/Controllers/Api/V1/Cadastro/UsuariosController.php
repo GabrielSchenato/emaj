@@ -20,9 +20,8 @@ use Illuminate\Support\Facades\Mail;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class UsersController extends CrudController
+class UsuariosController extends CrudController
 {
-
 
     protected $repository;
 
@@ -43,7 +42,7 @@ class UsersController extends CrudController
         }
         $this->registro = $this->repository->create($data);
         Mail::to($data['email'])->send(new UserMailable($this->registro, $data['password']));
-        return $this->registro;      
+        return $this->registro;
     }
 
     public function me()
@@ -55,6 +54,17 @@ class UsersController extends CrudController
         }
 
         return response()->json($user);
+    }
+
+    /**
+     * Retorna todos os dados para os autocomplete
+     * 
+     * @return array
+     */
+    public function autocomplete()
+    {
+        $this->registro = $this->repository->findByField('role', 'aluno');
+        return $this->registro;
     }
 
 }

@@ -20,6 +20,10 @@ use Emaj\Repositories\Cadastro\TipoStatusRepository;
 use Emaj\Repositories\Cadastro\TipoStatusRepositoryEloquent;
 use Emaj\Repositories\Cadastro\UsuarioRepository;
 use Emaj\Repositories\Cadastro\UsuarioRepositoryEloquent;
+use Emaj\Repositories\Movimento\FichaTriagemRepository;
+use Emaj\Repositories\Movimento\FichaTriagemRepositoryEloquent;
+use Emaj\Repositories\Movimento\NumeroProtocoloRepository;
+use Emaj\Repositories\Movimento\NumeroProtocoloRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -51,6 +55,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ComposicaoFamiliarRepository::class, ComposicaoFamiliarRepositoryEloquent::class);
         $this->app->bind(TelefoneRepository::class, TelefoneRepositoryEloquent::class);
         $this->app->bind(NacionalidadeRepository::class, NacionalidadeRepositoryEloquent::class);
+        $this->app->bind(NumeroProtocoloRepository::class, NumeroProtocoloRepositoryEloquent::class);
+        $this->app->bind(FichaTriagemRepository::class, FichaTriagemRepositoryEloquent::class);
     }
 
 }

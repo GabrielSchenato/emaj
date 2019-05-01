@@ -123,12 +123,12 @@ export default [
     )
   },
   {
-    path: '/movimentos/fichastriagem',
+    path: '/movimento/fichatriagens',
     meta: { breadcrumb: true, auth: true },
-    name: 'movimentos/fichastriagem',
+    name: 'movimento/fichatriagens',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/movimentos/FichasTriagem.vue`
+      `@/views/movimento/FichaTriagens.vue`
     )
   },
   {

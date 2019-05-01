@@ -2,6 +2,7 @@
 
 namespace Emaj\Entities\Cadastro;
 
+use Emaj\Entities\Movimento\FichaTriagem;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -56,6 +57,22 @@ class Cliente extends Model
     public function telefones()
     {
         return $this->hasMany(Telefone::class);
+    }
+    
+    /**
+     * Pega todas as Ficha de Triagens associados ao cliente.
+     */
+    public function ficha_triagens_cliente()
+    {
+        return $this->hasMany(FichaTriagem::class, 'cliente_id');
+    }
+    
+    /**
+     * Pega todas as Ficha de Triagens associados ao cliente parte contrária.
+     */
+    public function ficha_triagens_parte_contraria()
+    {
+        return $this->hasMany(FichaTriagem::class, 'parte_contraria_id');
     }
 
     /**

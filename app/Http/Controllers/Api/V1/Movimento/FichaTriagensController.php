@@ -1,9 +1,9 @@
 <?php
 
-namespace Emaj\Http\Controllers\Api\V1\Cadastro;
+namespace Emaj\Http\Controllers\Api\V1\Movimento;
 
 use Emaj\Http\Controllers\CrudController;
-use Emaj\Repositories\Cadastro\TipoStatusRepository;
+use Emaj\Repositories\Movimento\FichaTriagemRepository;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -11,31 +11,22 @@ use Emaj\Repositories\Cadastro\TipoStatusRepository;
  * PHP version 7.2
  *
  * @category   Controller
- * @package    Cadastro
+ * @package    Movimento
  * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class TipoStatusController extends CrudController
+class FichaTriagensController extends CrudController
 {
 
     protected $repository;
+    
+    protected $relationships = ['cliente', 'numero_protocolo', 'tipo_demanda', 'parte_contraria', 'aluno', 'tipo_status'];
 
-    public function __construct(TipoStatusRepository $repository)
+    public function __construct(FichaTriagemRepository $repository)
     {
         $this->repository = $repository;
-    }
-
-    /**
-     * Retorna todos os dados para os autocomplete
-     * 
-     * @return array
-     */
-    public function autocomplete()
-    {
-        $this->registro = $this->repository->all();
-        return $this->registro;
     }
 
 }

@@ -65,6 +65,17 @@ class ClientesController extends CrudController
         ];
         return $this->registro;
     }
+    
+    /**
+     * Retorna todos os dados para os autocomplete
+     * 
+     * @return array
+     */
+    public function autocomplete()
+    {
+        $this->registro = $this->repository->all();
+        return $this->registro;
+    }
 
     /**
      * Sobrescrito para não ser chamado pelo controller, e sim pelo repository
