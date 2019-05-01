@@ -25,7 +25,6 @@
                     :error-messages="errors.collect('CEP')"
                     :label="'CEP' + this.getConfig().asterisco"
                     data-vv-name="CEP"
-                    required
                     mask="#####-###"
                     @keyup="buscar"
                     @input="$emit('input', endereco)"
@@ -95,7 +94,7 @@
                     :error-messages="errors.collect('estado')"
                     :label="'Estado' + this.getConfig().asterisco"
                     data-vv-name="estado"
-                    required
+                    mask="AA"
                     @change="$emit('input', endereco)"
                     ></v-text-field>
             </v-flex>
@@ -106,7 +105,7 @@
                     id="endereco_local_trabalho"
                     v-model="endereco.endereco_local_trabalho"
                     label="Endereço do Local de Trabalho"
-                    @change="$emit('input', endereco)"
+                    @input="$emit('input', endereco)"
                     ></v-text-field>
             </v-flex>
         </v-layout>

@@ -5,6 +5,7 @@ namespace Emaj\Repositories\Cadastro;
 use Emaj\Entities\Cadastro\ComposicaoFamiliar;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Illuminate\Validation\Rule;
 
 /**
  * Repository responsável por gerenciar a entidade Composição Familiar
@@ -39,10 +40,16 @@ class ComposicaoFamiliarRepositoryEloquent extends BaseRepository implements Com
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-//    public static function getRules($data)
-//    {
-//        return [
-//            'renda' => 'required|numeric'
-//        ];
-//    }
+    public static function getRules($data)
+    {
+        return [
+            'renda_familiar' => 'required|numeric',
+            'casa' => ['required', Rule::in(['alugada', 'propria', 'cedida'])],
+            'outros_bens' => 'required|max:255',
+            'dividas' => 'required|max:255',
+            'despesas' => 'required|max:255',
+            'valor_patrimonio' => 'required|max:255'
+        ];
+    }
+
 }

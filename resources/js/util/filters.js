@@ -38,3 +38,16 @@ Vue.filter('formataAtivo', function (value) {
         return 'Sim';
     return 'Não';
 });
+
+Vue.filter('formataTipoTelefone', function (value) {
+    if (value) {
+        switch (value) {
+            case 'celular':
+                return 'Celular';
+            case 'residencial':
+                return 'Residencial';
+            default:
+                return value;
+        }
+    }
+});

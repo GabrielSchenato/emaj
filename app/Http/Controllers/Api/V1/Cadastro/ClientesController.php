@@ -66,4 +66,13 @@ class ClientesController extends CrudController
         return $this->registro;
     }
 
+    /**
+     * Sobrescrito para não ser chamado pelo controller, e sim pelo repository
+     * @param array $data
+     */
+    protected function hasErrors($data)
+    {
+        
+    }
+
 }

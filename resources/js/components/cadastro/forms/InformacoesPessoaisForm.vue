@@ -145,6 +145,7 @@
                     label="E-mail"
                     :error-messages="errors.collect('e-mail')"
                     type="email"
+                    data-vv-name="e-mail"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
@@ -234,7 +235,7 @@
 
                     },
                     {
-                        id: 'viúvo',
+                        id: 'viuvo',
                         nome: 'Viúvo'
 
                     }],

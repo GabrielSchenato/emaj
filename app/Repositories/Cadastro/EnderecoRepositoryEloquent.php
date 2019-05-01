@@ -20,6 +20,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
  */
 class EnderecoRepositoryEloquent extends BaseRepository implements EnderecoRepository
 {
+
     /**
      * Specify Model class name
      *
@@ -37,11 +38,16 @@ class EnderecoRepositoryEloquent extends BaseRepository implements EnderecoRepos
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
-//    public static function getRules($data)
-//    {
-//        return [
-//            'renda' => 'required|numeric'
-//        ];
-//    }
+
+    public static function getRules($data)
+    {
+        return [
+            'cep' => 'required|numeric|digits:8',
+            'logradouro' => 'required|max:100',
+            'bairro' => 'required|max:50',
+            'localidade' => 'required|max:50',
+            'uf' => 'required|max:2',
+        ];
+    }
+
 }
