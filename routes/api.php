@@ -37,6 +37,7 @@ Route::prefix('v1')
             Route::apiResources([
                 'usuarios' => 'Cadastro\UsersController',
                 'tipodemandas' => 'Cadastro\TipoDemandasController',
+                'tipostatus' => 'Cadastro\TipoStatusController',
                 'clientes' => 'Cadastro\ClientesController'
             ]);
             Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');

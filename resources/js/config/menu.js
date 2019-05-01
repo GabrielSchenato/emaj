@@ -17,6 +17,7 @@ const Menu =  [
       { name: 'usuarios', title: 'Usuários', component: 'cadastro/usuarios', role: ['admin', 'secretaria'] },
       { name: 'clientes', title: 'Clientes', component: 'cadastro/clientes', role: ['admin', 'secretaria'] },
       { name: 'tipodemandas', title: 'Tipo de Demandas', component: 'cadastro/tipodemandas', role: ['admin', 'secretaria'] },
+      { name: 'tipostatus', title: 'Tipo de Status', component: 'cadastro/tipostatus', role: ['admin'] },
       { name: 'parametrostriagem', title: 'Parâmetros da Triagem', component: 'cadastro/parametrostriagem', role: ['admin'] }
     ],
     role: ['admin', 'secretaria']
