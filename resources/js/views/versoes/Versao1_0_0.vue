@@ -36,6 +36,15 @@
                     <v-list-tile-sub-title>Evolução (Cadastro) Criado área para o cadastro de "Tipo de Demandas"</v-list-tile-sub-title>
                 </v-list-tile-content>
             </v-list-tile>
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    <v-list-tile-sub-title>Evolução (Cadastro) Criado área para o cadastro de "Tipo de Status"</v-list-tile-sub-title>
+                </v-list-tile-content>
+            </v-list-tile>
 
             <v-list-tile>
                 <v-list-tile-action>
@@ -43,6 +52,15 @@
                 </v-list-tile-action>
                 <v-list-tile-content>
                     <v-list-tile-sub-title>Evolução (Cadastro) Criado área para o cadastro de "Parâmetros da Triagem"</v-list-tile-sub-title>
+                </v-list-tile-content>
+            </v-list-tile>
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    <v-list-tile-sub-title>Evolução (Movimento) Criado área para o cadastro de "Ficha de Triagem"</v-list-tile-sub-title>
                 </v-list-tile-content>
             </v-list-tile>
 
