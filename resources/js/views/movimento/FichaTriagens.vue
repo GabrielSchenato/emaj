@@ -52,10 +52,13 @@
                                     <td>{{ props.item.created_at | formataData }}</td>
                                     <td>{{ props.item.updated_at | formataData }}</td>
                                     <td>
-                                    <v-btn depressed outline icon fab dark color="primary" small>
+                                    <v-btn depressed outline icon fab dark color="primary" small v-if="$auth.check(['admin', 'secretaria'])">
+                                        <v-icon @click="gerarImpressao(props.item.id)">print</v-icon>
+                                    </v-btn>
+                                    <v-btn depressed outline icon fab dark color="primary" small v-if="$auth.check(['admin', 'secretaria'])">
                                         <v-icon @click="editar(props.item.id)">edit</v-icon>
                                     </v-btn>
-                                    <v-btn depressed outline icon fab dark color="pink" small>
+                                    <v-btn depressed outline icon fab dark color="pink" small v-if="$auth.check(['admin', 'secretaria'])">
                                         <v-icon @click="deletar(props.item)">delete</v-icon>
                                     </v-btn>
                                     </td>
@@ -137,7 +140,7 @@
                 this.$refs.fichaTriagemDialog
                         .open(
                                 'Adicionar uma nova ficha de triagem',
-                                {ativo:true},
+                                {ativo: true},
                                 {
                                     color: "blue"
                                 }
@@ -175,6 +178,42 @@
                                 });
                             }
                         });
+            },
+            gerarImpressao(id) {
+                window.axios({
+                            url: "/fichatriagens/impressao",
+                            method: "POST",
+                            responseType: "blob",
+                            data: {formato: 'pdf', id: id}
+                        })
+                        .then(response => {
+                            const blob = new Blob([response.data], {
+                                type: response.data.type
+                            });
+                            const url = window.URL.createObjectURL(blob);
+                            const link = document.createElement("a");
+                            link.href = url;
+                            const contentDisposition =
+                                    response.headers["content-disposition"];
+                            let fileName = "unknown";
+                            if (contentDisposition) {
+                                fileName = this.getFileNameFromHttpResponse(
+                                        contentDisposition
+                                        );
+                            }
+                            link.setAttribute("download", fileName);
+                            document.body.appendChild(link);
+                            link.click();
+                            link.remove();
+                            window.URL.revokeObjectURL(url);
+                        });
+            },
+            getFileNameFromHttpResponse(contentDisposition) {
+                var result = contentDisposition
+                        .split(";")[1]
+                        .trim()
+                        .split("=")[1];
+                return result.replace(/"/g, "");
             }
         },
         computed: {
@@ -188,14 +227,14 @@
             this.$store.dispatch("getFichaTriagens").then(() => {
                 this.loading = false;
             });
-            
+
             this.$store.dispatch("getParametrosTriagem").then(() => {
                 let parametros = Object.assign({}, this.$store.state.parametrostriagem.parametrosTriagemView);
-                if(!parametros.id){
+                if (!parametros.id) {
                     window.getApp.$emit("APP_ERROR", {msg: 'Ops! Os parâmetros da triagem não foram definidos!', timeout: 3500});
                     this.parametrosTriagem = false;
                 }
-                    
+
             }).catch((resp) => {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
             });

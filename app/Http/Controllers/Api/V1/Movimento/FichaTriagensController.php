@@ -4,6 +4,7 @@ namespace Emaj\Http\Controllers\Api\V1\Movimento;
 
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Movimento\FichaTriagemRepository;
+use Emaj\Util\Traits\ReportController;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -19,6 +20,8 @@ use Emaj\Repositories\Movimento\FichaTriagemRepository;
  */
 class FichaTriagensController extends CrudController
 {
+    
+    use ReportController;
 
     protected $repository;
     
@@ -27,6 +30,9 @@ class FichaTriagensController extends CrudController
     public function __construct(FichaTriagemRepository $repository)
     {
         $this->repository = $repository;
+        $this->nomeRelatorio = 'Protocolo';
+        $this->nomeRelatorioJasper = 'protocolo';
+        $this->titulo = 'Protocolo da Ficha de Triagem';
     }
 
 }

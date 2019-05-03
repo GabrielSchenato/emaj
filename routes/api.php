@@ -40,6 +40,8 @@ Route::prefix('v1')
             Route::get('tipostatus/autocomplete', 'Cadastro\TipoStatusController@autocomplete');
             Route::get('usuarios/autocomplete', 'Cadastro\UsuariosController@autocomplete');
             
+            Route::post('fichatriagens/impressao', 'Movimento\FichaTriagensController@impressao');
+            
             Route::apiResources([
                 'usuarios' => 'Cadastro\UsuariosController',
                 'tipodemandas' => 'Cadastro\TipoDemandasController',

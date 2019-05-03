@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="_no_data_padrao_retrato" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="539" leftMargin="0" rightMargin="56" topMargin="0" bottomMargin="0" uuid="f61fd73d-8f91-447e-a6ed-9762337d5844">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="titulo" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["titulo"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="caminho" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select usuario_xgemus as no_municipio,
+ibge,
+(select imagem from gemus.brasao where tipo = 0 limit 1) as brasao
+from gemus.paramet_geral]]>
+	</queryString>
+	<field name="no_municipio" class="java.lang.String"/>
+	<field name="ibge" class="java.lang.String"/>
+	<field name="brasao" class="java.lang.String"/>
+	<pageHeader>
+		<band height="84">
+			<staticText>
+				<reportElement x="0" y="61" width="539" height="18" uuid="4176a664-afbc-4236-ba9c-51cece168fa0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Não foram encontrados registros para os parâmetros informados.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="38" width="539" height="1" uuid="f896c37a-f52a-4602-9dca-c5effd648f63"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="54" width="539" height="1" uuid="db8258b8-5c43-462f-8451-8194d67b3425"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="0" y="39" width="539" height="15" uuid="7649d71f-b78e-4e72-8e84-e8fe209af9c0"/>
+				<box leftPadding="4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="58" height="37" uuid="4391b27b-5268-4a77-9c2a-4536b3d46ffb"/>
+				<imageExpression><![CDATA[$P{caminho} + "/relatorios/img/logo_uniplac_preta.png"]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement stretchType="RelativeToTallestObject" x="483" y="1" width="58" height="37" uuid="d27681d9-9061-4bea-baf6-d9a483b3dbfb"/>
+				<imageExpression><![CDATA[$P{caminho} + "/relatorios/img/logo_emaj_preto.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="51" y="13" width="238" height="22" uuid="a36aecf2-219c-4023-a45b-a6729055a1b3"/>
+				<text><![CDATA[UNIVERSIDADE DO PLANALTO CATARINENSE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>
