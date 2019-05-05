@@ -174,7 +174,10 @@
                                         window.getApp.$emit("APP_SUCCESS", {msg: 'Deletado com sucesso!', timeout: 2000});
                                     });
                                 }).catch((resp) => {
-                                    window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
+                                    let msgErro = '';
+                                    if(resp.response.data.errors)
+                                        msgErro = resp.response.data.errors
+                                    window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
                                 });
                             }
                         });

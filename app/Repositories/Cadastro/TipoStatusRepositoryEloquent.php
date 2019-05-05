@@ -41,7 +41,7 @@ class TipoStatusRepositoryEloquent extends BaseRepository implements TipoStatusR
     public static function getRules($data)
     {
         return [
-            'nome' => 'required|min:5|max:50'
+            'nome' => 'required|min:3|max:50'
         ];
     }
 }

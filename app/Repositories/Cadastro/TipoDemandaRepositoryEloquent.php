@@ -42,7 +42,7 @@ class TipoDemandaRepositoryEloquent extends BaseRepository implements TipoDemand
     public static function getRules($data)
     {
         return [
-            'nome' => 'required|min:5|max:30'
+            'nome' => 'required|min:5|max:50'
         ];
     }
 }

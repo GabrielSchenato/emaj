@@ -59,7 +59,7 @@ class ClienteRepositoryEloquent extends BaseRepository implements ClienteReposit
                                 ], 422);
             }
 
-            if (!$attributes['informacoesPessoais']['parte_contraria']) {
+            if (isset($attributes['informacoesPessoais']['parte_contraria']) && !$attributes['informacoesPessoais']['parte_contraria']) {
                 $validator = Validator::make($attributes['endereco'], EnderecoRepositoryEloquent::getRules($attributes['endereco']));
                 if ($validator->fails()) {
                     return response()->json([
@@ -69,7 +69,7 @@ class ClienteRepositoryEloquent extends BaseRepository implements ClienteReposit
                 }
             }
             
-            if (!$attributes['informacoesPessoais']['parte_contraria']) {
+            if (isset($attributes['informacoesPessoais']['parte_contraria']) && !$attributes['informacoesPessoais']['parte_contraria']) {
                 $validator = Validator::make($attributes['composicaoFamiliar'], ComposicaoFamiliarRepositoryEloquent::getRules($attributes['composicaoFamiliar']));
                 if ($validator->fails()) {
                     return response()->json([
@@ -105,7 +105,7 @@ class ClienteRepositoryEloquent extends BaseRepository implements ClienteReposit
                                 ], 422);
             }
 
-            if (!$attributes['informacoesPessoais']['parte_contraria']) {
+            if (isset($attributes['informacoesPessoais']['parte_contraria']) && !$attributes['informacoesPessoais']['parte_contraria']) {
                 $validator = Validator::make($attributes['endereco'], EnderecoRepositoryEloquent::getRules($attributes['endereco']));
                 if ($validator->fails()) {
                     return response()->json([
@@ -115,7 +115,7 @@ class ClienteRepositoryEloquent extends BaseRepository implements ClienteReposit
                 }
             }
             
-            if (!$attributes['informacoesPessoais']['parte_contraria']) {
+            if (isset($attributes['informacoesPessoais']['parte_contraria']) && !$attributes['informacoesPessoais']['parte_contraria']) {
                 $validator = Validator::make($attributes['composicaoFamiliar'], ComposicaoFamiliarRepositoryEloquent::getRules($attributes['composicaoFamiliar']));
                 if ($validator->fails()) {
                     return response()->json([
@@ -151,7 +151,7 @@ class ClienteRepositoryEloquent extends BaseRepository implements ClienteReposit
     public static function getRules($data)
     {
         $id = isset($data['id']) ? $data['id'] : null;
-        if (!$data['parte_contraria']) {
+        if (isset($data['parte_contraria']) && !$data['parte_contraria']) {
             return [
                 'nome_completo' => ['required', 'min:6', 'max:255', Rule::unique('clientes')->ignore($id)],
                 'cpf' => 'required|numeric',

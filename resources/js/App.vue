@@ -47,7 +47,8 @@
       v-model="snackbar.show"
       v-bind:style="{ zIndex: 1001 }"
     >
-      <v-icon dark>{{ snackbar.icon }}</v-icon> &nbsp; {{ snackbar.text }}
+      <v-icon dark>{{ snackbar.icon }}</v-icon>
+        <div id="text-snackbar">&nbsp; {{ snackbar.text }}</div>
       <v-btn dark flat @click.native="snackbar.show = false" icon> 
         <v-icon>close</v-icon>
       </v-btn>
@@ -136,6 +137,10 @@ export default {
 </style>
 
 <style>
+    #text-snackbar {
+           padding-left: 10px;
+           text-align: center;
+    }
     #preloader {
             background: rgba(255, 255, 255, 0.5);
             position: fixed;

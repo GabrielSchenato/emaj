@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class AddAdminUsuarios extends Migration
@@ -24,6 +25,8 @@ class AddAdminUsuarios extends Migration
                     'telefone' => '(49) 999431909',
                     'ativo' => true,
                     'remember_token' => str_random(10),
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
                 ]
         );
     }

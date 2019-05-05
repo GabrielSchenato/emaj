@@ -15,7 +15,7 @@ class CreateTipoDemandasTable extends Migration
     {
         Schema::create('tipo_demandas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome', 30);
+            $table->string('nome', 50);
             $table->string('descricao', 100)->nullable();
             $table->boolean('ativo')->default(true);
             $table->timestamps();

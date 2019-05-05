@@ -2,6 +2,7 @@
 
 namespace Emaj\Util\Traits;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use function response;
@@ -84,7 +85,21 @@ trait ApiController
 
     public function destroy($id)
     {
-        return response()->json($this->repository->delete($id));
+        try {
+            $this->repository = $this->repository->delete($id);
+            return response()->json($this->repository);
+        } catch (QueryException $ex) {
+            if ($ex->getCode() == 23000) {
+                return response()->json([
+                            'status' => 'error',
+                            'errors' => 'Esse registro está sendo utilizado em outro lugar.'
+                                ], 422);
+            }
+                return response()->json([
+                            'status' => 'error',
+                            'errors' => ''
+                                ], 422);
+        }
     }
 
     protected function relationships()
