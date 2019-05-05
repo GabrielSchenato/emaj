@@ -68,6 +68,8 @@
                     :error-messages="errors.collect('telefone')"
                     data-vv-name="telefone"
                     required
+                    mask="(##) #####-####"
+                    return-masked-value
                     @input="$emit('input', usuario)"
                     ></v-text-field>
             </v-flex>

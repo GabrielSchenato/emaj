@@ -11,9 +11,6 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="no_municipio" class="java.lang.String"/>
-	<field name="ibge" class="java.lang.String"/>
-	<field name="brasao" class="java.lang.String"/>
 	<pageHeader>
 		<band height="63">
 			<textField>

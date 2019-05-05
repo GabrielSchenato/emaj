@@ -51,7 +51,12 @@
       <v-btn dark flat @click.native="snackbar.show = false" icon> 
         <v-icon>close</v-icon>
       </v-btn>
-    </v-snackbar>    
+    </v-snackbar>
+    <div id="preloader" v-if="loader.show || counter !== 0 && $auth.ready()">
+        <div id="ftco-loader" class="show">
+            <div class="loader">{{ loader.msg }}</div>
+        </div>      
+    </div>
   </div>
 </template>
 <script>
@@ -60,6 +65,7 @@ import AppToolbar from '@/components/AppToolbar';
 import AppFab from '@/components/AppFab';
 import PageHeader from '@/components/PageHeader';
 import AppEvents from  './event';
+import axios from 'axios';
 export default {
   components: {
     AppDrawer,
@@ -70,12 +76,17 @@ export default {
   data: () => ({
     expanded: true,
     rightDrawer: false,
+    counter: 0,
     snackbar: {
       show: false,
       text: '',
       color: '',
       timeout: 3000,
       icon: ''
+    },
+    loader: {
+        show: false,
+        msg: 'Carregando...'
     }
   }),
 
@@ -95,6 +106,21 @@ export default {
       this.rightDrawer = (!this.rightDrawer);
     }
   },
+    mounted() {
+      axios.interceptors.request.use((config) => {
+          this.counter ++;
+          return config;
+      }, (error) => {
+          return Promise.reject(error);
+      });
+      axios.interceptors.response.use((config) => {
+          this.counter --;
+          return config;
+      }, (error) => {
+          this.counter --;
+          return Promise.reject(error);
+      });
+  }
 
 };
 </script>
@@ -107,5 +133,86 @@ export default {
     border-radius:0  
   .page-wrapper
     min-height:calc(100vh - 64px - 50px - 81px );  
+</style>
 
+<style>
+    #preloader {
+            background: rgba(255, 255, 255, 0.5);
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+    }
+    .loader {
+            width: 250px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            font-family: helvetica, arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: 900;
+            color: #ef6c00;
+            letter-spacing: 0.2em;
+    }
+
+    .loader::before,
+    .loader::after {
+            content: "";
+            display: block;
+            width: 15px;
+            height: 15px;
+            background: #ef6c00;
+            position: absolute;
+            -webkit-animation: load .7s infinite alternate ease-in-out;
+            animation: load .7s infinite alternate ease-in-out;
+    }
+
+    .loader::before {
+            top: 0;
+    }
+
+    .loader::after {
+            bottom: 0;
+    }
+
+    @-webkit-keyframes load {
+            0% {
+                    left: 0;
+                    height: 30px;
+                    width: 15px;
+            }
+            50% {
+                    height: 8px;
+                    width: 40px;
+            }
+            100% {
+                    left: 235px;
+                    height: 30px;
+                    width: 15px;
+            }
+    }
+
+    @keyframes load {
+            0% {
+                    left: 0;
+                    height: 30px;
+                    width: 15px;
+            }
+            50% {
+                    height: 8px;
+                    width: 40px;
+            }
+            100% {
+                    left: 235px;
+                    height: 30px;
+                    width: 15px;
+            }
+    }
 </style>

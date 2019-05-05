@@ -5,7 +5,7 @@
                 <v-flex lg12>
                     <v-card>
                         <v-toolbar card color="white">
-                            <v-btn color="primary" :dark="parametrosTriagem" @click="adicionar" :disabled="!parametrosTriagem">Adicionar
+                            <v-btn color="primary" :dark="parametrosTriagem" @click="adicionar" :disabled="!parametrosTriagem" v-if="$auth.check(['admin', 'secretaria'])">Adicionar
                                 <v-icon right dark>add</v-icon>
                             </v-btn>
                             <ficha-triagem-dialog ref="fichaTriagemDialog"></ficha-triagem-dialog>

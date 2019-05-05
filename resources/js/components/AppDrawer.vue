@@ -21,7 +21,7 @@
                                 <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                             </v-list-tile-content>
                         </v-list-tile>
-                        <template v-for="(subItem, i) in item.itens">
+                        <template v-for="(subItem, i) in item.itens" v-if="$auth.check(subItem.role)">
                             <!--sub group-->
                             <v-list-group v-if="subItem.itens" :key="subItem.name" :group="subItem.group" sub-group="sub-group">
                                 <v-list-tile slot="activator" ripple="ripple">

@@ -9,14 +9,8 @@
 	</parameter>
 	<parameter name="caminho" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select usuario_xgemus as no_municipio,
-ibge,
-(select imagem from gemus.brasao where tipo = 0 limit 1) as brasao
-from gemus.paramet_geral]]>
+		<![CDATA[]]>
 	</queryString>
-	<field name="no_municipio" class="java.lang.String"/>
-	<field name="ibge" class="java.lang.String"/>
-	<field name="brasao" class="java.lang.String"/>
 	<pageHeader>
 		<band height="84">
 			<staticText>

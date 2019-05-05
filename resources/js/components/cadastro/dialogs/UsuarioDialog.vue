@@ -129,7 +129,7 @@
             addErrors(resp) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
                 if (resp.response.data.errors.nome_completo) {
-                    this.$refs.usuarioForm.$validator.errors.add({field: 'nome_completo', msg: resp.response.data.errors.nome_completo});
+                    this.$refs.usuarioForm.$validator.errors.add({field: 'nome completo', msg: resp.response.data.errors.nome_completo});
                 }
                 if (resp.response.data.errors.email) {
                     this.$refs.usuarioForm.$validator.errors.add({field: 'e-mail', msg: resp.response.data.errors.email});

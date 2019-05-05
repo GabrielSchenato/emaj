@@ -29,6 +29,15 @@ export default [
         }
     },
     {
+        name: 'APP_LOADER',
+        callback: function (object) {
+            this.loader = {
+                show: object.show,
+                msg: object.msg ? object.msg : 'Carregando...'
+            };
+        }
+    },
+    {
         name: 'APP_SUCCESS',
         callback: function (object) {
             this.snackbar = {

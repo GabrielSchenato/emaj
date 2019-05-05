@@ -13,18 +13,18 @@ const router = new Router({
 });
 // router gards
 router.beforeEach((to, from, next) => {
-    NProgress.start();
+    //NProgress.start();
     if (to.meta.auth) {
         const token = window.localStorage.getItem('access_token_emaj');
         if (!token) {
-            NProgress.done();
+            //NProgress.done();
         }
     }
     next();
 });
 
-router.afterEach((to, from) => {
-    NProgress.done();
-});
+//router.afterEach((to, from) => {
+//    NProgress.done();
+//});
 
 export default router;
