@@ -7,13 +7,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class UserMailable extends Mailable implements ShouldQueue
+class EdicaoUsuarioMailable extends Mailable implements ShouldQueue
 {
 
     use Queueable,
         SerializesModels;
 
-    public $user;
+    public $usuario;
     public $plainPassword;
 
     /**
@@ -21,9 +21,9 @@ class UserMailable extends Mailable implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($user, $plainPassword)
+    public function __construct($usuario, $plainPassword)
     {
-        $this->user = $user;
+        $this->usuario = $usuario;
         $this->plainPassword = $plainPassword;
     }
 
@@ -34,7 +34,7 @@ class UserMailable extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('emails.credenciais')->subject('Conta criada no portal do EMAJ');
+        return $this->markdown('emails.edicao_usuario')->subject('Redefinição de senha no portal do EMAJ');
     }
 
 }

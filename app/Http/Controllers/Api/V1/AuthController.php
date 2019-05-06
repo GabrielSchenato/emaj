@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
+/**
+ * Classe responsável por gerenciar a requisições das páginas
+ *
+ * PHP version 7.2
+ *
+ * @category   Controller
+ * @package    V1
+ * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link       https://www.uniplaclages.edu.br/
+ * @since      1.0.0
+ */
+
 class AuthController extends Controller
 {
 

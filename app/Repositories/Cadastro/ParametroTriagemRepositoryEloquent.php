@@ -3,8 +3,8 @@
 namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\ParametroTriagem;
+use Emaj\Repositories\AbstractRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Repository responsável por gerenciar a entidade Parametro Triagem
@@ -18,7 +18,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class ParametroTriagemRepositoryEloquent extends BaseRepository implements ParametroTriagemRepository
+class ParametroTriagemRepositoryEloquent extends AbstractRepository implements ParametroTriagemRepository
 {
     /**
      * Specify Model class name

@@ -3,12 +3,13 @@
 namespace Emaj\Repositories\Movimento;
 
 use Emaj\Entities\Movimento\FichaTriagem;
+use Emaj\Repositories\AbstractRepository;
 use Emaj\Repositories\Cadastro\ClienteRepositoryEloquent;
+use Emaj\Repositories\Cadastro\ParametroTriagemRepositoryEloquent;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Repository responsável por gerenciar a entidade Ficha de Triagem
@@ -22,7 +23,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class FichaTriagemRepositoryEloquent extends BaseRepository implements FichaTriagemRepository
+class FichaTriagemRepositoryEloquent extends AbstractRepository implements FichaTriagemRepository
 {
 
     /**
@@ -73,7 +74,7 @@ class FichaTriagemRepositoryEloquent extends BaseRepository implements FichaTria
                                 ], 422);
             }
 
-            $parametrosTriagemRepository = new \Emaj\Repositories\Cadastro\ParametroTriagemRepositoryEloquent($this->app);
+            $parametrosTriagemRepository = new ParametroTriagemRepositoryEloquent($this->app);
             $parametrosTriagem = $parametrosTriagemRepository->first();
 
             if ($cliente->renda > $parametrosTriagem->renda) {
@@ -128,7 +129,7 @@ class FichaTriagemRepositoryEloquent extends BaseRepository implements FichaTria
                             ], 422);
         }
 
-        $parametrosTriagemRepository = new \Emaj\Repositories\Cadastro\ParametroTriagemRepositoryEloquent($this->app);
+        $parametrosTriagemRepository = new ParametroTriagemRepositoryEloquent($this->app);
         $parametrosTriagem = $parametrosTriagemRepository->first();
 
         if ($cliente->renda > $parametrosTriagem->renda) {
@@ -138,6 +139,22 @@ class FichaTriagemRepositoryEloquent extends BaseRepository implements FichaTria
                             ], 422);
         }
         parent::update($attributes, $id);
+    }
+    
+    /**
+     * Método responsável por pegar as 5 demandas mais utilizadas
+     * 
+     * @return array
+     */
+    public function top5DemandasMaisAtendidas()
+    {
+        $top5DemandasMaisAtendidas = DB::table('ficha_triagens')
+                ->select(DB::raw('count(tipo_demandas.nome) as value, tipo_demandas.nome as name, count(tipo_demandas.nome)'))
+                ->join('tipo_demandas', 'tipo_demandas.id', '=', 'ficha_triagens.tipo_demanda_id')
+                ->groupBy('tipo_demandas.nome')
+                ->limit('5')
+                ->get();
+        return $top5DemandasMaisAtendidas;
     }
 
     public static function getRules($data)

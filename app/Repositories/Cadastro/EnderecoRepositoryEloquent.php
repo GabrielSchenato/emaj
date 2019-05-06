@@ -3,8 +3,8 @@
 namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\Endereco;
+use Emaj\Repositories\AbstractRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Repository responsável por gerenciar a entidade Endereço
@@ -18,7 +18,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class EnderecoRepositoryEloquent extends BaseRepository implements EnderecoRepository
+class EnderecoRepositoryEloquent extends AbstractRepository implements EnderecoRepository
 {
 
     /**

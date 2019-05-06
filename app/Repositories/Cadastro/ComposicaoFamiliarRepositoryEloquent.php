@@ -3,9 +3,9 @@
 namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\ComposicaoFamiliar;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Repository\Eloquent\BaseRepository;
+use Emaj\Repositories\AbstractRepository;
 use Illuminate\Validation\Rule;
+use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
  * Repository responsável por gerenciar a entidade Composição Familiar
@@ -19,7 +19,7 @@ use Illuminate\Validation\Rule;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class ComposicaoFamiliarRepositoryEloquent extends BaseRepository implements ComposicaoFamiliarRepository
+class ComposicaoFamiliarRepositoryEloquent extends AbstractRepository implements ComposicaoFamiliarRepository
 {
 
     /**

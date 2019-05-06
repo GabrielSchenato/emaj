@@ -3,15 +3,12 @@
 namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\Cliente;
-use Emaj\Entities\Cadastro\ComposicaoFamiliar;
-use Illuminate\Validation\Rule;
-use Emaj\Entities\Cadastro\Endereco;
-use Emaj\Entities\Cadastro\Telefone;
-use Illuminate\Support\Facades\Validator;
+use Emaj\Repositories\AbstractRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Repository responsável por gerenciar a entidade Cliente
@@ -25,7 +22,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class ClienteRepositoryEloquent extends BaseRepository implements ClienteRepository
+class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRepository
 {
 
     /**

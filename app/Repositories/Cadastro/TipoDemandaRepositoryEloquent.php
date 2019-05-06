@@ -2,10 +2,10 @@
 
 namespace Emaj\Repositories\Cadastro;
 
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use Emaj\Repositories\Cadastro\TipoDemandaRepository;
 use Emaj\Entities\Cadastro\TipoDemanda;
+use Emaj\Repositories\AbstractRepository;
+use Emaj\Repositories\Cadastro\TipoDemandaRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
  * Repository responsável por gerenciar a entidade Tipo Demanda
@@ -19,7 +19,7 @@ use Emaj\Entities\Cadastro\TipoDemanda;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class TipoDemandaRepositoryEloquent extends BaseRepository implements TipoDemandaRepository
+class TipoDemandaRepositoryEloquent extends AbstractRepository implements TipoDemandaRepository
 {
     /**
      * Specify Model class name

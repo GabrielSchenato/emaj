@@ -2,7 +2,7 @@
 
 namespace Emaj\Repositories\Movimento;
 
-use Prettus\Repository\Contracts\RepositoryInterface;
+use Emaj\Repositories\RepositoryInterface;
 
 /**
  * Repository interface responsável por gerenciar a entidade Ficha de Triagem
@@ -18,5 +18,11 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface FichaTriagemRepository extends RepositoryInterface
 {
-    //
+
+    /**
+     * Método responsável por pegar as 5 demandas mais utilizadas
+     * 
+     * @return array
+     */
+    public function top5DemandasMaisAtendidas();
 }

@@ -3,10 +3,9 @@
 namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\Usuario;
+use Emaj\Repositories\AbstractRepository;
 use Illuminate\Validation\Rule;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Repository\Eloquent\BaseRepository;
-use function app;
 
 /**
  * Repository responsável por gerenciar a entidade User
@@ -20,7 +19,7 @@ use function app;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class UsuarioRepositoryEloquent extends BaseRepository implements UsuarioRepository
+class UsuarioRepositoryEloquent extends AbstractRepository implements UsuarioRepository
 {
 
     /**
@@ -47,7 +46,7 @@ class UsuarioRepositoryEloquent extends BaseRepository implements UsuarioReposit
         return [
             'nome_completo' => 'required|min:5',
             'email' => ['required', 'email', Rule::unique('usuarios')->ignore($id)],
-            'password' => 'required|min:6|confirmed',
+            'password' => [$id ? '' : 'required', 'min:6', 'confirmed'],
             'role' => ['required', Rule::in(['admin', 'secretaria', 'aluno'])],
             'avatar' => 'nullable',
             'telefone' => 'required|min:8',

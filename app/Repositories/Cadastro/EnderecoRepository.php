@@ -2,7 +2,7 @@
 
 namespace Emaj\Repositories\Cadastro;
 
-use Prettus\Repository\Contracts\RepositoryInterface;
+use Emaj\Repositories\RepositoryInterface;
 
 /**
  * Repository interface responsável por gerenciar a entidade Endereço

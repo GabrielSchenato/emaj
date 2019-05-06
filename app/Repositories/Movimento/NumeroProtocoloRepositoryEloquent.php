@@ -3,8 +3,8 @@
 namespace Emaj\Repositories\Movimento;
 
 use Emaj\Entities\Movimento\NumeroProtocolo;
+use Emaj\Repositories\AbstractRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Repository responsável por gerenciar a entidade Número Protocolo
@@ -18,7 +18,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class NumeroProtocoloRepositoryEloquent extends BaseRepository implements NumeroProtocoloRepository
+class NumeroProtocoloRepositoryEloquent extends AbstractRepository implements NumeroProtocoloRepository
 {
 
     /**

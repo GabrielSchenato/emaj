@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
+import pt from 'vuetify/es5/locale/pt'
 import 'vuetify/src/stylus/app.styl'
 import '../theme/default.styl'
 import colors from 'vuetify/es5/util/colors'
@@ -14,5 +15,9 @@ Vue.use(Vuetify, {
     warning: '#FFC107',
   },
   customProperties: true,
-  iconfont: 'fa4'
+  iconfont: 'fa4',
+  lang: {
+    locales: { pt },
+    current: 'pt'
+  }
 });

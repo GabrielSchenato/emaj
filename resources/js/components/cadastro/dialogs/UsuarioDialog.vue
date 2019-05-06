@@ -75,8 +75,12 @@
                 formData.append('telefone', this.usuario.telefone);
                 formData.append('ativo', this.usuario.ativo ? 1 : 0);
                 formData.append('role', this.usuario.role);
-                formData.append('password', this.usuario.password);
-                formData.append('password_confirmation', this.usuario.password_confirmation);
+                if(this.usuario.password){
+                    formData.append('password', this.usuario.password);
+                }
+                if(this.usuario.password_confirmation){
+                    formData.append('password_confirmation', this.usuario.password_confirmation);
+                }                
                 if (this.usuario.avatar) {
                     formData.append('image_url', this.usuario.avatar.imageFile);
                 }

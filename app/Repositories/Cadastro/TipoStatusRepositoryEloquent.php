@@ -3,8 +3,8 @@
 namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\TipoStatus;
+use Emaj\Repositories\AbstractRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Repository responsável por gerenciar a entidade Tipo Status
@@ -18,7 +18,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class TipoStatusRepositoryEloquent extends BaseRepository implements TipoStatusRepository
+class TipoStatusRepositoryEloquent extends AbstractRepository implements TipoStatusRepository
 {
     /**
      * Specify Model class name
