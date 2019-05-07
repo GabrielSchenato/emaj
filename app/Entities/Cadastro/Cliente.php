@@ -21,6 +21,7 @@ class Cliente extends Model
 {
 
     protected $fillable = [
+        'pre_atendimento',
         'nome_completo',
         'representado_assistido',
         'cpf',

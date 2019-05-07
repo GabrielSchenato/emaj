@@ -55,7 +55,7 @@ class ClientesController extends CrudController
     public function show($id)
     {
         $informacoesPessoais = $this->repository->find($id);
-        $parteContraria = $informacoesPessoais->cpf == null && $informacoesPessoais->renda == null ? 1 : 0;
+        $parteContraria = $informacoesPessoais->cpf == null && $informacoesPessoais->renda == null && $informacoesPessoais->pre_atendimento != 1 ? 1 : 0;
         $informacoesPessoais = array_merge($informacoesPessoais->toArray(), ['parte_contraria' => $parteContraria]);
         $this->registro = [
             'informacoesPessoais' => $informacoesPessoais,
@@ -73,7 +73,7 @@ class ClientesController extends CrudController
      */
     public function autocomplete()
     {
-        $this->registro = $this->repository->all();
+        $this->registro = $this->repository->allAtivo();
         return $this->registro;
     }
 

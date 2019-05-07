@@ -2,6 +2,7 @@
 
 namespace Emaj\Repositories;
 
+use Emaj\Criteria\AtivoCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
@@ -18,6 +19,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
  */
 abstract class AbstractRepository extends BaseRepository
 {
+
     /**
      * Método responsável por fazer a contagem de um model
      * @return int
@@ -27,4 +29,16 @@ abstract class AbstractRepository extends BaseRepository
         $this->applyCriteria();
         return $this->model->count();
     }
+
+    /**
+     * Método responsável por trazer todos os registros ativos
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function allAtivo($columns = ['*'])
+    {
+        return $this->pushCriteria(AtivoCriteria::class)->all($columns);
+    }
+
 }

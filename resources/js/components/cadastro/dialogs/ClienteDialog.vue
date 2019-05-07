@@ -277,11 +277,27 @@
                 }
             }),
         methods: {
-            getConfig() {
+            getConfig() {                
                 return {
-                    required: !this.informacoesPessoais.parte_contraria,
-                    asterisco: this.informacoesPessoais.parte_contraria ? '' : '*'
+                    required: this.required(),
+                    asterisco: this.asterisco()
                 };
+            },
+            required(){
+                if(this.informacoesPessoais.parte_contraria){
+                    return false;
+                }else if(this.informacoesPessoais.pre_atendimento){
+                    return false;
+                }
+                return true;
+            },
+            asterisco(){
+                if(this.informacoesPessoais.parte_contraria){
+                    return '';
+                }else if(this.informacoesPessoais.pre_atendimento){
+                    return '';
+                }
+                return '*';
             },
             informacoesPessoaisContinue() {
                 this.$refs.informacoesPessoaisForm.$validator
@@ -495,7 +511,8 @@
                 }
             },
             validaTelefones() {
-                if (this.informacoesPessoais.parte_contraria == 0 && this.telefones.length == 0) {
+                
+                if ( this.required() && this.telefones.length == 0) {
                     this.step = 4;
                     this.erroTelefones = true;
                     throw 'É necessário inserir pelo menos um telefone!';

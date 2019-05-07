@@ -56,7 +56,7 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
                                 ], 422);
             }
 
-            if (isset($attributes['informacoesPessoais']['parte_contraria']) && !$attributes['informacoesPessoais']['parte_contraria']) {
+            if ($this->required($attributes['informacoesPessoais'])) {
                 $validator = Validator::make($attributes['endereco'], EnderecoRepositoryEloquent::getRules($attributes['endereco']));
                 if ($validator->fails()) {
                     return response()->json([
@@ -65,8 +65,8 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
                                     ], 422);
                 }
             }
-            
-            if (isset($attributes['informacoesPessoais']['parte_contraria']) && !$attributes['informacoesPessoais']['parte_contraria']) {
+
+            if ($this->required($attributes['informacoesPessoais'])) {
                 $validator = Validator::make($attributes['composicaoFamiliar'], ComposicaoFamiliarRepositoryEloquent::getRules($attributes['composicaoFamiliar']));
                 if ($validator->fails()) {
                     return response()->json([
@@ -102,7 +102,7 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
                                 ], 422);
             }
 
-            if (isset($attributes['informacoesPessoais']['parte_contraria']) && !$attributes['informacoesPessoais']['parte_contraria']) {
+            if ($this->required($attributes['informacoesPessoais'])) {
                 $validator = Validator::make($attributes['endereco'], EnderecoRepositoryEloquent::getRules($attributes['endereco']));
                 if ($validator->fails()) {
                     return response()->json([
@@ -111,8 +111,8 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
                                     ], 422);
                 }
             }
-            
-            if (isset($attributes['informacoesPessoais']['parte_contraria']) && !$attributes['informacoesPessoais']['parte_contraria']) {
+
+            if ($this->required($attributes['informacoesPessoais'])) {
                 $validator = Validator::make($attributes['composicaoFamiliar'], ComposicaoFamiliarRepositoryEloquent::getRules($attributes['composicaoFamiliar']));
                 if ($validator->fails()) {
                     return response()->json([
@@ -121,19 +121,18 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
                                     ], 422);
                 }
             }
-            
+
             $cliente = parent::update($attributes['informacoesPessoais'], $id);
             $cliente->endereco()->update($attributes['endereco'], $attributes['endereco']['id']);
             $cliente->composicao_familiar()->update($attributes['composicaoFamiliar'], $attributes['composicaoFamiliar']['id']);
             $telefoneRepository = new TelefoneRepositoryEloquent($this->app);
             foreach ($attributes['telefones'] as $telefone) {
-                if(isset($telefone['id'])){
+                if (isset($telefone['id'])) {
                     $telefoneRepository->update($telefone, $telefone['id']);
-                }else{
+                } else {
                     $telefone = array_merge($telefone, ['cliente_id' => $id]);
                     $telefoneRepository->create($telefone);
                 }
-                
             }
             DB::commit();
         } catch (Exception $ex) {
@@ -148,7 +147,7 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
     public static function getRules($data)
     {
         $id = isset($data['id']) ? $data['id'] : null;
-        if (isset($data['parte_contraria']) && !$data['parte_contraria']) {
+        if (self::required($data)) {
             return [
                 'nome_completo' => ['required', 'min:6', 'max:255', Rule::unique('clientes')->ignore($id)],
                 'cpf' => 'required|numeric',
@@ -161,13 +160,26 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
                 'local_trabalho' => 'required|max:255',
                 'nacionalidade_id' => 'required|numeric'
             ];
-        } else {
-            return [
-                'nome_completo' => ['required', 'min:6', 'max:255', Rule::unique('clientes')->ignore($id)],
-                'sexo' => ['required', Rule::in(['M', 'F'])],
-                'nacionalidade_id' => 'required|numeric'
-            ];
         }
+
+        return [
+            'nome_completo' => ['required', 'min:6', 'max:255', Rule::unique('clientes')->ignore($id)],
+        ];
+    }
+
+    /**
+     * Verifica se os campos são obrigatórios
+     * @param array $data
+     * @return boolean
+     */
+    private static function required($data)
+    {
+        if (isset($data['parte_contraria']) && $data['parte_contraria']) {
+            return false;
+        } else if (isset($data['pre_atendimento']) && $data['pre_atendimento']) {
+            return false;
+        }
+        return true;
     }
 
 }

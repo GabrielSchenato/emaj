@@ -18,11 +18,23 @@
                     id="parte_contraria"
                     v-model="informacoesPessoais.parte_contraria"
                     label="Parte Contrária?"
+                    :disabled="!!informacoesPessoais.pre_atendimento"
+                    @change="$emit('input', informacoesPessoais)"
+                    ></v-checkbox>
+            </v-flex>
+            
+            <v-flex xs12 sm6 md2>
+                <v-checkbox
+                    name="pre_atendimento"
+                    id="pre_atendimento"
+                    v-model="informacoesPessoais.pre_atendimento"
+                    label="Pré-atendimento?"
+                    :disabled="!!informacoesPessoais.parte_contraria"
                     @change="$emit('input', informacoesPessoais)"
                     ></v-checkbox>
             </v-flex>
 
-            <v-flex xs12 sm6 md5>
+            <v-flex xs12 sm6 md4>
                 <v-text-field
                     name="nome_completo"
                     id="nome_completo"
@@ -36,7 +48,7 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md4>
+            <v-flex xs12 sm6 md3>
                 <v-text-field
                     name="representado_assistido"
                     id="representado_assistido"
@@ -55,7 +67,7 @@
                     :error-messages="errors.collect('CPF')"
                     :label="'CPF' + this.getConfig().asterisco"
                     data-vv-name="CPF"
-                    type="number"
+                    mask="###.###.###-##"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
@@ -69,7 +81,7 @@
                     :error-messages="errors.collect('RG')"
                     :label="'RG' + this.getConfig().asterisco"
                     data-vv-name="RG"
-                    type="number"
+                    mask="#.###.###"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
@@ -92,9 +104,9 @@
                     name="sexo"
                     id="sexo"
                     :items="sexo"
-                    label="Sexo*"
+                    :label="'Sexo' + this.getConfig().asterisco"
                     v-model="informacoesPessoais.sexo"
-                    v-validate="{required: true }"
+                    v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('sexo')"
                     data-vv-name="sexo"
                     item-value="id"
@@ -128,9 +140,9 @@
                     item-text="nome"
                     item-value="id"
                     no-data-text="Não há registros para serem exibidos."
-                    label="Nacionalidade*"
+                    :label="'Nacionalidade' + this.getConfig().asterisco"
                     v-model="informacoesPessoais.nacionalidade_id"
-                    v-validate="{required: true }"
+                    v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('nacionalidade')"
                     data-vv-name="nacionalidade"
                     @input="$emit('input', informacoesPessoais)"
@@ -160,7 +172,6 @@
                     :error-messages="errors.collect('renda')"
                     data-vv-name="renda"
                     required
-                    type="number"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>

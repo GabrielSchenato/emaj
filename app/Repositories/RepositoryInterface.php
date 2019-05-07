@@ -24,4 +24,12 @@ interface RepositoryInterface extends RepositoryPrettusInterface
      * @return int
      */
     public function count();
+
+    /**
+     * Método responsável por trazer todos os registros ativos
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function allAtivo($columns = ['*']);
 }

@@ -34,7 +34,7 @@ class TipoDemandasController extends CrudController
      */
     public function autocomplete()
     {
-        $this->registro = $this->repository->all();
+        $this->registro = $this->repository->allAtivo();
         return $this->registro;
     }
 
