@@ -7,7 +7,9 @@
 	<parameter name="titulo" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["titulo"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="caminho" class="java.lang.String"/>
+	<parameter name="caminho" class="java.lang.String">
+		<defaultValueExpression><![CDATA["D:\\OneDrive\\www\\emaj"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>

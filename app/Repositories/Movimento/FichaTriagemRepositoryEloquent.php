@@ -57,7 +57,7 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
                                 ], 422);
             }
 
-            if ($attributes['cliente_id'] == $attributes['parte_contraria_id']) {
+            if (isset($attributes['parte_contraria_id']) && $attributes['cliente_id'] == $attributes['parte_contraria_id']) {
                 return response()->json([
                             'status' => 'error',
                             'errors' => ['cliente_parte_contraria' => 'Você não pode usar o mesmo cliente no campo parte contrária!']
@@ -112,7 +112,7 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
                             ], 422);
         }
 
-        if ($attributes['cliente_id'] == $attributes['parte_contraria_id']) {
+        if (isset($attributes['parte_contraria_id']) && $attributes['cliente_id'] == $attributes['parte_contraria_id']) {
             return response()->json([
                         'status' => 'error',
                         'errors' => ['cliente_parte_contraria' => 'Você não pode usar o mesmo cliente no campo parte contrária!']
@@ -162,7 +162,7 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
         return [
             'cliente_id' => 'required|numeric',
             'tipo_demanda_id' => 'required|numeric',
-            'parte_contraria_id' => 'required|numeric',
+            'parte_contraria_id' => 'nullable|numeric',
             'aluno_id' => 'nullable|numeric',
             'tipo_status_id' => 'required|numeric',
         ];

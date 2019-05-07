@@ -46,11 +46,11 @@
                                     <td>{{ props.item.id }}</td>
                                     <td>{{ props.item.numero_protocolo.protocolo }}</td>
                                     <td>{{ props.item.cliente.nome_completo }}</td>
-                                    <td>{{ props.item.parte_contraria.nome_completo }}</td>
+                                    <td>{{ props.item.parte_contraria ? props.item.parte_contraria.nome_completo : 'Não Vinculado' }}</td>
                                     <td>{{ props.item.tipo_demanda.nome }}</td>
                                     <td>{{ props.item.tipo_status.nome }}</td>
+                                    <td>{{ props.item.aluno ? props.item.aluno.nome_completo : 'Não Vinculado' }}</td>
                                     <td>{{ props.item.created_at | formataData }}</td>
-                                    <td>{{ props.item.updated_at | formataData }}</td>
                                     <td>
                                     <v-btn depressed outline icon fab dark color="primary" small v-if="$auth.check(['admin', 'secretaria'])">
                                         <v-icon @click="gerarImpressao(props.item.id)">print</v-icon>
@@ -120,12 +120,12 @@
                             value: "tipo_status.nome"
                         },
                         {
-                            text: "Criado em",
-                            value: "created_at"
+                            text: "Aluno",
+                            value: "aluno.nome_completo"
                         },
                         {
-                            text: "Editado em",
-                            value: "updated_at"
+                            text: "Criado em",
+                            value: "created_at"
                         },
                         {
                             text: "Ação",
