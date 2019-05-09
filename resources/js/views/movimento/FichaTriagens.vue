@@ -1,7 +1,7 @@
 <template>
     <div id="pageTable">
         <v-container grid-list-xl fluid>
-            <v-layout row wrap>
+            <v-layout row wrap>                
                 <v-flex lg12>
                     <v-card>
                         <v-toolbar card color="white">
@@ -52,15 +52,65 @@
                                     <td>{{ props.item.aluno ? props.item.aluno.nome_completo : 'Não Vinculado' }}</td>
                                     <td>{{ props.item.created_at | formataData }}</td>
                                     <td>
-                                    <v-btn depressed outline icon fab dark color="primary" small v-if="$auth.check(['admin', 'secretaria'])">
-                                        <v-icon @click="gerarImpressao(props.item.id)">print</v-icon>
-                                    </v-btn>
-                                    <v-btn depressed outline icon fab dark color="primary" small v-if="$auth.check(['admin', 'secretaria'])">
-                                        <v-icon @click="editar(props.item.id)">edit</v-icon>
-                                    </v-btn>
-                                    <v-btn depressed outline icon fab dark color="pink" small v-if="$auth.check(['admin', 'secretaria'])">
-                                        <v-icon @click="deletar(props.item)">delete</v-icon>
-                                    </v-btn>
+
+                                    <v-speed-dial
+                                        direction="left"
+                                        open-on-hover
+                                        transition="slide-y-reverse-transition"
+                                        >
+                                        <template v-slot:activator>
+                                            <v-btn
+                                                color="blue darken-2"
+                                                depressed
+                                                outline
+                                                icon
+                                                fab
+                                                dark
+                                                small
+                                                >
+                                                <v-icon>menu</v-icon>
+                                                <v-icon>close</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        
+                                        <v-tooltip bottom>
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn depressed icon fab dark color="primary" small v-if="$auth.check(['admin', 'secretaria', 'aluno'])" v-on="on">
+                                                    <v-icon @click="impressaoDadosPartes({cliente_id: props.item.cliente.id, parte_contraria_id: props.item.parte_contraria ? props.item.parte_contraria.id : null})">print</v-icon>
+                                                </v-btn>
+                                            </template>
+                                            <span>Imprimir Dados das Partes</span>
+                                        </v-tooltip>
+                                        
+                                        <v-tooltip bottom>
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn depressed icon fab dark color="primary" small v-if="$auth.check(['admin', 'secretaria'])" v-on="on">
+                                                    <v-icon @click="impressaoProtocolo(props.item.id)">print</v-icon>
+                                                </v-btn>
+                                            </template>
+                                            <span>Imprimir Protocolo</span>
+                                        </v-tooltip>
+                                        
+                                        <v-tooltip bottom>
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn depressed icon fab dark color="primary" small v-if="$auth.check(['admin', 'secretaria'])" v-on="on">
+                                                    <v-icon @click="editar(props.item.id)">edit</v-icon>
+                                                </v-btn>
+                                            </template>
+                                            <span>Editar</span>
+                                        </v-tooltip>
+                                        
+                                        <v-tooltip bottom>
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn depressed icon fab dark color="pink" small v-if="$auth.check(['admin', 'secretaria'])" v-on="on">
+                                                    <v-icon @click="deletar(props.item)">delete</v-icon>
+                                                </v-btn>
+                                            </template>
+                                            <span>Deletar</span>
+                                        </v-tooltip>
+                                        
+                                    </v-speed-dial>
+
                                     </td>
                                 </template>
 
@@ -175,48 +225,23 @@
                                     });
                                 }).catch((resp) => {
                                     let msgErro = '';
-                                    if(resp.response.data.errors)
+                                    if (resp.response.data.errors)
                                         msgErro = resp.response.data.errors
                                     window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
                                 });
                             }
                         });
             },
-            gerarImpressao(id) {
-                window.axios({
-                            url: "/fichatriagens/impressao",
-                            method: "POST",
-                            responseType: "blob",
-                            data: {formato: 'pdf', id: id}
-                        })
-                        .then(response => {
-                            const blob = new Blob([response.data], {
-                                type: response.data.type
-                            });
-                            const url = window.URL.createObjectURL(blob);
-                            const link = document.createElement("a");
-                            link.href = url;
-                            const contentDisposition =
-                                    response.headers["content-disposition"];
-                            let fileName = "unknown";
-                            if (contentDisposition) {
-                                fileName = this.getFileNameFromHttpResponse(
-                                        contentDisposition
-                                        );
-                            }
-                            link.setAttribute("download", fileName);
-                            document.body.appendChild(link);
-                            link.click();
-                            link.remove();
-                            window.URL.revokeObjectURL(url);
-                        });
+            impressaoProtocolo(id) {
+                let data = {
+                    id: id,
+                    formato: "pdf"
+                };
+                this.gerarImpressao(data, "/fichatriagens/impressao-protocolo");
             },
-            getFileNameFromHttpResponse(contentDisposition) {
-                var result = contentDisposition
-                        .split(";")[1]
-                        .trim()
-                        .split("=")[1];
-                return result.replace(/"/g, "");
+            impressaoDadosPartes(object) {
+                let data = {...object, ...{formato: "pdf"}};
+                this.gerarImpressao(data, "/fichatriagens/impressao-dados-partes");
             }
         },
         computed: {

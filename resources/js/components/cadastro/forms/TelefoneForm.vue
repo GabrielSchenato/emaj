@@ -72,11 +72,11 @@
         data() {
             return {
                 tipoTelefone: [{
-                        id: 'celular',
+                        id: 'Celular',
                         nome: 'Celular'
                     },
                     {
-                        id: 'residencial',
+                        id: 'Residencial',
                         nome: 'Residencial'
 
                     }],

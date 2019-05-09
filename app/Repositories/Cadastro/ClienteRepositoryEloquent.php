@@ -2,6 +2,8 @@
 
 namespace Emaj\Repositories\Cadastro;
 
+use Emaj\Criteria\MesCriteria;
+use Emaj\Criteria\PreAtendimentoCriteria;
 use Emaj\Entities\Cadastro\Cliente;
 use Emaj\Repositories\AbstractRepository;
 use Exception;
@@ -149,22 +151,34 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
         $id = isset($data['id']) ? $data['id'] : null;
         if (self::required($data)) {
             return [
-                'nome_completo' => ['required', 'min:6', 'max:255', Rule::unique('clientes')->ignore($id)],
-                'cpf' => 'required|numeric',
-                'rg' => 'required|numeric',
+                'nome_completo' => ['required', 'min:4', 'max:255', Rule::unique('clientes')->ignore($id)],
+                'cpf' => 'required',
+                'rg' => 'required',
                 'profissao' => 'required|max:100',
                 'sexo' => ['required', Rule::in(['M', 'F'])],
                 'estado_civil' => ['required', Rule::in(['solteiro', 'casado', 'separado', 'divorciado', 'viuvo'])],
                 'email' => ['nullable', 'email', Rule::unique('clientes')->ignore($id)],
-                'renda' => 'required|numeric',
+                'renda' => 'required',
                 'local_trabalho' => 'required|max:255',
                 'nacionalidade_id' => 'required|numeric'
             ];
         }
 
         return [
-            'nome_completo' => ['required', 'min:6', 'max:255', Rule::unique('clientes')->ignore($id)],
+            'nome_completo' => ['required', 'min:4', 'max:255', Rule::unique('clientes')->ignore($id)],
         ];
+    }
+    
+    /**
+     * Método responsável por o número de pré atendimentos no mês
+     * 
+     * @return int
+     */
+    public function getPreAtendimentosMes()
+    {
+        return $this->pushCriteria(PreAtendimentoCriteria::class)
+                    ->pushCriteria(MesCriteria::class)
+                    ->count();
     }
 
     /**

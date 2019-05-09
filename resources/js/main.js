@@ -15,6 +15,7 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import 'font-awesome/css/font-awesome.css'
 import 'es6-promise/auto'
 import './plugins/vuetify'
+import mixin from './plugins/mixin'
 import './util/filters'
 
 Validator.localize({pt_BR: pt_BR});
@@ -35,7 +36,9 @@ const store = new Vuex.Store(VuexStore);
 
 Vue.use(VueAuth, auth);
 
-sync(store, router);
+sync(store, router)
+
+Vue.mixin(mixin);
 
 new Vue({
   router,

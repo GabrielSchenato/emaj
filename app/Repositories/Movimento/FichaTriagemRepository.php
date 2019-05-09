@@ -24,5 +24,12 @@ interface FichaTriagemRepository extends RepositoryInterface
      * 
      * @return array
      */
-    public function top5DemandasMaisAtendidas();
+    public function getTop5DemandasMaisAtendidas();
+
+    /**
+     * Método responsável por o número de atendimentos no mês
+     * 
+     * @return int
+     */
+    public function getAtendimentosMes();
 }

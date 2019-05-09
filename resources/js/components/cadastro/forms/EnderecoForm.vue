@@ -26,6 +26,7 @@
                     :label="'CEP' + this.getConfig().asterisco"
                     data-vv-name="CEP"
                     mask="#####-###"
+                    return-masked-value
                     @keyup="buscar"
                     @input="$emit('input', endereco)"
                     :disabled="buscandoCep"

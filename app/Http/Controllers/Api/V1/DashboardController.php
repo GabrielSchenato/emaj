@@ -6,6 +6,7 @@ use Emaj\Http\Controllers\Controller;
 use Emaj\Repositories\Cadastro\ClienteRepositoryEloquent;
 use Emaj\Repositories\Cadastro\UsuarioRepositoryEloquent;
 use Emaj\Repositories\Movimento\FichaTriagemRepositoryEloquent;
+use function response;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -55,9 +56,9 @@ class DashboardController extends Controller
         $this->registro = [
             'usuarios' => (string) $this->usuarioRepository->count(),
             'clientes' => (string) $this->clienteRepository->count(),
-            'triagens' => (string) $this->fichaTriagemRepository->count(),
-            'triagensAtendimentoMes' => (string) $this->fichaTriagemRepository->pushCriteria(\Emaj\Criteria\MesCriteria::class)->count(),
-            'top5DemandasMaisAtendidas' => $this->fichaTriagemRepository->top5DemandasMaisAtendidas()
+            'atendimentosMes' => (string) $this->fichaTriagemRepository->getAtendimentosMes(),
+            'preAtendimentosMes' => (string) $this->clienteRepository->getPreAtendimentosMes(),
+            'top5DemandasMaisAtendidas' => $this->fichaTriagemRepository->getTop5DemandasMaisAtendidas()
         ];
         return response()->json([
                         'status' => 'success',

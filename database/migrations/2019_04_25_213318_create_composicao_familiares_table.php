@@ -16,7 +16,7 @@ class CreateComposicaoFamiliaresTable extends Migration
         Schema::create('composicao_familiares', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->float('renda_familiar')->nullable();
-            $table->enum('casa', ['alugada', 'propria', 'cedida'])->nullable();
+            $table->enum('casa', ['Alugada', 'Própria', 'Cedida'])->nullable();
             $table->boolean('possui_carro')->nullable();
             $table->string('marca_carro', 50)->nullable();
             $table->integer('ano_carro')->nullable();

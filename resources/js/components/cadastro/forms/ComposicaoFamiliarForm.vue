@@ -47,9 +47,9 @@
             <v-flex xs12 sm6 md1>
                 <v-layout align-center class="ma-0">
                     <v-checkbox
-                        name="carro"
-                        id="carro"
-                        v-model="composicaoFamiliar.carro"
+                        name="possui_carro"
+                        id="possui_carro"
+                        v-model="composicaoFamiliar.possui_carro"
                         label="Carro"
                         hide-details
                         class="shrink mr-2"
@@ -64,7 +64,7 @@
                     id="marca_carro"
                     label="Marca"
                     v-model="composicaoFamiliar.marca_carro"
-                    :disabled="!composicaoFamiliar.carro"
+                    :disabled="!composicaoFamiliar.possui_carro"
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
             </v-flex>
@@ -75,7 +75,7 @@
                     id="ano_carro"
                     label="Ano"
                     v-model="composicaoFamiliar.ano_carro"
-                    :disabled="!composicaoFamiliar.carro"
+                    :disabled="!composicaoFamiliar.possui_carro"
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
             </v-flex>
@@ -83,9 +83,9 @@
             <v-flex xs12 sm6 md1>
                 <v-layout align-center class="ma-0">
                     <v-checkbox
-                        name="moto"
-                        id="moto"
-                        v-model="composicaoFamiliar.moto"
+                        name="possui_moto"
+                        id="possui_moto"
+                        v-model="composicaoFamiliar.possui_moto"
                         label="Moto"
                         hide-details
                         class="shrink mr-2"
@@ -100,7 +100,7 @@
                     id="marca_moto"
                     label="Marca"
                     v-model="composicaoFamiliar.marca_moto"
-                    :disabled="!composicaoFamiliar.moto"
+                    :disabled="!composicaoFamiliar.possui_moto"
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
             </v-flex>
@@ -111,7 +111,7 @@
                     id="ano_moto"
                     label="Ano"
                     v-model="composicaoFamiliar.ano_moto"
-                    :disabled="!composicaoFamiliar.moto"
+                    :disabled="!composicaoFamiliar.possui_moto"
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
             </v-flex>
@@ -168,6 +168,7 @@
                     :error-messages="errors.collect('valor do patrimônio')"
                     data-vv-name="valor do patrimônio"
                     required
+                    type="number"
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
             </v-flex>
@@ -199,16 +200,16 @@
         data() {
             return {
                 tipoCasa: [{
-                        id: 'alugada',
+                        id: 'Alugada',
                         nome: 'Alugada'
                     },
                     {
-                        id: 'propria',
+                        id: 'Própria',
                         nome: 'Própria'
 
                     },
                     {
-                        id: 'cedida',
+                        id: 'Cedida',
                         nome: 'Cedida'
 
                     }],

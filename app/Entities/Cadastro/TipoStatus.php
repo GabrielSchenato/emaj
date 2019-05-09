@@ -27,7 +27,7 @@ class TipoStatus extends Model
      */
     protected $table = 'tipo_status';
     protected $fillable = [
-        'nome', 'cor', 'ativo'
+        'nome', 'ativo'
     ];
 
     /**

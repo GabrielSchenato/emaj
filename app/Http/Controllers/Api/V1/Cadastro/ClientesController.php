@@ -42,7 +42,6 @@ class ClientesController extends CrudController
      * @var ClienteRepository
      */
     protected $repository;
-    protected $relationships = ['endereco', 'composicao_familiar', 'telefones'];
 
     public function __construct(ClienteRepository $repository, EnderecoRepository $enderecoRepository, ComposicaoFamiliarRepository $composicaoFamiliarRepository, TelefoneRepository $telefoneRepository)
     {
@@ -73,7 +72,7 @@ class ClientesController extends CrudController
      */
     public function autocomplete()
     {
-        $this->registro = $this->repository->allAtivo();
+        $this->registro = $this->repository->allAtivo(['id', 'nome_completo']);
         return $this->registro;
     }
 

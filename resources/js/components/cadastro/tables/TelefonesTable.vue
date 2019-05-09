@@ -41,7 +41,7 @@
                         <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
                         </td>
                         <td>{{ props.item.id }}</td>
-                        <td>{{ props.item.tipo | formataTipoTelefone }}</td>
+                        <td>{{ props.item.tipo }}</td>
                         <td>{{ props.item.descricao }}</td>
                         <td>{{ props.item.telefone }}</td>
                         <td>{{ props.item.created_at | formataData}}</td>

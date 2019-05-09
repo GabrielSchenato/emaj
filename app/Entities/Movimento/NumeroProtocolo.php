@@ -38,10 +38,8 @@ class NumeroProtocolo extends Model
 
     protected function getProtocoloAttribute()
     {
-        $mes = (int) \Carbon\Carbon::parse($this->attributes['created_at'])->format('m');
-        if($mes <= 6)
-            return $this->attributes['id'] . '/' . '01';
-        return $this->attributes['id'] . '/' . '02';
+        $ano = (int) \Carbon\Carbon::parse($this->attributes['created_at'])->format('y');
+        return $this->attributes['id'] . '/' . $ano;
     }
 
 }

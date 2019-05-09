@@ -344,13 +344,14 @@
                 this.erroEndereco = false;
                 this.erroComposicaoFamiliar = false;
                 this.erroTelefones = false;
-                this.$refs.informacoesPessoaisForm.$validator.errors.clear();
-                this.$refs.enderecoForm.$validator.errors.clear();
-                this.$refs.composicaoFamiliarForm.$validator.errors.clear();
+                this.$refs.informacoesPessoaisForm.$validator.reset();
+                this.$refs.enderecoForm.$validator.reset();
+                this.$refs.composicaoFamiliarForm.$validator.reset();
                 this.informacoesPessoais = item.informacoesPessoais;
                 this.endereco = item.endereco;
                 this.composicaoFamiliar = item.composicaoFamiliar;
                 this.telefones = item.telefones;
+                this.step = 1;
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;

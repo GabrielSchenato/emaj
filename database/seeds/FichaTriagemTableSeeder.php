@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UsuarioTableSeeder extends Seeder
+class FichaTriagemTableSeeder extends Seeder
 {
 
     /**
@@ -12,7 +12,7 @@ class UsuarioTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\Emaj\Entities\Cadastro\Usuario::class, 1000)->create();
+        factory(Emaj\Entities\Movimento\FichaTriagem::class, 1000)->create();
     }
 
 }

@@ -23,17 +23,17 @@
                 </v-flex>          
                 <v-flex lg3 sm6 xs12>
                     <mini-statistic
-                        icon="library_books"
-                        :title="estatisticas.triagens"
-                        sub-title="Triagens"
+                        icon="record_voice_over"
+                        :title="estatisticas.preAtendimentosMes"
+                        sub-title="Pré-atendimentos Mês"
                         color="grey darken-3"      
                         >
                     </mini-statistic>            
                 </v-flex>        
                 <v-flex lg3 sm6 xs12>
                     <mini-statistic
-                        icon="record_voice_over"
-                        :title="estatisticas.triagensAtendimentoMes"
+                        icon="how_to_reg"
+                        :title="estatisticas.atendimentosMes"
                         sub-title="Atendimentos Mês"
                         color="grey darken-4"      
                         >

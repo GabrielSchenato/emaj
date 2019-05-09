@@ -54,9 +54,14 @@ trait ReportController
         ];
     }
 
-    public function impressao(Request $request)
+    /**
+     * Método responsável por gerar as impressões
+     * 
+     * @return mixed
+     */
+    public function gerarImpressao()
     {
-        $data = $request->all();
+        $data = request()->all();
         $formato = $data['formato'];
         unset($data['formato']);
 

@@ -18,5 +18,11 @@ use Emaj\Repositories\RepositoryInterface;
  */
 interface ClienteRepository extends RepositoryInterface
 {
-    
+
+    /**
+     * Método responsável por o número de pré atendimentos no mês
+     * 
+     * @return int
+     */
+    public function getPreAtendimentosMes();
 }

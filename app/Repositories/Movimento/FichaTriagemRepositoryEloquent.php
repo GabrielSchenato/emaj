@@ -2,6 +2,7 @@
 
 namespace Emaj\Repositories\Movimento;
 
+use Emaj\Criteria\MesCriteria;
 use Emaj\Entities\Movimento\FichaTriagem;
 use Emaj\Repositories\AbstractRepository;
 use Emaj\Repositories\Cadastro\ClienteRepositoryEloquent;
@@ -146,15 +147,27 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
      * 
      * @return array
      */
-    public function top5DemandasMaisAtendidas()
+    public function getTop5DemandasMaisAtendidas()
     {
         $top5DemandasMaisAtendidas = DB::table('ficha_triagens')
-                ->select(DB::raw('count(tipo_demandas.nome) as value, tipo_demandas.nome as name, count(tipo_demandas.nome)'))
+                ->select(DB::raw('count(tipo_demandas.nome) as value, tipo_demandas.nome as name'))
                 ->join('tipo_demandas', 'tipo_demandas.id', '=', 'ficha_triagens.tipo_demanda_id')
                 ->groupBy('tipo_demandas.nome')
+                ->orderBy('value', 'DESC')
                 ->limit('5')
                 ->get();
         return $top5DemandasMaisAtendidas;
+    }
+    
+    /**
+     * Método responsável por o número de atendimentos no mês
+     * 
+     * @return int
+     */
+    public function getAtendimentosMes()
+    {
+        return $this->pushCriteria(MesCriteria::class)
+                    ->count();
     }
 
     public static function getRules($data)

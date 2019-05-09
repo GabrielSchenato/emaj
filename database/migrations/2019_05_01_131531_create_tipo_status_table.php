@@ -17,7 +17,6 @@ class CreateTipoStatusTable extends Migration
         Schema::create('tipo_status', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nome', 50);
-            $table->string('cor')->nullable();
             $table->boolean('ativo')->default(true);
             $table->timestamps();
         });

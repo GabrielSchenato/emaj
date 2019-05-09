@@ -68,6 +68,7 @@
                     :label="'CPF' + this.getConfig().asterisco"
                     data-vv-name="CPF"
                     mask="###.###.###-##"
+                    return-masked-value
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
@@ -82,6 +83,7 @@
                     :label="'RG' + this.getConfig().asterisco"
                     data-vv-name="RG"
                     mask="#.###.###"
+                    return-masked-value
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
@@ -172,6 +174,7 @@
                     :error-messages="errors.collect('renda')"
                     data-vv-name="renda"
                     required
+                    type="number"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
@@ -227,26 +230,26 @@
 
                     }],
                 estadoCivil: [{
-                        id: 'solteiro',
+                        id: 'Solteiro',
                         nome: 'Solteiro'
                     },
                     {
-                        id: 'casado',
+                        id: 'Casado',
                         nome: 'Casado'
 
                     },
                     {
-                        id: 'separado',
+                        id: 'Separado',
                         nome: 'Separado'
 
                     },
                     {
-                        id: 'divorciado',
+                        id: 'Divorciado',
                         nome: 'Divorciado'
 
                     },
                     {
-                        id: 'viuvo',
+                        id: 'Viúvo',
                         nome: 'Viúvo'
 
                     }],

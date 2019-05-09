@@ -15,7 +15,7 @@ class CreateTelefonesTable extends Migration
     {
         Schema::create('telefones', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('tipo', ['residencial', 'celular'])->nullable();
+            $table->enum('tipo', ['Residencial', 'Celular'])->nullable();
             $table->string('descricao', 45)->nullable();
             $table->string('telefone', 15)->nullable();
             $table->unsignedBigInteger('cliente_id');

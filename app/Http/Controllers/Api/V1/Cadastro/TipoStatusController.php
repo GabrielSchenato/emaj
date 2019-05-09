@@ -34,7 +34,7 @@ class TipoStatusController extends CrudController
      */
     public function autocomplete()
     {
-        $this->registro = $this->repository->allAtivo();
+        $this->registro = $this->repository->allAtivo(['id', 'nome']);
         return $this->registro;
     }
 

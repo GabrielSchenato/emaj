@@ -39,17 +39,20 @@
 		<![CDATA[select
 	cli.nome_completo as nome_cliente,
 	pc.nome_completo as nome_parte_contraria,
+	usu.nome_completo as nome_aluno,
 	numero_protocolo_id,
 	td.nome as tipo_demanda,
 	ts.nome as tipo_status,
 	date_format(ft.created_at,'%d/%m/%Y às %Hh%i') as created_at,
-	EXTRACT(MONTH FROM ft.created_at) as mes
+	date_format(ft.created_at,'%y') as ano
 from
 	ficha_triagens ft
 inner join clientes cli ON
 	cli.id = ft.cliente_id
 left join clientes pc ON
 	pc.id = ft.parte_contraria_id
+left join usuarios usu ON
+ 	usu.id = ft.aluno_id
 inner join tipo_demandas td ON
 	td.id = ft.tipo_demanda_id
 inner join tipo_status ts ON
@@ -57,13 +60,36 @@ inner join tipo_status ts ON
 where
 	ft.id =  $P{id}]]>
 	</queryString>
-	<field name="nome_cliente" class="java.lang.String"/>
-	<field name="nome_parte_contraria" class="java.lang.String"/>
-	<field name="numero_protocolo_id" class="java.lang.String"/>
-	<field name="tipo_demanda" class="java.lang.String"/>
-	<field name="tipo_status" class="java.lang.String"/>
-	<field name="created_at" class="java.lang.String"/>
-	<field name="mes" class="java.lang.String"/>
+	<field name="nome_cliente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_cliente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="nome_parte_contraria" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_parte_contraria"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="nome_aluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_aluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="numero_protocolo_id" class="java.math.BigInteger">
+		<property name="com.jaspersoft.studio.field.label" value="numero_protocolo_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ficha_triagens"/>
+	</field>
+	<field name="tipo_demanda" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tipo_demanda"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_demandas"/>
+	</field>
+	<field name="tipo_status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tipo_status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_status"/>
+	</field>
+	<field name="created_at" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="created_at"/>
+	</field>
+	<field name="ano" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ano"/>
+	</field>
 	<group name="cabecalho">
 		<groupHeader>
 			<band/>
@@ -92,9 +118,9 @@ where
 					<textElement verticalAlignment="Middle">
 						<font size="12" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{numero_protocolo_id} + "/"+ IF(INTEGER_VALUE($F{mes} ) <= 6,"01","02")]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{numero_protocolo_id} + "/"+ $F{ano}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isBlankWhenNull="false">
 					<reportElement x="0" y="30" width="302" height="15" uuid="446884b7-5d00-4c1b-b0ad-7ce76203f0c4"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
@@ -122,7 +148,7 @@ where
 					</textElement>
 					<textFieldExpression><![CDATA["<b>Tipo de Demanda: </b>" + $F{tipo_demanda}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isBlankWhenNull="false">
 					<reportElement x="0" y="45" width="302" height="15" uuid="3d2317e2-1e19-4954-8f30-1a338e727b46"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
@@ -134,7 +160,7 @@ where
 					<textElement verticalAlignment="Middle" markup="html">
 						<font size="8"/>
 					</textElement>
-					<textFieldExpression><![CDATA["<b>Parte Contrária: </b>" + $F{nome_parte_contraria}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["<b>Parte Contrária: </b>" + IF($F{nome_parte_contraria} != null,$F{nome_parte_contraria},"")]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="302" y="45" width="221" height="15" uuid="3baae4ec-3171-4029-9f12-86228abc7c9f"/>
@@ -253,7 +279,7 @@ where
 					<textElement verticalAlignment="Middle">
 						<font size="12" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{numero_protocolo_id} + "/"+ IF(INTEGER_VALUE($F{mes} ) <= 6,"01","02")]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{numero_protocolo_id} + "/"+ $F{ano}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="0" y="443" width="302" height="15" uuid="15f225ff-9276-4696-a6a6-8ab800c06b43"/>
@@ -309,7 +335,7 @@ where
 					<textElement verticalAlignment="Middle" markup="html">
 						<font size="8"/>
 					</textElement>
-					<textFieldExpression><![CDATA["<b>Parte Contrária: </b>" + $F{nome_parte_contraria}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["<b>Parte Contrária: </b>" + IF($F{nome_parte_contraria} != null,$F{nome_parte_contraria},"")]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="0" y="380" width="524" height="15" uuid="b87940b9-abe3-4504-b183-d1c1f31cafd8"/>
@@ -321,6 +347,34 @@ where
 						<font size="11" isBold="true" isItalic="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="0" y="60" width="302" height="15" uuid="09c325a5-d950-49c4-ac87-bdd5e2668985"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Aluno: </b>" + IF($F{nome_aluno} != null,$F{nome_aluno},"")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="0" y="473" width="302" height="15" uuid="f85502c5-7201-4ac3-85c0-2345d770b1be"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Aluno: </b>" + IF($F{nome_aluno} != null,$F{nome_aluno},"")]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupHeader>
@@ -385,7 +439,7 @@ where
 		<band height="17">
 			<subreport>
 				<reportElement x="0" y="0" width="535" height="17" isPrintWhenDetailOverflows="true" uuid="5b8847bb-a68e-410d-8ded-8b96891b3333">
-					<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()==0) ]]></printWhenExpression>
+					<printWhenExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()==0)]]></printWhenExpression>
 				</reportElement>
 				<subreportParameter name="SUBREPORT_DIR">
 					<subreportParameterExpression><![CDATA[$P{caminho}]]></subreportParameterExpression>

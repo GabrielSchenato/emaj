@@ -3,6 +3,7 @@
 namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
 use Emaj\Criteria\AtivoCriteria;
+use Emaj\Criteria\RoleAlunoCriteria;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Mail\EdicaoUsuarioMailable;
 use Emaj\Mail\NovoUsuarioMailable;
@@ -65,13 +66,13 @@ class UsuariosController extends CrudController
 
     public function me()
     {
-        $result = \Auth::user();
+        $result = auth()->user();
         $user = [];
         if ($result) {
             $user = $this->repository->find($result->id);
         }
 
-        return response()->json($user);
+        return $user;
     }
 
     /**
@@ -81,7 +82,7 @@ class UsuariosController extends CrudController
      */
     public function autocomplete()
     {
-        $this->registro = $this->repository->pushCriteria(AtivoCriteria::class)->findByField('role', 'aluno');
+        $this->registro = $this->repository->pushCriteria(AtivoCriteria::class)->pushCriteria(RoleAlunoCriteria::class)->all(['id', 'nome_completo']);
         return $this->registro;
     }
 

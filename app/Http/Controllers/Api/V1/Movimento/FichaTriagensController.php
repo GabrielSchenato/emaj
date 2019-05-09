@@ -2,7 +2,7 @@
 
 namespace Emaj\Http\Controllers\Api\V1\Movimento;
 
-use Emaj\Criteria\Movimento\AlunoCriteria;
+use Emaj\Criteria\AlunoCriteria;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Movimento\FichaTriagemRepository;
 use Emaj\Util\Traits\ReportController;
@@ -26,12 +26,18 @@ class FichaTriagensController extends CrudController
     use ReportController;
 
     protected $repository;
-    protected $relationships = ['cliente', 'numero_protocolo', 'tipo_demanda', 'parte_contraria', 'aluno', 'tipo_status'];
+    protected $relationships = [
+        'cliente:id,nome_completo',
+        'numero_protocolo:id,created_at',
+        'tipo_demanda:id,nome',
+        'parte_contraria:id,nome_completo',
+        'aluno:id,nome_completo',
+        'tipo_status:id,nome'];
 
     public function __construct(FichaTriagemRepository $repository)
     {
         $this->repository = $repository;
-        $this->nomeRelatorio = 'Protocolo';
+        $this->nomeRelatorio = 'protocolo';
         $this->nomeRelatorioJasper = 'protocolo';
         $this->titulo = 'Protocolo da Ficha de Triagem';
     }
@@ -56,13 +62,26 @@ class FichaTriagensController extends CrudController
         } else {
             $this->registro = $this->repository
                     ->pushCriteria(AlunoCriteria::class)
-                    ->with($this->relationships())                    
+                    ->with($this->relationships())
                     ->orderBy($order[0], $order[1])
                     ->paginate($limit, $columns);
         }
 
 
         return $this->registro;
+    }
+
+    public function impressaoProtocolo()
+    {
+        return $this->gerarImpressao();
+    }
+    
+    public function impressaoDadosPartes()
+    {
+        $this->nomeRelatorio = 'Dados das Partes';
+        $this->nomeRelatorioJasper = 'dados_partes';
+        $this->titulo = 'Dados das Partes';
+        return $this->gerarImpressao();
     }
 
 }

@@ -42,7 +42,7 @@ class EnderecoRepositoryEloquent extends AbstractRepository implements EnderecoR
     public static function getRules($data)
     {
         return [
-            'cep' => 'required|numeric|digits:8',
+            'cep' => 'required',
             'logradouro' => 'required|max:100',
             'bairro' => 'required|max:50',
             'localidade' => 'required|max:50',
