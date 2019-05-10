@@ -28,7 +28,7 @@ Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
 Vue.use(Vuex);
 
-axios.defaults.baseURL = `${process.env.MIX_APP_URL}api/v1/`;
+axios.defaults.baseURL = `${process.env.MIX_APP_URL}/api/v1/`;
 
 Vue.router = router;
 
