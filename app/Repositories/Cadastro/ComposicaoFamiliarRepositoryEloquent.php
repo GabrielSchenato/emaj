@@ -44,7 +44,7 @@ class ComposicaoFamiliarRepositoryEloquent extends AbstractRepository implements
     {
         return [
             'renda_familiar' => 'required|numeric',
-            'casa' => ['required', Rule::in(['alugada', 'propria', 'cedida'])],
+            'casa' => ['required', Rule::in(['Alugada', 'Própria', 'Cedida'])],
             'outros_bens' => 'required|max:255',
             'dividas' => 'required|max:255',
             'despesas' => 'required|max:255',
