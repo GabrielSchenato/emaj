@@ -5,7 +5,7 @@ namespace Emaj\Http\Controllers\Api\V1\Movimento;
 use Emaj\Criteria\AlunoCriteria;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Movimento\FichaTriagemRepository;
-use Emaj\Util\Traits\ReportController;
+use Emaj\Util\Traits\Report;
 use Illuminate\Http\Request;
 
 /**
@@ -23,7 +23,7 @@ use Illuminate\Http\Request;
 class FichaTriagensController extends CrudController
 {
 
-    use ReportController;
+    use Report;
 
     protected $repository;
     protected $relationships = [
@@ -78,7 +78,7 @@ class FichaTriagensController extends CrudController
     
     public function impressaoDadosPartes()
     {
-        $this->nomeRelatorio = 'Dados das Partes';
+        $this->nomeRelatorio = 'dados_das_partes';
         $this->nomeRelatorioJasper = 'dados_partes';
         $this->titulo = 'Dados das Partes';
         return $this->gerarImpressao();

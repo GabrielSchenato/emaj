@@ -234,7 +234,7 @@ end]]>
 					<textFieldExpression><![CDATA["<b>Representado/Assistido: </b>" + IF($F{representado_assistido} != null,$F{representado_assistido},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="14" width="90" height="15" uuid="6fbbfa23-c681-4152-bde8-2b6805a6b9ab"/>
+					<reportElement x="0" y="14" width="110" height="15" uuid="6fbbfa23-c681-4152-bde8-2b6805a6b9ab"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -248,7 +248,7 @@ end]]>
 					<textFieldExpression><![CDATA["<b>CPF: </b>" + IF($F{cpf} != null,$F{cpf},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="90" y="14" width="60" height="15" uuid="3983c14a-476e-4dd9-adfb-24c669dbaf92"/>
+					<reportElement x="110" y="14" width="70" height="15" uuid="3983c14a-476e-4dd9-adfb-24c669dbaf92"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -262,7 +262,7 @@ end]]>
 					<textFieldExpression><![CDATA["<b>RG: </b>" + IF($F{rg} != null,$F{rg},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="150" y="14" width="140" height="15" uuid="769cd2f5-0c2f-4647-a878-1ba2e6c63d42"/>
+					<reportElement x="180" y="14" width="140" height="15" uuid="769cd2f5-0c2f-4647-a878-1ba2e6c63d42"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -289,7 +289,7 @@ end]]>
 					</textElement>
 				</textField>
 				<textField>
-					<reportElement x="290" y="14" width="40" height="15" uuid="c3311b4d-d8ed-4d2d-86c6-3277e085d8e1"/>
+					<reportElement x="320" y="14" width="40" height="15" uuid="c3311b4d-d8ed-4d2d-86c6-3277e085d8e1"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -303,7 +303,7 @@ end]]>
 					<textFieldExpression><![CDATA["<b>Sexo: </b>" + IF($F{sexo} != null,$F{sexo},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="330" y="14" width="123" height="15" uuid="fac0bc96-a1e4-4cea-aebf-3337134aba17"/>
+					<reportElement x="360" y="14" width="93" height="15" uuid="fac0bc96-a1e4-4cea-aebf-3337134aba17"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -373,7 +373,8 @@ end]]>
 					<textFieldExpression><![CDATA["<b>Local Trabalho: </b>" + IF($F{local_trabalho} != null,$F{local_trabalho},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="0" y="-20" width="522" height="18" uuid="979875ca-603f-470f-8ea5-4aa1072b072e"/>
+					<reportElement x="0" y="-20" width="522" height="20" uuid="979875ca-603f-470f-8ea5-4aa1072b072e"/>
+					<box topPadding="2"/>
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
 					</textElement>
@@ -441,7 +442,7 @@ end]]>
 					</textElement>
 				</textField>
 				<textField>
-					<reportElement x="130" y="20" width="120" height="15" uuid="45053f91-1d61-433e-b065-0d208d03e6f1"/>
+					<reportElement x="130" y="20" width="110" height="15" uuid="45053f91-1d61-433e-b065-0d208d03e6f1"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -455,7 +456,7 @@ end]]>
 					<textFieldExpression><![CDATA["<b>Cidade: </b>" + IF($F{localidade} != null,$F{localidade},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="250" y="20" width="50" height="15" uuid="14387aa1-b9cb-4f9a-9dc5-443008e46a1f"/>
+					<reportElement x="240" y="20" width="60" height="15" uuid="14387aa1-b9cb-4f9a-9dc5-443008e46a1f"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -498,6 +499,7 @@ end]]>
 				</textField>
 				<textField>
 					<reportElement x="0" y="-14" width="522" height="18" uuid="418454bb-f19f-4c92-847a-0d0cf568e905"/>
+					<box topPadding="2"/>
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
 					</textElement>
@@ -652,6 +654,7 @@ end]]>
 				</textField>
 				<textField>
 					<reportElement x="0" y="-13" width="522" height="18" uuid="eaae51a2-ac30-42c2-a5ec-c3fc73a9b70b"/>
+					<box topPadding="2"/>
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
 					</textElement>
@@ -692,6 +695,7 @@ end]]>
 				</textField>
 				<textField>
 					<reportElement x="0" y="-13" width="522" height="18" uuid="7ab54734-2a28-4d5c-a595-5f8c2c596f79"/>
+					<box topPadding="2"/>
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
 					</textElement>

@@ -21,7 +21,7 @@ $factory->define(Cliente::class, function (Faker $faker) {
         'pre_atendimento' => $faker->boolean(),
         'nome_completo' => $faker->name,
         'representado_assistido' => $faker->name,
-        'cpf' => $faker->numerify('#########'),
+        'cpf' => $faker->numerify('###########'),
         'rg' => $faker->numerify('#######'),
         'profissao' => $faker->company,
         'sexo' => $sexo[random_int(0, 1)],

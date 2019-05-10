@@ -2,11 +2,10 @@
 
 namespace Emaj\Util\Traits;
 
-use Illuminate\Http\Request;
 use PHPJasper\PHPJasper;
 
 /**
- * Trait responsável por gerenciar os relatórios
+ * Trait responsável por gerar os relatórios
  *
  * PHP version 7.2
  *
@@ -17,7 +16,7 @@ use PHPJasper\PHPJasper;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-trait ReportController
+trait Report
 {
 
     /**
@@ -27,7 +26,7 @@ trait ReportController
     protected $nomeRelatorioJasper;
 
     /**
-     * Nome do arquivo que saira para impressão
+     * Nome do arquivo que sairá para impressão
      * @var string 
      */
     protected $nomeRelatorio;
@@ -39,8 +38,8 @@ trait ReportController
     protected $titulo;
 
     /**
-     * Reporna um array com os parametros de conexão
-     * @return Array
+     * Parâmetros de conexão
+     * @return array
      */
     protected function getDatabaseConfig()
     {
@@ -61,16 +60,9 @@ trait ReportController
      */
     public function gerarImpressao()
     {
-        $data = request()->all();
+        $data = $this->getData();
         $formato = $data['formato'];
         unset($data['formato']);
-
-        $data = array_merge($data, [
-            'caminho' => base_path(),
-            'titulo' => $this->titulo,
-            'versao_sistema' => config('app.version'),
-            'usuario' => auth()->user()->nome_completo
-        ]);
 
         $options = [
             'format' => [$formato],
@@ -78,17 +70,10 @@ trait ReportController
             'params' => $data,
             'db_connection' => $this->getDatabaseConfig()
         ];
-        // coloca na variavel o caminho do novo relatório que será gerado
-        $output = base_path() . '/relatorios/jasper/' . time() . '_' . $this->nomeRelatorioJasper;
-// instancia um novo objeto JasperPHP
+
+        $output = storage_path('app/public/' . $this->nomeRelatorioJasper . time());
 
         $report = new PHPJasper;
-// chama o método que irá gerar o relatório
-        // passamos por parametro:
-        // o arquivo do relatório com seu caminho completo
-        // o nome do arquivo que será gerado
-        // o tipo de saída
-        // parametros ( nesse caso não tem nenhum)         
         $report->process(
                 base_path() . '/relatorios/jasper/' . $this->nomeRelatorioJasper . '.jasper',
                 $output,
@@ -107,6 +92,22 @@ trait ReportController
     protected function nomeRelatorio()
     {
         return $this->nomeRelatorio . '_' . \Carbon\Carbon::now();
+    }
+
+    /**
+     * Método que retorna os dados que serão enviados para o relatório
+     * 
+     * @return array
+     */
+    protected function getData()
+    {
+        $data = array_merge(request()->all(), [
+            'caminho' => base_path(),
+            'titulo' => $this->titulo,
+            'versao_sistema' => config('app.version'),
+            'usuario' => auth()->user()->nome_completo
+        ]);
+        return $data;
     }
 
 }
