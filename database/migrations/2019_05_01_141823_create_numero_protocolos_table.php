@@ -19,7 +19,7 @@ class CreateNumeroProtocolosTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
         });
-        DB::statement("ALTER TABLE numero_protocolos AUTO_INCREMENT = 19000;");
+        DB::statement("ALTER TABLE numero_protocolos AUTO_INCREMENT = 19091;");
     }
 
     /**
