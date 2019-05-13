@@ -141,7 +141,7 @@
         },
         methods: {
             buscar: function () {
-                if (/^[0-9]{5}[0-9]{3}$/.test(this.endereco.cep)) {
+                if (/^[0-9]{5}-[0-9]{3}$/.test(this.endereco.cep)) {
                     var self = this;
                     self.naoLocalizado = false;
                     self.buscandoCep = true;
@@ -151,7 +151,6 @@
                             function (endereco) {
                                 if (endereco.erro) {
                                     self.naoLocalizado = true;
-                                    self.endereco = {};
                                     self.buscandoCep = false;
                                     return;
                                 }
