@@ -26,7 +26,7 @@ class TipoDemandasController extends CrudController
     {
         $this->repository = $repository;
     }
-
+    
     /**
      * Retorna todos os dados para os autocomplete
      * 
@@ -36,6 +36,11 @@ class TipoDemandasController extends CrudController
     {
         $this->registro = $this->repository->allAtivo(['id', 'nome']);
         return $this->registro;
+    }
+    
+    public function search(\Illuminate\Http\Request $request)
+    {
+        return $this->repository->getBySearch($request->get('search'));
     }
 
 }

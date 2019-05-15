@@ -22,6 +22,7 @@ abstract class AbstractRepository extends BaseRepository
 
     /**
      * Método responsável por fazer a contagem de um model
+     * 
      * @return int
      */
     public function count()
@@ -32,6 +33,7 @@ abstract class AbstractRepository extends BaseRepository
 
     /**
      * Método responsável por trazer todos os registros ativos
+     * 
      * @param array $columns
      *
      * @return mixed
@@ -39,6 +41,17 @@ abstract class AbstractRepository extends BaseRepository
     public function allAtivo($columns = ['*'])
     {
         return $this->pushCriteria(AtivoCriteria::class)->all($columns);
+    }
+    
+    /**
+     * Método responsável por realizar a busca pelo valor passado no model
+     * 
+     * @param string $value Valor para busca
+     * @return mixed
+     */
+    public function getBySearch($value)
+    {
+        return $this->model->whereLike($this->model->searchableArray(), $value);
     }
 
 }

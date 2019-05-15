@@ -3,6 +3,7 @@
 namespace Emaj\Entities\Cadastro;
 
 use Emaj\Entities\Movimento\FichaTriagem;
+use Emaj\Entities\SearchableInterface;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,19 +18,26 @@ use Illuminate\Database\Eloquent\Model;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class TipoDemanda extends Model
+class TipoDemanda extends Model implements SearchableInterface
 {
 
     protected $fillable = [
         'nome', 'descricao', 'ativo'
     ];
-    
+
     /**
      * Pega todas as ficha de triagens associados a esse tipo de demanda.
      */
     public function ficha_triagens()
     {
         return $this->hasMany(FichaTriagem::class);
+    }
+
+    public function searchableArray(): array
+    {
+        return [
+            'id' ,'nome', 'descricao', 'ativo', 'created_at', 'updated_at'
+        ];
     }
 
 }

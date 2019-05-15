@@ -26,8 +26,9 @@
                         <v-card-text class="pa-0">
                             <v-data-table
                                 :headers="complex.headers"
-                                :search="search"
-                                :items="tipodemandas.data"
+                                :items="tipodemandas"
+                                :pagination.sync="pagination" 
+                                :total-items="totalTipodemandas"
                                 :rows-per-page-items="[10,25,50,{text:'Todos','value':-1}]"
                                 class="elevation-1"
                                 item-key="id"
@@ -36,7 +37,6 @@
                                 rows-per-page-text="Linhas por página"
                                 no-results-text="Nenhum registro correspondente encontrado"
                                 no-data-text="Não há registros para serem exibidos."
-                                disable-initial-sort
                                 :loading="loading"
                                 >
                                 <template slot="items" slot-scope="props">
@@ -85,7 +85,10 @@
         data: () => ({
                 dialog: false,
                 search: "",
-                loading: false,
+                loading: true,
+                pagination: {},
+                tipodemandas: [],
+                totalTipodemandas: 0,
                 complex: {
                     selected: [],
                     headers: [
@@ -121,12 +124,28 @@
                     ]
                 }
             }),
+        watch: {
+            params: {
+                handler() {
+                    this.loading = true;
+                    
+                    let parametros = {...this.pagination, ...{busca: this.search}};
+                    
+                    this.$store.dispatch("getTipoDemandas", parametros).then(() => {
+                        this.tipodemandas = this.$store.state.tipodemanda.tipoDemandaList.data;
+                        this.totalTipodemandas = this.$store.state.tipodemanda.tipoDemandaList.total;
+                        this.loading = false;
+                    });
+                },
+                deep: true
+            }
+        },
         methods: {
             adicionar() {
                 this.$refs.tipoDemandaDialog
                         .open(
                                 'Adicionar um novo tipo de demanda',
-                                {ativo:true},
+                                {ativo: true},
                                 {
                                     color: "blue"
                                 }
@@ -161,7 +180,7 @@
                                     });
                                 }).catch((resp) => {
                                     let msgErro = '';
-                                    if(resp.response.data.errors)
+                                    if (resp.response.data.errors)
                                         msgErro = resp.response.data.errors
                                     window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
                                 });
@@ -169,17 +188,13 @@
                         });
             }
         },
-        computed: {
-            tipodemandas() {
-                return this.$store.state.tipodemanda.tipoDemandaList;
-            }
-
-        },
-        mounted() {
-            this.loading = true;
-            this.$store.dispatch("getTipoDemandas").then(() => {
-                this.loading = false;
-            });
+            computed: {
+        params(nv) {
+            return {
+                ...this.pagination,
+                query: this.search
+            };
         }
+    },
     };
 </script>

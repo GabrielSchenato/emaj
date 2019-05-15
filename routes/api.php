@@ -37,6 +37,7 @@ Route::prefix('v1')
             
             Route::get('clientes/autocomplete', 'Cadastro\ClientesController@autocomplete');
             Route::get('tipodemandas/autocomplete', 'Cadastro\TipoDemandasController@autocomplete');
+            Route::get('tipodemandas/search', 'Cadastro\TipoDemandasController@search');
             Route::get('tipostatus/autocomplete', 'Cadastro\TipoStatusController@autocomplete');
             Route::get('usuarios/autocomplete', 'Cadastro\UsuariosController@autocomplete');
             
