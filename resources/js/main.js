@@ -10,7 +10,6 @@ import App from "./App.vue";
 import router from "./router/";
 import VeeValidate, { Validator } from 'vee-validate'
 import pt_BR from "vee-validate/dist/locale/pt_BR";
-import "./registerServiceWorker";
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import 'font-awesome/css/font-awesome.css'
 import 'es6-promise/auto'

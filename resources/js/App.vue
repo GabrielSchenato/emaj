@@ -12,7 +12,7 @@
           </div>   
            <!-- App Footer -->
           <v-footer height="auto" class="white pa-3 app--footer">
-            <span class="caption">v 1.0.0 &copy; {{ new Date().getFullYear() }}</span>
+            <span class="caption">&copy; {{ new Date().getFullYear() }}</span>
             <v-spacer></v-spacer>
             <span class="caption mr-1"> Desenvolvido por: <span class="">Gabriel Schenato</span> </span>
           </v-footer>
