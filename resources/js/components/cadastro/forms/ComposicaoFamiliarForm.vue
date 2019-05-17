@@ -130,7 +130,7 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md4>
+            <v-flex xs12 sm6 md5>
                 <v-text-field
                     name="dividas"
                     id="dividas"
@@ -144,7 +144,7 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md4>
+            <v-flex xs12 sm6 md7>
                 <v-text-field
                     name="despesas"
                     id="despesas"
@@ -158,7 +158,7 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md4>
+            <v-flex xs12 sm6 md2>
                 <v-text-field
                     name="valor_patrimonio"
                     id="valor_patrimonio"
@@ -173,7 +173,7 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md12>
+            <v-flex xs12 sm6 md10>
                 <v-text-field
                     name="observacoes"
                     id="observacoes"

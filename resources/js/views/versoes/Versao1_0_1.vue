@@ -15,7 +15,16 @@
                     <v-icon>fiber_manual_record</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
-                    <v-list-tile-sub-title>Adaptação (Cadastro) Removido a obrigatoriedade do campo "Descrição" no cadastro de telefones de clientes</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>Adaptação (Cadastro) Removido a obrigatoriedade do campo "Descrição" no cadastro de telefones do cliente</v-list-tile-sub-title>
+                </v-list-tile-content>
+            </v-list-tile>
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    <v-list-tile-sub-title>Adaptação (Cadastro) Aumentado o tamanho do campo "Despesas" no cadastro da Composição Familiar do cliente</v-list-tile-sub-title>
                 </v-list-tile-content>
             </v-list-tile>
             <br>
