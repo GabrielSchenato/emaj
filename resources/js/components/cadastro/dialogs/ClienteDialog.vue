@@ -477,6 +477,9 @@
                     if (resp.response.data.errors.endereco.cep) {
                         this.$refs.enderecoForm.$validator.errors.add({field: 'CEP', msg: resp.response.data.errors.endereco.cep});
                     }
+                    if (resp.response.data.errors.endereco.numero) {
+                        this.$refs.enderecoForm.$validator.errors.add({field: 'número', msg: resp.response.data.errors.endereco.numero});
+                    }
                     if (resp.response.data.errors.endereco.localidade) {
                         this.$refs.enderecoForm.$validator.errors.add({field: 'cidade', msg: resp.response.data.errors.endereco.localidade});
                     }

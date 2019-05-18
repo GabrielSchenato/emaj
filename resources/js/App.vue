@@ -163,7 +163,7 @@ export default {
             font-family: helvetica, arial, sans-serif;
             text-transform: uppercase;
             font-weight: 900;
-            color: #ef6c00;
+            color: #11589e;
             letter-spacing: 0.2em;
     }
 
@@ -173,7 +173,7 @@ export default {
             display: block;
             width: 15px;
             height: 15px;
-            background: #ef6c00;
+            background: #11589e;
             position: absolute;
             -webkit-animation: load .7s infinite alternate ease-in-out;
             animation: load .7s infinite alternate ease-in-out;

@@ -22,6 +22,7 @@ class CreateEnderecosTable extends Migration
             $table->string('gia')->nullable();
             $table->string('ibge')->nullable();
             $table->string('bairro', 50)->nullable();
+            $table->integer('numero')->nullable();
             $table->string('localidade', 50)->nullable();
             $table->string('uf', 2)->nullable();
             $table->string('unidade')->nullable();

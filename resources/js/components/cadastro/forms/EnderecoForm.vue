@@ -71,6 +71,21 @@
                     @change="$emit('input', endereco)"
                     ></v-text-field>
             </v-flex>
+            
+            <v-flex xs12 sm6 md1>
+                <v-text-field
+                    name="numero"
+                    id="numero"
+                    v-model="endereco.numero"
+                    v-validate="{required: this.getConfig().required }"
+                    :error-messages="errors.collect('número')"
+                    :label="'Número' + this.getConfig().asterisco"
+                    data-vv-name="número"
+                    required
+                    type="number"
+                    @change="$emit('input', endereco)"
+                    ></v-text-field>
+            </v-flex>
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
