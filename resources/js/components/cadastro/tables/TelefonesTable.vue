@@ -152,12 +152,21 @@
                                         {},
                                         this.$refs.telefoneDialog.getValues()
                                         );
-                                this.save();
+                                if (item.id) {
+                                    window.axios.put('telefones/' + item.id, item).then((resp) => {
+                                        window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
+                                        this.telefoneItem = Object.assign({}, resp.data);
+                                    }).catch((resp) => {
+                                        window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro!', timeout: 2000});
+                                    });
+                                }
+                                        this.$emit('input', this.items);
+                                        this.save();
                             }
                         });
             },
 
-            abrirForm() {                
+            abrirForm() {
                 this.$refs.telefoneDialog
                         .open(
                                 "Adicionar um novo telefone",

@@ -200,9 +200,7 @@ where
 		<groupHeader>
 			<band height="79">
 				<subreport>
-					<reportElement x="2" y="7" width="523" height="60" uuid="6563a932-9962-434d-b560-8782ba1616fc">
-						<printWhenExpression><![CDATA[IF($P{parte_contraria_id} != null,true,false)]]></printWhenExpression>
-					</reportElement>
+					<reportElement x="2" y="7" width="523" height="60" printWhenGroupChanges="cabecalho" uuid="6563a932-9962-434d-b560-8782ba1616fc"/>
 					<subreportParameter name="parte_contraria_id">
 						<subreportParameterExpression><![CDATA[$P{parte_contraria_id}]]></subreportParameterExpression>
 					</subreportParameter>
@@ -258,14 +256,14 @@ where
 		<groupHeader>
 			<band height="60">
 				<staticText>
-					<reportElement x="0" y="-16" width="320" height="30" uuid="1d3b41ea-87d2-4ddc-b0ee-f345955c4c12"/>
+					<reportElement x="0" y="0" width="320" height="13" uuid="1d3b41ea-87d2-4ddc-b0ee-f345955c4c12"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font size="14" isBold="true"/>
+						<font size="10" isBold="true"/>
 					</textElement>
 					<text><![CDATA[PROTOCOLO]]></text>
 				</staticText>
 				<textField>
-					<reportElement x="320" y="-16" width="203" height="30" uuid="7dce86a6-f4d2-4952-8d4a-4e96753170b4"/>
+					<reportElement x="320" y="1" width="203" height="13" uuid="7dce86a6-f4d2-4952-8d4a-4e96753170b4"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -274,7 +272,7 @@ where
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle">
-						<font size="12" isBold="true"/>
+						<font size="10" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{protocolo}]]></textFieldExpression>
 				</textField>
