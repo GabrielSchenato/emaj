@@ -54,9 +54,13 @@
             }),
         methods: {
             open(title, item, options) {
+                this.$refs.fichaTriagemForm.$validator.reset();
                 this.dialog = true;
                 this.formTitle = title;
                 this.fichaTriagem = item;
+                this.$refs.fichaTriagemForm.clientes = item.cliente ? [item.cliente] : [];
+                this.$refs.fichaTriagemForm.parteContrarias = item.parte_contraria ? [item.parte_contraria] : [];
+                this.$refs.fichaTriagemForm.tipoDemandas = item.tipo_demanda ? [item.tipo_demanda] : [];
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;
@@ -110,6 +114,9 @@
             },
             addErrors(resp) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
+                if (resp.response.data.errors.protocolo) {
+                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'protocolo', msg: resp.response.data.errors.protocolo});
+                }
                 if (resp.response.data.errors.cliente_id) {
                     this.$refs.fichaTriagemForm.$validator.errors.add({field: 'cliente', msg: resp.response.data.errors.cliente_id});
                 }

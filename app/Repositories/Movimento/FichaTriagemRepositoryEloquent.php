@@ -85,12 +85,6 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
                                 ], 422);
             }
 
-            $numeroProtocoloRepository = new NumeroProtocoloRepositoryEloquent($this->app);
-
-            $protocolo = $numeroProtocoloRepository->create([]);
-
-            $attributes = array_merge($attributes, ['numero_protocolo_id' => $protocolo->id]);
-
             parent::create($attributes);
 
             DB::commit();
@@ -173,6 +167,7 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
     public static function getRules($data)
     {
         return [
+            'protocolo' => 'required',
             'cliente_id' => 'required|numeric',
             'tipo_demanda_id' => 'required|numeric',
             'parte_contraria_id' => 'nullable|numeric',

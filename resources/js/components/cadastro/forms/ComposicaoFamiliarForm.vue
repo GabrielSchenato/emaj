@@ -158,7 +158,7 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md2>
+            <v-flex xs12 sm6 md3>
                 <v-text-field
                     name="valor_patrimonio"
                     id="valor_patrimonio"
@@ -173,7 +173,7 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md10>
+            <v-flex xs12 sm6 md9>
                 <v-text-field
                     name="observacoes"
                     id="observacoes"

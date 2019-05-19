@@ -42,8 +42,7 @@ Route::prefix('v1')
             
             Route::get('dashboard/estatisticas', 'DashboardController@estatisticas');
             
-            Route::post('fichatriagens/impressao-protocolo', 'Movimento\FichaTriagensController@impressaoProtocolo');
-            Route::post('fichatriagens/impressao-dados-partes', 'Movimento\FichaTriagensController@impressaoDadosPartes');
+            Route::post('fichatriagens/imprimir-ficha-triagem', 'Movimento\FichaTriagensController@imprimirFichaTriagem');
             
             Route::apiResources([
                 'usuarios' => 'Cadastro\UsuariosController',

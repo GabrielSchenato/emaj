@@ -22,8 +22,7 @@ class CreateFichaTriagensTable extends Migration
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
             
-            $table->unsignedBigInteger('numero_protocolo_id');
-            $table->foreign('numero_protocolo_id')->references('id')->on('numero_protocolos');
+            $table->string('protocolo');
             
             $table->unsignedBigInteger('tipo_demanda_id');
             $table->foreign('tipo_demanda_id')->references('id')->on('tipo_demandas');
@@ -31,8 +30,7 @@ class CreateFichaTriagensTable extends Migration
             $table->unsignedBigInteger('parte_contraria_id')->nullable();
             $table->foreign('parte_contraria_id')->references('id')->on('clientes');
             
-            $table->unsignedBigInteger('aluno_id')->nullable();
-            $table->foreign('aluno_id')->references('id')->on('usuarios');
+            $table->string('nome_aluno')->nullable();
             
             $table->unsignedBigInteger('tipo_status_id');
             $table->foreign('tipo_status_id')->references('id')->on('tipo_status');

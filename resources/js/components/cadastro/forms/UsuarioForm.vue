@@ -179,10 +179,6 @@
                         id: 'secretaria',
                         nome: 'Secretária'
 
-                    }, {
-
-                        id: 'aluno',
-                        nome: 'Aluno'
                     }]
             };
         },

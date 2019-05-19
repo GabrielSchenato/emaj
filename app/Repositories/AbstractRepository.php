@@ -41,4 +41,23 @@ abstract class AbstractRepository extends BaseRepository
         return $this->pushCriteria(AtivoCriteria::class)->all($columns);
     }
 
+    /**
+     * Método responsável por buscar os registros filtrando pela palavra chave
+     *
+     * @param       $field
+     * @param       $value
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function whereLike($field, $value = null, $columns = ['*'])
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+        $model = $this->model->where($field, 'LIKE', "%{$value}%")->get($columns);
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
 }

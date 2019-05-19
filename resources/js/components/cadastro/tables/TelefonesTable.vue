@@ -157,7 +157,7 @@
                         });
             },
 
-            abrirForm() {
+            abrirForm() {                
                 this.$refs.telefoneDialog
                         .open(
                                 "Adicionar um novo telefone",

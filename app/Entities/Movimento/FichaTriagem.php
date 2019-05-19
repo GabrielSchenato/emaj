@@ -33,10 +33,10 @@ class FichaTriagem extends Model
     protected $fillable = [
         'ja_foi_atendido',
         'cliente_id',
-        'numero_protocolo_id',
+        'protocolo',
         'tipo_demanda_id',
         'parte_contraria_id',
-        'aluno_id',
+        'nome_aluno',
         'tipo_status_id',
         'outras_informacoes'
     ];
@@ -47,14 +47,6 @@ class FichaTriagem extends Model
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'cliente_id');
-    }
-
-    /**
-     * Pega o número de protocolo associado a essa ficha de triagem.
-     */
-    public function numero_protocolo()
-    {
-        return $this->belongsTo(NumeroProtocolo::class);
     }
     
     /**
@@ -71,14 +63,6 @@ class FichaTriagem extends Model
     public function parte_contraria()
     {
         return $this->belongsTo(Cliente::class, 'parte_contraria_id');
-    }
-    
-    /**
-     * Pega o aluno associado a essa ficha de triagem.
-     */
-    public function aluno()
-    {
-        return $this->belongsTo(Usuario::class, 'aluno_id');
     }
 
     /**

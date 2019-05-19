@@ -28,18 +28,13 @@ class FichaTriagensController extends CrudController
     protected $repository;
     protected $relationships = [
         'cliente:id,nome_completo',
-        'numero_protocolo:id,created_at',
         'tipo_demanda:id,nome',
         'parte_contraria:id,nome_completo',
-        'aluno:id,nome_completo',
         'tipo_status:id,nome'];
 
     public function __construct(FichaTriagemRepository $repository)
     {
         $this->repository = $repository;
-        $this->nomeRelatorio = 'protocolo';
-        $this->nomeRelatorioJasper = 'protocolo';
-        $this->titulo = 'Protocolo da Ficha de Triagem';
     }
 
     public function index(Request $request)
@@ -70,17 +65,12 @@ class FichaTriagensController extends CrudController
 
         return $this->registro;
     }
-
-    public function impressaoProtocolo()
-    {
-        return $this->gerarImpressao();
-    }
     
-    public function impressaoDadosPartes()
+    public function imprimirFichaTriagem()
     {
-        $this->nomeRelatorio = 'dados_das_partes';
-        $this->nomeRelatorioJasper = 'dados_partes';
-        $this->titulo = 'Dados das Partes';
+        $this->nomeRelatorio = 'ficha_triagem';
+        $this->nomeRelatorioJasper = 'ficha_triagem';
+        $this->titulo = 'Ficha de Triagem';
         return $this->gerarImpressao();
     }
 

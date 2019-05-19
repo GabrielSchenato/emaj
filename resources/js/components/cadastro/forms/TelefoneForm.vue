@@ -50,7 +50,7 @@
                     :error-messages="errors.collect('telefone')"
                     data-vv-name="telefone"
                     return-masked-value
-                    :mask="telefone.tipo == 'celular' ? '(##) #####-####' : '(##) ####-####'"
+                    :mask="telefone.tipo == 'Celular' ? '(##) #####-####' : '(##) ####-####'"
                     @input="$emit('input', telefone)"
                     ></v-text-field>
             </v-flex>

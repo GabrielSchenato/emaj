@@ -56,6 +56,7 @@
                 return this.telefone;
             },
             open(title, item, options) {
+                this.$refs.telefoneForm.$validator.reset();
                 this.dialog = true;
                 this.formTitle = title;
                 this.telefone = Object.assign({}, item);

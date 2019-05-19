@@ -2,8 +2,10 @@
 
 namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
+use Emaj\Criteria\AtivoCriteria;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\TipoDemandaRepository;
+use Illuminate\Support\Facades\Input;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -34,7 +36,9 @@ class TipoDemandasController extends CrudController
      */
     public function autocomplete()
     {
-        $this->registro = $this->repository->allAtivo(['id', 'nome']);
+        $query = Input::get('query');
+        $this->registro = $this->repository->pushCriteria(AtivoCriteria::class)
+                ->whereLike('nome', $query, ['id', 'nome']);
         return $this->registro;
     }
 

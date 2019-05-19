@@ -44,12 +44,12 @@
                                     <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
                                     </td>
                                     <td>{{ props.item.id }}</td>
-                                    <td>{{ props.item.numero_protocolo.protocolo }}</td>
+                                    <td>{{ props.item.protocolo }}</td>
                                     <td>{{ props.item.cliente.nome_completo }}</td>
-                                    <td>{{ props.item.parte_contraria ? props.item.parte_contraria.nome_completo : 'Não Vinculado' }}</td>
+                                    <td>{{ props.item.parte_contraria ? props.item.parte_contraria.nome_completo : '' }}</td>
                                     <td>{{ props.item.tipo_demanda.nome }}</td>
                                     <td>{{ props.item.tipo_status.nome }}</td>
-                                    <td>{{ props.item.aluno ? props.item.aluno.nome_completo : 'Não Vinculado' }}</td>
+                                    <td>{{ props.item.nome_aluno }}</td>
                                     <td>{{ props.item.created_at | formataData }}</td>
                                     <td>
 
@@ -76,21 +76,21 @@
                                         <v-tooltip bottom>
                                             <template v-slot:activator="{ on }">
                                                 <v-btn depressed icon fab dark color="primary" small v-if="$auth.check(['admin', 'secretaria', 'aluno'])" v-on="on">
-                                                    <v-icon @click="impressaoDadosPartes({cliente_id: props.item.cliente.id, parte_contraria_id: props.item.parte_contraria ? props.item.parte_contraria.id : null})">print</v-icon>
+                                                    <v-icon
+                                                    @click="imprimirFichaTriagem(
+                                                    {
+                                                     cliente_id: props.item.cliente.id,
+                                                     parte_contraria_id: props.item.parte_contraria ? props.item.parte_contraria.id : null,
+                                                     ficha_triagem_id: props.item.id
+                                                    }
+                                                    )"
+                                                    >print
+                                                    </v-icon>
                                                 </v-btn>
                                             </template>
-                                            <span>Imprimir Dados das Partes</span>
+                                            <span>Imprimir</span>
                                         </v-tooltip>
-                                        
-                                        <v-tooltip bottom>
-                                            <template v-slot:activator="{ on }">
-                                                <v-btn depressed icon fab dark color="primary" small v-if="$auth.check(['admin', 'secretaria'])" v-on="on">
-                                                    <v-icon @click="impressaoProtocolo(props.item.id)">print</v-icon>
-                                                </v-btn>
-                                            </template>
-                                            <span>Imprimir Protocolo</span>
-                                        </v-tooltip>
-                                        
+                                          
                                         <v-tooltip bottom>
                                             <template v-slot:activator="{ on }">
                                                 <v-btn depressed icon fab dark color="primary" small v-if="$auth.check(['admin', 'secretaria'])" v-on="on">
@@ -151,7 +151,7 @@
                         },
                         {
                             text: "Protocolo",
-                            value: "numero_protocolo.protocolo"
+                            value: "protocolo"
                         },
                         {
                             text: "Cliente",
@@ -171,7 +171,7 @@
                         },
                         {
                             text: "Aluno",
-                            value: "aluno.nome_completo"
+                            value: "nome_completo"
                         },
                         {
                             text: "Criado em",
@@ -232,16 +232,9 @@
                             }
                         });
             },
-            impressaoProtocolo(id) {
-                let data = {
-                    id: id,
-                    formato: "pdf"
-                };
-                this.gerarImpressao(data, "/fichatriagens/impressao-protocolo");
-            },
-            impressaoDadosPartes(object) {
+            imprimirFichaTriagem(object) {
                 let data = {...object, ...{formato: "pdf"}};
-                this.gerarImpressao(data, "/fichatriagens/impressao-dados-partes");
+                this.gerarImpressao(data, "/fichatriagens/imprimir-ficha-triagem");
             }
         },
         computed: {
