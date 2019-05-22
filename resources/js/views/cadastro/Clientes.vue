@@ -48,7 +48,7 @@
                                     <td>{{ props.item.nome_completo }}</td>
                                     <td>{{ props.item.cpf }}</td>
                                     <td>{{ props.item.rg }}</td>
-                                    <td>{{ props.item.renda }}</td>
+                                    <td>{{ props.item.renda | formataMoeda}}</td>
                                     <td>{{ props.item.ativo | formataAtivo}}</td>
                                     <td>{{ props.item.created_at | formataData}}</td>
                                     <td>{{ props.item.updated_at | formataData}}</td>

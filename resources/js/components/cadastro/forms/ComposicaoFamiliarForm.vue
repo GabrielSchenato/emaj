@@ -13,18 +13,14 @@
             </v-flex>
 
             <v-flex xs12 sm6 md3>
-                <v-text-field
+                <vuetify-money
                     name="renda_familiar"
                     id="renda_familiar"
                     v-model="composicaoFamiliar.renda_familiar"
                     :label="'Renda Familiar' + this.getConfig().asterisco"
-                    v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('renda familiar')"
-                    data-vv-name="renda familiar"
-                    required
-                    type="number"
+                    v-bind:validations="validations"
                     @input="$emit('input', composicaoFamiliar)"
-                    ></v-text-field>
+                    />
             </v-flex>
 
             <v-flex xs12 sm6 md3>
@@ -159,18 +155,14 @@
             </v-flex>
 
             <v-flex xs12 sm6 md3>
-                <v-text-field
+                <vuetify-money
                     name="valor_patrimonio"
                     id="valor_patrimonio"
                     v-model="composicaoFamiliar.valor_patrimonio"
                     :label="'Valor do Patrimônio' + this.getConfig().asterisco"
-                    v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('valor do patrimônio')"
-                    data-vv-name="valor do patrimônio"
-                    required
-                    type="number"
+                    v-bind:validations="validationsPatrimonio"
                     @input="$emit('input', composicaoFamiliar)"
-                    ></v-text-field>
+                    />
             </v-flex>
 
             <v-flex xs12 sm6 md9>
@@ -199,6 +191,16 @@
         },
         data() {
             return {
+                validations: {
+                    vvalidate: {required: this.getConfig().required},
+                    errormessages: "errors.collect('renda familiar')",
+                    datavvname: "renda familiar"
+                },
+                validationsPatrimonio: {
+                    vvalidate: {required: this.getConfig().required},
+                    errormessages: "errors.collect('valor do patrimônio')",
+                    datavvname: "valor do patrimônio"
+                },
                 tipoCasa: [{
                         id: 'Alugada',
                         nome: 'Alugada'

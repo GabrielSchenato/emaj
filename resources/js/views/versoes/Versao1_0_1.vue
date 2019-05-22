@@ -74,6 +74,6 @@
 
 <script>
     export default {
-        name: "versao1_0_0"
+        name: "versao1_0_1"
     };
 </script>

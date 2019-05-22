@@ -22,7 +22,7 @@
                     @change="$emit('input', informacoesPessoais)"
                     ></v-checkbox>
             </v-flex>
-            
+
             <v-flex xs12 sm6 md2>
                 <v-checkbox
                     name="pre_atendimento"
@@ -165,45 +165,41 @@
             </v-flex>
 
             <v-flex xs12 sm6 md2>
-                <v-text-field
+                <vuetify-money
                     name="renda"
                     id="renda"
                     v-model="informacoesPessoais.renda"
                     :label="'Renda' + this.getConfig().asterisco"
-                    v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('renda')"
-                    data-vv-name="renda"
-                    required
-                    type="number"
+                    v-bind:validations="validations"
                     @input="$emit('input', informacoesPessoais)"
-                    ></v-text-field>
-            </v-flex>
+                    v-bind:options="options"/>
+        </v-flex>
 
-            <v-flex xs12 sm6 md5>
-                <v-text-field
-                    name="local_trabalho"
-                    id="local_trabalho"
-                    v-model="informacoesPessoais.local_trabalho"
-                    :label="'Local de Trabalho' + this.getConfig().asterisco"
-                    v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('local de trabalho')"
-                    data-vv-name="local de trabalho"
-                    required
-                    @input="$emit('input', informacoesPessoais)"
-                    ></v-text-field>
-            </v-flex>
+        <v-flex xs12 sm6 md5>
+            <v-text-field
+                name="local_trabalho"
+                id="local_trabalho"
+                v-model="informacoesPessoais.local_trabalho"
+                :label="'Local de Trabalho' + this.getConfig().asterisco"
+                v-validate="{required: this.getConfig().required }"
+                :error-messages="errors.collect('local de trabalho')"
+                data-vv-name="local de trabalho"
+                required
+                @input="$emit('input', informacoesPessoais)"
+                ></v-text-field>
+        </v-flex>
 
-            <v-flex xs12 sm6 md1>
-                <v-checkbox
-                    name="ativo"
-                    id="ativo"
-                    v-model="informacoesPessoais.ativo"
-                    label="Ativo?"
-                    @change="$emit('input', informacoesPessoais)"
-                    ></v-checkbox>
-            </v-flex>
-        </v-layout>
-    </v-form>
+        <v-flex xs12 sm6 md1>
+            <v-checkbox
+                name="ativo"
+                id="ativo"
+                v-model="informacoesPessoais.ativo"
+                label="Ativo?"
+                @change="$emit('input', informacoesPessoais)"
+                ></v-checkbox>
+        </v-flex>
+    </v-layout>
+</v-form>
 </template>
 <script>
     export default {
@@ -219,6 +215,16 @@
         },
         data() {
             return {
+                validations: {
+                    vvalidate: {required: this.getConfig().required},
+                    errormessages: "errors.collect('renda')",
+                    datavvname: "renda"
+                },
+                options: {
+                    locale: "pt-BR",
+                    prefix: "R$",
+                    precision: 2
+                },
                 informacoesPessoais: Object.assign({}, this.value), //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
                 sexo: [{
                         id: 'M',
@@ -271,7 +277,7 @@
                 const searchText = queryText.toLowerCase();
 
                 return textOne.indexOf(searchText) > -1 /*||
-                        textTwo.indexOf(searchText) > -1*/;
+                 textTwo.indexOf(searchText) > -1*/;
             }
         },
         mounted() {

@@ -16,6 +16,7 @@ import 'es6-promise/auto'
 import './plugins/vuetify'
 import mixin from './plugins/mixin'
 import './util/filters'
+import './util/vuetify-money/';
 
 Validator.localize({pt_BR: pt_BR});
 Vue.use(VeeValidate, {locale: 'pt_BR'});

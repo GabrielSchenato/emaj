@@ -38,3 +38,9 @@ Vue.filter('formataAtivo', function (value) {
         return 'Sim';
     return 'Não';
 });
+
+Vue.filter('formataMoeda', function (value) {
+    if(value)
+        return 'R$ ' + Number(value).toLocaleString("pt-BR", { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+    return;
+});
