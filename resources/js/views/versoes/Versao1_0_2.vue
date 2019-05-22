@@ -36,6 +36,15 @@
                     Adaptação (Movimento) Adicionado o campo "Professor" na tela de "Ficha de Triagem"
                 </v-list-tile-content>
             </v-list-tile> 
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Cadastro) Adicionado o campo "CPF Representado/Assistido" e "RG Representado/Assistido" na tela de cadastro de "Cliente"
+                </v-list-tile-content>
+            </v-list-tile> 
            
             <br>
 

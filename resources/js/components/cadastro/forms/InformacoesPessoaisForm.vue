@@ -34,7 +34,7 @@
                     ></v-checkbox>
             </v-flex>
 
-            <v-flex xs12 sm6 md4>
+            <v-flex xs12 sm6 md7>
                 <v-text-field
                     name="nome_completo"
                     id="nome_completo"
@@ -48,12 +48,37 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md3>
+            <v-flex xs12 sm6 md5>
                 <v-text-field
                     name="representado_assistido"
                     id="representado_assistido"
                     v-model="informacoesPessoais.representado_assistido"
                     label="Representado/Assistido"
+                    @input="$emit('input', informacoesPessoais)"
+                    ></v-text-field>
+            </v-flex>
+            
+            <v-flex xs12 sm6 md3>
+                <v-text-field
+                    name="representado_assistido_cpf"
+                    id="representado_assistido_cpf"
+                    v-model="informacoesPessoais.representado_assistido_cpf"
+                    label="CPF Representado/Assistido"
+                    data-vv-name="CPF"
+                    mask="###.###.###-##"
+                    return-masked-value
+                    @input="$emit('input', informacoesPessoais)"
+                    ></v-text-field>
+            </v-flex>
+            
+            <v-flex xs12 sm6 md4>
+                <v-text-field
+                    name="representado_assistido_rg"
+                    id="representado_assistido_rg"
+                    v-model="informacoesPessoais.representado_assistido_rg"
+                    label="RG Representado/Assistido"
+                    mask="#.###.###"
+                    return-masked-value
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
