@@ -37,6 +37,7 @@ class FichaTriagem extends Model
         'tipo_demanda_id',
         'parte_contraria_id',
         'nome_aluno',
+        'nome_professor',
         'tipo_status_id',
         'outras_informacoes'
     ];

@@ -156,6 +156,16 @@
                             @input="$emit('input', fichaTriagem)"
                             ></v-text-field>
                     </v-flex>
+                    
+                    <v-flex xs12 sm6 md6>            
+                        <v-text-field
+                            name="nome_professor"
+                            id="nome_professor"
+                            label="Professor"
+                            v-model="fichaTriagem.nome_professor"
+                            @input="$emit('input', fichaTriagem)"
+                            ></v-text-field>
+                    </v-flex>
 
                     <v-flex xs12 sm6 md12>
                         <v-text-field
