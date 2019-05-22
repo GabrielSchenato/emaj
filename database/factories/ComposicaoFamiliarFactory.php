@@ -16,19 +16,21 @@ use Faker\Generator as Faker;
 
 $factory->define(ComposicaoFamiliar::class, function (Faker $faker) {
     $casa = ['Alugada', 'Própria', 'Cedida'];
+    $possuiCarro = $faker->boolean;
+    $possuiMoto = $faker->boolean;
     return [
-        'renda_familiar' => $faker->numberBetween(100, 2000),
+        'renda_familiar' => $faker->numberBetween(500, 5000),
         'casa' => $casa[random_int(0, 2)],
-        'possui_carro' => $faker->boolean,
-        'marca_carro' => $faker->company,
-        'ano_carro' => $faker->year,
-        'possui_moto' => $faker->boolean,
-        'marca_moto' => $faker->company,
-        'ano_moto' => $faker->year,
+        'possui_carro' => $possuiCarro,
+        'marca_carro' => $possuiCarro ? $faker->name : null,
+        'ano_carro' => $possuiCarro ? $faker->year : null,
+        'possui_moto' => $possuiMoto,
+        'marca_moto' => $possuiMoto ? $faker->name : null,
+        'ano_moto' => $possuiMoto ? $faker->year : null,
         'outros_bens' => $faker->sentence,
         'dividas' => $faker->sentence,
         'despesas' => $faker->sentence,
-        'valor_patrimonio' => $faker->numberBetween(100, 2000),
+        'valor_patrimonio' => $faker->numberBetween(1000, 10000),
         'observacoes' => $faker->sentence
     ];
 });
