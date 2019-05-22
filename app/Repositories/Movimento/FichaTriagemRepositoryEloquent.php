@@ -169,10 +169,8 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
         return [
             'protocolo' => 'required',
             'cliente_id' => 'required|numeric',
-            'tipo_demanda_id' => 'required|numeric',
             'parte_contraria_id' => 'nullable|numeric',
             'aluno_id' => 'nullable|numeric',
-            'tipo_status_id' => 'required|numeric',
         ];
     }
 

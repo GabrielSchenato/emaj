@@ -15,9 +15,18 @@
                     <v-icon>fiber_manual_record</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
-                    Correção (Cadastro) Aplicada correção nos campos "Renda", "Renda Familiar" e "Valor Patrimônio", corrigindo dessa forma o campo moeda
+                    Correção (Cadastro) Aplicada correção nos campos "Renda", "Renda Familiar" e "Valor Patrimônio", corrigindo dessa forma o campo moeda no cadastro do "Cliente"
                 </v-list-tile-content>
-            </v-list-tile>            
+            </v-list-tile>    
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Movimento) Removido a obrigatoriedade dos campos "Tipo de Demanda" e "Tipo de Status". Habilitado também o campo "Protocolo" para editação na ação de editar na tela de "Ficha de Triagem"
+                </v-list-tile-content>
+            </v-list-tile> 
            
             <br>
 

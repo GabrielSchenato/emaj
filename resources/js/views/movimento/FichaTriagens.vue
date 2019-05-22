@@ -47,8 +47,8 @@
                                     <td>{{ props.item.protocolo }}</td>
                                     <td>{{ props.item.cliente.nome_completo }}</td>
                                     <td>{{ props.item.parte_contraria ? props.item.parte_contraria.nome_completo : '' }}</td>
-                                    <td>{{ props.item.tipo_demanda.nome }}</td>
-                                    <td>{{ props.item.tipo_status.nome }}</td>
+                                    <td>{{ props.item.tipo_demanda ? props.item.tipo_demanda.nome : '' }}</td>
+                                    <td>{{ props.item.tipo_status ? props.item.tipo_status.nome : '' }}</td>
                                     <td>{{ props.item.nome_aluno }}</td>
                                     <td>{{ props.item.created_at | formataData }}</td>
                                     <td>
