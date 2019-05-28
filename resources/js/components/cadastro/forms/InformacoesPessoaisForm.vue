@@ -205,11 +205,7 @@
                 name="local_trabalho"
                 id="local_trabalho"
                 v-model="informacoesPessoais.local_trabalho"
-                :label="'Local de Trabalho' + this.getConfig().asterisco"
-                v-validate="{required: this.getConfig().required }"
-                :error-messages="errors.collect('local de trabalho')"
-                data-vv-name="local de trabalho"
-                required
+                label="Local de Trabalho"
                 @input="$emit('input', informacoesPessoais)"
                 ></v-text-field>
         </v-flex>
