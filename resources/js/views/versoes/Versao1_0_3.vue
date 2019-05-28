@@ -19,6 +19,24 @@
                     Adaptação (Movimento) Aplicada melhoria na impressão da "Ficha de Triagem", aumentando o campo "Local Trabalho"
                 </v-list-tile-content>
             </v-list-tile> 
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Cadastro) Aplicada melhoria na tela de cadastro de "Clientes", removendo a obrigatoriedade do campo "Local de Trabalho"
+                </v-list-tile-content>
+            </v-list-tile> 
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Movimento) Ajustado a tela de "Ficha de Triagem", assim incluindo o botão de "+" para cadastrar novas parte contrárias
+                </v-list-tile-content>
+            </v-list-tile> 
            
             <br>
 

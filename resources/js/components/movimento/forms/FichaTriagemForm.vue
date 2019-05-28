@@ -80,6 +80,8 @@
                             v-model="fichaTriagem.parte_contraria_id"
                             :error-messages="errors.collect('parte contrária')"
                             data-vv-name="parte contrária"
+                            :prepend-icon="fichaTriagem.parte_contraria_id != null ? 'create' : 'add_box'"
+                            @click:prepend="fichaTriagem.parte_contraria_id != null ? editarCliente(fichaTriagem.parte_contraria_id) : criarCliente()"
                             @input="$emit('input', fichaTriagem)"
                             ></v-autocomplete>
                     </v-flex>
