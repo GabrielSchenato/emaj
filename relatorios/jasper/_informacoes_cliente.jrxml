@@ -371,7 +371,7 @@ end]]>
 					<textFieldExpression><![CDATA["<b>Renda: </b>R$ " + IF($F{renda} != null,$F{renda},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="74" width="229" height="15" uuid="53846c2a-52f3-4a93-81d4-a5aa325e2a39"/>
+					<reportElement x="0" y="74" width="522" height="15" uuid="53846c2a-52f3-4a93-81d4-a5aa325e2a39"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
