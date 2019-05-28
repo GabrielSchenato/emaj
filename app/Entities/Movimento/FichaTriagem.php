@@ -34,12 +34,14 @@ class FichaTriagem extends Model
         'ja_foi_atendido',
         'cliente_id',
         'protocolo',
+        'numero_processo',
         'tipo_demanda_id',
         'parte_contraria_id',
         'nome_aluno',
         'nome_professor',
         'tipo_status_id',
-        'outras_informacoes'
+        'outras_informacoes',
+        'ativo'
     ];
 
     /**

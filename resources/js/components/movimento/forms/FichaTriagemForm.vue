@@ -14,7 +14,7 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md5>
+            <v-flex xs12 sm6 md2>
                 <v-text-field
                     name="protocolo"
                     id="protocolo"
@@ -25,6 +25,16 @@
                     :error-messages="errors.collect('protocolo')"
                     data-vv-name="protocolo"
                     v-validate="{required: true }"
+                    @input="$emit('input', fichaTriagem)"
+                    ></v-text-field>
+            </v-flex>
+            
+            <v-flex xs12 sm6 md8>
+                <v-text-field
+                    name="numero_processo"
+                    id="numero_processo"
+                    v-model="fichaTriagem.numero_processo"
+                    label="Número Processo"
                     @input="$emit('input', fichaTriagem)"
                     ></v-text-field>
             </v-flex>
@@ -177,6 +187,16 @@
                             label="Outras Informações"
                             @input="$emit('input', fichaTriagem)"
                             ></v-text-field>
+                    </v-flex>
+                    
+                    <v-flex xs12 sm6 md1>
+                       <v-checkbox
+                            name="ativo"
+                            id="ativo"
+                            v-model="fichaTriagem.ativo"
+                            label="Ativo?"
+                            @change="$emit('input', fichaTriagem)"
+                            ></v-checkbox>
                     </v-flex>
                 </v-layout>
             </v-card-text>       

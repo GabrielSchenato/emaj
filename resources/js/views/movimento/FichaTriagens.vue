@@ -31,7 +31,6 @@
                                 :rows-per-page-items="[10,25,50,{text:'Todos','value':-1}]"
                                 class="elevation-1"
                                 item-key="id"
-                                select-all
                                 v-model="complex.selected"
                                 rows-per-page-text="Linhas por página"
                                 no-results-text="Nenhum registro correspondente encontrado"
@@ -40,17 +39,14 @@
                                 :loading="loading"
                                 >
                                 <template slot="items" slot-scope="props">
-                                    <td>
-                                    <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
-                                    </td>
-                                    <td>{{ props.item.id }}</td>
                                     <td>{{ props.item.protocolo }}</td>
+                                    <td>{{ props.item.numero_processo }}</td>
                                     <td>{{ props.item.cliente.nome_completo }}</td>
                                     <td>{{ props.item.parte_contraria ? props.item.parte_contraria.nome_completo : '' }}</td>
                                     <td>{{ props.item.tipo_demanda ? props.item.tipo_demanda.nome : '' }}</td>
                                     <td>{{ props.item.tipo_status ? props.item.tipo_status.nome : '' }}</td>
                                     <td>{{ props.item.nome_aluno }}</td>
-                                    <td>{{ props.item.created_at | formataData }}</td>
+                                    <td>{{ props.item.ativo | formataAtivo }}</td>
                                     <td>
 
                                     <v-speed-dial
@@ -146,12 +142,12 @@
                     selected: [],
                     headers: [
                         {
-                            text: "ID",
-                            value: "id"
-                        },
-                        {
                             text: "Protocolo",
                             value: "protocolo"
+                        },
+                        {
+                            text: "N.º Processo",
+                            value: "numero_processo"
                         },
                         {
                             text: "Cliente",
@@ -174,8 +170,8 @@
                             value: "nome_completo"
                         },
                         {
-                            text: "Criado em",
-                            value: "created_at"
+                            text: "Ativo?",
+                            value: "ativo"
                         },
                         {
                             text: "Ação",

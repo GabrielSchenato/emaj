@@ -37,6 +37,33 @@
                     Adaptação (Movimento) Ajustado a tela de "Ficha de Triagem", assim incluindo o botão de "+" para cadastrar novas parte contrárias
                 </v-list-tile-content>
             </v-list-tile> 
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Movimento) Ajustado a tela de cadastro de "Ficha de Triagem", incluído campo "Número Processo"
+                </v-list-tile-content>
+            </v-list-tile> 
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Movimento) Ajustado a tela de cadastro de "Ficha de Triagem", incluído campo "Ativo"
+                </v-list-tile-content>
+            </v-list-tile> 
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Movimento) Ajustado a tela de exibição de "Ficha de Triagem", para mostrar os campos "N.º Processo" e "Ativo"
+                </v-list-tile-content>
+            </v-list-tile> 
            
             <br>
 
