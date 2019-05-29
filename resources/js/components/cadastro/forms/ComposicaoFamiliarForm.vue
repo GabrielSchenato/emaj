@@ -3,8 +3,8 @@
         <v-layout wrap>
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="id"
-                    id="id"
+                    name="composicao_familiar_id"
+                    id="composicao_familiar_id"
                     v-model="composicaoFamiliar.id"
                     label="ID"
                     disabled
@@ -14,8 +14,8 @@
 
             <v-flex xs12 sm6 md3>
                 <vuetify-money
-                    name="renda_familiar"
-                    id="renda_familiar"
+                    name="composicao_familiar_renda_familiar"
+                    id="composicao_familiar_renda_familiar"
                     v-model="composicaoFamiliar.renda_familiar"
                     :label="'Renda Familiar' + this.getConfig().asterisco"
                     v-bind:validations="validations"
@@ -25,13 +25,13 @@
 
             <v-flex xs12 sm6 md3>
                 <v-select
-                    name="casa"
-                    id="casa"
+                    name="composicao_familiar_casa"
+                    id="composicao_familiar_casa"
                     v-model="composicaoFamiliar.casa"
                     :label="'Casa' + this.getConfig().asterisco"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('casa')"
-                    data-vv-name="casa"
+                    data-vv-name="composicao_familiar_casa"
                     required
                     :items="tipoCasa"
                     item-value="id"
@@ -43,8 +43,8 @@
             <v-flex xs12 sm6 md1>
                 <v-layout align-center class="ma-0">
                     <v-checkbox
-                        name="possui_carro"
-                        id="possui_carro"
+                        name="composicao_familiar_possui_carro"
+                        id="composicao_familiar_possui_carro"
                         v-model="composicaoFamiliar.possui_carro"
                         label="Carro"
                         hide-details
@@ -56,8 +56,8 @@
 
             <v-flex xs12 sm6 md3>
                 <v-text-field
-                    name="marca_carro"
-                    id="marca_carro"
+                    name="composicao_familiar_marca_carro"
+                    id="composicao_familiar_marca_carro"
                     label="Marca"
                     v-model="composicaoFamiliar.marca_carro"
                     :disabled="!composicaoFamiliar.possui_carro"
@@ -67,8 +67,8 @@
 
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="ano_carro"
-                    id="ano_carro"
+                    name="composicao_familiar_ano_carro"
+                    id="composicao_familiar_ano_carro"
                     label="Ano"
                     v-model="composicaoFamiliar.ano_carro"
                     :disabled="!composicaoFamiliar.possui_carro"
@@ -79,8 +79,8 @@
             <v-flex xs12 sm6 md1>
                 <v-layout align-center class="ma-0">
                     <v-checkbox
-                        name="possui_moto"
-                        id="possui_moto"
+                        name="composicao_familiar_possui_moto"
+                        id="composicao_familiar_possui_moto"
                         v-model="composicaoFamiliar.possui_moto"
                         label="Moto"
                         hide-details
@@ -92,8 +92,8 @@
 
             <v-flex xs12 sm6 md3>
                 <v-text-field
-                    name="marca_moto"
-                    id="marca_moto"
+                    name="composicao_familiar_marca_moto"
+                    id="composicao_familiar_marca_moto"
                     label="Marca"
                     v-model="composicaoFamiliar.marca_moto"
                     :disabled="!composicaoFamiliar.possui_moto"
@@ -103,8 +103,8 @@
 
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="ano_moto"
-                    id="ano_moto"
+                    name="composicao_familiar_ano_moto"
+                    id="composicao_familiar_ano_moto"
                     label="Ano"
                     v-model="composicaoFamiliar.ano_moto"
                     :disabled="!composicaoFamiliar.possui_moto"
@@ -114,13 +114,13 @@
 
             <v-flex xs12 sm6 md7>
                 <v-text-field
-                    name="outros_bens"
-                    id="outros_bens"
+                    name="composicao_familiar_outros_bens"
+                    id="composicao_familiar_outros_bens"
                     v-model="composicaoFamiliar.outros_bens"
                     :label="'Outros Bens' + this.getConfig().asterisco"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('outros bens')"
-                    data-vv-name="outros bens"
+                    data-vv-name="composicao_familiar_outros bens"
                     required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
@@ -128,13 +128,13 @@
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="dividas"
-                    id="dividas"
+                    name="composicao_familiar_dividas"
+                    id="composicao_familiar_dividas"
                     v-model="composicaoFamiliar.dividas"
                     :label="'Dívidas' + this.getConfig().asterisco"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('dívidas')"
-                    data-vv-name="dívidas"
+                    data-vv-name="composicao_familiar_dívidas"
                     required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
@@ -142,13 +142,13 @@
 
             <v-flex xs12 sm6 md7>
                 <v-text-field
-                    name="despesas"
-                    id="despesas"
+                    name="composicao_familiar_despesas"
+                    id="composicao_familiar_despesas"
                     v-model="composicaoFamiliar.despesas"
                     :label="'Despesas' + this.getConfig().asterisco"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('despesas')"
-                    data-vv-name="despesas"
+                    data-vv-name="composicao_familiar_despesas"
                     required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
@@ -156,8 +156,8 @@
 
             <v-flex xs12 sm6 md3>
                 <vuetify-money
-                    name="valor_patrimonio"
-                    id="valor_patrimonio"
+                    name="composicao_familiar_valor_patrimonio"
+                    id="composicao_familiar_valor_patrimonio"
                     v-model="composicaoFamiliar.valor_patrimonio"
                     :label="'Valor do Patrimônio' + this.getConfig().asterisco"
                     v-bind:validations="validationsPatrimonio"
@@ -167,8 +167,8 @@
 
             <v-flex xs12 sm6 md9>
                 <v-text-field
-                    name="observacoes"
-                    id="observacoes"
+                    name="composicao_familiar_observacoes"
+                    id="composicao_familiar_observacoes"
                     v-model="composicaoFamiliar.observacoes"
                     label="Observações"
                     @input="$emit('input', composicaoFamiliar)"

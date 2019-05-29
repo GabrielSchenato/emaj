@@ -3,8 +3,8 @@
         <v-layout wrap>
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="id"
-                    id="id"
+                    name="telefone_id"
+                    id="telefone_id"
                     v-model="telefone.id"
                     label="ID"
                     disabled
@@ -14,13 +14,13 @@
 
             <v-flex xs12 sm6 md3>
                 <v-select
-                    name="tipo"
-                    id="tipo"
+                    name="telefone_tipo"
+                    id="telefone_tipo"
                     v-model="telefone.tipo"
                     label="Tipo*"
                     v-validate="'required'"
                     :error-messages="errors.collect('tipo')"
-                    data-vv-name="tipo"
+                    data-vv-name="telefone_tipo"
                     :items="tipoTelefone"
                     item-value="id"
                     item-text="nome"
@@ -30,25 +30,25 @@
 
             <v-flex xs12 sm6 md3>
                 <v-text-field
-                    name="descricao"
-                    id="descricao"
+                    name="telefone_descricao"
+                    id="telefone_descricao"
                     v-model="telefone.descricao"
                     label="Descrição"
                     :error-messages="errors.collect('descrição')"
-                    data-vv-name="descrição"
+                    data-vv-name="telefone_descrição"
                     @input="$emit('input', telefone)"
                     ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md4>
                 <v-text-field
-                    name="telefone"
-                    id="telefone"
+                    name="telefone_telefone"
+                    id="telefone_telefone"
                     v-model="telefone.telefone"
                     label="Telefone*"
                     v-validate="'required'"
                     :error-messages="errors.collect('telefone')"
-                    data-vv-name="telefone"
+                    data-vv-name="telefone_telefone"
                     return-masked-value
                     :mask="telefone.tipo == 'Celular' ? '(##) #####-####' : '(##) ####-####'"
                     @input="$emit('input', telefone)"

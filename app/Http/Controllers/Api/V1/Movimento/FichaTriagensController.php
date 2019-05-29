@@ -30,7 +30,8 @@ class FichaTriagensController extends CrudController
         'cliente:id,nome_completo',
         'tipo_demanda:id,nome',
         'parte_contraria:id,nome_completo',
-        'aluno:id,nome_completo'];
+        'aluno:id,nome_completo',
+        'professor:id,nome_completo'];
 
     public function __construct(FichaTriagemRepository $repository)
     {

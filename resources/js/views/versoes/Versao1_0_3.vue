@@ -101,6 +101,24 @@
                 </v-list-tile-content>
             </v-list-tile> 
             
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Cadastro) Adicionado campo "Professor?" no cadastro de "Usuários"
+                </v-list-tile-content>
+            </v-list-tile> 
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Movimento) Ajustada a tela de cadastro "Ficha de Triagem" para buscar os professores cadastrados no sistema
+                </v-list-tile-content>
+            </v-list-tile> 
+            
             <br>
 
             <h3 class="font-weight-thin font-italic">Institucional</h3>

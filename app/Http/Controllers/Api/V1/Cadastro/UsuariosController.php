@@ -3,12 +3,13 @@
 namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
 use Emaj\Criteria\AtivoCriteria;
-use Emaj\Criteria\RoleAlunoCriteria;
+use Emaj\Criteria\ProfessorCriteria;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Mail\EdicaoUsuarioMailable;
 use Emaj\Mail\NovoUsuarioMailable;
 use Emaj\Repositories\Cadastro\UsuarioRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -82,7 +83,10 @@ class UsuariosController extends CrudController
      */
     public function autocomplete()
     {
-        $this->registro = $this->repository->pushCriteria(AtivoCriteria::class)->pushCriteria(RoleAlunoCriteria::class)->all(['id', 'nome_completo']);
+        $query = Input::get('query');
+        $this->registro = $this->repository->pushCriteria(AtivoCriteria::class)
+                                           ->pushCriteria(ProfessorCriteria::class)
+                                           ->whereLike('nome_completo', $query, ['id', 'nome_completo']);
         return $this->registro;
     }
 

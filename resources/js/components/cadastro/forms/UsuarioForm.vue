@@ -20,8 +20,8 @@
 
             <v-flex xs12 sm6 md2>
                 <v-text-field
-                    name="id"
-                    id="id"
+                    name="usuario_id"
+                    id="usuario_id"
                     v-model="usuario.id"
                     label="ID"
                     disabled
@@ -31,13 +31,13 @@
 
             <v-flex xs12 sm6 md4>
                 <v-text-field
-                    name="nome_completo"
-                    id="nome_completo"
+                    name="usuario_nome_completo"
+                    id="usuario_nome_completo"
                     v-model="usuario.nome_completo"
                     label="Nome Completo*"
                     v-validate="'required'"
                     :error-messages="errors.collect('nome completo')"
-                    data-vv-name="nome completo"
+                    data-vv-name="usuario_nome completo"
                     required
                     @input="$emit('input', usuario)"
                     ></v-text-field>
@@ -46,13 +46,13 @@
 
             <v-flex xs12 sm6 md6>
                 <v-text-field
-                    name="email"
-                    id="email"
+                    name="usuario_email"
+                    id="usuario_email"
                     v-model="usuario.email"
                     label="E-mail*"
                     v-validate="'required'"
                     :error-messages="errors.collect('e-mail')"
-                    data-vv-name="e-mail"
+                    data-vv-name="usuario_e-mail"
                     required
                     @input="$emit('input', usuario)"
                     ></v-text-field>
@@ -60,13 +60,13 @@
 
             <v-flex xs12 sm6 md4>
                 <v-text-field
-                    name="telefone"
-                    id="telefone"
+                    name="usuario_telefone"
+                    id="usuario_telefone"
                     v-model="usuario.telefone"
                     label="Telefone*"
                     v-validate="'required'"
                     :error-messages="errors.collect('telefone')"
-                    data-vv-name="telefone"
+                    data-vv-name="usuario_telefone"
                     required
                     mask="(##) #####-####"
                     return-masked-value
@@ -76,14 +76,14 @@
 
             <v-flex xs12 sm6 md4>
                 <v-select
-                    name="role"
-                    id="role"
+                    name="usuario_role"
+                    id="usuario_role"
                     :items="roles"
                     label="Nível de Permissão*"
                     v-model="usuario.role"
                     v-validate="'required'"
                     :error-messages="errors.collect('nível de permissão')"
-                    data-vv-name="nível de permissão"
+                    data-vv-name="usuario_nível de permissão"
                     required
                     @input="$emit('input', usuario)"
                     item-value="id"
@@ -94,13 +94,13 @@
 
             <v-flex xs12 sm6 md4>
                 <v-text-field
-                    name="password"
-                    id="password"
+                    name="usuario_password"
+                    id="usuario_password"
                     v-model="usuario.password"
                     :label="'Senha' + getConfig.asterisco"
                     v-validate="{required: getConfig.required }"
                     :error-messages="errors.collect('senha')"
-                    data-vv-name="senha"
+                    data-vv-name="usuario_senha"
                     required
                     @input="$emit('input', usuario)"
                     type="password"
@@ -117,13 +117,13 @@
 
             <v-flex xs12 sm6 md4>
                 <v-text-field
-                    name="password_confirmation"
-                    id="password_confirmation"
+                    name="usuario_password_confirmation"
+                    id="usuario_password_confirmation"
                     v-model="usuario.password_confirmation"
                     :label="'Confirmar Senha' + getConfig.asterisco"
                     v-validate="{required: getConfig.required }"
                     :error-messages="errors.collect('confirmar senha')"
-                    data-vv-name="confirmar senha"
+                    data-vv-name="usuario_confirmar senha"
                     required
                     @input="$emit('input', usuario)"
                     type="password"
@@ -137,8 +137,8 @@
             
             <v-flex xs12 sm6 md2>
                 <v-checkbox
-                    name="professor"
-                    id="professor"
+                    name="usuario_professor"
+                    id="usuario_professor"
                     v-model="usuario.professor"
                     label="Professor?"
                     @change="$emit('input', usuario)"
@@ -147,8 +147,8 @@
 
             <v-flex xs12 sm6 md1>
                 <v-checkbox
-                    name="ativo"
-                    id="ativo"
+                    name="usuario_ativo"
+                    id="usuario_ativo"
                     v-model="usuario.ativo"
                     label="Ativo?"
                     @change="$emit('input', usuario)"

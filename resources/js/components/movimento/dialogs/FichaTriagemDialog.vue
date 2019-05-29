@@ -62,6 +62,7 @@
                 this.$refs.fichaTriagemForm.parteContrarias = item.parte_contraria ? [item.parte_contraria] : [];
                 this.$refs.fichaTriagemForm.tipoDemandas = item.tipo_demanda ? [item.tipo_demanda] : [];
                 this.$refs.fichaTriagemForm.alunos = item.aluno ? [item.aluno] : [];
+                this.$refs.fichaTriagemForm.professores = item.professor ? [item.professor] : [];
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;

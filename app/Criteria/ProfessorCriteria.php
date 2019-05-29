@@ -6,7 +6,7 @@ use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Classe AlunoCriteria
+ * Classe ProfessorCriteria
  *
  * PHP version 7.2
  *
@@ -17,8 +17,9 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-class AlunoCriteria implements CriteriaInterface
+class ProfessorCriteria implements CriteriaInterface
 {
+
     /**
      * Apply criteria in query repository
      *
@@ -29,7 +30,8 @@ class AlunoCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        $model = $model->where('aluno_id','=', auth()->user()->id );
+        $model = $model->where('professor', '=', true);
         return $model;
     }
+
 }

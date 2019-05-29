@@ -3,8 +3,8 @@
         <v-layout wrap>
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="id"
-                    id="id"
+                    name="cliente_id"
+                    id="cliente_id"
                     v-model="informacoesPessoais.id"
                     label="ID"
                     disabled
@@ -14,8 +14,8 @@
 
             <v-flex xs12 sm6 md2>
                 <v-checkbox
-                    name="parte_contraria"
-                    id="parte_contraria"
+                    name="cliente_parte_contraria"
+                    id="cliente_parte_contraria"
                     v-model="informacoesPessoais.parte_contraria"
                     label="Parte Contrária?"
                     :disabled="!!informacoesPessoais.pre_atendimento"
@@ -25,8 +25,8 @@
 
             <v-flex xs12 sm6 md2>
                 <v-checkbox
-                    name="pre_atendimento"
-                    id="pre_atendimento"
+                    name="cliente_pre_atendimento"
+                    id="cliente_pre_atendimento"
                     v-model="informacoesPessoais.pre_atendimento"
                     label="Pré-atendimento?"
                     :disabled="!!informacoesPessoais.parte_contraria"
@@ -36,13 +36,13 @@
 
             <v-flex xs12 sm6 md7>
                 <v-text-field
-                    name="nome_completo"
-                    id="nome_completo"
+                    name="cliente_nome_completo"
+                    id="cliente_nome_completo"
                     v-model="informacoesPessoais.nome_completo"
                     v-validate="{required: true }"
                     :error-messages="errors.collect('nome completo')"
                     label="Nome Completo*"
-                    data-vv-name="nome completo"
+                    data-vv-name="cliente_nome completo"
                     required
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
@@ -50,8 +50,8 @@
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="representado_assistido"
-                    id="representado_assistido"
+                    name="cliente_representado_assistido"
+                    id="cliente_representado_assistido"
                     v-model="informacoesPessoais.representado_assistido"
                     label="Representado/Assistido"
                     @input="$emit('input', informacoesPessoais)"
@@ -60,11 +60,11 @@
             
             <v-flex xs12 sm6 md3>
                 <v-text-field
-                    name="representado_assistido_cpf"
-                    id="representado_assistido_cpf"
+                    name="cliente_representado_assistido_cpf"
+                    id="cliente_representado_assistido_cpf"
                     v-model="informacoesPessoais.representado_assistido_cpf"
                     label="CPF Representado/Assistido"
-                    data-vv-name="CPF"
+                    data-vv-name="cliente_CPF"
                     mask="###.###.###-##"
                     return-masked-value
                     @input="$emit('input', informacoesPessoais)"
@@ -73,8 +73,8 @@
             
             <v-flex xs12 sm6 md4>
                 <v-text-field
-                    name="representado_assistido_rg"
-                    id="representado_assistido_rg"
+                    name="cliente_representado_assistido_rg"
+                    id="cliente_representado_assistido_rg"
                     v-model="informacoesPessoais.representado_assistido_rg"
                     label="RG Representado/Assistido"
                     mask="#.###.###"
@@ -85,13 +85,13 @@
 
             <v-flex xs12 sm6 md3>
                 <v-text-field
-                    name="cpf"
-                    id="cpf"
+                    name="cliente_cpf"
+                    id="cliente_cpf"
                     v-model="informacoesPessoais.cpf"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('CPF')"
                     :label="'CPF' + this.getConfig().asterisco"
-                    data-vv-name="CPF"
+                    data-vv-name="cliente_CPF"
                     mask="###.###.###-##"
                     return-masked-value
                     @input="$emit('input', informacoesPessoais)"
@@ -100,13 +100,13 @@
 
             <v-flex xs12 sm6 md2>
                 <v-text-field
-                    name="rg"
-                    id="rg"
+                    name="cliente_rg"
+                    id="cliente_rg"
                     v-model="informacoesPessoais.rg"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('RG')"
                     :label="'RG' + this.getConfig().asterisco"
-                    data-vv-name="RG"
+                    data-vv-name="cliente_RG"
                     mask="#.###.###"
                     return-masked-value
                     @input="$emit('input', informacoesPessoais)"
@@ -115,27 +115,27 @@
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="profissao"
-                    id="profissao"
+                    name="cliente_profissao"
+                    id="cliente_profissao"
                     v-model="informacoesPessoais.profissao"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('profissão')"
                     :label="'Profissão' + this.getConfig().asterisco"
-                    data-vv-name="profissão"
+                    data-vv-name="cliente_profissão"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md2>
                 <v-select
-                    name="sexo"
-                    id="sexo"
+                    name="cliente_sexo"
+                    id="cliente_sexo"
                     :items="sexo"
                     :label="'Sexo' + this.getConfig().asterisco"
                     v-model="informacoesPessoais.sexo"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('sexo')"
-                    data-vv-name="sexo"
+                    data-vv-name="cliente_sexo"
                     item-value="id"
                     item-text="nome"
                     @input="$emit('input', informacoesPessoais)"
@@ -144,14 +144,14 @@
 
             <v-flex xs12 sm6 md2>
                 <v-select
-                    name="estado_civil"
-                    id="estado_civil"
+                    name="cliente_estado_civil"
+                    id="cliente_estado_civil"
                     :items="estadoCivil"
                     :label="'Estado Civil' + this.getConfig().asterisco"
                     v-model="informacoesPessoais.estado_civil"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('estado civil')"
-                    data-vv-name="estado civil"
+                    data-vv-name="cliente_estado civil"
                     item-value="id"
                     item-text="nome"
                     @input="$emit('input', informacoesPessoais)"
@@ -160,8 +160,8 @@
 
             <v-flex xs12 sm6 md3>            
                 <v-autocomplete
-                    name="nacionalidade_id"
-                    id="nacionalidade_id"
+                    name="cliente_nacionalidade_id"
+                    id="cliente_nacionalidade_id"
                     :items="nacionalidades"
                     :filter="customFilter"
                     item-text="nome"
@@ -171,28 +171,28 @@
                     v-model="informacoesPessoais.nacionalidade_id"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('nacionalidade')"
-                    data-vv-name="nacionalidade"
+                    data-vv-name="cliente_nacionalidade"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-autocomplete>
             </v-flex>
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="email"
-                    id="email"
+                    name="cliente_email"
+                    id="cliente_email"
                     v-model="informacoesPessoais.email"
                     label="E-mail"
                     :error-messages="errors.collect('e-mail')"
                     type="email"
-                    data-vv-name="e-mail"
+                    data-vv-name="cliente_e-mail"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md2>
                 <vuetify-money
-                    name="renda"
-                    id="renda"
+                    name="cliente_renda"
+                    id="cliente_renda"
                     v-model="informacoesPessoais.renda"
                     :label="'Renda' + this.getConfig().asterisco"
                     v-bind:validations="validations"
@@ -202,8 +202,8 @@
 
         <v-flex xs12 sm6 md5>
             <v-text-field
-                name="local_trabalho"
-                id="local_trabalho"
+                name="cliente_local_trabalho"
+                id="cliente_local_trabalho"
                 v-model="informacoesPessoais.local_trabalho"
                 label="Local de Trabalho"
                 @input="$emit('input', informacoesPessoais)"
@@ -212,8 +212,8 @@
 
         <v-flex xs12 sm6 md1>
             <v-checkbox
-                name="ativo"
-                id="ativo"
+                name="cliente_ativo"
+                id="cliente_ativo"
                 v-model="informacoesPessoais.ativo"
                 label="Ativo?"
                 @change="$emit('input', informacoesPessoais)"

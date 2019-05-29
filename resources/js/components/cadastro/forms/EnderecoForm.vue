@@ -7,8 +7,8 @@
         <v-layout wrap>
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="id"
-                    id="id"
+                    name="endereco_id"
+                    id="endereco_id"
                     v-model="endereco.id"
                     label="ID"
                     disabled
@@ -18,13 +18,13 @@
 
             <v-flex xs12 sm6 md2>
                 <v-text-field
-                    name="cep"
-                    id="cep"
+                    name="endereco_cep"
+                    id="endereco_cep"
                     v-model="endereco.cep"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('CEP')"
                     :label="'CEP' + this.getConfig().asterisco"
-                    data-vv-name="CEP"
+                    data-vv-name="endereco_CEP"
                     mask="#####-###"
                     return-masked-value
                     @keyup="buscar"
@@ -35,13 +35,13 @@
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="logradouro"
-                    id="logradouro"
+                    name="endereco_logradouro"
+                    id="endereco_logradouro"
                     v-model="endereco.logradouro"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('logradouro')"
                     :label="'Logradouro' + this.getConfig().asterisco"
-                    data-vv-name="logradouro"
+                    data-vv-name="endereco_logradouro"
                     required
                     @change="$emit('input', endereco)"
                     ></v-text-field>
@@ -49,24 +49,24 @@
 
             <v-flex xs12 sm6 md4>
                 <v-text-field
-                    name="complemento"
-                    id="complemento"
+                    name="endereco_complemento"
+                    id="endereco_complemento"
                     v-model="endereco.complemento"
                     label="Complemento"
-                    data-vv-name="complemento"
+                    data-vv-name="endereco_complemento"
                     @change="$emit('input', endereco)"
                     ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="bairro"
-                    id="bairro"
+                    name="endereco_bairro"
+                    id="endereco_bairro"
                     v-model="endereco.bairro"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('bairro')"
                     :label="'Bairro' + this.getConfig().asterisco"
-                    data-vv-name="bairro"
+                    data-vv-name="endereco_bairro"
                     required
                     @change="$emit('input', endereco)"
                     ></v-text-field>
@@ -74,13 +74,13 @@
             
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="numero"
-                    id="numero"
+                    name="endereco_numero"
+                    id="endereco_numero"
                     v-model="endereco.numero"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('número')"
                     :label="'Número' + this.getConfig().asterisco"
-                    data-vv-name="número"
+                    data-vv-name="endereco_número"
                     required
                     type="number"
                     @change="$emit('input', endereco)"
@@ -89,13 +89,13 @@
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="localidade"
-                    id="localidade"
+                    name="endereco_localidade"
+                    id="endereco_localidade"
                     v-model="endereco.localidade"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('cidade')"
                     :label="'Cidade' + this.getConfig().asterisco"
-                    data-vv-name="cidade"
+                    data-vv-name="endereco_cidade"
                     required
                     @change="$emit('input', endereco)"
                     ></v-text-field>
@@ -103,13 +103,13 @@
 
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="uf"
-                    id="uf"
+                    name="endereco_uf"
+                    id="endereco_uf"
                     v-model="endereco.uf"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('estado')"
                     :label="'Estado' + this.getConfig().asterisco"
-                    data-vv-name="estado"
+                    data-vv-name="endereco_estado"
                     mask="AA"
                     @change="$emit('input', endereco)"
                     ></v-text-field>
@@ -117,8 +117,8 @@
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="endereco_local_trabalho"
-                    id="endereco_local_trabalho"
+                    name="endereco_endereco_local_trabalho"
+                    id="endereco_endereco_local_trabalho"
                     v-model="endereco.endereco_local_trabalho"
                     label="Endereço do Local de Trabalho"
                     @input="$emit('input', endereco)"

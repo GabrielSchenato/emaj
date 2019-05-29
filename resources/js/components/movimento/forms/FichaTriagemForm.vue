@@ -3,11 +3,12 @@
         <cliente-dialog ref="clienteDialog"></cliente-dialog>
         <tipo-demanda-dialog ref="tipoDemandaDialog"></tipo-demanda-dialog>
         <aluno-dialog ref="alunoDialog"></aluno-dialog>
+        <usuario-dialog ref="usuarioDialog"></usuario-dialog>
         <v-layout wrap>
             <v-flex xs12 sm6 md2>
                 <v-text-field
-                    name="id"
-                    id="id"
+                    name="ficha_triagem_id"
+                    id="ficha_triagem_id"
                     v-model="fichaTriagem.id"
                     label="ID"
                     disabled
@@ -17,14 +18,14 @@
 
             <v-flex xs12 sm6 md2>
                 <v-text-field
-                    name="protocolo"
-                    id="protocolo"
+                    name="ficha_triagem_protocolo"
+                    id="ficha_triagem_protocolo"
                     v-model="fichaTriagem.protocolo"
                     label="Protocolo*"
                     mask="#####/##"
                     return-masked-value
                     :error-messages="errors.collect('protocolo')"
-                    data-vv-name="protocolo"
+                    data-vv-name="ficha_triagem_protocolo"
                     v-validate="{required: true }"
                     @input="$emit('input', fichaTriagem)"
                     ></v-text-field>
@@ -32,8 +33,8 @@
 
             <v-flex xs12 sm6 md8>
                 <v-text-field
-                    name="numero_processo"
-                    id="numero_processo"
+                    name="ficha_triagem_numero_processo"
+                    id="ficha_triagem_numero_processo"
                     v-model="fichaTriagem.numero_processo"
                     label="Número Processo"
                     @input="$emit('input', fichaTriagem)"
@@ -51,8 +52,8 @@
                 <v-layout wrap>                                      
                     <v-flex xs12 sm6 md6>   
                         <v-autocomplete
-                            name="cliente_id"
-                            id="cliente_id"
+                            name="ficha_triagem_cliente_id"
+                            id="ficha_triagem_cliente_id"
                             :items="clientes"
                             item-text="nome_completo"
                             :search-input.sync="autocompleteClientes"
@@ -67,7 +68,7 @@
                             v-model="fichaTriagem.cliente_id"
                             v-validate="{required: true }"
                             :error-messages="errors.collect('cliente')"
-                            data-vv-name="cliente"
+                            data-vv-name="ficha_triagem_cliente"
                             @input="$emit('input', fichaTriagem)"
                             :prepend-icon="fichaTriagem.cliente_id != null ? 'create' : 'add_box'"
                             @click:prepend="fichaTriagem.cliente_id != null ? editarCliente(fichaTriagem.cliente_id) : criarCliente()"
@@ -76,8 +77,8 @@
 
                     <v-flex xs12 sm6 md6>            
                         <v-autocomplete
-                            name="parte_contraria_id"
-                            id="parte_contraria_id"
+                            name="ficha_triagem_parte_contraria_id"
+                            id="ficha_triagem_parte_contraria_id"
                             :items="parteContrarias"
                             :search-input.sync="autocompleteParteContrarias"
                             :loading="loadingParteContrarias"
@@ -90,19 +91,29 @@
                             label="Parte Contrária"
                             v-model="fichaTriagem.parte_contraria_id"
                             :error-messages="errors.collect('parte contrária')"
-                            data-vv-name="parte contrária"
+                            data-vv-name="ficha_triagem_parte contrária"
                             :prepend-icon="fichaTriagem.parte_contraria_id != null ? 'create' : 'add_box'"
                             @click:prepend="fichaTriagem.parte_contraria_id != null ? editarCliente(fichaTriagem.parte_contraria_id) : criarCliente()"
                             @input="$emit('input', fichaTriagem)"
                             ></v-autocomplete>
                     </v-flex>
 
-                    <v-flex xs12 sm6 md5>
+                    <v-flex xs12 sm6 md6>
                         <v-checkbox
-                            name="ja_foi_atendido"
-                            id="ja_foi_atendido"
+                            name="ficha_triagem_ja_foi_atendido"
+                            id="ficha_triagem_ja_foi_atendido"
                             v-model="fichaTriagem.ja_foi_atendido"
                             label="Já foi atendido pelo escritório?*"
+                            @change="$emit('input', fichaTriagem)"
+                            ></v-checkbox>
+                    </v-flex>
+                    
+                    <v-flex xs12 sm6 md1>
+                        <v-checkbox
+                            name="ficha_triagem_ativo"
+                            id="ficha_triagem_ativo"
+                            v-model="fichaTriagem.ativo"
+                            label="Ativo?"
                             @change="$emit('input', fichaTriagem)"
                             ></v-checkbox>
                     </v-flex>
@@ -120,8 +131,8 @@
                 <v-layout wrap>
                     <v-flex xs12 sm6 md6>            
                         <v-autocomplete
-                            name="tipo_demanda_id"
-                            id="tipo_demanda_id"
+                            name="ficha_triagem_tipo_demanda_id"
+                            id="ficha_triagem_tipo_demanda_id"
                             :items="tipoDemandas"
                             :search-input.sync="autocompleteTipoDemandas"
                             :loading="loadingTipoDemandas"
@@ -135,7 +146,7 @@
                             v-model="fichaTriagem.tipo_demanda_id"
                             v-validate="{required: false }"
                             :error-messages="errors.collect('tipo de demanda')"
-                            data-vv-name="tipo de demanda"
+                            data-vv-name="ficha_triagem_tipo de demanda"
                             @input="$emit('input', fichaTriagem)"
                             :prepend-icon="fichaTriagem.tipo_demanda_id != null ? 'create' : 'add_box'"
                             @click:prepend="fichaTriagem.tipo_demanda_id != null ? editarTipoDemanda(fichaTriagem.tipo_demanda_id) : criarTipoDemanda()"
@@ -144,8 +155,8 @@
 
                     <v-flex xs12 sm6 md6>   
                         <v-autocomplete
-                            name="aluno_id"
-                            id="aluno_id"
+                            name="ficha_triagem_aluno_id"
+                            id="ficha_triagem_aluno_id"
                             :items="alunos"
                             item-text="nome_completo"
                             :search-input.sync="autocompleteAlunos"
@@ -163,35 +174,37 @@
                             @click:prepend="fichaTriagem.aluno_id != null ? editarAluno(fichaTriagem.aluno_id) : criarAluno()"
                             ></v-autocomplete>
                     </v-flex>
-
-                    <v-flex xs12 sm6 md6>            
-                        <v-text-field
-                            name="nome_professor"
-                            id="nome_professor"
+                    
+                    <v-flex xs12 sm6 md6>   
+                        <v-autocomplete
+                            name="ficha_triagem_professor_id"
+                            id="ficha_triagem_professor_id"
+                            :items="professores"
+                            item-text="nome_completo"
+                            :search-input.sync="autocompleteProfessores"
+                            :loading="loadingProfessores"
+                            hide-no-data
+                            clearable
+                            placeholder="Comece a digitar para pesquisar"
+                            autofocus
+                            item-value="id"
+                            no-data-text="Não há registros para serem exibidos."
                             label="Professor"
-                            v-model="fichaTriagem.nome_professor"
+                            v-model="fichaTriagem.professor_id"
                             @input="$emit('input', fichaTriagem)"
-                            ></v-text-field>
+                            :prepend-icon="fichaTriagem.professor_id != null ? 'create' : 'add_box'"
+                            @click:prepend="fichaTriagem.professor_id != null ? editarProfessor(fichaTriagem.professor_id) : criarProfessor()"
+                            ></v-autocomplete>
                     </v-flex>
 
                     <v-flex xs12 sm6 md12>
                         <v-text-field
-                            name="outras_informacoes"
-                            id="outras_informacoes"
+                            name="ficha_triagem_outras_informacoes"
+                            id="ficha_triagem_outras_informacoes"
                             v-model="fichaTriagem.outras_informacoes"
                             label="Outras Informações"
                             @input="$emit('input', fichaTriagem)"
                             ></v-text-field>
-                    </v-flex>
-
-                    <v-flex xs12 sm6 md1>
-                        <v-checkbox
-                            name="ativo"
-                            id="ativo"
-                            v-model="fichaTriagem.ativo"
-                            label="Ativo?"
-                            @change="$emit('input', fichaTriagem)"
-                            ></v-checkbox>
                     </v-flex>
                 </v-layout>
             </v-card-text>       
@@ -203,12 +216,15 @@
     import ClienteDialog from "@/components/cadastro/dialogs/ClienteDialog.vue";
     import TipoDemandaDialog from "@/components/cadastro/dialogs/TipoDemandaDialog.vue";
     import AlunoDialog from "@/components/cadastro/dialogs/AlunoDialog.vue";
+    import UsuarioDialog from "@/components/cadastro/dialogs/UsuarioDialog.vue";
+    
     export default {
         name: "ficha-triagem-form",
         components: {
             ClienteDialog,
             TipoDemandaDialog,
-            AlunoDialog
+            AlunoDialog,
+            UsuarioDialog
         },
         $_veeValidate: {
             validator: "new"
@@ -225,6 +241,7 @@
                 parteContrarias: [],
                 tipoDemandas: [],
                 alunos: [],
+                professores: [],
                 loadingClientes: false,
                 autocompleteClientes: null,
                 loadingParteContrarias: false,
@@ -232,7 +249,9 @@
                 loadingTipoDemandas: false,
                 autocompleteTipoDemandas: null,
                 loadingAlunos: false,
-                autocompleteAlunos: null
+                autocompleteAlunos: null,
+                loadingProfessores: false,
+                autocompleteProfessores: null
             };
         },
         watch: {
@@ -337,6 +356,30 @@
                     }).finally(() => (this.loadingAlunos = false));
                 }
 
+            },
+            autocompleteProfessores(busca) {
+                if (this.fichaTriagem.professor_id && busca.length <= 1)
+                {
+                    this.fichaTriagem.professor_id = null;
+                }
+                if (busca && busca.length > 2) {
+                    if (this.loadingProfessores)
+                        return;
+
+                    if (this.fichaTriagem.professor_id)
+                        return;
+
+                    this.loadingProfessores = true;
+                    window.axios.get('usuarios/autocomplete?query=' + busca).then(response => {
+                        this.professores = response.data;
+                    }).catch(resp => {
+                        let msgErro = '';
+                        if (resp.response.data.errors)
+                            msgErro = resp.response.data.errors;
+                        window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
+                    }).finally(() => (this.loadingProfessores = false));
+                }
+
             }
         },
         methods: {
@@ -408,6 +451,31 @@
                             .open(
                                     'Editar um aluno',
                                     this.$store.state.aluno.alunoView,
+                                    {
+                                        color: "blue"
+                                    }
+                            );
+                });
+            },
+            criarProfessor() {
+                this.$refs.usuarioDialog
+                        .open(
+                                'Adicionar um novo professor',
+                                {professor: true, ativo: true},
+                                {
+                                    color: "blue"
+                                }
+                        );
+            },
+            editarProfessor(id) {
+                this.$store.dispatch("getUsuario", id).then(() => {
+                    let avatar = this.$store.state.usuario.usuarioView.avatar;
+                    let usuario = Object.assign({}, this.$store.state.usuario.usuarioView);
+                    usuario.avatar = {avatar};
+                    this.$refs.usuarioDialog
+                            .open(
+                                    'Editar um professor',
+                                    usuario,
                                     {
                                         color: "blue"
                                     }

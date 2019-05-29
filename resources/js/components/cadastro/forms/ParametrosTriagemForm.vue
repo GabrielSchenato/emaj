@@ -9,7 +9,7 @@
                 <v-layout row wrap>
                     <v-flex xs12 sm6 md1>
                         <v-text-field
-                            name="id"
+                            name="parametros_triagem_id"
                             id="id"
                             v-model="parametrosTriagem.id"
                             label="ID"
@@ -19,13 +19,13 @@
                     </v-flex>     
                     <v-flex xs12 sm6 md4>
                         <v-text-field
-                            name="renda"
+                            name="parametros_triagem_renda"
                             id="renda"
                             v-model="parametrosTriagem.renda"
                             v-validate="'required'"
                             :error-messages="errors.collect('renda')"
                             label="Renda*"
-                            data-vv-name="renda"
+                            data-vv-name="parametros_triagem_renda"
                             required
                             type="number"
                             @input="$emit('input', parametrosTriagem)"
