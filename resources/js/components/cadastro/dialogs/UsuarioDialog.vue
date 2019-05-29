@@ -74,6 +74,7 @@
                 formData.append('email', this.usuario.email);
                 formData.append('telefone', this.usuario.telefone);
                 formData.append('ativo', this.usuario.ativo ? 1 : 0);
+                formData.append('professor', this.usuario.professor ? 1 : 0);
                 formData.append('role', this.usuario.role);
                 if(this.usuario.password){
                     formData.append('password', this.usuario.password);

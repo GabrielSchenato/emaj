@@ -54,6 +54,7 @@
                                     <td>{{ props.item.email }}</td>
                                     <td>{{ props.item.telefone }}</td>
                                     <td>{{ props.item.role | formataRole }}</td>
+                                    <td>{{ props.item.professor | formataAtivo }}</td>
                                     <td>{{ props.item.ativo | formataAtivo }}</td>
                                     <td>
                                     <v-btn 
@@ -127,6 +128,10 @@
                         {
                             text: "Nível de Permissão",
                             value: "role"
+                        },
+                        {
+                            text: "Professor?",
+                            value: "professor"
                         },
                         {
                             text: "Ativo?",

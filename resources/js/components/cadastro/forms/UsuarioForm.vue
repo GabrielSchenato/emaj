@@ -134,6 +134,16 @@
                     @click:append="show2 = !show2"
                     ></v-text-field>
             </v-flex>
+            
+            <v-flex xs12 sm6 md2>
+                <v-checkbox
+                    name="professor"
+                    id="professor"
+                    v-model="usuario.professor"
+                    label="Professor?"
+                    @change="$emit('input', usuario)"
+                    ></v-checkbox>
+            </v-flex>
 
             <v-flex xs12 sm6 md1>
                 <v-checkbox
