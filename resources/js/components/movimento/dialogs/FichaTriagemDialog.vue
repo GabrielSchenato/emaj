@@ -77,8 +77,7 @@
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
-                                    this.fichaTriagem = {};
-                                    this.$store.dispatch("getFichaTriagens");
+                                    this.fichaTriagem = {};                                    
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);
@@ -97,7 +96,6 @@
                                     this.resolve(true);
                                     this.dialog = false;
                                     this.fichaTriagem = {};
-                                    this.$store.dispatch("getFichaTriagens");
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados atualizados com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);

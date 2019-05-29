@@ -71,8 +71,7 @@
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
-                                    this.tipoDemanda = {};
-                                    this.$store.dispatch("getTipoDemandas");
+                                    this.tipoDemanda = {};                                    
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);
@@ -91,7 +90,6 @@
                                     this.resolve(true);
                                     this.dialog = false;
                                     this.tipoDemanda = {};
-                                    this.$store.dispatch("getTipoDemandas");
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados atualizados com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);

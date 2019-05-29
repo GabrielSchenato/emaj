@@ -42,7 +42,7 @@
                     v-validate="{required: true }"
                     :error-messages="errors.collect('nome completo')"
                     label="Nome Completo*"
-                    data-vv-name="cliente_nome completo"
+                    data-vv-name="nome completo"
                     required
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
@@ -64,7 +64,7 @@
                     id="cliente_representado_assistido_cpf"
                     v-model="informacoesPessoais.representado_assistido_cpf"
                     label="CPF Representado/Assistido"
-                    data-vv-name="cliente_CPF"
+                    data-vv-name="CPF"
                     mask="###.###.###-##"
                     return-masked-value
                     @input="$emit('input', informacoesPessoais)"
@@ -91,7 +91,7 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('CPF')"
                     :label="'CPF' + this.getConfig().asterisco"
-                    data-vv-name="cliente_CPF"
+                    data-vv-name="CPF"
                     mask="###.###.###-##"
                     return-masked-value
                     @input="$emit('input', informacoesPessoais)"
@@ -106,7 +106,7 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('RG')"
                     :label="'RG' + this.getConfig().asterisco"
-                    data-vv-name="cliente_RG"
+                    data-vv-name="RG"
                     mask="#.###.###"
                     return-masked-value
                     @input="$emit('input', informacoesPessoais)"
@@ -121,7 +121,7 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('profissão')"
                     :label="'Profissão' + this.getConfig().asterisco"
-                    data-vv-name="cliente_profissão"
+                    data-vv-name="profissão"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
@@ -135,7 +135,7 @@
                     v-model="informacoesPessoais.sexo"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('sexo')"
-                    data-vv-name="cliente_sexo"
+                    data-vv-name="sexo"
                     item-value="id"
                     item-text="nome"
                     @input="$emit('input', informacoesPessoais)"
@@ -151,7 +151,7 @@
                     v-model="informacoesPessoais.estado_civil"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('estado civil')"
-                    data-vv-name="cliente_estado civil"
+                    data-vv-name="estado civil"
                     item-value="id"
                     item-text="nome"
                     @input="$emit('input', informacoesPessoais)"
@@ -171,7 +171,7 @@
                     v-model="informacoesPessoais.nacionalidade_id"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('nacionalidade')"
-                    data-vv-name="cliente_nacionalidade"
+                    data-vv-name="nacionalidade"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-autocomplete>
             </v-flex>
@@ -184,7 +184,7 @@
                     label="E-mail"
                     :error-messages="errors.collect('e-mail')"
                     type="email"
-                    data-vv-name="cliente_e-mail"
+                    data-vv-name="e-mail"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>

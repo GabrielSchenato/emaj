@@ -25,7 +25,7 @@
                             v-validate="'required'"
                             :error-messages="errors.collect('renda')"
                             label="Renda*"
-                            data-vv-name="parametros_triagem_renda"
+                            data-vv-name="renda"
                             required
                             type="number"
                             @input="$emit('input', parametrosTriagem)"

@@ -190,7 +190,10 @@
                                 {
                                     color: "blue"
                                 }
-                        );
+                        ).then(confirm => {
+                            if (confirm)
+                               this.$store.dispatch("getFichaTriagens");
+                        });
             },
 
             editar(id) {
@@ -202,7 +205,10 @@
                                     {
                                         color: "blue"
                                     }
-                            );
+                            ).then(confirm => {
+                            if (confirm)
+                               this.$store.dispatch("getFichaTriagens");
+                        });
                 });
             },
 

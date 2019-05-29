@@ -130,7 +130,10 @@
                                 {
                                     color: "blue"
                                 }
-                        );
+                        ).then(confirm => {
+                            if (confirm)
+                                this.$store.dispatch("getAlunos");
+                        });
             },
 
             editar(id) {
@@ -142,7 +145,10 @@
                                     {
                                         color: "blue"
                                     }
-                            );
+                            ).then(confirm => {
+                            if (confirm)
+                                this.$store.dispatch("getAlunos");
+                        });
                 });
             },
 

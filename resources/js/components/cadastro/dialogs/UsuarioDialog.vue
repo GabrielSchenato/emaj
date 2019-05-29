@@ -95,8 +95,7 @@
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
-                                    this.usuario = {};
-                                    this.$store.dispatch("getUsuarios");
+                                    this.usuario = {};                                    
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);
@@ -113,7 +112,6 @@
                                     this.resolve(true);
                                     this.dialog = false;
                                     this.usuario = {};
-                                    this.$store.dispatch("getUsuarios");
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados atualizados com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);

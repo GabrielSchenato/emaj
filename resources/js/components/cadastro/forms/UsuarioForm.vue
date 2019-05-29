@@ -37,7 +37,7 @@
                     label="Nome Completo*"
                     v-validate="'required'"
                     :error-messages="errors.collect('nome completo')"
-                    data-vv-name="usuario_nome completo"
+                    data-vv-name="nome completo"
                     required
                     @input="$emit('input', usuario)"
                     ></v-text-field>
@@ -52,7 +52,7 @@
                     label="E-mail*"
                     v-validate="'required'"
                     :error-messages="errors.collect('e-mail')"
-                    data-vv-name="usuario_e-mail"
+                    data-vv-name="e-mail"
                     required
                     @input="$emit('input', usuario)"
                     ></v-text-field>
@@ -66,7 +66,7 @@
                     label="Telefone*"
                     v-validate="'required'"
                     :error-messages="errors.collect('telefone')"
-                    data-vv-name="usuario_telefone"
+                    data-vv-name="telefone"
                     required
                     mask="(##) #####-####"
                     return-masked-value
@@ -83,7 +83,7 @@
                     v-model="usuario.role"
                     v-validate="'required'"
                     :error-messages="errors.collect('nível de permissão')"
-                    data-vv-name="usuario_nível de permissão"
+                    data-vv-name="nível de permissão"
                     required
                     @input="$emit('input', usuario)"
                     item-value="id"
@@ -100,7 +100,7 @@
                     :label="'Senha' + getConfig.asterisco"
                     v-validate="{required: getConfig.required }"
                     :error-messages="errors.collect('senha')"
-                    data-vv-name="usuario_senha"
+                    data-vv-name="senha"
                     required
                     @input="$emit('input', usuario)"
                     type="password"
@@ -123,7 +123,7 @@
                     :label="'Confirmar Senha' + getConfig.asterisco"
                     v-validate="{required: getConfig.required }"
                     :error-messages="errors.collect('confirmar senha')"
-                    data-vv-name="usuario_confirmar senha"
+                    data-vv-name="confirmar senha"
                     required
                     @input="$emit('input', usuario)"
                     type="password"

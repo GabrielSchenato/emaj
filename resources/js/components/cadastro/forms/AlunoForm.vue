@@ -20,7 +20,7 @@
                     label="Nome Completo*"
                     v-validate="'required'"
                     :error-messages="errors.collect('nome completo')"
-                    data-vv-name="aluno_nome completo"
+                    data-vv-name="nome completo"
                     required
                     @input="$emit('input', aluno)"
                     ></v-text-field>
@@ -33,7 +33,7 @@
                     v-model="aluno.email"
                     label="E-mail"
                     :error-messages="errors.collect('e-mail')"
-                    data-vv-name="aluno_e-mail"
+                    data-vv-name="e-mail"
                     @input="$emit('input', aluno)"
                     ></v-text-field>
             </v-flex>

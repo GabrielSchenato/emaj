@@ -20,7 +20,7 @@
                     label="Tipo*"
                     v-validate="'required'"
                     :error-messages="errors.collect('tipo')"
-                    data-vv-name="telefone_tipo"
+                    data-vv-name="tipo"
                     :items="tipoTelefone"
                     item-value="id"
                     item-text="nome"
@@ -35,7 +35,7 @@
                     v-model="telefone.descricao"
                     label="Descrição"
                     :error-messages="errors.collect('descrição')"
-                    data-vv-name="telefone_descrição"
+                    data-vv-name="descrição"
                     @input="$emit('input', telefone)"
                     ></v-text-field>
             </v-flex>
@@ -48,7 +48,7 @@
                     label="Telefone*"
                     v-validate="'required'"
                     :error-messages="errors.collect('telefone')"
-                    data-vv-name="telefone_telefone"
+                    data-vv-name="telefone"
                     return-masked-value
                     :mask="telefone.tipo == 'Celular' ? '(##) #####-####' : '(##) ####-####'"
                     @input="$emit('input', telefone)"

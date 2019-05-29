@@ -72,7 +72,6 @@
                                     this.resolve(true);
                                     this.dialog = false;
                                     this.aluno = {};
-                                    this.$store.dispatch("getAlunos");
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);
@@ -91,7 +90,6 @@
                                     this.resolve(true);
                                     this.dialog = false;
                                     this.aluno = {};
-                                    this.$store.dispatch("getAlunos");
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados atualizados com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);

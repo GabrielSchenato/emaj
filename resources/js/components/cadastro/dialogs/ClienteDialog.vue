@@ -377,8 +377,7 @@
                                 this.endereco = {};
                                 this.composicaoFamiliar = {};
                                 this.telefones = [];
-                                this.step = 1;
-                                this.$store.dispatch("getClientes");
+                                this.step = 1;                                
                                 window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                             }).catch((resp) => {
                         this.addErrors(resp);
@@ -406,7 +405,6 @@
                                 this.composicaoFamiliar = {};
                                 this.telefones = [];
                                 this.step = 1;
-                                this.$store.dispatch("getClientes");
                                 window.getApp.$emit("APP_SUCCESS", {msg: 'Dados atualizados com sucesso!', timeout: 2000});
                             }).catch((resp) => {
                         this.addErrors(resp);

@@ -154,7 +154,10 @@
                                 {
                                     color: "blue"
                                 }
-                        );
+                        ).then(confirm => {
+                            if (confirm)
+                               this.$store.dispatch("getUsuarios");
+                        });
             },
 
             editar(id) {
@@ -169,7 +172,10 @@
                                     {
                                         color: "blue"
                                     }
-                            );
+                            ).then(confirm => {
+                            if (confirm)
+                               this.$store.dispatch("getUsuarios");
+                        });
                 });
             },
 

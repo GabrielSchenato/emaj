@@ -20,7 +20,7 @@
                     label="Nome*"
                     v-validate="'required'"
                     :error-messages="errors.collect('nome')"
-                    data-vv-name="tipo_demanda_nome"
+                    data-vv-name="nome"
                     required
                     @input="$emit('input', tipoDemanda)"
                     ></v-text-field>

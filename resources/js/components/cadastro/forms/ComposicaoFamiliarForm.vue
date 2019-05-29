@@ -31,7 +31,7 @@
                     :label="'Casa' + this.getConfig().asterisco"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('casa')"
-                    data-vv-name="composicao_familiar_casa"
+                    data-vv-name="casa"
                     required
                     :items="tipoCasa"
                     item-value="id"
@@ -120,7 +120,7 @@
                     :label="'Outros Bens' + this.getConfig().asterisco"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('outros bens')"
-                    data-vv-name="composicao_familiar_outros bens"
+                    data-vv-name="outros bens"
                     required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
@@ -134,7 +134,7 @@
                     :label="'Dívidas' + this.getConfig().asterisco"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('dívidas')"
-                    data-vv-name="composicao_familiar_dívidas"
+                    data-vv-name="dívidas"
                     required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
@@ -148,7 +148,7 @@
                     :label="'Despesas' + this.getConfig().asterisco"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('despesas')"
-                    data-vv-name="composicao_familiar_despesas"
+                    data-vv-name="despesas"
                     required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>

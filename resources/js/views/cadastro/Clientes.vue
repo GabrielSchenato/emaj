@@ -148,7 +148,10 @@
                                 {
                                     color: "blue"
                                 }
-                        );
+                        ).then(confirm => {
+                            if (confirm)
+                               this.$store.dispatch("getClientes");
+                        });
             },
 
             editar(id) {
@@ -160,7 +163,10 @@
                                     {
                                         color: "blue"
                                     }
-                            );
+                            ).then(confirm => {
+                            if (confirm)
+                                this.$store.dispatch("getClientes");
+                        });
                 });
             },
 

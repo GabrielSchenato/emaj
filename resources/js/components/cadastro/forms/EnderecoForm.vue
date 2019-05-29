@@ -24,7 +24,7 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('CEP')"
                     :label="'CEP' + this.getConfig().asterisco"
-                    data-vv-name="endereco_CEP"
+                    data-vv-name="CEP"
                     mask="#####-###"
                     return-masked-value
                     @keyup="buscar"
@@ -41,7 +41,7 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('logradouro')"
                     :label="'Logradouro' + this.getConfig().asterisco"
-                    data-vv-name="endereco_logradouro"
+                    data-vv-name="logradouro"
                     required
                     @change="$emit('input', endereco)"
                     ></v-text-field>
@@ -53,7 +53,7 @@
                     id="endereco_complemento"
                     v-model="endereco.complemento"
                     label="Complemento"
-                    data-vv-name="endereco_complemento"
+                    data-vv-name="complemento"
                     @change="$emit('input', endereco)"
                     ></v-text-field>
             </v-flex>
@@ -66,7 +66,7 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('bairro')"
                     :label="'Bairro' + this.getConfig().asterisco"
-                    data-vv-name="endereco_bairro"
+                    data-vv-name="bairro"
                     required
                     @change="$emit('input', endereco)"
                     ></v-text-field>
@@ -80,7 +80,7 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('número')"
                     :label="'Número' + this.getConfig().asterisco"
-                    data-vv-name="endereco_número"
+                    data-vv-name="número"
                     required
                     type="number"
                     @change="$emit('input', endereco)"
@@ -95,7 +95,7 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('cidade')"
                     :label="'Cidade' + this.getConfig().asterisco"
-                    data-vv-name="endereco_cidade"
+                    data-vv-name="cidade"
                     required
                     @change="$emit('input', endereco)"
                     ></v-text-field>
@@ -109,7 +109,7 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('estado')"
                     :label="'Estado' + this.getConfig().asterisco"
-                    data-vv-name="endereco_estado"
+                    data-vv-name="estado"
                     mask="AA"
                     @change="$emit('input', endereco)"
                     ></v-text-field>
