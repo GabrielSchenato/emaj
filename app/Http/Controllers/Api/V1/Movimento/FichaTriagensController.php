@@ -29,40 +29,12 @@ class FichaTriagensController extends CrudController
     protected $relationships = [
         'cliente:id,nome_completo',
         'tipo_demanda:id,nome',
-        'parte_contraria:id,nome_completo'];
+        'parte_contraria:id,nome_completo',
+        'aluno:id,nome_completo'];
 
     public function __construct(FichaTriagemRepository $repository)
     {
         $this->repository = $repository;
-    }
-
-    public function index(Request $request)
-    {
-        $data = $request->all();
-        $limit = $data['limit'] ?? 20;
-        $columns = $data['columns'] ?? ['*'];
-        $order = $data['order'] ?? null;
-
-        if ($order) {
-            $order = explode(',', $order);
-        }
-        $order[0] = $order[0] ?? 'id';
-        $order[1] = $order[1] ?? 'asc';
-
-        if (auth()->user()->role != 'aluno') {
-            $this->registro = $this->repository->with($this->relationships())
-                    ->orderBy($order[0], $order[1])
-                    ->paginate($limit, $columns);
-        } else {
-            $this->registro = $this->repository
-                    ->pushCriteria(AlunoCriteria::class)
-                    ->with($this->relationships())
-                    ->orderBy($order[0], $order[1])
-                    ->paginate($limit, $columns);
-        }
-
-
-        return $this->registro;
     }
     
     public function imprimirFichaTriagem()

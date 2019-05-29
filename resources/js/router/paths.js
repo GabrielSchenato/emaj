@@ -96,6 +96,15 @@ export default [
     )
   },
   {
+    path: '/cadastro/alunos',
+    meta: { breadcrumb: true, auth: {roles: ['admin', 'secretaria'], redirect: {path: 'login'}, forbiddenRedirect: '/403'} },
+    name: 'cadastro/alunos',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/cadastro/Alunos.vue`
+    )
+  },
+  {
     path: '/cadastro/parametrostriagem',
     meta: { breadcrumb: true, auth: {roles: 'admin', redirect: {path: 'login'}, forbiddenRedirect: '/403'} },
     name: 'cadastro/parametrostriagem',

@@ -2,10 +2,9 @@
 
 namespace Emaj\Entities\Movimento;
 
+use Emaj\Entities\Cadastro\Aluno;
 use Emaj\Entities\Cadastro\Cliente;
 use Emaj\Entities\Cadastro\TipoDemanda;
-use Emaj\Entities\Cadastro\TipoStatus;
-use Emaj\Entities\Cadastro\Usuario;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -40,7 +39,7 @@ class FichaTriagem extends Model
         'numero_processo',
         'tipo_demanda_id',
         'parte_contraria_id',
-        'nome_aluno',
+        'aluno_id',
         'nome_professor',
         'status',
         'outras_informacoes',
@@ -69,6 +68,14 @@ class FichaTriagem extends Model
     public function parte_contraria()
     {
         return $this->belongsTo(Cliente::class, 'parte_contraria_id');
+    }
+    
+    /**
+     * Pega o aluno associado a essa ficha de triagem.
+     */
+    public function aluno()
+    {
+        return $this->belongsTo(Aluno::class, 'aluno_id');
     }
 
 }

@@ -2,6 +2,7 @@
     <v-form>
         <cliente-dialog ref="clienteDialog"></cliente-dialog>
         <tipo-demanda-dialog ref="tipoDemandaDialog"></tipo-demanda-dialog>
+        <aluno-dialog ref="alunoDialog"></aluno-dialog>
         <v-layout wrap>
             <v-flex xs12 sm6 md2>
                 <v-text-field
@@ -28,7 +29,7 @@
                     @input="$emit('input', fichaTriagem)"
                     ></v-text-field>
             </v-flex>
-            
+
             <v-flex xs12 sm6 md8>
                 <v-text-field
                     name="numero_processo"
@@ -141,16 +142,28 @@
                             ></v-autocomplete>
                     </v-flex>
 
-                    <v-flex xs12 sm6 md6>            
-                        <v-text-field
-                            name="nome_aluno"
-                            id="nome_aluno"
+                    <v-flex xs12 sm6 md6>   
+                        <v-autocomplete
+                            name="aluno_id"
+                            id="aluno_id"
+                            :items="alunos"
+                            item-text="nome_completo"
+                            :search-input.sync="autocompleteAlunos"
+                            :loading="loadingAlunos"
+                            hide-no-data
+                            clearable
+                            placeholder="Comece a digitar para pesquisar"
+                            autofocus
+                            item-value="id"
+                            no-data-text="Não há registros para serem exibidos."
                             label="Aluno"
-                            v-model="fichaTriagem.nome_aluno"
+                            v-model="fichaTriagem.aluno_id"
                             @input="$emit('input', fichaTriagem)"
-                            ></v-text-field>
+                            :prepend-icon="fichaTriagem.aluno_id != null ? 'create' : 'add_box'"
+                            @click:prepend="fichaTriagem.aluno_id != null ? editarAluno(fichaTriagem.aluno_id) : criarAluno()"
+                            ></v-autocomplete>
                     </v-flex>
-                    
+
                     <v-flex xs12 sm6 md6>            
                         <v-text-field
                             name="nome_professor"
@@ -170,9 +183,9 @@
                             @input="$emit('input', fichaTriagem)"
                             ></v-text-field>
                     </v-flex>
-                    
+
                     <v-flex xs12 sm6 md1>
-                       <v-checkbox
+                        <v-checkbox
                             name="ativo"
                             id="ativo"
                             v-model="fichaTriagem.ativo"
@@ -189,11 +202,13 @@
 <script>
     import ClienteDialog from "@/components/cadastro/dialogs/ClienteDialog.vue";
     import TipoDemandaDialog from "@/components/cadastro/dialogs/TipoDemandaDialog.vue";
+    import AlunoDialog from "@/components/cadastro/dialogs/AlunoDialog.vue";
     export default {
         name: "ficha-triagem-form",
         components: {
             ClienteDialog,
-            TipoDemandaDialog
+            TipoDemandaDialog,
+            AlunoDialog
         },
         $_veeValidate: {
             validator: "new"
@@ -209,13 +224,15 @@
                 clientes: [],
                 parteContrarias: [],
                 tipoDemandas: [],
-                tipoStatus: [],
+                alunos: [],
                 loadingClientes: false,
                 autocompleteClientes: null,
                 loadingParteContrarias: false,
                 autocompleteParteContrarias: null,
                 loadingTipoDemandas: false,
-                autocompleteTipoDemandas: null
+                autocompleteTipoDemandas: null,
+                loadingAlunos: false,
+                autocompleteAlunos: null
             };
         },
         watch: {
@@ -296,17 +313,33 @@
                     }).finally(() => (this.loadingTipoDemandas = false));
                 }
 
+            },
+            autocompleteAlunos(busca) {
+                if (this.fichaTriagem.aluno_id && busca.length <= 1)
+                {
+                    this.fichaTriagem.aluno_id = null;
+                }
+                if (busca && busca.length > 2) {
+                    if (this.loadingAlunos)
+                        return;
+
+                    if (this.fichaTriagem.aluno_id)
+                        return;
+
+                    this.loadingAlunos = true;
+                    window.axios.get('alunos/autocomplete?query=' + busca).then(response => {
+                        this.alunos = response.data;
+                    }).catch(resp => {
+                        let msgErro = '';
+                        if (resp.response.data.errors)
+                            msgErro = resp.response.data.errors;
+                        window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
+                    }).finally(() => (this.loadingAlunos = false));
+                }
+
             }
         },
         methods: {
-            tipoStatusFilter(item, queryText, itemText) {
-                const textOne = item.nome.toLowerCase();
-                //const textTwo = item.abbr.toLowerCase();
-                const searchText = queryText.toLowerCase();
-
-                return textOne.indexOf(searchText) > -1 /*||
-                 textTwo.indexOf(searchText) > -1*/;
-            },
             criarCliente() {
                 this.$refs.clienteDialog
                         .open(
@@ -353,6 +386,28 @@
                             .open(
                                     'Editar um tipo de demanda',
                                     this.$store.state.tipodemanda.tipoDemandaView,
+                                    {
+                                        color: "blue"
+                                    }
+                            );
+                });
+            },
+            criarAluno() {
+                this.$refs.alunoDialog
+                        .open(
+                                'Adicionar um novo aluno',
+                                {ativo: true},
+                                {
+                                    color: "blue"
+                                }
+                        );
+            },
+            editarAluno(id) {
+                this.$store.dispatch("getAluno", id).then(() => {
+                    this.$refs.alunoDialog
+                            .open(
+                                    'Editar um aluno',
+                                    this.$store.state.aluno.alunoView,
                                     {
                                         color: "blue"
                                     }

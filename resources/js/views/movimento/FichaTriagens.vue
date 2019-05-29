@@ -45,7 +45,7 @@
                                     <td>{{ props.item.parte_contraria ? props.item.parte_contraria.nome_completo : '' }}</td>
                                     <td>{{ props.item.tipo_demanda ? props.item.tipo_demanda.nome : '' }}</td>
                                     <td>{{ props.item.status }}</td>
-                                    <td>{{ props.item.nome_aluno }}</td>
+                                    <td>{{ props.item.aluno ? props.item.aluno.nome_completo : '' }}</td>
                                     <td>{{ props.item.ativo | formataAtivo }}</td>
                                     <td>
 
