@@ -96,15 +96,6 @@ export default [
     )
   },
   {
-    path: '/cadastro/tipostatus',
-    meta: { breadcrumb: true, auth: {roles: ['admin', 'secretaria'], redirect: {path: 'login'}, forbiddenRedirect: '/403'} },
-    name: 'cadastro/tipostatus',
-    component: () => import(
-      /* webpackChunkName: "routes" */
-      `@/views/cadastro/TipoStatus.vue`
-    )
-  },
-  {
     path: '/cadastro/parametrostriagem',
     meta: { breadcrumb: true, auth: {roles: 'admin', redirect: {path: 'login'}, forbiddenRedirect: '/403'} },
     name: 'cadastro/parametrostriagem',

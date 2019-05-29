@@ -64,7 +64,25 @@
                     Adaptação (Movimento) Ajustado a tela de exibição de "Ficha de Triagem", para mostrar os campos "N.º Processo" e "Ativo"
                 </v-list-tile-content>
             </v-list-tile> 
-           
+            
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Cadastro) Removido o cadastro "Tipo de Status"
+                </v-list-tile-content>
+            </v-list-tile>    
+
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Movimento) Ajustado a tela de cadastro "Ficha de Triagem", para atualizar o status da ficha automaticamente quando preencher o campo "Número Processo"
+                </v-list-tile-content>
+            </v-list-tile> 
+            
             <br>
 
             <h3 class="font-weight-thin font-italic">Institucional</h3>

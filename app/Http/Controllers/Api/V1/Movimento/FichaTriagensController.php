@@ -29,8 +29,7 @@ class FichaTriagensController extends CrudController
     protected $relationships = [
         'cliente:id,nome_completo',
         'tipo_demanda:id,nome',
-        'parte_contraria:id,nome_completo',
-        'tipo_status:id,nome'];
+        'parte_contraria:id,nome_completo'];
 
     public function __construct(FichaTriagemRepository $repository)
     {

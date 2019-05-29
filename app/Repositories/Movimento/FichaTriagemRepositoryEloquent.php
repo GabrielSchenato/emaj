@@ -49,6 +49,12 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
     {
         try {
             DB::beginTransaction();
+            
+            if(isset($attributes['numero_processo'])){
+                $attributes['status'] = FichaTriagem::AJUIZADO;
+            }else{
+                $attributes['status'] = FichaTriagem::NAO_AJUIZADO;
+            }
 
             $validator = Validator::make($attributes, $this->getRules($attributes));
             if ($validator->fails()) {
@@ -99,6 +105,11 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
 
     public function update(array $attributes, $id)
     {
+        if (isset($attributes['numero_processo'])) {
+            $attributes['status'] = FichaTriagem::AJUIZADO;
+        } else {
+            $attributes['status'] = FichaTriagem::NAO_AJUIZADO;
+        }
         $validator = Validator::make($attributes, $this->getRules($attributes));
         if ($validator->fails()) {
             return response()->json([

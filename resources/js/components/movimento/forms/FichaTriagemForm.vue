@@ -142,24 +142,6 @@
                     </v-flex>
 
                     <v-flex xs12 sm6 md6>            
-                        <v-autocomplete
-                            name="tipo_status_id"
-                            id="tipo_status_id"
-                            :items="tipoStatus"
-                            :filter="tipoStatusFilter"
-                            item-text="nome"
-                            item-value="id"
-                            no-data-text="Não há registros para serem exibidos."
-                            label="Tipo de Status"
-                            v-model="fichaTriagem.tipo_status_id"
-                            v-validate="{required: false }"
-                            :error-messages="errors.collect('tipo de status')"
-                            data-vv-name="tipo de status"
-                            @input="$emit('input', fichaTriagem)"
-                            ></v-autocomplete>
-                    </v-flex>
-
-                    <v-flex xs12 sm6 md6>            
                         <v-text-field
                             name="nome_aluno"
                             id="nome_aluno"
@@ -377,11 +359,6 @@
                             );
                 });
             }
-        },
-        mounted() {
-            window.axios.get('tipostatus/autocomplete').then(response => {
-                this.tipoStatus = response.data;
-            });
         }
     };
 </script>

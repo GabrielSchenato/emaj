@@ -37,7 +37,6 @@ Route::prefix('v1')
             
             Route::get('clientes/autocomplete', 'Cadastro\ClientesController@autocomplete');
             Route::get('tipodemandas/autocomplete', 'Cadastro\TipoDemandasController@autocomplete');
-            Route::get('tipostatus/autocomplete', 'Cadastro\TipoStatusController@autocomplete');
             Route::get('usuarios/autocomplete', 'Cadastro\UsuariosController@autocomplete');
             
             Route::get('dashboard/estatisticas', 'DashboardController@estatisticas');
@@ -47,7 +46,6 @@ Route::prefix('v1')
             Route::apiResources([
                 'usuarios' => 'Cadastro\UsuariosController',
                 'tipodemandas' => 'Cadastro\TipoDemandasController',
-                'tipostatus' => 'Cadastro\TipoStatusController',
                 'clientes' => 'Cadastro\ClientesController',
                 'fichatriagens' => 'Movimento\FichaTriagensController'
             ]);

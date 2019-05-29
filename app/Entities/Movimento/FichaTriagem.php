@@ -22,6 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FichaTriagem extends Model
 {
+    
+    public const AJUIZADO = 'Ajuizado';
+    public const NAO_AJUIZADO = 'Não Ajuizado';
 
     /**
      * The database table used by the model.
@@ -39,7 +42,7 @@ class FichaTriagem extends Model
         'parte_contraria_id',
         'nome_aluno',
         'nome_professor',
-        'tipo_status_id',
+        'status',
         'outras_informacoes',
         'ativo'
     ];
@@ -66,14 +69,6 @@ class FichaTriagem extends Model
     public function parte_contraria()
     {
         return $this->belongsTo(Cliente::class, 'parte_contraria_id');
-    }
-
-    /**
-     * Pega o tipo de status associado a essa ficha de triagem.
-     */
-    public function tipo_status()
-    {
-        return $this->belongsTo(TipoStatus::class);
     }
 
 }

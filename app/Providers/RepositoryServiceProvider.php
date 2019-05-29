@@ -16,14 +16,10 @@ use Emaj\Repositories\Cadastro\TelefoneRepository;
 use Emaj\Repositories\Cadastro\TelefoneRepositoryEloquent;
 use Emaj\Repositories\Cadastro\TipoDemandaRepository;
 use Emaj\Repositories\Cadastro\TipoDemandaRepositoryEloquent;
-use Emaj\Repositories\Cadastro\TipoStatusRepository;
-use Emaj\Repositories\Cadastro\TipoStatusRepositoryEloquent;
 use Emaj\Repositories\Cadastro\UsuarioRepository;
 use Emaj\Repositories\Cadastro\UsuarioRepositoryEloquent;
 use Emaj\Repositories\Movimento\FichaTriagemRepository;
 use Emaj\Repositories\Movimento\FichaTriagemRepositoryEloquent;
-use Emaj\Repositories\Movimento\NumeroProtocoloRepository;
-use Emaj\Repositories\Movimento\NumeroProtocoloRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -47,7 +43,6 @@ class RepositoryServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->bind(TipoDemandaRepository::class, TipoDemandaRepositoryEloquent::class);
-        $this->app->bind(TipoStatusRepository::class, TipoStatusRepositoryEloquent::class);
         $this->app->bind(UsuarioRepository::class, UsuarioRepositoryEloquent::class);
         $this->app->bind(ParametroTriagemRepository::class, ParametroTriagemRepositoryEloquent::class);
         $this->app->bind(ClienteRepository::class, ClienteRepositoryEloquent::class);
@@ -55,7 +50,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ComposicaoFamiliarRepository::class, ComposicaoFamiliarRepositoryEloquent::class);
         $this->app->bind(TelefoneRepository::class, TelefoneRepositoryEloquent::class);
         $this->app->bind(NacionalidadeRepository::class, NacionalidadeRepositoryEloquent::class);
-        $this->app->bind(NumeroProtocoloRepository::class, NumeroProtocoloRepositoryEloquent::class);
         $this->app->bind(FichaTriagemRepository::class, FichaTriagemRepositoryEloquent::class);
     }
 
