@@ -5,19 +5,32 @@
             v-bind:label="label"
             v-bind:name="name"
             v-bind:id="id"
-            v-validate="validations.vvalidate"
+            v-validate="{required: required }"
             :error-messages="errors.collect(validations.datavvname)"
             :data-vv-name="validations.datavvname"
             v-bind:value="compValue"
             v-on:keypress="onlyNumber"
             v-on:keyup="emit"
-            ></v-text-field>
+            >
+                
+            <template v-slot:prepend v-if="ajudaRenda != null">
+                <v-tooltip bottom light color="success">
+                    <template v-slot:activator="{ on }">
+                        <v-icon v-on="on">not_listed_location</v-icon>
+                    </template>{{ ajudaRenda.msg }}
+                </v-tooltip>
+            </template>
+            
+        </v-text-field>
     </div>
 </template>
 
 <script>
     export default {
         model: {prop: "value", event: "input"},
+        $_veeValidate: {
+            validator: "new"
+        },
         props: {
             value: {
                 type: [Number, String]
@@ -37,6 +50,9 @@
             validations: {
                 type: Object
             },
+            ajudaRenda: {
+                type: Object
+            },
             options: {
                 type: Object,
                 default: function () {
@@ -45,7 +61,8 @@
             }
         },
         data: () => ({
-                modValue: ""
+                modValue: "",
+                required: false
             }),
         computed: {
             /* Lógica:

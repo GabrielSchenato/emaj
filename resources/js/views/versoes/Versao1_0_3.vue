@@ -128,6 +128,15 @@
                 </v-list-tile-content>
             </v-list-tile> 
             
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Correção (Cadastro) Aplicada correção no campo "Renda", "Valor Patrimônio" e "Renda Familiar", corrigindo dessa forma a validação dos mesmos
+                </v-list-tile-content>
+            </v-list-tile> 
+            
             <br>
 
             <h3 class="font-weight-thin font-italic">Institucional</h3>

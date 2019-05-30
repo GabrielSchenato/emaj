@@ -191,6 +191,7 @@
 
             <v-flex xs12 sm6 md2>
                 <vuetify-money
+                    ref="moneyRenda"
                     name="cliente_renda"
                     id="cliente_renda"
                     v-model="informacoesPessoais.renda"
@@ -237,7 +238,6 @@
         data() {
             return {
                 validations: {
-                    vvalidate: {required: this.getConfig().required},
                     errormessages: "errors.collect('renda')",
                     datavvname: "renda"
                 },

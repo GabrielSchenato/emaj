@@ -14,6 +14,7 @@
 
             <v-flex xs12 sm6 md3>
                 <vuetify-money
+                    ref="moneyRendaFamiliar"
                     name="composicao_familiar_renda_familiar"
                     id="composicao_familiar_renda_familiar"
                     v-model="composicaoFamiliar.renda_familiar"
@@ -156,6 +157,7 @@
 
             <v-flex xs12 sm6 md3>
                 <vuetify-money
+                    ref="moneyValorPatrimonio"
                     name="composicao_familiar_valor_patrimonio"
                     id="composicao_familiar_valor_patrimonio"
                     v-model="composicaoFamiliar.valor_patrimonio"
@@ -192,12 +194,10 @@
         data() {
             return {
                 validations: {
-                    vvalidate: {required: this.getConfig().required},
                     errormessages: "errors.collect('renda familiar')",
                     datavvname: "renda familiar"
                 },
                 validationsPatrimonio: {
-                    vvalidate: {required: this.getConfig().required},
                     errormessages: "errors.collect('valor do patrimônio')",
                     datavvname: "valor do patrimônio"
                 },

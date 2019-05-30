@@ -300,13 +300,21 @@
                 return '*';
             },
             informacoesPessoaisContinue() {
+                let valido = true;
+                this.$refs.informacoesPessoaisForm.$refs.moneyRenda.required = this.getConfig().required;
                 this.$refs.informacoesPessoaisForm.$validator
                         .validateAll()
                         .then(valid => {
-                            if (valid) {
-                                this.step = 2;
-                                this.erroInformacoesPessoais = false;
+                             valido = valid;
+                              this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.validate('renda')
+                                    .then(valid => {
+                                        valido = valid;
+                                    });
+                            if(!valido){
+                                return;
                             }
+                            this.step = 2;
+                            this.erroInformacoesPessoais = false;
                         });
             },
             enderecoContinue() {
@@ -318,11 +326,28 @@
                 });
             },
             composicaoFamiliarContinue() {
+                let valido = true;
+                this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.required = this.getConfig().required;
+                this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.required = this.getConfig().required;
                 this.$refs.composicaoFamiliarForm.$validator.validateAll().then(valid => {
-                    if (valid) {
-                        this.step = 4;
-                        this.erroComposicaoFamiliar = false;
-                    }
+                    valido = valid;
+                    
+                    this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.validate('valor do patrimônio')
+                              .then(valid => {
+                                  valido = valid;
+                    });
+                    
+                    this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.validate('renda familiar')
+                              .then(valid => {
+                                  valido = valid;
+                    });                    
+                    
+                    if(!valido){
+                        return;
+                    }                 
+                    this.step = 4;
+                    this.erroComposicaoFamiliar = false;
+                    
                 });
             },
             informacoesPessoaisClear() {
@@ -456,7 +481,7 @@
                         this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'e-mail', msg: resp.response.data.errors.informacoesPessoais.email});
                     }
                     if (resp.response.data.errors.informacoesPessoais.renda) {
-                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'renda', msg: resp.response.data.errors.informacoesPessoais.renda});
+                        this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.errors.add({field: 'renda', msg: resp.response.data.errors.informacoesPessoais.renda});
                     }
                     if (resp.response.data.errors.informacoesPessoais.local_trabalho) {
                         this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'local de trabalho', msg: resp.response.data.errors.informacoesPessoais.local_trabalho});
@@ -493,7 +518,7 @@
                     this.step = 3;
                     this.erroComposicaoFamiliar = true;
                     if (resp.response.data.errors.composicaoFamiliar.renda_familiar) {
-                        this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'renda familiar', msg: resp.response.data.errors.composicaoFamiliar.renda_familiar});
+                        this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.errors.add({field: 'renda familiar', msg: resp.response.data.errors.composicaoFamiliar.renda_familiar});
                     }
                     if (resp.response.data.errors.composicaoFamiliar.casa) {
                         this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'casa', msg: resp.response.data.errors.composicaoFamiliar.casa});
@@ -508,7 +533,7 @@
                         this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'despesas', msg: resp.response.data.errors.composicaoFamiliar.despesas});
                     }
                     if (resp.response.data.errors.composicaoFamiliar.valor_patrimonio) {
-                        this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'valor do patrimônio', msg: resp.response.data.errors.composicaoFamiliar.valor_patrimonio});
+                        this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.errors.add({field: 'valor do patrimônio', msg: resp.response.data.errors.composicaoFamiliar.valor_patrimonio});
                     }
                 }
             },
