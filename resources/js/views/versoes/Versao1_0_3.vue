@@ -119,6 +119,15 @@
                 </v-list-tile-content>
             </v-list-tile> 
             
+            <v-list-tile>
+                <v-list-tile-action>
+                    <v-icon>fiber_manual_record</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                    Adaptação (Movimento) Aplicada melhorias na impressão da "Ficha de Triagem"
+                </v-list-tile-content>
+            </v-list-tile> 
+            
             <br>
 
             <h3 class="font-weight-thin font-italic">Institucional</h3>

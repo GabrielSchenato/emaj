@@ -210,7 +210,7 @@ end]]>
 	<field name="representado_assistido_rg" class="java.lang.String"/>
 	<group name="informacoes_pessoais">
 		<groupHeader>
-			<band height="104">
+			<band height="119">
 				<textField isBlankWhenNull="false">
 					<reportElement x="0" y="-1" width="523" height="15" uuid="c1094718-b1ae-45c3-bec8-e4c52cb85c28">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -272,7 +272,9 @@ end]]>
 					<textFieldExpression><![CDATA["<b>RG: </b>" + IF($F{rg} != null,$F{rg},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="195" y="44" width="140" height="15" uuid="769cd2f5-0c2f-4647-a878-1ba2e6c63d42"/>
+					<reportElement x="195" y="44" width="277" height="15" uuid="769cd2f5-0c2f-4647-a878-1ba2e6c63d42">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -299,7 +301,9 @@ end]]>
 					</textElement>
 				</textField>
 				<textField>
-					<reportElement x="335" y="44" width="50" height="15" uuid="c3311b4d-d8ed-4d2d-86c6-3277e085d8e1"/>
+					<reportElement x="472" y="44" width="51" height="15" uuid="c3311b4d-d8ed-4d2d-86c6-3277e085d8e1">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -313,7 +317,7 @@ end]]>
 					<textFieldExpression><![CDATA["<b>Sexo: </b>" + IF($F{sexo} != null,$F{sexo},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="385" y="44" width="138" height="15" uuid="fac0bc96-a1e4-4cea-aebf-3337134aba17"/>
+					<reportElement x="0" y="59" width="166" height="15" uuid="fac0bc96-a1e4-4cea-aebf-3337134aba17"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -327,7 +331,10 @@ end]]>
 					<textFieldExpression><![CDATA["<b>Estado Civil: </b>" + IF($F{estado_civil} != null,$F{estado_civil},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="115" y="59" width="144" height="15" uuid="f8120ef3-67a4-4f52-b557-3feca5912b21"/>
+					<reportElement x="340" y="59" width="183" height="15" uuid="f8120ef3-67a4-4f52-b557-3feca5912b21">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -341,7 +348,9 @@ end]]>
 					<textFieldExpression><![CDATA["<b>Nacionalidade: </b>" + IF($F{nacionalidade} != null,$F{nacionalidade},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="259" y="59" width="264" height="15" uuid="5ccb49bd-def9-4a57-af49-fabd5b938e13"/>
+					<reportElement x="0" y="74" width="523" height="15" uuid="5ccb49bd-def9-4a57-af49-fabd5b938e13">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -355,7 +364,7 @@ end]]>
 					<textFieldExpression><![CDATA["<b>E-mail: </b>" + IF($F{email} != null,$F{email},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="59" width="115" height="15" uuid="1d96bd25-95c8-478a-8d32-2d6ef0c00a26">
+					<reportElement x="166" y="59" width="174" height="15" uuid="1d96bd25-95c8-478a-8d32-2d6ef0c00a26">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 					<box leftPadding="3">
@@ -371,7 +380,9 @@ end]]>
 					<textFieldExpression><![CDATA["<b>Renda: </b>R$ " + IF($F{renda} != null,$F{renda},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="74" width="522" height="15" uuid="53846c2a-52f3-4a93-81d4-a5aa325e2a39"/>
+					<reportElement x="0" y="89" width="523" height="15" uuid="53846c2a-52f3-4a93-81d4-a5aa325e2a39">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>

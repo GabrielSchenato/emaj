@@ -40,18 +40,21 @@
 	<queryString>
 		<![CDATA[select
 	protocolo,
-	nome_aluno,
-	nome_professor,
+	numero_processo,
+	al.nome_completo as nome_aluno,
+	u.nome_completo as nome_professor,
 	outras_informacoes,
 	td.nome as tipo_demanda,
-	ts.nome as tipo_status,
+	status,
 	date_format(ft.created_at,'%d/%m/%Y às %Hh%i') as created_at
 from
 	ficha_triagens ft
 left join tipo_demandas td ON
 	td.id = ft.tipo_demanda_id
-left join tipo_status ts ON
-	ts.id = ft.tipo_status_id
+left join alunos al ON
+	al.id = ft.aluno_id
+left join usuarios u ON
+	u.id = ft.professor_id
 where
 	ft.id =  $P{ficha_triagem_id}]]>
 	</queryString>
@@ -59,13 +62,17 @@ where
 		<property name="com.jaspersoft.studio.field.label" value="protocolo"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="ficha_triagens"/>
 	</field>
+	<field name="numero_processo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="numero_processo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ficha_triagens"/>
+	</field>
 	<field name="nome_aluno" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nome_aluno"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="ficha_triagens"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="alunos"/>
 	</field>
 	<field name="nome_professor" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nome_professor"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="ficha_triagens"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
 	</field>
 	<field name="outras_informacoes" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="outras_informacoes"/>
@@ -75,9 +82,9 @@ where
 		<property name="com.jaspersoft.studio.field.label" value="tipo_demanda"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_demandas"/>
 	</field>
-	<field name="tipo_status" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="tipo_status"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_status"/>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ficha_triagens"/>
 	</field>
 	<field name="created_at" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="created_at"/>
@@ -90,10 +97,10 @@ where
 	<group name="No Data"/>
 	<group name="fichatriagem">
 		<groupHeader>
-			<band height="35">
+			<band height="61">
 				<staticText>
 					<reportElement x="0" y="0" width="320" height="30" uuid="4d33f9a1-0a36-4129-8c5a-8aaffc76aae6"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
+					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font size="14" isBold="true"/>
 					</textElement>
 					<text><![CDATA[PROTOCOLO]]></text>
@@ -107,11 +114,32 @@ where
 						<bottomPen lineWidth="1.0"/>
 						<rightPen lineWidth="1.0"/>
 					</box>
-					<textElement verticalAlignment="Middle">
-						<font size="12" isBold="true"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{protocolo}]]></textFieldExpression>
 				</textField>
+				<textField>
+					<reportElement x="220" y="30" width="303" height="30" uuid="7d21fb4a-e689-4181-86f1-10b129d2a1f1"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[IF($F{numero_processo} != null,$F{numero_processo},"")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="30" width="219" height="30" uuid="7090966d-c4a8-48f0-bec4-f7c802399995"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[N.º PROCESSO]]></text>
+				</staticText>
 			</band>
 		</groupHeader>
 	</group>
@@ -230,7 +258,7 @@ where
 					<textElement verticalAlignment="Middle" markup="html">
 						<font size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["<b>Status: </b>" + IF($F{tipo_status} != null,$F{tipo_status},"")]]></textFieldExpression>
+					<textFieldExpression><![CDATA["<b>Status: </b>" + IF($F{status} != null,$F{status},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
 					<reportElement x="0" y="38" width="524" height="15" uuid="186b9189-faf3-40df-826a-075484829077"/>
