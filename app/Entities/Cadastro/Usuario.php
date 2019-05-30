@@ -27,7 +27,6 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
 
     public const ADMIN = 'admin';
     public const SECRETARIA = 'secretaria';
-    public const ALUNO = 'aluno';
 
     /**
      * The database table used by the model.
@@ -42,7 +41,7 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
      * @var array
      */
     protected $fillable = [
-        'nome_completo', 'email', 'password', 'role', 'avatar', 'telefone', 'ativo'
+        'nome_completo', 'email', 'password', 'role', 'avatar', 'telefone', 'professor', 'ativo'
     ];
 
     /**
@@ -63,13 +62,14 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return $this->getKey();
     }
-
+    
+    
     /**
-     * Pega todas as Ficha de Triagens associados a esse aluno.
+     * Pega todas as Ficha de Triagens associados ao professor.
      */
-    public function ficha_triagens()
+    public function ficha_triagens_professor()
     {
-        return $this->hasMany(FichaTriagem::class, 'aluno_id');
+        return $this->hasMany(FichaTriagem::class, 'professor_id');
     }
     
 }

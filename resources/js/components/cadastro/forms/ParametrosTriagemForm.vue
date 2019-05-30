@@ -9,7 +9,7 @@
                 <v-layout row wrap>
                     <v-flex xs12 sm6 md1>
                         <v-text-field
-                            name="id"
+                            name="parametros_triagem_id"
                             id="id"
                             v-model="parametrosTriagem.id"
                             label="ID"
@@ -18,26 +18,16 @@
                             ></v-text-field>
                     </v-flex>     
                     <v-flex xs12 sm6 md4>
-                        <v-text-field
-                            name="renda"
-                            id="renda"
-                            v-model="parametrosTriagem.renda"
-                            v-validate="'required'"
-                            :error-messages="errors.collect('renda')"
-                            label="Renda*"
-                            data-vv-name="renda"
-                            required
-                            type="number"
-                            @input="$emit('input', parametrosTriagem)"
-                            >
-                            <template v-slot:prepend>
-                                <v-tooltip bottom light color="success">
-                                    <template v-slot:activator="{ on }">
-                                        <v-icon v-on="on">not_listed_location</v-icon>
-                                    </template>Utilizado para validar se a renda do cliente está dentro do requerido pelo EMAJ
-                                </v-tooltip>
-                            </template>
-                        </v-text-field>
+                    <vuetify-money
+                        ref="moneyRenda"
+                        name="parametros_triagem_renda"
+                        id="parametros_triagem_renda"
+                        v-model="parametrosTriagem.renda"
+                        label="Renda*"
+                        v-bind:validations="validations"
+                        @input="$emit('input', parametrosTriagem)"
+                        v-bind:ajudaRenda="ajudaRenda"
+                        />
                     </v-flex>
                 </v-layout>
             </v-form>
@@ -64,7 +54,14 @@
         },
         data() {
             return {
-                parametrosTriagem: Object.assign({}, this.value) //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
+                parametrosTriagem: Object.assign({}, this.value), //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
+                validations: {
+                    errormessages: "errors.collect('renda')",
+                    datavvname: "renda"
+                },
+                ajudaRenda: {
+                    msg: "Utilizado para validar se a renda do cliente está dentro do requerido pelo EMAJ"
+                },
             };
         },
         watch: {

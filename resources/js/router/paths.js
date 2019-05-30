@@ -96,12 +96,12 @@ export default [
     )
   },
   {
-    path: '/cadastro/tipostatus',
+    path: '/cadastro/alunos',
     meta: { breadcrumb: true, auth: {roles: ['admin', 'secretaria'], redirect: {path: 'login'}, forbiddenRedirect: '/403'} },
-    name: 'cadastro/tipostatus',
+    name: 'cadastro/alunos',
     component: () => import(
       /* webpackChunkName: "routes" */
-      `@/views/cadastro/TipoStatus.vue`
+      `@/views/cadastro/Alunos.vue`
     )
   },
   {

@@ -2,9 +2,9 @@
 
 namespace Emaj\Entities\Movimento;
 
+use Emaj\Entities\Cadastro\Aluno;
 use Emaj\Entities\Cadastro\Cliente;
 use Emaj\Entities\Cadastro\TipoDemanda;
-use Emaj\Entities\Cadastro\TipoStatus;
 use Emaj\Entities\Cadastro\Usuario;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,6 +22,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FichaTriagem extends Model
 {
+    
+    public const AJUIZADO = 'Ajuizado';
+    public const NAO_AJUIZADO = 'Não Ajuizado';
 
     /**
      * The database table used by the model.
@@ -33,12 +36,15 @@ class FichaTriagem extends Model
     protected $fillable = [
         'ja_foi_atendido',
         'cliente_id',
-        'numero_protocolo_id',
+        'protocolo',
+        'numero_processo',
         'tipo_demanda_id',
         'parte_contraria_id',
         'aluno_id',
-        'tipo_status_id',
-        'outras_informacoes'
+        'professor_id',
+        'status',
+        'outras_informacoes',
+        'ativo'
     ];
 
     /**
@@ -47,14 +53,6 @@ class FichaTriagem extends Model
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'cliente_id');
-    }
-
-    /**
-     * Pega o número de protocolo associado a essa ficha de triagem.
-     */
-    public function numero_protocolo()
-    {
-        return $this->belongsTo(NumeroProtocolo::class);
     }
     
     /**
@@ -78,15 +76,15 @@ class FichaTriagem extends Model
      */
     public function aluno()
     {
-        return $this->belongsTo(Usuario::class, 'aluno_id');
+        return $this->belongsTo(Aluno::class, 'aluno_id');
     }
-
+    
     /**
-     * Pega o tipo de status associado a essa ficha de triagem.
+     * Pega o professor associado a essa ficha de triagem.
      */
-    public function tipo_status()
+    public function professor()
     {
-        return $this->belongsTo(TipoStatus::class);
+        return $this->belongsTo(Usuario::class, 'professor_id');
     }
 
 }

@@ -37,24 +37,27 @@ Route::prefix('v1')
             
             Route::get('clientes/autocomplete', 'Cadastro\ClientesController@autocomplete');
             Route::get('tipodemandas/autocomplete', 'Cadastro\TipoDemandasController@autocomplete');
+
             Route::get('tipodemandas/search', 'Cadastro\TipoDemandasController@search');
             Route::get('tipostatus/autocomplete', 'Cadastro\TipoStatusController@autocomplete');
+            
             Route::get('usuarios/autocomplete', 'Cadastro\UsuariosController@autocomplete');
+            Route::get('alunos/autocomplete', 'Cadastro\AlunosController@autocomplete');
             
             Route::get('dashboard/estatisticas', 'DashboardController@estatisticas');
             
-            Route::post('fichatriagens/impressao-protocolo', 'Movimento\FichaTriagensController@impressaoProtocolo');
-            Route::post('fichatriagens/impressao-dados-partes', 'Movimento\FichaTriagensController@impressaoDadosPartes');
+            Route::post('fichatriagens/imprimir-ficha-triagem', 'Movimento\FichaTriagensController@imprimirFichaTriagem');
             
             Route::apiResources([
                 'usuarios' => 'Cadastro\UsuariosController',
                 'tipodemandas' => 'Cadastro\TipoDemandasController',
-                'tipostatus' => 'Cadastro\TipoStatusController',
                 'clientes' => 'Cadastro\ClientesController',
+                'alunos' => 'Cadastro\AlunosController',
                 'fichatriagens' => 'Movimento\FichaTriagensController'
             ]);
             Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');
             Route::post('parametrostriagem', 'Cadastro\ParametrosTriagemController@store');
             Route::delete('telefones/{id}', 'Cadastro\TelefonesController@destroy');
+            Route::put('telefones/{id}', 'Cadastro\TelefonesController@update');
             Route::get('nacionalidades', 'Cadastro\NacionalidadesController@index');
         });

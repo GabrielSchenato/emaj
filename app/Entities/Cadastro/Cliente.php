@@ -24,6 +24,8 @@ class Cliente extends Model
         'pre_atendimento',
         'nome_completo',
         'representado_assistido',
+        'representado_assistido_cpf',
+        'representado_assistido_rg',
         'cpf',
         'rg',
         'profissao',

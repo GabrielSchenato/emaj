@@ -16,10 +16,11 @@ use Faker\Generator as Faker;
 
 $factory->define(Telefone::class, function (Faker $faker) {
     $tipo = ['Celular', 'Residencial'];
+    $tipoTelefone = $tipo[random_int(0, 1)];
 
     return [
-        'tipo' => $tipo[random_int(0, 1)],
-        'descricao' => $faker->firstName,
-        'telefone' => $faker->cellphone,
+        'tipo' => $tipoTelefone,
+        'descricao' => $faker->safeColorName,
+        'telefone' => $tipoTelefone == 'Celular' ? $faker->numerify('(##) #####-####') : $faker->numerify('(##) ####-####'),
     ];
 });

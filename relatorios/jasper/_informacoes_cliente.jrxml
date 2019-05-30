@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="_informacoes_cliente" pageWidth="595" pageHeight="842" columnWidth="575" leftMargin="0" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0de6ea09-c971-48d9-8bb1-4090dd68acd3">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="_informacoes_cliente" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="575" leftMargin="0" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0de6ea09-c971-48d9-8bb1-4090dd68acd3">
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -17,6 +17,8 @@
 	cli.id,
 	cli.nome_completo,
 	cli.representado_assistido,
+	cli.representado_assistido_cpf,
+    cli.representado_assistido_rg,
 	cli.cpf,
 	cli.rg,
 	cli.profissao,
@@ -24,16 +26,17 @@
 	cli.estado_civil,
 	nac.nome as nacionalidade,
 	cli.email,
-	cli.renda,
+	format(cli.renda,2,'de_DE') as renda,
 	cli.local_trabalho,
 	ende.cep,
 	ende.logradouro,
 	ende.complemento,
 	ende.bairro,
 	ende.localidade,
+	ende.numero,
 	ende.uf,
 	ende.endereco_local_trabalho,
-	cf.renda_familiar,
+	format(cf.renda_familiar,2,'de_DE') as renda_familiar,
 	cf.casa,
 	cf.possui_carro,
 	cf.marca_carro,
@@ -44,13 +47,13 @@
 	cf.outros_bens,
 	cf.dividas,
 	cf.despesas,
-	cf.valor_patrimonio,
+	format(cf.valor_patrimonio,2,'de_DE') as valor_patrimonio,
 	cf.observacoes,
 	(	SELECT
     CONCAT( 
         GROUP_CONCAT(
             CONCAT('<b>Tipo: </b>', tipo, ' '), 
-            CONCAT('<b>Descrição: </b>', descricao, ' '),
+            CONCAT('<b>Descrição: </b>', COALESCE(descricao, ''), ' '),
             CONCAT('<b>Telefone: </b>', telefone, ' ')
         SEPARATOR '<br>'))
 FROM telefones
@@ -111,7 +114,7 @@ end]]>
 		<property name="com.jaspersoft.studio.field.label" value="email"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
 	</field>
-	<field name="renda" class="java.lang.Double">
+	<field name="renda" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="renda"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
 	</field>
@@ -147,7 +150,7 @@ end]]>
 		<property name="com.jaspersoft.studio.field.label" value="endereco_local_trabalho"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="enderecos"/>
 	</field>
-	<field name="renda_familiar" class="java.lang.Double">
+	<field name="renda_familiar" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="renda_familiar"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="composicao_familiares"/>
 	</field>
@@ -191,7 +194,7 @@ end]]>
 		<property name="com.jaspersoft.studio.field.label" value="despesas"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="composicao_familiares"/>
 	</field>
-	<field name="valor_patrimonio" class="java.lang.Double">
+	<field name="valor_patrimonio" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="valor_patrimonio"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="composicao_familiares"/>
 	</field>
@@ -202,11 +205,16 @@ end]]>
 	<field name="telefones" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="telefones"/>
 	</field>
+	<field name="numero" class="java.lang.String"/>
+	<field name="representado_assistido_cpf" class="java.lang.String"/>
+	<field name="representado_assistido_rg" class="java.lang.String"/>
 	<group name="informacoes_pessoais">
 		<groupHeader>
-			<band height="70">
+			<band height="119">
 				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="-1" width="260" height="15" uuid="c1094718-b1ae-45c3-bec8-e4c52cb85c28"/>
+					<reportElement x="0" y="-1" width="523" height="15" uuid="c1094718-b1ae-45c3-bec8-e4c52cb85c28">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -215,12 +223,12 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["<b>Nome: </b>" + $F{nome_completo}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["<b>Nome: </b>" + IF($F{nome_completo} != null,$F{nome_completo},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="260" y="-1" width="263" height="15" uuid="b36b7e70-e2e4-48eb-a349-cb9fea0ba568"/>
+					<reportElement x="0" y="14" width="523" height="15" uuid="b36b7e70-e2e4-48eb-a349-cb9fea0ba568"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -229,12 +237,14 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>Representado/Assistido: </b>" + IF($F{representado_assistido} != null,$F{representado_assistido},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="14" width="110" height="15" uuid="6fbbfa23-c681-4152-bde8-2b6805a6b9ab"/>
+					<reportElement x="0" y="44" width="115" height="15" uuid="6fbbfa23-c681-4152-bde8-2b6805a6b9ab">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -243,12 +253,12 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>CPF: </b>" + IF($F{cpf} != null,$F{cpf},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="110" y="14" width="70" height="15" uuid="3983c14a-476e-4dd9-adfb-24c669dbaf92"/>
+					<reportElement x="115" y="44" width="80" height="15" uuid="3983c14a-476e-4dd9-adfb-24c669dbaf92"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -257,12 +267,14 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>RG: </b>" + IF($F{rg} != null,$F{rg},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="180" y="14" width="140" height="15" uuid="769cd2f5-0c2f-4647-a878-1ba2e6c63d42"/>
+					<reportElement x="195" y="44" width="277" height="15" uuid="769cd2f5-0c2f-4647-a878-1ba2e6c63d42">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -271,7 +283,7 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>Profissão: </b>" + IF($F{profissao} != null,$F{profissao},"")]]></textFieldExpression>
 				</textField>
@@ -285,11 +297,13 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 				</textField>
 				<textField>
-					<reportElement x="320" y="14" width="40" height="15" uuid="c3311b4d-d8ed-4d2d-86c6-3277e085d8e1"/>
+					<reportElement x="472" y="44" width="51" height="15" uuid="c3311b4d-d8ed-4d2d-86c6-3277e085d8e1">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -298,12 +312,12 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>Sexo: </b>" + IF($F{sexo} != null,$F{sexo},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="360" y="14" width="93" height="15" uuid="fac0bc96-a1e4-4cea-aebf-3337134aba17"/>
+					<reportElement x="0" y="59" width="166" height="15" uuid="fac0bc96-a1e4-4cea-aebf-3337134aba17"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -312,12 +326,15 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>Estado Civil: </b>" + IF($F{estado_civil} != null,$F{estado_civil},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="29" width="130" height="15" uuid="f8120ef3-67a4-4f52-b557-3feca5912b21"/>
+					<reportElement x="340" y="59" width="183" height="15" uuid="f8120ef3-67a4-4f52-b557-3feca5912b21">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -326,12 +343,14 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>Nacionalidade: </b>" + IF($F{nacionalidade} != null,$F{nacionalidade},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="130" y="29" width="200" height="15" uuid="5ccb49bd-def9-4a57-af49-fabd5b938e13"/>
+					<reportElement x="0" y="74" width="523" height="15" uuid="5ccb49bd-def9-4a57-af49-fabd5b938e13">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -340,12 +359,14 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>E-mail: </b>" + IF($F{email} != null,$F{email},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="453" y="14" width="70" height="15" uuid="1d96bd25-95c8-478a-8d32-2d6ef0c00a26"/>
+					<reportElement x="166" y="59" width="174" height="15" uuid="1d96bd25-95c8-478a-8d32-2d6ef0c00a26">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -354,12 +375,14 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["<b>Renda: </b>" + IF($F{renda} != null,$F{renda},"")]]></textFieldExpression>
+					<textFieldExpression><![CDATA["<b>Renda: </b>R$ " + IF($F{renda} != null,$F{renda},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="330" y="29" width="193" height="15" uuid="53846c2a-52f3-4a93-81d4-a5aa325e2a39"/>
+					<reportElement x="0" y="89" width="523" height="15" uuid="53846c2a-52f3-4a93-81d4-a5aa325e2a39">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -368,7 +391,7 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>Local Trabalho: </b>" + IF($F{local_trabalho} != null,$F{local_trabalho},"")]]></textFieldExpression>
 				</textField>
@@ -380,181 +403,8 @@ end]]>
 					</textElement>
 					<textFieldExpression><![CDATA["Dados d" + IF($P{cliente_id} != null,"o Cliente","a Parte Contrária")]]></textFieldExpression>
 				</textField>
-			</band>
-		</groupHeader>
-	</group>
-	<group name="endereco">
-		<groupHeader>
-			<band height="62">
 				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="5" width="70" height="15" uuid="313c7427-f8c8-4f43-9acc-c1160d7d950e"/>
-					<box leftPadding="3">
-						<pen lineWidth="1.0"/>
-						<topPen lineWidth="1.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA["<b>CEP: </b>" + IF($F{cep} != null,$F{cep},"")]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="70" y="5" width="220" height="15" uuid="d5075614-9262-4c1b-a4fd-42f30f7de76e"/>
-					<box leftPadding="3">
-						<pen lineWidth="1.0"/>
-						<topPen lineWidth="1.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA["<b>Logradouro: </b>" + IF($F{logradouro} != null,$F{logradouro},"")]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="20" width="130" height="15" uuid="eef12bb7-9d0c-4418-a5de-4c65d1c248ce"/>
-					<box leftPadding="3">
-						<pen lineWidth="1.0"/>
-						<topPen lineWidth="1.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA["<b>Bairro: </b>" + IF($F{bairro} != null,$F{bairro},"")]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="true">
-					<reportElement x="0" y="-14" width="523" height="19" uuid="c63792aa-dbcc-45af-bff1-d0dd2b88f25d"/>
-					<box leftPadding="3">
-						<pen lineWidth="1.0"/>
-						<topPen lineWidth="1.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
-					</textElement>
-				</textField>
-				<textField>
-					<reportElement x="130" y="20" width="110" height="15" uuid="45053f91-1d61-433e-b065-0d208d03e6f1"/>
-					<box leftPadding="3">
-						<pen lineWidth="1.0"/>
-						<topPen lineWidth="1.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA["<b>Cidade: </b>" + IF($F{localidade} != null,$F{localidade},"")]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="240" y="20" width="60" height="15" uuid="14387aa1-b9cb-4f9a-9dc5-443008e46a1f"/>
-					<box leftPadding="3">
-						<pen lineWidth="1.0"/>
-						<topPen lineWidth="1.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA["<b>Estado: </b>" + IF($F{uf} != null,$F{uf},"")]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="false">
-					<reportElement x="300" y="20" width="223" height="15" uuid="8dd3c93f-a02d-45ba-a989-2c8f81e535f5"/>
-					<box leftPadding="3">
-						<pen lineWidth="1.0"/>
-						<topPen lineWidth="1.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA["<b>Endereço Local Trabalho: </b>" + IF($F{endereco_local_trabalho} != null,$F{endereco_local_trabalho},"")]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="290" y="5" width="233" height="15" uuid="58ca3b41-0452-48ed-bc92-3457a7d8a4f1"/>
-					<box leftPadding="3">
-						<pen lineWidth="1.0"/>
-						<topPen lineWidth="1.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA["<b>Complemento: </b>" + IF($F{complemento} != null,$F{complemento},"")]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="0" y="-14" width="522" height="18" uuid="418454bb-f19f-4c92-847a-0d0cf568e905"/>
-					<box topPadding="2"/>
-					<textElement textAlignment="Center">
-						<font size="12" isBold="true"/>
-					</textElement>
-					<textFieldExpression><![CDATA["Endereço d" + IF($P{cliente_id} != null,"o Cliente","a Parte Contrária")]]></textFieldExpression>
-				</textField>
-			</band>
-		</groupHeader>
-	</group>
-	<group name="composicao_familiar">
-		<groupHeader>
-			<band height="80">
-				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="6" width="70" height="15" uuid="0fbd23ca-f10b-4c08-b236-8870e37c7aa9"/>
-					<box leftPadding="3">
-						<pen lineWidth="1.0"/>
-						<topPen lineWidth="1.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA["<b>Renda: </b>" + IF($F{renda_familiar} != null,$F{renda_familiar},"")]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="70" y="6" width="70" height="15" uuid="2c534231-cc94-430c-808d-b300bb0ec445"/>
-					<box leftPadding="3">
-						<pen lineWidth="1.0"/>
-						<topPen lineWidth="1.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA["<b>Casa: </b>" + IF($F{casa} != null,$F{casa},"")]]></textFieldExpression>
-				</textField>
-				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="21" width="260" height="15" uuid="e8734c60-d266-4e62-817e-bdd94d98b5e9"/>
-					<box leftPadding="3">
-						<pen lineWidth="1.0"/>
-						<topPen lineWidth="1.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA["<b>Outros Bens: </b>" + IF($F{outros_bens} != null,$F{outros_bens},"")]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="140" y="6" width="185" height="15" uuid="4f02e1fe-8ca5-47f8-a2f2-b51204a0f0ec">
+					<reportElement x="0" y="29" width="260" height="15" uuid="9471a8f4-8cfa-48e1-ae7d-91d9069f7d5f">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 					<box leftPadding="3">
@@ -565,12 +415,246 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>CPF Representado/Assistido: </b>" + IF($F{representado_assistido_cpf} != null,$F{representado_assistido_cpf},"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="260" y="29" width="263" height="15" uuid="699041d4-12d4-409c-98c6-91b69130fe81">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>RG Representado/Assistido: </b>" + IF($F{representado_assistido_rg} != null,$F{representado_assistido_rg},"")]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="endereco">
+		<groupHeader>
+			<band height="69">
+				<textField isBlankWhenNull="false">
+					<reportElement x="0" y="15" width="90" height="15" uuid="313c7427-f8c8-4f43-9acc-c1160d7d950e"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>CEP: </b>" + IF($F{cep} != null,$F{cep},"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="90" y="15" width="280" height="15" uuid="d5075614-9262-4c1b-a4fd-42f30f7de76e"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Logradouro: </b>" + IF($F{logradouro} != null,$F{logradouro},"")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="370" y="15" width="153" height="15" uuid="eef12bb7-9d0c-4418-a5de-4c65d1c248ce">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Bairro: </b>" + IF($F{bairro} != null,$F{bairro},"")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="-4" width="523" height="19" uuid="c63792aa-dbcc-45af-bff1-d0dd2b88f25d"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+				</textField>
+				<textField>
+					<reportElement x="322" y="30" width="201" height="15" uuid="45053f91-1d61-433e-b065-0d208d03e6f1">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Cidade: </b>" + IF($F{localidade} != null,$F{localidade},"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="45" width="73" height="15" uuid="14387aa1-b9cb-4f9a-9dc5-443008e46a1f"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Estado: </b>" + IF($F{uf} != null,$F{uf},"")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="73" y="45" width="450" height="15" uuid="8dd3c93f-a02d-45ba-a989-2c8f81e535f5">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Endereço Local Trabalho: </b>" + IF($F{endereco_local_trabalho} != null,$F{endereco_local_trabalho},"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="90" y="30" width="232" height="15" uuid="58ca3b41-0452-48ed-bc92-3457a7d8a4f1"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Complemento: </b>" + IF($F{complemento} != null,$F{complemento},"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="-4" width="522" height="18" uuid="418454bb-f19f-4c92-847a-0d0cf568e905"/>
+					<box topPadding="2"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Endereço d" + IF($P{cliente_id} != null,"o Cliente","a Parte Contrária")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="0" y="30" width="90" height="15" uuid="4d53d42c-ac96-4f9e-87be-1d715c77382d">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Número: </b>" + IF($F{numero} != null,$F{numero},"")]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="composicao_familiar">
+		<groupHeader>
+			<band height="164">
+				<textField isBlankWhenNull="false">
+					<reportElement x="0" y="19" width="166" height="15" uuid="0fbd23ca-f10b-4c08-b236-8870e37c7aa9">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Renda: </b>R$ " + IF($F{renda_familiar} != null,$F{renda_familiar},"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="400" y="19" width="123" height="15" uuid="2c534231-cc94-430c-808d-b300bb0ec445">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Casa: </b>" + IF($F{casa} != null,$F{casa},"")]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="false">
+					<reportElement x="0" y="49" width="523" height="15" uuid="e8734c60-d266-4e62-817e-bdd94d98b5e9">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Outros Bens: </b>" + IF($F{outros_bens} != null,$F{outros_bens},"")]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="34" width="260" height="15" uuid="4f02e1fe-8ca5-47f8-a2f2-b51204a0f0ec"/>
+					<box leftPadding="3">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="html">
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>Carro: </b>" + IF($F{possui_carro} != null,"Sim","Não") + " " + IF($F{marca_carro} != null,"<b>Marca:</b> " + $F{marca_carro},"") + " " +  IF($F{ano_carro} != null,"<b>Ano: </b>" + $F{ano_carro},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="325" y="6" width="198" height="15" uuid="a8c9fdae-1f8d-432c-a25e-fe5b44b773c3"/>
+					<reportElement x="260" y="34" width="263" height="15" uuid="a8c9fdae-1f8d-432c-a25e-fe5b44b773c3">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -579,12 +663,14 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["<b>Carro: </b>" + IF($F{possui_carro} != null,"Sim","Não") + " " + IF($F{marca_carro} != null,"<b>Marca:</b> " + $F{marca_carro},"") + " " +  IF($F{ano_carro} != null,"<b>Ano: </b>" + $F{ano_carro},"")]]></textFieldExpression>
+					<textFieldExpression><![CDATA["<b>Moto: </b>" + IF($F{possui_moto} != null,"Sim","Não") + " " + IF($F{marca_moto} != null,"<b>Marca:</b> " + $F{marca_moto},"") + " " +  IF($F{ano_moto} != null,"<b>Ano: </b>" + $F{ano_moto},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="260" y="21" width="263" height="15" uuid="a2587f2f-fd23-448c-8519-7f83dc068b50"/>
+					<reportElement x="0" y="64" width="523" height="15" uuid="a2587f2f-fd23-448c-8519-7f83dc068b50">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -593,12 +679,14 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>Dívidas: </b>" + IF($F{dividas} != null,$F{dividas},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="36" width="150" height="15" uuid="edebd3f2-986c-4746-bfaa-cfab80ff8738"/>
+					<reportElement x="0" y="79" width="523" height="15" uuid="edebd3f2-986c-4746-bfaa-cfab80ff8738">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -607,12 +695,14 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>Despesas: </b>" + IF($F{despesas} != null,$F{despesas},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="260" y="36" width="263" height="15" uuid="10d283fb-9cc6-4dd1-9bec-440f0f31b19e"/>
+					<reportElement x="0" y="94" width="523" height="50" uuid="10d283fb-9cc6-4dd1-9bec-440f0f31b19e">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -620,13 +710,13 @@ end]]>
 						<bottomPen lineWidth="1.0"/>
 						<rightPen lineWidth="1.0"/>
 					</box>
-					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+					<textElement verticalAlignment="Top" markup="html">
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA["<b>Observações: </b>" + IF($F{observacoes} != null,$F{observacoes},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
-					<reportElement x="150" y="36" width="110" height="15" uuid="54879aa3-b60b-4f29-b63e-4d4ff2d88090"/>
+					<reportElement x="166" y="19" width="234" height="15" uuid="54879aa3-b60b-4f29-b63e-4d4ff2d88090"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -635,12 +725,12 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["<b>Valor Patrimônio: </b>" + IF($F{valor_patrimonio} != null,$F{valor_patrimonio},"")]]></textFieldExpression>
+					<textFieldExpression><![CDATA["<b>Valor Patrimônio: </b> R$" + IF($F{valor_patrimonio} != null,$F{valor_patrimonio},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="0" y="-13" width="523" height="19" uuid="935762a4-bf3e-48a4-9578-883a782bfb95"/>
+					<reportElement x="0" y="0" width="523" height="19" uuid="935762a4-bf3e-48a4-9578-883a782bfb95"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -649,11 +739,11 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 				</textField>
 				<textField>
-					<reportElement x="0" y="-13" width="522" height="18" uuid="eaae51a2-ac30-42c2-a5ec-c3fc73a9b70b"/>
+					<reportElement x="0" y="1" width="522" height="18" uuid="eaae51a2-ac30-42c2-a5ec-c3fc73a9b70b"/>
 					<box topPadding="2"/>
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>
@@ -665,9 +755,9 @@ end]]>
 	</group>
 	<group name="telefones">
 		<groupHeader>
-			<band height="60">
+			<band height="73">
 				<textField isBlankWhenNull="false">
-					<reportElement x="0" y="6" width="523" height="54" uuid="e84a4792-9daf-4d62-8f1b-292c7d858e20"/>
+					<reportElement x="0" y="8" width="523" height="65" uuid="e84a4792-9daf-4d62-8f1b-292c7d858e20"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -676,12 +766,12 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 					<textFieldExpression><![CDATA[IF($F{telefones} != null,$F{telefones},"")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="0" y="-13" width="523" height="19" uuid="4610f6c9-a840-415c-9d4a-a9c4f701f592"/>
+					<reportElement x="0" y="-11" width="523" height="19" uuid="4610f6c9-a840-415c-9d4a-a9c4f701f592"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -690,11 +780,11 @@ end]]>
 						<rightPen lineWidth="1.0"/>
 					</box>
 					<textElement verticalAlignment="Middle" markup="html">
-						<font size="8"/>
+						<font size="10"/>
 					</textElement>
 				</textField>
 				<textField>
-					<reportElement x="0" y="-13" width="522" height="18" uuid="7ab54734-2a28-4d5c-a595-5f8c2c596f79"/>
+					<reportElement x="0" y="-11" width="522" height="18" uuid="7ab54734-2a28-4d5c-a595-5f8c2c596f79"/>
 					<box topPadding="2"/>
 					<textElement textAlignment="Center">
 						<font size="12" isBold="true"/>

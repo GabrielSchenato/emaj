@@ -24,7 +24,7 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next, ...$guards)
     {
         if ($this->authenticate($request, $guards) === 'authentication_error') {
-            return response()->json(['error' => 'Acesso não autorizado!']);
+            return response()->json(['error' => 'Acesso não autorizado!'], 401);
         }
         return $next($request);
     }

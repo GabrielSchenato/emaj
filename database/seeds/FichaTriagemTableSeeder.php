@@ -12,7 +12,7 @@ class FichaTriagemTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Emaj\Entities\Movimento\FichaTriagem::class, 1000)->create();
+        factory(Emaj\Entities\Movimento\FichaTriagem::class, 100)->create();
     }
 
 }

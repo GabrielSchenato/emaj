@@ -32,4 +32,15 @@ interface RepositoryInterface extends RepositoryPrettusInterface
      * @return mixed
      */
     public function allAtivo($columns = ['*']);
+
+    /**
+     * Método responsável por buscar os registros filtrando pela palavra chave
+     *
+     * @param       $field
+     * @param       $value
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function whereLike($field, $value = null, $columns = ['*']);
 }

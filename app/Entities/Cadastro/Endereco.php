@@ -26,6 +26,7 @@ class Endereco extends Model
         'gia',
         'ibge',
         'bairro',
+        'numero',
         'localidade',
         'uf',
         'unidade',

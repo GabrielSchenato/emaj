@@ -19,7 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['admin', 'secretaria', 'aluno']);
+            $table->enum('role', ['admin', 'secretaria']);
             $table->string('telefone', 15);
             $table->boolean('ativo')->default(true);
             $table->rememberToken();

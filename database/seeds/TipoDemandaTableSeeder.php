@@ -12,7 +12,7 @@ class TipoDemandaTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Emaj\Entities\Cadastro\TipoDemanda::class, 1000)->create();
+        factory(Emaj\Entities\Cadastro\TipoDemanda::class, 5)->create();
     }
 
 }

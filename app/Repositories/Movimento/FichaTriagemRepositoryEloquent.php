@@ -49,6 +49,12 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
     {
         try {
             DB::beginTransaction();
+            
+            if(isset($attributes['numero_processo'])){
+                $attributes['status'] = FichaTriagem::AJUIZADO;
+            }else{
+                $attributes['status'] = FichaTriagem::NAO_AJUIZADO;
+            }
 
             $validator = Validator::make($attributes, $this->getRules($attributes));
             if ($validator->fails()) {
@@ -85,12 +91,6 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
                                 ], 422);
             }
 
-            $numeroProtocoloRepository = new NumeroProtocoloRepositoryEloquent($this->app);
-
-            $protocolo = $numeroProtocoloRepository->create([]);
-
-            $attributes = array_merge($attributes, ['numero_protocolo_id' => $protocolo->id]);
-
             parent::create($attributes);
 
             DB::commit();
@@ -105,6 +105,11 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
 
     public function update(array $attributes, $id)
     {
+        if (isset($attributes['numero_processo'])) {
+            $attributes['status'] = FichaTriagem::AJUIZADO;
+        } else {
+            $attributes['status'] = FichaTriagem::NAO_AJUIZADO;
+        }
         $validator = Validator::make($attributes, $this->getRules($attributes));
         if ($validator->fails()) {
             return response()->json([
@@ -173,11 +178,10 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
     public static function getRules($data)
     {
         return [
+            'protocolo' => 'required',
             'cliente_id' => 'required|numeric',
-            'tipo_demanda_id' => 'required|numeric',
             'parte_contraria_id' => 'nullable|numeric',
             'aluno_id' => 'nullable|numeric',
-            'tipo_status_id' => 'required|numeric',
         ];
     }
 

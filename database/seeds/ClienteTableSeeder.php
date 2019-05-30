@@ -16,7 +16,7 @@ class ClienteTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Cliente::class, 1000)->create()->each(function ($cliente) {
+        factory(Cliente::class, 100)->create()->each(function ($cliente) {
             $cliente->endereco()->create(factory(Endereco::class)->raw());
             $cliente->composicao_familiar()->create(factory(ComposicaoFamiliar::class)->raw());
             $cliente->telefones()->saveMany(factory(Telefone::class, 5)->make());

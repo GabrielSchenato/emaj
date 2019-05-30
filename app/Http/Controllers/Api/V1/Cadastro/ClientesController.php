@@ -2,11 +2,13 @@
 
 namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
+use Emaj\Criteria\AtivoCriteria;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\ClienteRepository;
 use Emaj\Repositories\Cadastro\ComposicaoFamiliarRepository;
 use Emaj\Repositories\Cadastro\EnderecoRepository;
 use Emaj\Repositories\Cadastro\TelefoneRepository;
+use Illuminate\Support\Facades\Input;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -64,7 +66,7 @@ class ClientesController extends CrudController
         ];
         return $this->registro;
     }
-    
+
     /**
      * Retorna todos os dados para os autocomplete
      * 
@@ -72,7 +74,9 @@ class ClientesController extends CrudController
      */
     public function autocomplete()
     {
-        $this->registro = $this->repository->allAtivo(['id', 'nome_completo']);
+        $query = Input::get('query');
+        $this->registro = $this->repository->pushCriteria(AtivoCriteria::class)
+                                           ->whereLike('nome_completo', $query, ['id', 'nome_completo']);
         return $this->registro;
     }
 

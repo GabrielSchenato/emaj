@@ -54,6 +54,7 @@
                                     <td>{{ props.item.email }}</td>
                                     <td>{{ props.item.telefone }}</td>
                                     <td>{{ props.item.role | formataRole }}</td>
+                                    <td>{{ props.item.professor | formataAtivo }}</td>
                                     <td>{{ props.item.ativo | formataAtivo }}</td>
                                     <td>
                                     <v-btn 
@@ -129,6 +130,10 @@
                             value: "role"
                         },
                         {
+                            text: "Professor?",
+                            value: "professor"
+                        },
+                        {
                             text: "Ativo?",
                             value: "ativo"
                         },
@@ -149,7 +154,10 @@
                                 {
                                     color: "blue"
                                 }
-                        );
+                        ).then(confirm => {
+                            if (confirm)
+                               this.$store.dispatch("getUsuarios");
+                        });
             },
 
             editar(id) {
@@ -164,7 +172,10 @@
                                     {
                                         color: "blue"
                                     }
-                            );
+                            ).then(confirm => {
+                            if (confirm)
+                               this.$store.dispatch("getUsuarios");
+                        });
                 });
             },
 

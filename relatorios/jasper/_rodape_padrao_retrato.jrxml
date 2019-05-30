@@ -50,7 +50,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
 					<font size="6"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Relatório emitido pelo sistema do EMAJ "+ $P{versao_sistema}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Relatório emitido pelo sistema do EMAJ v"+ $P{versao_sistema}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="73" y="17" width="145" height="11" uuid="7c5d7fa8-f60b-40a5-b8ca-19a33ac1dfa6"/>

@@ -23,10 +23,11 @@ $factory->define(FichaTriagem::class, function (Faker $faker) {
     return [
         'ja_foi_atendido' => $faker->boolean,
         'cliente_id' => $cliente_id,
-        'numero_protocolo_id' => \Emaj\Entities\Movimento\NumeroProtocolo::create([]),
+        'protocolo' => $faker->numerify('#####/##'),
         'tipo_demanda_id' => \Emaj\Entities\Cadastro\TipoDemanda::inRandomOrder()->first(),
         'parte_contraria_id' => $parte_contraria_id,
-        'aluno_id' => \Emaj\Entities\Cadastro\Usuario::where('role', '=', 'aluno')->inRandomOrder()->first(),
+        'nome_aluno' => $faker->name,
+        'nome_professor' => $faker->name,
         'tipo_status_id' => \Emaj\Entities\Cadastro\TipoStatus::inRandomOrder()->first(),
         'outras_informacoes' => $faker->sentence
     ];

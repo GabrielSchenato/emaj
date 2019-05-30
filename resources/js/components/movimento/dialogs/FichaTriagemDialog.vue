@@ -54,9 +54,15 @@
             }),
         methods: {
             open(title, item, options) {
+                this.$refs.fichaTriagemForm.$validator.reset();
                 this.dialog = true;
                 this.formTitle = title;
                 this.fichaTriagem = item;
+                this.$refs.fichaTriagemForm.clientes = item.cliente ? [item.cliente] : [];
+                this.$refs.fichaTriagemForm.parteContrarias = item.parte_contraria ? [item.parte_contraria] : [];
+                this.$refs.fichaTriagemForm.tipoDemandas = item.tipo_demanda ? [item.tipo_demanda] : [];
+                this.$refs.fichaTriagemForm.alunos = item.aluno ? [item.aluno] : [];
+                this.$refs.fichaTriagemForm.professores = item.professor ? [item.professor] : [];
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;
@@ -71,8 +77,7 @@
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
-                                    this.fichaTriagem = {};
-                                    this.$store.dispatch("getFichaTriagens");
+                                    this.fichaTriagem = {};                                    
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);
@@ -91,7 +96,6 @@
                                     this.resolve(true);
                                     this.dialog = false;
                                     this.fichaTriagem = {};
-                                    this.$store.dispatch("getFichaTriagens");
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados atualizados com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);
@@ -110,6 +114,9 @@
             },
             addErrors(resp) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
+                if (resp.response.data.errors.protocolo) {
+                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'protocolo', msg: resp.response.data.errors.protocolo});
+                }
                 if (resp.response.data.errors.cliente_id) {
                     this.$refs.fichaTriagemForm.$validator.errors.add({field: 'cliente', msg: resp.response.data.errors.cliente_id});
                 }

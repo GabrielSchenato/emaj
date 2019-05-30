@@ -16,12 +16,13 @@ use Faker\Generator as Faker;
 
 $factory->define(Endereco::class, function (Faker $faker) {
     return [
-        'cep' => $faker->numerify('########'),
+        'cep' => $faker->numerify('#####-###'),
         'logradouro' => $faker->streetName,
-        'complemento' => $faker->streetAddress,
+        'complemento' => $faker->streetSuffix,
+        'numero' => $faker->numberBetween(1, 1000),
         'bairro' => $faker->streetName,
         'localidade' => $faker->city,
-        'uf' => $faker->lexify('??'),
-        'endereco_local_trabalho' => $faker->address
+        'uf' => strtoupper($faker->lexify('??')),
+        'endereco_local_trabalho' => $faker->streetAddress
     ];
 });
