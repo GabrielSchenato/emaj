@@ -13,15 +13,8 @@ export default {
         }
     },
     actions: {
-        getTipoDemandas(context, parametros) {
-            const { sortBy, descending, page, rowsPerPage, busca } = parametros;
-            let order = '';
-                order = '&order=' + (sortBy ? sortBy : 'id') + ',' + (descending ? 'desc' : 'asc');
-            let search = '';
-            if(busca){
-                search = '&search=' + busca.trim();
-            }
-            return window.axios.get('tipodemandas?limit=' + rowsPerPage + order + search + '&page=' + page).then(response => {
+        getTipoDemandas(context, params) {
+            return window.axios.get('tipodemandas' + params).then(response => {
                 context.commit('updateTipoDemandasList', response.data);
             });
         },

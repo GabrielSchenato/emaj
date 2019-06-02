@@ -41,10 +41,5 @@ class TipoDemandasController extends CrudController
                 ->whereLike('nome', $query, ['id', 'nome']);
         return $this->registro;
     }
-    
-    public function search(\Illuminate\Http\Request $request)
-    {
-        return $this->repository->getBySearch($request->get('search'));
-    }
 
 }

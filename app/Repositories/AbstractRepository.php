@@ -42,17 +42,6 @@ abstract class AbstractRepository extends BaseRepository
     {
         return $this->pushCriteria(AtivoCriteria::class)->all($columns);
     }
-    
-    /**
-     * Método responsável por realizar a busca pelo valor passado no model
-     * 
-     * @param string $value Valor para busca
-     * @return mixed
-     */
-    public function getBySearch($value)
-    {
-        return $this->model->whereLike($this->model->searchableArray(), $value);
-    }
 
     /**
      * Método responsável por buscar os registros filtrando pela palavra chave
@@ -71,6 +60,16 @@ abstract class AbstractRepository extends BaseRepository
         $this->resetModel();
 
         return $this->parserResult($model);
+    }
+
+    /**
+     * Método responsável por realizar a busca pelo valor e campo passado
+     * @param array $values
+     * @return mixed
+     */
+    public function getBySearch(array $values)
+    {
+        return $this->model;
     }
 
 }

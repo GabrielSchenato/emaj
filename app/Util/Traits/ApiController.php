@@ -46,7 +46,10 @@ trait ApiController
         $order[0] = $order[0] ?? 'id';
         $order[1] = $order[1] ?? 'asc';
 
-        $this->registro = $this->repository->getBySearch($data['search'] ?? '' )->with($this->relationships())->orderBy($order[0], $order[1])->paginate($limit, $columns);
+        $this->registro = $this->repository->getBySearch($data)
+                               ->with($this->relationships())
+                               ->orderBy($order[0], $order[1])
+                               ->paginate($limit, $columns);
         return $this->registro;
     }
 

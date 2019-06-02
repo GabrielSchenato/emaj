@@ -21,6 +21,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
  */
 class TipoDemandaRepositoryEloquent extends AbstractRepository implements TipoDemandaRepository
 {
+
     /**
      * Specify Model class name
      *
@@ -38,11 +39,32 @@ class TipoDemandaRepositoryEloquent extends AbstractRepository implements TipoDe
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
     public static function getRules($data)
     {
         return [
             'nome' => 'required|min:5|max:50'
         ];
     }
+
+    public function getBySearch(array $values)
+    {
+        $criteria = $this->model->newQuery();
+        if (isset($values['id'])) {
+            $criteria->where('id', '=', (int) $values['id']);
+        } else if (isset($values['nome'])) {
+            $criteria->where('nome', 'like', "%{$values['nome']}%");
+        } else if (isset($values['descricao'])) {
+            $criteria->where('descricao', 'like', "%{$values['descricao']}%");
+        } else if (isset($values['ativo'])) {
+            $criteria->where('ativo', '=', (boolean) $values['ativo']);
+        } else if (isset($values['created_at'])) {
+            $criteria->where('created_at', 'like', "{$values['created_at']}%");
+        } else if (isset($values['updated_at'])) {
+            $criteria->where('updated_at', 'like', "{$values['updated_at']}%");
+        }
+
+        return $criteria;
+    }
+
 }

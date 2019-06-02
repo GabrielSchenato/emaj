@@ -18,5 +18,4 @@ use Emaj\Repositories\RepositoryInterface;
  */
 interface TipoDemandaRepository extends RepositoryInterface
 {
-    //
 }

@@ -43,4 +43,11 @@ interface RepositoryInterface extends RepositoryPrettusInterface
      * @return mixed
      */
     public function whereLike($field, $value = null, $columns = ['*']);
+
+    /**
+     * Método responsável por realizar a busca pelo valor e campo passado
+     * @param array $values
+     * @return mixed
+     */
+    public function getBySearch(array $values);
 }
