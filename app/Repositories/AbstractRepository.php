@@ -72,4 +72,21 @@ abstract class AbstractRepository extends BaseRepository
         return $this->model;
     }
 
+    /**
+     * Método responsável por buscar os dados para a grid
+     * 
+     * @param int $limit
+     * @param array $columns
+     * @param array $order
+     * @param array $data
+     * 
+     * @return mixed
+     */
+    public function getDataIndex(int $limit = 10, array $columns = ['*'], array $order = ['id', 'desc'], array $data = [])
+    {
+        return $this->getBySearch($data)
+                        ->orderBy($order[0], $order[1])
+                        ->paginate($limit, $columns);
+    }
+
 }

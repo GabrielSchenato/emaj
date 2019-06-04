@@ -2,7 +2,6 @@
 
 namespace Emaj\Http\Controllers\Api\V1\Movimento;
 
-use Emaj\Criteria\AlunoCriteria;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Movimento\FichaTriagemRepository;
 use Emaj\Util\Traits\Report;

@@ -50,4 +50,16 @@ interface RepositoryInterface extends RepositoryPrettusInterface
      * @return mixed
      */
     public function getBySearch(array $values);
+
+    /**
+     * Método responsável por buscar os dados para a grid
+     * 
+     * @param int $limit
+     * @param array $columns
+     * @param array $order
+     * @param array $data
+     * 
+     * @return mixed
+     */
+    public function getDataIndex(int $limit = 10, array $columns = ['*'], array $order = ['id', 'desc'], array $data = []);
 }

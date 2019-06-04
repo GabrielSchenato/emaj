@@ -27,7 +27,7 @@ trait ApiController
      * @var \Prettus\Repository\Eloquent\BaseRepository
      */
     protected $repository;
-    
+
     /**
      * Váriavel responsável por armazenar o registro
      */
@@ -36,20 +36,9 @@ trait ApiController
     public function index(Request $request)
     {
         $data = $request->all();
-        $limit = $data['limit'] ?? 20;
-        $columns = $data['columns'] ?? ['*'];
-        $order = $data['order'] ?? null;
 
-        if ($order) {
-            $order = explode(',', $order);
-        }
-        $order[0] = $order[0] ?? 'id';
-        $order[1] = $order[1] ?? 'asc';
+        $this->registro = $this->repository->getDataIndex((int) $data['limit'], ['*'], $this->order($data), $data);
 
-        $this->registro = $this->repository->getBySearch($data)
-                               ->with($this->relationships())
-                               ->orderBy($order[0], $order[1])
-                               ->paginate($limit, $columns);
         return $this->registro;
     }
 
@@ -98,10 +87,10 @@ trait ApiController
                             'errors' => 'Esse registro está sendo utilizado em outro lugar.'
                                 ], 422);
             }
-                return response()->json([
-                            'status' => 'error',
-                            'errors' => ''
-                                ], 422);
+            return response()->json([
+                        'status' => 'error',
+                        'errors' => ''
+                            ], 422);
         }
     }
 
@@ -127,6 +116,23 @@ trait ApiController
                 return $validator->errors();
             }
         }
+    }
+
+    /**
+     * Método responsável por retornar a ordenação a ser usada.
+     * 
+     * @param array $data
+     * @return array
+     */
+    private function order(array $data)
+    {
+        $order = $data['order'] ?? null;
+        if ($order) {
+            $order = explode(',', $order);
+        }
+        $order[0] = $order[0] ?? 'id';
+        $order[1] = $order[1] ?? 'asc';
+        return $order;
     }
 
 }

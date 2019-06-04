@@ -22,7 +22,7 @@
                         <v-card-text class="pa-0">
                             <v-data-table
                                 :headers="complex.headers"
-                                :items="tipodemandas"
+                                :items="tipoDemandas"
                                 :pagination.sync="pagination" 
                                 :total-items="totalTipodemandas"
                                 :rows-per-page-items="[10,25,50,100]"
@@ -85,7 +85,7 @@
                 search: {},
                 loading: true,
                 pagination: {descending: true},
-                tipodemandas: [],
+                tipoDemandas: [],
                 totalTipodemandas: 0,
                 complex: {
                     selected: [],
@@ -138,9 +138,12 @@
             }),
         watch: {
             params: {
-                handler() {
-                    this.getData();
-                },
+                handler: _.debounce(
+                        function handler() {
+                            this.getData();
+                        },
+                        500,
+                        ),
                 deep: true
             }
         },
@@ -196,7 +199,7 @@
             getData() {
                 this.loading = true;
                 this.$store.dispatch("getTipoDemandas", this.paginationTable(this.params)).then(() => {
-                    this.tipodemandas = this.$store.state.tipodemanda.tipoDemandaList.data;
+                    this.tipoDemandas = this.$store.state.tipodemanda.tipoDemandaList.data;
                     this.totalTipodemandas = this.$store.state.tipodemanda.tipoDemandaList.total;
                     this.loading = false;
                 }).catch((resp) => {

@@ -1,5 +1,5 @@
 <template>
-    <v-form>
+    <div>
         <cliente-dialog ref="clienteDialog"></cliente-dialog>
         <tipo-demanda-dialog ref="tipoDemandaDialog"></tipo-demanda-dialog>
         <aluno-dialog ref="alunoDialog"></aluno-dialog>
@@ -107,7 +107,7 @@
                             @change="$emit('input', fichaTriagem)"
                             ></v-checkbox>
                     </v-flex>
-                    
+
                     <v-flex xs12 sm6 md1>
                         <v-checkbox
                             name="ficha_triagem_ativo"
@@ -174,7 +174,7 @@
                             @click:prepend="fichaTriagem.aluno_id != null ? editarAluno(fichaTriagem.aluno_id) : criarAluno()"
                             ></v-autocomplete>
                     </v-flex>
-                    
+
                     <v-flex xs12 sm6 md6>   
                         <v-autocomplete
                             name="ficha_triagem_professor_id"
@@ -210,14 +210,14 @@
             </v-card-text>       
         </v-card>
         <small>*Indica os campos que são obrigatórios</small>
-    </v-form>
+    </div>
 </template>
 <script>
     import ClienteDialog from "@/components/cadastro/dialogs/ClienteDialog.vue";
     import TipoDemandaDialog from "@/components/cadastro/dialogs/TipoDemandaDialog.vue";
     import AlunoDialog from "@/components/cadastro/dialogs/AlunoDialog.vue";
     import UsuarioDialog from "@/components/cadastro/dialogs/UsuarioDialog.vue";
-    
+
     export default {
         name: "ficha-triagem-form",
         components: {
@@ -386,7 +386,7 @@
             criarCliente() {
                 this.$refs.clienteDialog
                         .open(
-                                'Adicionar um novo cliente',
+                                'Adicionar um novo Cliente',
                                 {
                                     informacoesPessoais: {
                                         ativo: true
@@ -404,7 +404,7 @@
                 this.$store.dispatch("getCliente", id).then(() => {
                     this.$refs.clienteDialog
                             .open(
-                                    'Editar cliente',
+                                    'Editar Cliente',
                                     this.$store.state.cliente.clienteView,
                                     {
                                         color: "blue"
@@ -415,7 +415,7 @@
             criarTipoDemanda() {
                 this.$refs.tipoDemandaDialog
                         .open(
-                                'Adicionar um novo tipo de demanda',
+                                'Adicionar um novo Tipo de Demanda',
                                 {ativo: true},
                                 {
                                     color: "blue"
@@ -427,7 +427,7 @@
                 this.$store.dispatch("getTipoDemanda", id).then(() => {
                     this.$refs.tipoDemandaDialog
                             .open(
-                                    'Editar um tipo de demanda',
+                                    'Editar um Tipo de Demanda',
                                     this.$store.state.tipodemanda.tipoDemandaView,
                                     {
                                         color: "blue"
@@ -438,7 +438,7 @@
             criarAluno() {
                 this.$refs.alunoDialog
                         .open(
-                                'Adicionar um novo aluno',
+                                'Adicionar um novo Aluno',
                                 {ativo: true},
                                 {
                                     color: "blue"
@@ -449,7 +449,7 @@
                 this.$store.dispatch("getAluno", id).then(() => {
                     this.$refs.alunoDialog
                             .open(
-                                    'Editar um aluno',
+                                    'Editar um Aluno',
                                     this.$store.state.aluno.alunoView,
                                     {
                                         color: "blue"
@@ -460,7 +460,7 @@
             criarProfessor() {
                 this.$refs.usuarioDialog
                         .open(
-                                'Adicionar um novo professor',
+                                'Adicionar um novo Professor',
                                 {professor: true, ativo: true},
                                 {
                                     color: "blue"
@@ -474,7 +474,7 @@
                     usuario.avatar = {avatar};
                     this.$refs.usuarioDialog
                             .open(
-                                    'Editar um professor',
+                                    'Editar um Professor',
                                     usuario,
                                     {
                                         color: "blue"

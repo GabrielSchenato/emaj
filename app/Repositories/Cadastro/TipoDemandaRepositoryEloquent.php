@@ -47,20 +47,30 @@ class TipoDemandaRepositoryEloquent extends AbstractRepository implements TipoDe
         ];
     }
 
+    /**
+     * Método responsável por realizar a busca pelo valor e campo passado
+     * @param array $values
+     * @return mixed
+     */
     public function getBySearch(array $values)
     {
         $criteria = $this->model->newQuery();
         if (isset($values['id'])) {
             $criteria->where('id', '=', (int) $values['id']);
-        } else if (isset($values['nome'])) {
+        }
+        if (isset($values['nome'])) {
             $criteria->where('nome', 'like', "%{$values['nome']}%");
-        } else if (isset($values['descricao'])) {
+        }
+        if (isset($values['descricao'])) {
             $criteria->where('descricao', 'like', "%{$values['descricao']}%");
-        } else if (isset($values['ativo'])) {
+        }
+        if (isset($values['ativo'])) {
             $criteria->where('ativo', '=', (boolean) $values['ativo']);
-        } else if (isset($values['created_at'])) {
+        }
+        if (isset($values['created_at'])) {
             $criteria->where('created_at', 'like', "{$values['created_at']}%");
-        } else if (isset($values['updated_at'])) {
+        }
+        if (isset($values['updated_at'])) {
             $criteria->where('updated_at', 'like', "{$values['updated_at']}%");
         }
 
