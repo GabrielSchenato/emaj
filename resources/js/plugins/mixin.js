@@ -41,8 +41,8 @@ export default {
             const page = '&page=' + paramsTable.page;
             const rowsPerPage = '?limit=' + paramsTable.rowsPerPage;
             const order = '&order=' + sortBy + ',' + descending;
-            const busca = paramsTable.query.field && paramsTable.query.value ? '&' + paramsTable.query.field + '=' + paramsTable.query.value : '';
-            
+            const busca = paramsTable.query.field ? '&' + paramsTable.query.field + '=' + paramsTable.query.value : '';
+
             return rowsPerPage + page + order + busca;
         }
     }
