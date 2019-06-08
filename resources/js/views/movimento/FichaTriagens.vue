@@ -70,8 +70,8 @@
                                                     <v-icon
                                                         @click="imprimirFichaTriagem(
                                                         {
-                                                        cliente_id: props.item.cliente.id,
-                                                        parte_contraria_id: props.item.parte_contraria ? props.item.parte_contraria.id : null,
+                                                        cliente_id: props.item.cliente_id,
+                                                        parte_contraria_id: props.item.parte_contraria_id,
                                                         ficha_triagem_id: props.item.id
                                                         }
                                                         )"

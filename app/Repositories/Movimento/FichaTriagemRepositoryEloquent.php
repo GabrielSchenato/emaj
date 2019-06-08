@@ -190,6 +190,8 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
         $columns = [
             'ficha_triagens.id',
             'ficha_triagens.protocolo',
+            'ficha_triagens.cliente_id',
+            'ficha_triagens.parte_contraria_id',
             'ficha_triagens.numero_processo',
             'ficha_triagens.status',
             'ficha_triagens.ativo',
