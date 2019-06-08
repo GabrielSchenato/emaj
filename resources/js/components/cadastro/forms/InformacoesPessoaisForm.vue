@@ -284,7 +284,7 @@
                         nome: 'Viúvo'
 
                     }],
-                nacionalidades: [{id: 7, nome: 'Brasileiro'}],
+                nacionalidades: [],
                 loadingNacionalidades: false,
                 autocompleteNacionalidades: null
             };
