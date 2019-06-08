@@ -21,6 +21,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
  */
 class TipoDemandaRepositoryEloquent extends AbstractRepository implements TipoDemandaRepository
 {
+
     /**
      * Specify Model class name
      *
@@ -38,11 +39,55 @@ class TipoDemandaRepositoryEloquent extends AbstractRepository implements TipoDe
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
     public static function getRules($data)
     {
         return [
             'nome' => 'required|min:5|max:50'
         ];
     }
+
+    /**
+     * Método responsável por realizar a busca pelo valor e campo passado
+     * @param array $values
+     * @return mixed
+     */
+    public function getBySearch(array $values)
+    {
+        $criteria = $this->model->newQuery();
+        if (isset($values['id'])) {
+            $criteria->where('id', '=', (int) $values['id']);
+        }
+        if (isset($values['nome'])) {
+            $criteria->where('nome', 'like', "%{$values['nome']}%");
+        }
+        if (isset($values['descricao'])) {
+            $criteria->where('descricao', 'like', "%{$values['descricao']}%");
+        }
+        if (isset($values['ativo'])) {
+            $criteria->where('ativo', '=', (boolean) $values['ativo']);
+        }
+        if (isset($values['created_at'])) {
+            $criteria->where('created_at', 'like', "{$values['created_at']}%");
+        }
+        if (isset($values['updated_at'])) {
+            $criteria->where('updated_at', 'like', "{$values['updated_at']}%");
+        }
+
+        return $criteria;
+    }
+
+    /**
+     * Método responsável por buscar os dados e retornar para o autocomplete
+     * 
+     * @param string $value
+     */
+    public function getDataAutocomplete($value)
+    {
+        return $this->whereLike('nome', $value)
+                        ->orderBy('nome', 'asc')
+                        ->limit(10)
+                        ->get(['id', 'nome']);
+    }
+
 }

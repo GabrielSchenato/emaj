@@ -36,7 +36,7 @@ const store = new Vuex.Store(VuexStore);
 
 Vue.use(VueAuth, auth);
 
-sync(store, router)
+sync(store, router);
 
 Vue.mixin(mixin);
 

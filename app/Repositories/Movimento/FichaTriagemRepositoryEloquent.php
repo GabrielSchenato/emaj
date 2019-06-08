@@ -49,10 +49,10 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
     {
         try {
             DB::beginTransaction();
-            
-            if(isset($attributes['numero_processo'])){
+
+            if (isset($attributes['numero_processo'])) {
                 $attributes['status'] = FichaTriagem::AJUIZADO;
-            }else{
+            } else {
                 $attributes['status'] = FichaTriagem::NAO_AJUIZADO;
             }
 
@@ -146,7 +146,7 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
         }
         parent::update($attributes, $id);
     }
-    
+
     /**
      * Método responsável por pegar as 5 demandas mais utilizadas
      * 
@@ -163,7 +163,7 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
                 ->get();
         return $top5DemandasMaisAtendidas;
     }
-    
+
     /**
      * Método responsável por o número de atendimentos no mês
      * 
@@ -172,7 +172,85 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
     public function getAtendimentosMes()
     {
         return $this->pushCriteria(MesCriteria::class)
-                    ->count();
+                        ->count();
+    }
+
+    /**
+     * Método responsável por buscar os dados para a grid
+     * 
+     * @param int $limit
+     * @param array $columns
+     * @param array $order
+     * @param array $data
+     * 
+     * @return mixed
+     */
+    public function getDataIndex(int $limit = 10, array $columns = ['*'], array $order = ['id', 'desc'], array $data = [])
+    {
+        $columns = [
+            'ficha_triagens.id',
+            'ficha_triagens.protocolo',
+            'ficha_triagens.cliente_id',
+            'ficha_triagens.parte_contraria_id',
+            'ficha_triagens.numero_processo',
+            'ficha_triagens.status',
+            'ficha_triagens.ativo',
+            'clientes.nome_completo AS nome_cliente',
+            'parte_contrarias.nome_completo AS nome_parte_contraria',
+            'tipo_demandas.nome AS nome_tipo_demanda',
+            'alunos.nome_completo AS nome_aluno'
+        ];
+        return $this->getBySearch($data)
+                        ->leftJoin('clientes', 'ficha_triagens.cliente_id', '=', 'clientes.id')
+                        ->leftJoin('clientes AS parte_contrarias', 'ficha_triagens.parte_contraria_id', '=', 'parte_contrarias.id')
+                        ->leftJoin('tipo_demandas', 'ficha_triagens.tipo_demanda_id', '=', 'tipo_demandas.id')
+                        ->leftJoin('alunos', 'ficha_triagens.aluno_id', '=', 'alunos.id')
+                        ->orderBy($order[0], $order[1])
+                        ->paginate($limit, $columns);
+    }
+
+    /**
+     * Método responsável por realizar a busca pelo valor e campo passado
+     * @param array $values
+     * @return mixed
+     */
+    public function getBySearch(array $values)
+    {
+        $criteria = $this->model->newQuery();
+        if (isset($values['protocolo'])) {
+            $criteria->where('protocolo', 'like', "%{$values['protocolo']}%");
+        }
+        if (isset($values['numero_processo'])) {
+            $criteria->where('numero_processo', 'like', "%{$values['numero_processo']}%");
+        }
+        if (isset($values['nome_cliente'])) {
+            $criteria->whereHas('cliente', function ($criteria) use ($values) {
+                $criteria->where('nome_completo', 'like', "%{$values['nome_cliente']}%");
+            });
+        }
+        if (isset($values['nome_parte_contraria'])) {
+            $criteria->whereHas('parte_contraria', function ($criteria) use ($values) {
+                $criteria->where('nome_completo', 'like', "%{$values['nome_parte_contraria']}%");
+            });
+        }
+        if (isset($values['nome_tipo_demanda'])) {
+            $criteria->whereHas('tipo_demanda', function ($criteria) use ($values) {
+                $criteria->where('nome', 'like', "%{$values['nome_tipo_demanda']}%");
+            });
+        }
+        if (isset($values['status'])) {
+            $criteria->where('status', '=', $values['status']);
+        }
+        if (isset($values['nome_aluno'])) {
+            $criteria->whereHas('aluno', function ($criteria) use ($values) {
+                $criteria->where('nome_completo', 'like', "%{$values['nome_aluno']}%");
+            });
+        }
+        if (isset($values['ativo'])) {
+            $criteria->where('ficha_triagens.ativo', '=', (boolean) $values['ativo']);
+        }
+
+        return $criteria;
     }
 
     public static function getRules($data)

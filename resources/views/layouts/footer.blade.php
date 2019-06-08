@@ -31,7 +31,7 @@
                         <h4>Atendimentos:</h4>
                         <p class="pl-3">
                             <span>Segunda – Sexta : 08:00 ao 12:00</span>
-                            <span>Segunda - Quinta : 13:30 ao 17:30</span>
+                            <span>Segunda - Quinta : 13:30 às 17:30</span>
                         </p>
                         <h4>Agendamentos via internet:</h4>
                         <p class="pl-3">

@@ -22,6 +22,7 @@ abstract class AbstractRepository extends BaseRepository
 
     /**
      * Método responsável por fazer a contagem de um model
+     * 
      * @return int
      */
     public function count()
@@ -32,6 +33,7 @@ abstract class AbstractRepository extends BaseRepository
 
     /**
      * Método responsável por trazer todos os registros ativos
+     * 
      * @param array $columns
      *
      * @return mixed
@@ -46,18 +48,44 @@ abstract class AbstractRepository extends BaseRepository
      *
      * @param       $field
      * @param       $value
-     * @param array $columns
      *
      * @return mixed
      */
-    public function whereLike($field, $value = null, $columns = ['*'])
+    public function whereLike($field, $value = null)
     {
         $this->applyCriteria();
         $this->applyScope();
-        $model = $this->model->where($field, 'LIKE', "%{$value}%")->get($columns);
+        $model = $this->model->where($field, 'LIKE', "%{$value}%");
         $this->resetModel();
 
         return $this->parserResult($model);
+    }
+
+    /**
+     * Método responsável por realizar a busca pelo valor e campo passado
+     * @param array $values
+     * @return mixed
+     */
+    public function getBySearch(array $values)
+    {
+        return $this->model;
+    }
+
+    /**
+     * Método responsável por buscar os dados para a grid
+     * 
+     * @param int $limit
+     * @param array $columns
+     * @param array $order
+     * @param array $data
+     * 
+     * @return mixed
+     */
+    public function getDataIndex(int $limit = 10, array $columns = ['*'], array $order = ['id', 'desc'], array $data = [])
+    {
+        return $this->getBySearch($data)
+                        ->orderBy($order[0], $order[1])
+                        ->paginate($limit, $columns);
     }
 
 }

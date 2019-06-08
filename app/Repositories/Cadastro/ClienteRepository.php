@@ -25,4 +25,11 @@ interface ClienteRepository extends RepositoryInterface
      * @return int
      */
     public function getPreAtendimentosMes();
+
+    /**
+     * Método responsável por buscar os dados e retornar para o autocomplete
+     * 
+     * @param string $value
+     */
+    public function getDataAutocomplete($value);
 }

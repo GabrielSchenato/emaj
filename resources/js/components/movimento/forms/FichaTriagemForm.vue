@@ -1,5 +1,5 @@
 <template>
-    <v-form>
+    <div>
         <cliente-dialog ref="clienteDialog"></cliente-dialog>
         <tipo-demanda-dialog ref="tipoDemandaDialog"></tipo-demanda-dialog>
         <aluno-dialog ref="alunoDialog"></aluno-dialog>
@@ -107,7 +107,7 @@
                             @change="$emit('input', fichaTriagem)"
                             ></v-checkbox>
                     </v-flex>
-                    
+
                     <v-flex xs12 sm6 md1>
                         <v-checkbox
                             name="ficha_triagem_ativo"
@@ -174,7 +174,7 @@
                             @click:prepend="fichaTriagem.aluno_id != null ? editarAluno(fichaTriagem.aluno_id) : criarAluno()"
                             ></v-autocomplete>
                     </v-flex>
-                    
+
                     <v-flex xs12 sm6 md6>   
                         <v-autocomplete
                             name="ficha_triagem_professor_id"
@@ -210,14 +210,14 @@
             </v-card-text>       
         </v-card>
         <small>*Indica os campos que são obrigatórios</small>
-    </v-form>
+    </div>
 </template>
 <script>
     import ClienteDialog from "@/components/cadastro/dialogs/ClienteDialog.vue";
     import TipoDemandaDialog from "@/components/cadastro/dialogs/TipoDemandaDialog.vue";
     import AlunoDialog from "@/components/cadastro/dialogs/AlunoDialog.vue";
     import UsuarioDialog from "@/components/cadastro/dialogs/UsuarioDialog.vue";
-    
+
     export default {
         name: "ficha-triagem-form",
         components: {
@@ -261,135 +261,151 @@
                 },
                 deep: true
             },
-            autocompleteClientes(busca) {
-                if (this.fichaTriagem.cliente_id && busca.length <= 1)
-                {
-                    this.fichaTriagem.cliente_id = null;
-                }
-                if (busca && busca.length > 2) {
-                    if (this.loadingClientes)
-                        return;
+            autocompleteClientes: _.debounce(
+                    function autocompleteClientes(busca) {
+                        if (this.fichaTriagem.cliente_id && busca.length <= 1)
+                        {
+                            this.fichaTriagem.cliente_id = null;
+                        }
+                        if (busca) {
+                            if (this.loadingClientes)
+                                return;
 
-                    if (this.fichaTriagem.cliente_id)
-                        return;
+                            if (this.fichaTriagem.cliente_id)
+                                return;
 
-                    this.loadingClientes = true;
-                    window.axios.get('clientes/autocomplete?query=' + busca).then(response => {
-                        this.clientes = response.data;
-                    }).catch(resp => {
-                        let msgErro = '';
-                        if (resp.response.data.errors)
-                            msgErro = resp.response.data.errors;
-                        window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
-                    }).finally(() => (this.loadingClientes = false));
-                }
+                            this.loadingClientes = true;
+                            window.axios.get(`fichatriagens/autocomplete?nome_cliente=${busca.replace(' ', '%20')}`).then(response => {
+                                this.clientes = response.data;
+                            }).catch(resp => {
+                                let msgErro = '';
+                                if (resp.response.data.errors)
+                                    msgErro = resp.response.data.errors;
+                                window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
+                            }).finally(() => (this.loadingClientes = false));
+                        }
 
-            },
-            autocompleteParteContrarias(busca) {
-                if (this.fichaTriagem.parte_contraria_id && busca.length <= 1)
-                {
-                    this.fichaTriagem.cliente_id = null;
-                }
-                if (busca && busca.length > 2) {
-                    if (this.loadingParteContrarias)
-                        return;
+                    },
+                    500,
+                    ),
+            autocompleteParteContrarias: _.debounce(
+                    function autocompleteParteContrarias(busca) {
+                        if (this.fichaTriagem.parte_contraria_id && busca.length <= 1)
+                        {
+                            this.fichaTriagem.parte_contraria_id = null;
+                        }
+                        if (busca) {
+                            if (this.loadingParteContrarias)
+                                return;
 
-                    if (this.fichaTriagem.parte_contraria_id)
-                        return;
+                            if (this.fichaTriagem.parte_contraria_id)
+                                return;
 
-                    this.loadingParteContrarias = true;
-                    window.axios.get('clientes/autocomplete?query=' + busca).then(response => {
-                        this.parteContrarias = response.data;
-                    }).catch(resp => {
-                        let msgErro = '';
-                        if (resp.response.data.errors)
-                            msgErro = resp.response.data.errors;
-                        window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
-                    }).finally(() => (this.loadingParteContrarias = false));
-                }
+                            this.loadingParteContrarias = true;
+                            window.axios.get(`fichatriagens/autocomplete?nome_cliente=${busca.replace(' ', '%20')}`).then(response => {
+                                this.parteContrarias = response.data;
+                            }).catch(resp => {
+                                let msgErro = '';
+                                if (resp.response.data.errors)
+                                    msgErro = resp.response.data.errors;
+                                window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
+                            }).finally(() => (this.loadingParteContrarias = false));
+                        }
 
-            },
-            autocompleteTipoDemandas(busca) {
-                if (this.fichaTriagem.tipo_demanda_id && busca.length <= 1)
-                {
-                    this.fichaTriagem.tipo_demanda_id = null;
-                }
-                if (busca && busca.length > 2) {
-                    if (this.loadingTipoDemandas)
-                        return;
+                    },
+                    500,
+                    ),
+            autocompleteTipoDemandas: _.debounce(
+                    function autocompleteTipoDemandas(busca) {
+                        if (this.fichaTriagem.tipo_demanda_id && busca.length <= 1)
+                        {
+                            this.fichaTriagem.tipo_demanda_id = null;
+                        }
+                        if (busca) {
+                            if (this.loadingTipoDemandas)
+                                return;
 
-                    if (this.fichaTriagem.tipo_demanda_id)
-                        return;
+                            if (this.fichaTriagem.tipo_demanda_id)
+                                return;
 
-                    this.loadingTipoDemandas = true;
-                    window.axios.get('tipodemandas/autocomplete?query=' + busca).then(response => {
-                        this.tipoDemandas = response.data;
-                    }).catch(resp => {
-                        let msgErro = '';
-                        if (resp.response.data.errors)
-                            msgErro = resp.response.data.errors;
-                        window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
-                    }).finally(() => (this.loadingTipoDemandas = false));
-                }
+                            this.loadingTipoDemandas = true;
+                            window.axios.get(`fichatriagens/autocomplete?nome_tipo_demanda=${busca.replace(' ', '%20')}`).then(response => {
+                                this.tipoDemandas = response.data;
+                            }).catch(resp => {
+                                let msgErro = '';
+                                if (resp.response.data.errors)
+                                    msgErro = resp.response.data.errors;
+                                window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
+                            }).finally(() => (this.loadingTipoDemandas = false));
+                        }
 
-            },
-            autocompleteAlunos(busca) {
-                if (this.fichaTriagem.aluno_id && busca.length <= 1)
-                {
-                    this.fichaTriagem.aluno_id = null;
-                }
-                if (busca && busca.length > 2) {
-                    if (this.loadingAlunos)
-                        return;
+                    },
+                    500,
+                    ),
+            autocompleteAlunos: _.debounce(
+                    function autocompleteAlunos(busca) {
+                        if (this.fichaTriagem.aluno_id && busca.length <= 1)
+                        {
+                            this.fichaTriagem.aluno_id = null;
+                        }
+                        if (busca) {
+                            if (this.loadingAlunos)
+                                return;
 
-                    if (this.fichaTriagem.aluno_id)
-                        return;
+                            if (this.fichaTriagem.aluno_id)
+                                return;
 
-                    this.loadingAlunos = true;
-                    window.axios.get('alunos/autocomplete?query=' + busca).then(response => {
-                        this.alunos = response.data;
-                    }).catch(resp => {
-                        let msgErro = '';
-                        if (resp.response.data.errors)
-                            msgErro = resp.response.data.errors;
-                        window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
-                    }).finally(() => (this.loadingAlunos = false));
-                }
+                            this.loadingAlunos = true;
+                            window.axios.get(`fichatriagens/autocomplete?nome_aluno=${busca.replace(' ', '%20')}`).then(response => {
+                                this.alunos = response.data;
+                            }).catch(resp => {
+                                let msgErro = '';
+                                if (resp.response.data.errors)
+                                    msgErro = resp.response.data.errors;
+                                window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
+                            }).finally(() => (this.loadingAlunos = false));
+                        }
 
-            },
-            autocompleteProfessores(busca) {
-                if (this.fichaTriagem.professor_id && busca.length <= 1)
-                {
-                    this.fichaTriagem.professor_id = null;
-                }
-                if (busca && busca.length > 2) {
-                    if (this.loadingProfessores)
-                        return;
+                    },
+                    500,
+                    ),
+            autocompleteProfessores: _.debounce(
+                    function autocompleteProfessores(busca) {
+                        if (this.fichaTriagem.professor_id && busca.length <= 1)
+                        {
+                            this.fichaTriagem.professor_id = null;
+                        }
+                        if (busca) {
+                            if (this.loadingProfessores)
+                                return;
 
-                    if (this.fichaTriagem.professor_id)
-                        return;
+                            if (this.fichaTriagem.professor_id)
+                                return;
 
-                    this.loadingProfessores = true;
-                    window.axios.get('usuarios/autocomplete?query=' + busca).then(response => {
-                        this.professores = response.data;
-                    }).catch(resp => {
-                        let msgErro = '';
-                        if (resp.response.data.errors)
-                            msgErro = resp.response.data.errors;
-                        window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
-                    }).finally(() => (this.loadingProfessores = false));
-                }
+                            this.loadingProfessores = true;
+                            window.axios.get(`fichatriagens/autocomplete?nome_professor=${busca.replace(' ', '%20')}`).then(response => {
+                                this.professores = response.data;
+                            }).catch(resp => {
+                                let msgErro = '';
+                                if (resp.response.data.errors)
+                                    msgErro = resp.response.data.errors;
+                                window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
+                            }).finally(() => (this.loadingProfessores = false));
+                        }
 
-            }
+                    },
+                    500,
+                    )
         },
         methods: {
             criarCliente() {
                 this.$refs.clienteDialog
                         .open(
-                                'Adicionar um novo cliente',
+                                'Adicionar um novo Cliente',
                                 {
                                     informacoesPessoais: {
-                                        ativo: true
+                                        ativo: true,
+                                        nacionalidade_id: 7
                                     },
                                     endereco: {},
                                     composicaoFamiliar: {},
@@ -404,7 +420,7 @@
                 this.$store.dispatch("getCliente", id).then(() => {
                     this.$refs.clienteDialog
                             .open(
-                                    'Editar cliente',
+                                    'Editar Cliente',
                                     this.$store.state.cliente.clienteView,
                                     {
                                         color: "blue"
@@ -415,7 +431,7 @@
             criarTipoDemanda() {
                 this.$refs.tipoDemandaDialog
                         .open(
-                                'Adicionar um novo tipo de demanda',
+                                'Adicionar um novo Tipo de Demanda',
                                 {ativo: true},
                                 {
                                     color: "blue"
@@ -427,7 +443,7 @@
                 this.$store.dispatch("getTipoDemanda", id).then(() => {
                     this.$refs.tipoDemandaDialog
                             .open(
-                                    'Editar um tipo de demanda',
+                                    'Editar um Tipo de Demanda',
                                     this.$store.state.tipodemanda.tipoDemandaView,
                                     {
                                         color: "blue"
@@ -438,7 +454,7 @@
             criarAluno() {
                 this.$refs.alunoDialog
                         .open(
-                                'Adicionar um novo aluno',
+                                'Adicionar um novo Aluno',
                                 {ativo: true},
                                 {
                                     color: "blue"
@@ -449,7 +465,7 @@
                 this.$store.dispatch("getAluno", id).then(() => {
                     this.$refs.alunoDialog
                             .open(
-                                    'Editar um aluno',
+                                    'Editar um Aluno',
                                     this.$store.state.aluno.alunoView,
                                     {
                                         color: "blue"
@@ -460,7 +476,7 @@
             criarProfessor() {
                 this.$refs.usuarioDialog
                         .open(
-                                'Adicionar um novo professor',
+                                'Adicionar um novo Professor',
                                 {professor: true, ativo: true},
                                 {
                                     color: "blue"
@@ -474,7 +490,7 @@
                     usuario.avatar = {avatar};
                     this.$refs.usuarioDialog
                             .open(
-                                    'Editar um professor',
+                                    'Editar um Professor',
                                     usuario,
                                     {
                                         color: "blue"

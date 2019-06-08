@@ -5,14 +5,21 @@
             v-bind:label="label"
             v-bind:name="name"
             v-bind:id="id"
+            v-bind:placeholder="placeholder"
+            v-bind:prepend-inner-icon="prependInnerIcon"
+            v-bind:flat="flat"
+            v-bind:clearable="clearable"
+            v-bind:solo="solo"             
+            v-bind:hide-details="hideDetails"
             v-validate="{required: required }"
-            :error-messages="errors.collect(validations.datavvname)"
-            :data-vv-name="validations.datavvname"
+            :error-messages="errors.collect(validations ? validations.datavvname : 'valor')"
+            :data-vv-name="validations ? validations.datavvname : 'valor'"
             v-bind:value="compValue"
             v-on:keypress="onlyNumber"
             v-on:keyup="emit"
+            v-on:change="emit"
             >
-                
+
             <template v-slot:prepend v-if="ajudaRenda != null">
                 <v-tooltip bottom light color="success">
                     <template v-slot:activator="{ on }">
@@ -20,7 +27,7 @@
                     </template>{{ ajudaRenda.msg }}
                 </v-tooltip>
             </template>
-            
+
         </v-text-field>
     </div>
 </template>
@@ -46,6 +53,30 @@
             id: {
                 type: String,
                 default: ""
+            },
+            placeholder: {
+                type: String,
+                default: ""
+            },
+            prependInnerIcon: {
+                type: String,
+                default: ""
+            },
+            flat: {
+                type: Boolean,
+                default: false
+            },
+            clearable: {
+                type: Boolean,
+                default: false
+            },
+            solo: {
+                type: Boolean,
+                default: false
+            },
+            hideDetails: {
+                type: Boolean,
+                default: false
             },
             validations: {
                 type: Object

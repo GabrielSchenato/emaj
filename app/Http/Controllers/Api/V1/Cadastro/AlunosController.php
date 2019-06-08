@@ -2,10 +2,8 @@
 
 namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
-use Emaj\Criteria\AtivoCriteria;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\AlunoRepository;
-use Illuminate\Support\Facades\Input;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -27,19 +25,6 @@ class AlunosController extends CrudController
     public function __construct(AlunoRepository $repository)
     {
         $this->repository = $repository;
-    }
-    
-    /**
-     * Retorna todos os dados para os autocomplete
-     * 
-     * @return array
-     */
-    public function autocomplete()
-    {
-        $query = Input::get('query');
-        $this->registro = $this->repository->pushCriteria(AtivoCriteria::class)
-                                           ->whereLike('nome_completo', $query, ['id', 'nome_completo']);
-        return $this->registro;
     }
 
 }

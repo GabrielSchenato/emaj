@@ -5,32 +5,34 @@
         @keydown.esc="cancel"
         v-bind:style="{ zIndex: options.zIndex }"
         >
-        <v-card>
-            <v-toolbar dark :color="options.color" dense flat>
-                       <v-toolbar-title class="white--text">{{ formTitle }}</v-toolbar-title>
-            </v-toolbar>
-            <v-card-text>
-                <v-container grid-list-md>
-                    <ficha-triagem-form ref="fichaTriagemForm" v-model="fichaTriagem"></ficha-triagem-form>
-                </v-container>
-            </v-card-text>
-            <v-card-actions class="pt-0">
-                <v-spacer></v-spacer>
-                <v-btn color="green" flat="flat" @click.native="fichaTriagem.id != null ? update() : save()">
-                    Salvar
-                    <v-icon right dark>check</v-icon>
-                </v-btn>
+        <v-form @submit.prevent="fichaTriagem.id != null ? update() : save()">
+            <v-card>
+                <v-toolbar dark :color="options.color" dense flat>
+                           <v-toolbar-title class="white--text">{{ formTitle }}</v-toolbar-title>
+                </v-toolbar>
+                <v-card-text>
+                    <v-container grid-list-md>
+                        <ficha-triagem-form ref="fichaTriagemForm" v-model="fichaTriagem"></ficha-triagem-form>
+                    </v-container>
+                </v-card-text>
+                <v-card-actions class="pt-0">
+                    <v-spacer></v-spacer>
+                    <v-btn color="green" flat="flat" type="submit">
+                        Salvar
+                        <v-icon right dark>check</v-icon>
+                    </v-btn>
 
-                <v-btn color="blue" flat="flat" @click.native="clear" :disabled="fichaTriagem.id != null">
-                    Limpar
-                    <v-icon right dark>delete_sweep</v-icon>
-                </v-btn>
-                <v-btn color="red" flat="flat" @click.native="cancel">
-                    Cancelar
-                    <v-icon right dark>cancel</v-icon>
-                </v-btn>
-            </v-card-actions>
-        </v-card>
+                    <v-btn color="blue" flat="flat" @click.native="clear" :disabled="fichaTriagem.id != null">
+                           Limpar
+                           <v-icon right dark>delete_sweep</v-icon>
+                    </v-btn>
+                    <v-btn color="red" flat="flat" @click.native="cancel">
+                        Cancelar
+                        <v-icon right dark>cancel</v-icon>
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-form>
     </v-dialog>
 </template>
 
@@ -77,7 +79,7 @@
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
-                                    this.fichaTriagem = {};                                    
+                                    this.fichaTriagem = {};
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);
