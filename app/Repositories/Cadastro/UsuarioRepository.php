@@ -18,5 +18,11 @@ use Emaj\Repositories\RepositoryInterface;
  */
 interface UsuarioRepository extends RepositoryInterface
 {
-    //
+
+    /**
+     * Método responsável por buscar os dados e retornar para o autocomplete
+     * 
+     * @param string $value
+     */
+    public function getDataAutocomplete($value);
 }

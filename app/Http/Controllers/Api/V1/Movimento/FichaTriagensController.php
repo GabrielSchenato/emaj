@@ -2,11 +2,16 @@
 
 namespace Emaj\Http\Controllers\Api\V1\Movimento;
 
-use Emaj\Criteria\AlunoCriteria;
+use Emaj\Criteria\AtivoCriteria;
+use Emaj\Criteria\ProfessorCriteria;
 use Emaj\Http\Controllers\CrudController;
+use Emaj\Repositories\Cadastro\AlunoRepository;
+use Emaj\Repositories\Cadastro\ClienteRepository;
+use Emaj\Repositories\Cadastro\TipoDemandaRepository;
+use Emaj\Repositories\Cadastro\UsuarioRepository;
 use Emaj\Repositories\Movimento\FichaTriagemRepository;
 use Emaj\Util\Traits\Report;
-use Illuminate\Http\Request;
+use function request;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -23,6 +28,26 @@ use Illuminate\Http\Request;
 class FichaTriagensController extends CrudController
 {
 
+    /**
+     * @var UsuarioRepository
+     */
+    private $usuarioRepository;
+
+    /**
+     * @var AlunoRepository
+     */
+    private $alunoRepository;
+
+    /**
+     * @var TipoDemandaRepository
+     */
+    private $tipoDemandaRepository;
+
+    /**
+     * @var ClienteRepository
+     */
+    private $clienteRepository;
+
     use Report;
 
     protected $repository;
@@ -33,17 +58,49 @@ class FichaTriagensController extends CrudController
         'aluno:id,nome_completo',
         'professor:id,nome_completo'];
 
-    public function __construct(FichaTriagemRepository $repository)
+    public function __construct(FichaTriagemRepository $repository, ClienteRepository $clienteRepository, TipoDemandaRepository $tipoDemandaRepository, AlunoRepository $alunoRepository, UsuarioRepository $usuarioRepository)
     {
         $this->repository = $repository;
+        $this->clienteRepository = $clienteRepository;
+        $this->tipoDemandaRepository = $tipoDemandaRepository;
+        $this->alunoRepository = $alunoRepository;
+        $this->usuarioRepository = $usuarioRepository;
     }
-    
+
     public function imprimirFichaTriagem()
     {
         $this->nomeRelatorio = 'ficha_triagem';
         $this->nomeRelatorioJasper = 'ficha_triagem';
         $this->titulo = 'Ficha de Triagem';
         return $this->gerarImpressao();
+    }
+
+    /**
+     * Retorna todos os dados para os autocomplete
+     * 
+     * @return array
+     */
+    public function autocomplete()
+    {
+        $this->registro = [];
+        if (strlen($ac = request()->get('nome_cliente')) > 0) {
+            $this->registro = $this->clienteRepository->pushCriteria(AtivoCriteria::class)
+                    ->getDataAutocomplete($ac);
+        }
+        if (strlen($ac = request()->get('nome_tipo_demanda')) > 0) {
+            $this->registro = $this->tipoDemandaRepository->pushCriteria(AtivoCriteria::class)
+                    ->getDataAutocomplete($ac);
+        }
+        if (strlen($ac = request()->get('nome_aluno')) > 0) {
+            $this->registro = $this->alunoRepository->pushCriteria(AtivoCriteria::class)
+                    ->getDataAutocomplete($ac);
+        }
+        if (strlen($ac = request()->get('nome_professor')) > 0) {
+            $this->registro = $this->usuarioRepository->pushCriteria(ProfessorCriteria::class)
+                    ->pushCriteria(AtivoCriteria::class)
+                    ->getDataAutocomplete($ac);
+        }
+        return $this->registro;
     }
 
 }

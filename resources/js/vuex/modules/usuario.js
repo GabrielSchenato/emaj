@@ -13,8 +13,8 @@ export default {
         }
     },
     actions: {
-        getUsuarios(context) {
-            return window.axios.get('usuarios?limit=1500&order=id,desc').then(response => {
+        getUsuarios(context, params) {
+            return window.axios.get('usuarios' + params).then(response => {
                 context.commit('updateUsuariosList', response.data);
             });
         },

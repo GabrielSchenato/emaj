@@ -14,5 +14,10 @@ class TrimStrings extends Middleware
     protected $except = [
         'password',
         'password_confirmation',
+        'nome_cliente',
+        'nome_tipo_demanda',
+        'nome_aluno',
+        'nome_professor',
+        'nacionalidade',
     ];
 }

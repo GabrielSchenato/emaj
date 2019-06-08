@@ -8,28 +8,24 @@
                             <v-btn color="primary" dark @click="adicionar">Adicionar
                                 <v-icon right dark>add</v-icon>
                             </v-btn>
-
                             <usuario-dialog ref="usuarioDialog"></usuario-dialog>
                             <confirm ref="confirm"></confirm>
                             <v-divider class="mx-2" inset vertical></v-divider>
-                            <v-text-field
-                                flat
-                                clearable
-                                solo
-                                prepend-icon="search"
-                                placeholder="Buscar..."
+                            <filter-form
+                                ref="filterForm" 
+                                v-bind:options="complex.headers"
                                 v-model="search"
-                                hide-details
-                                class="hidden-sm-and-down"
-                                ></v-text-field>
+                                >                                    
+                            </filter-form>
                         </v-toolbar>
                         <v-divider></v-divider>
                         <v-card-text class="pa-0">
                             <v-data-table
                                 :headers="complex.headers"
-                                :search="search"
-                                :items="usuarios.data"
-                                :rows-per-page-items="[10,25,50,{text:'Todos','value':-1}]"
+                                :items="usuarios"
+                                :pagination.sync="pagination" 
+                                :total-items="totalUsuarios"
+                                :rows-per-page-items="[10,25,50,100]"
                                 class="elevation-1"
                                 item-key="id"
                                 select-all
@@ -37,7 +33,6 @@
                                 rows-per-page-text="Linhas por página"
                                 no-results-text="Nenhum registro correspondente encontrado"
                                 no-data-text="Não há registros para serem exibidos."
-                                disable-initial-sort
                                 :loading="loading"
                                 >
                                 <template slot="items" slot-scope="props">
@@ -90,23 +85,30 @@
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
     import UsuarioDialog from "@/components/cadastro/dialogs/UsuarioDialog.vue";
+    import FilterForm from "@/components/FilterForm";
 
     export default {
         components: {
             Confirm,
-            UsuarioDialog
+            UsuarioDialog,
+            FilterForm
         },
 
         data: () => ({
                 dialog: false,
-                search: "",
-                loading: false,
+                search: {},
+                loading: true,
+                pagination: {descending: true},
+                usuarios: [],
+                totalUsuarios: 0,
                 complex: {
                     selected: [],
                     headers: [
                         {
                             text: "ID",
-                            value: "id"
+                            value: "id",
+                            filterable: true,
+                            type: 'number'
                         },
                         {
                             text: "Avatar",
@@ -115,27 +117,44 @@
                         },
                         {
                             text: "Nome Completo",
-                            value: "nome_completo"
+                            value: "nome_completo",
+                            filterable: true,
+                            type: 'text',
+                            initial: true
                         },
                         {
                             text: "E-mail",
-                            value: "email"
+                            value: "email",
+                            filterable: true,
+                            type: 'text'
                         },
                         {
                             text: "Telefone",
-                            value: "telefone"
+                            value: "telefone",
+                            filterable: true,
+                            type: 'text',
+                            mask: '(##) #####-####'
                         },
                         {
                             text: "Nível de Permissão",
-                            value: "role"
+                            value: "role",
+                            filterable: true,
+                            type: 'combo',
+                            options: [{text: 'Administrador', value: 'admin'}, {text: 'Secretária', value: 'secretaria'}]
                         },
                         {
                             text: "Professor?",
-                            value: "professor"
+                            value: "professor",
+                            filterable: true,
+                            type: 'combo',
+                            options: [{text: 'Sim', value: 1}, {text: 'Não', value: 0}]
                         },
                         {
                             text: "Ativo?",
-                            value: "ativo"
+                            value: "ativo",
+                            filterable: true,
+                            type: 'combo',
+                            options: [{text: 'Sim', value: 1}, {text: 'Não', value: 0}]
                         },
                         {
                             text: "Ação",
@@ -145,19 +164,27 @@
                     ]
                 }
             }),
+        watch: {
+            params: {
+                handler() {
+                    this.getData();
+                },
+                deep: true
+            }
+        },
         methods: {
             adicionar() {
                 this.$refs.usuarioDialog
                         .open(
-                                'Adicionar um novo usuário',
+                                'Adicionar um novo Usuário',
                                 {ativo: true},
                                 {
                                     color: "blue"
                                 }
                         ).then(confirm => {
-                            if (confirm)
-                               this.$store.dispatch("getUsuarios");
-                        });
+                    if (confirm)
+                        this.getData();
+                });
             },
 
             editar(id) {
@@ -167,15 +194,15 @@
                     usuario.avatar = {avatar};
                     this.$refs.usuarioDialog
                             .open(
-                                    'Editar um usuário',
+                                    'Editar um Usuário',
                                     usuario,
                                     {
                                         color: "blue"
                                     }
                             ).then(confirm => {
-                            if (confirm)
-                               this.$store.dispatch("getUsuarios");
-                        });
+                        if (confirm)
+                            this.getData();
+                    });
                 });
             },
 
@@ -187,32 +214,39 @@
                         .then(confirm => {
                             if (confirm) {
                                 this.$store.dispatch("removeUsuario", item).then(() => {
-                                    this.loading = true;
-                                    this.$store.dispatch("getUsuarios").then(() => {
-                                        this.loading = false;
-                                        window.getApp.$emit("APP_SUCCESS", {msg: 'Deletado com sucesso!', timeout: 2000});
-                                    });
+                                    window.getApp.$emit("APP_SUCCESS", {msg: 'Deletado com sucesso!', timeout: 2000});
+                                    this.getData();
                                 }).catch((resp) => {
                                     let msgErro = '';
-                                    if(resp.response.data.errors)
+                                    if (resp.response.data.errors)
                                         msgErro = resp.response.data.errors
                                     window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
                                 });
                             }
                         });
+            },
+            getData() {
+                this.loading = true;
+                this.$store.dispatch("getUsuarios", this.paginationTable(this.params)).then(() => {
+                    this.usuarios = this.$store.state.usuario.usuarioList.data;
+                    this.totalUsuarios = this.$store.state.usuario.usuarioList.total;
+                    this.loading = false;
+                }).catch((resp) => {
+                    this.loading = false;
+                    let msgErro = '';
+                    if (resp.response.data.errors)
+                        msgErro = resp.response.data.errors;
+                    window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
+                }).finally(() => (this.loading = false));
             }
         },
         computed: {
-            usuarios() {
-                return this.$store.state.usuario.usuarioList;
+            params(nv) {
+                return {
+                    ...this.pagination,
+                    query: this.search
+                };
             }
-
-        },
-        mounted() {
-            this.loading = true;
-            this.$store.dispatch("getUsuarios").then(() => {
-                this.loading = false;
-            });
         }
     };
 </script>

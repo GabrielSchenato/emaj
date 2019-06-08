@@ -13,8 +13,8 @@ export default {
         }
     },
     actions: {
-        getTipoDemandas(context) {
-            return window.axios.get('tipodemandas?limit=1500&order=id,desc').then(response => {
+        getTipoDemandas(context, params) {
+            return window.axios.get('tipodemandas' + params).then(response => {
                 context.commit('updateTipoDemandasList', response.data);
             });
         },

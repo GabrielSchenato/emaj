@@ -13,8 +13,8 @@ export default {
         }
     },
     actions: {
-        getFichaTriagens(context) {
-            return window.axios.get('fichatriagens?limit=1500&order=id,desc').then(response => {
+        getFichaTriagens(context, params) {
+            return window.axios.get('fichatriagens' + params).then(response => {
                 context.commit('updateFichaTriagensList', response.data);
             });
         },

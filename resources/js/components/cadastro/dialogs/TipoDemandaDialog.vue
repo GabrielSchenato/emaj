@@ -5,32 +5,35 @@
         @keydown.esc="cancel"
         v-bind:style="{ zIndex: options.zIndex }"
         >
-        <v-card>
-            <v-toolbar dark :color="options.color" dense flat>
-                       <v-toolbar-title class="white--text">{{ formTitle }}</v-toolbar-title>
-            </v-toolbar>
-            <v-card-text>
-                <v-container grid-list-md>
-                    <tipo-demanda-form ref="tipoDemandaForm" v-model="tipoDemanda"></tipo-demanda-form>
-                </v-container>
-            </v-card-text>
-            <v-card-actions class="pt-0">
-                <v-spacer></v-spacer>
-                <v-btn color="green" flat="flat" @click.native="tipoDemanda.id != null ? update() : save()">
-                    Salvar
-                    <v-icon right dark>check</v-icon>
-                </v-btn>
+        <v-form @submit.prevent="tipoDemanda.id != null ? update() : save()">
+            <v-card>
+                <v-toolbar dark :color="options.color" dense flat>
+                           <v-toolbar-title class="white--text">{{ formTitle }}</v-toolbar-title>
+                </v-toolbar>
 
-                <v-btn color="blue" flat="flat" @click.native="clear">
-                    Limpar
-                    <v-icon right dark>delete_sweep</v-icon>
-                </v-btn>
-                <v-btn color="red" flat="flat" @click.native="cancel">
-                    Cancelar
-                    <v-icon right dark>cancel</v-icon>
-                </v-btn>
-            </v-card-actions>
-        </v-card>
+                <v-card-text>
+                    <v-container grid-list-md>
+                        <tipo-demanda-form ref="tipoDemandaForm" v-model="tipoDemanda"></tipo-demanda-form>
+                    </v-container>
+                </v-card-text>
+                <v-card-actions class="pt-0">
+                    <v-spacer></v-spacer>
+                    <v-btn color="green" flat="flat" type="submit">
+                        Salvar
+                        <v-icon right dark>check</v-icon>
+                    </v-btn>
+
+                    <v-btn color="blue" flat="flat" @click.native="clear">
+                        Limpar
+                        <v-icon right dark>delete_sweep</v-icon>
+                    </v-btn>
+                    <v-btn color="red" flat="flat" @click.native="cancel">
+                        Cancelar
+                        <v-icon right dark>cancel</v-icon>
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-form>
     </v-dialog>
 </template>
 
@@ -57,6 +60,7 @@
                 this.dialog = true;
                 this.formTitle = title;
                 this.tipoDemanda = item;
+                this.$refs.tipoDemandaForm.$validator.reset();
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;
@@ -71,7 +75,7 @@
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
-                                    this.tipoDemanda = {};                                    
+                                    this.tipoDemanda = {};
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);

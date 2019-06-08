@@ -13,8 +13,8 @@ export default {
         }
     },
     actions: {
-        getAlunos(context) {
-            return window.axios.get('alunos?limit=1500&order=id,desc').then(response => {
+        getAlunos(context, params) {
+            return window.axios.get('alunos' + params).then(response => {
                 context.commit('updateAlunosList', response.data);
             });
         },

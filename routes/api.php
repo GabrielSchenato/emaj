@@ -34,16 +34,13 @@ Route::prefix('v1')
         ->middleware('auth')
         ->namespace('Api\V1')
         ->group(function () {
+            Route::get('dashboard/estatisticas', 'DashboardController@estatisticas');
+
+            Route::post('fichatriagens/imprimir-ficha-triagem', 'Movimento\FichaTriagensController@imprimirFichaTriagem');
+            Route::get('fichatriagens/autocomplete', 'Movimento\FichaTriagensController@autocomplete');
             
             Route::get('clientes/autocomplete', 'Cadastro\ClientesController@autocomplete');
-            Route::get('tipodemandas/autocomplete', 'Cadastro\TipoDemandasController@autocomplete');
-            Route::get('usuarios/autocomplete', 'Cadastro\UsuariosController@autocomplete');
-            Route::get('alunos/autocomplete', 'Cadastro\AlunosController@autocomplete');
-            
-            Route::get('dashboard/estatisticas', 'DashboardController@estatisticas');
-            
-            Route::post('fichatriagens/imprimir-ficha-triagem', 'Movimento\FichaTriagensController@imprimirFichaTriagem');
-            
+
             Route::apiResources([
                 'usuarios' => 'Cadastro\UsuariosController',
                 'tipodemandas' => 'Cadastro\TipoDemandasController',
@@ -55,5 +52,4 @@ Route::prefix('v1')
             Route::post('parametrostriagem', 'Cadastro\ParametrosTriagemController@store');
             Route::delete('telefones/{id}', 'Cadastro\TelefonesController@destroy');
             Route::put('telefones/{id}', 'Cadastro\TelefonesController@update');
-            Route::get('nacionalidades', 'Cadastro\NacionalidadesController@index');
         });

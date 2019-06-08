@@ -23,7 +23,7 @@ class TipoDemanda extends Model
     protected $fillable = [
         'nome', 'descricao', 'ativo'
     ];
-    
+
     /**
      * Pega todas as ficha de triagens associados a esse tipo de demanda.
      */
@@ -31,5 +31,4 @@ class TipoDemanda extends Model
     {
         return $this->hasMany(FichaTriagem::class);
     }
-
 }

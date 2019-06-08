@@ -34,6 +34,18 @@ export default {
                     .trim()
                     .split("=")[1];
             return result.replace(/"/g, "");
+        },
+        paginationTable(paramsTable){
+            const sortBy = paramsTable.sortBy ? paramsTable.sortBy : 'id';
+            const descending = paramsTable.descending ? 'desc' : 'asc';
+            const page = '&page=' + paramsTable.page;
+            const rowsPerPage = '?limit=' + paramsTable.rowsPerPage;
+            const order = '&order=' + sortBy + ',' + descending;
+            const field = paramsTable.query.field ? '&' + paramsTable.query.field : '';
+            const value = paramsTable.query.value != null ? '=' + paramsTable.query.value : '';
+            const busca = field && value ? field + value : '';
+
+            return rowsPerPage + page + order + busca;
         }
     }
 };
