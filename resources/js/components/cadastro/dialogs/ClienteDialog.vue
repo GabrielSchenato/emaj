@@ -372,6 +372,7 @@
                 this.$refs.informacoesPessoaisForm.$validator.reset();
                 this.$refs.enderecoForm.$validator.reset();
                 this.$refs.composicaoFamiliarForm.$validator.reset();
+                this.$refs.informacoesPessoaisForm.nacionalidades = item.informacoesPessoais.nacionalidade ? [item.informacoesPessoais.nacionalidade] : [];
                 this.informacoesPessoais = item.informacoesPessoais;
                 this.endereco = item.endereco;
                 this.composicaoFamiliar = item.composicaoFamiliar;

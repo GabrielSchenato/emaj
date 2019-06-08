@@ -57,7 +57,7 @@
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
-            
+
             <v-flex xs12 sm6 md3>
                 <v-text-field
                     name="cliente_representado_assistido_cpf"
@@ -70,7 +70,7 @@
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
-            
+
             <v-flex xs12 sm6 md4>
                 <v-text-field
                     name="cliente_representado_assistido_rg"
@@ -163,7 +163,11 @@
                     name="cliente_nacionalidade_id"
                     id="cliente_nacionalidade_id"
                     :items="nacionalidades"
-                    :filter="customFilter"
+                    :search-input.sync="autocompleteNacionalidades"
+                    :loading="loadingNacionalidades"
+                    hide-no-data
+                    clearable
+                    placeholder="Comece a digitar para pesquisar"
                     item-text="nome"
                     item-value="id"
                     no-data-text="Não há registros para serem exibidos."
@@ -280,7 +284,9 @@
                         nome: 'Viúvo'
 
                     }],
-                nacionalidades: []
+                nacionalidades: [{id: 7, nome: 'Brasileiro'}],
+                loadingNacionalidades: false,
+                autocompleteNacionalidades: null
             };
         },
         watch: {
@@ -289,22 +295,34 @@
                     this.informacoesPessoais = Object.assign({}, this.value);
                 },
                 deep: true
-            }
-        },
-        methods: {
-            customFilter(item, queryText, itemText) {
-                const textOne = item.nome.toLowerCase();
-                //const textTwo = item.abbr.toLowerCase();
-                const searchText = queryText.toLowerCase();
+            },
+            autocompleteNacionalidades: _.debounce(
+                    function autocompleteNacionalidades(busca) {
+                        if (this.informacoesPessoais.nacionalidade_id && busca.length <= 1)
+                        {
+                            this.informacoesPessoais.nacionalidade_id = null;
+                        }
+                        if (busca) {
+                            if (this.loadingNacionalidades)
+                                return;
 
-                return textOne.indexOf(searchText) > -1 /*||
-                 textTwo.indexOf(searchText) > -1*/;
-            }
-        },
-        mounted() {
-            window.axios.get('nacionalidades').then(response => {
-                this.nacionalidades = response.data;
-            });
+                            if (this.informacoesPessoais.nacionalidade_id)
+                                return;
+
+                            this.loadingClientes = true;
+                            window.axios.get(`clientes/autocomplete?nacionalidade=${busca.replace(' ', '%20')}`).then(response => {
+                                this.nacionalidades = response.data;
+                            }).catch(resp => {
+                                let msgErro = '';
+                                if (resp.response.data.errors)
+                                    msgErro = resp.response.data.errors;
+                                window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
+                            }).finally(() => (this.loadingNacionalidades = false));
+                        }
+
+                    },
+                    500,
+                    )
         }
     };
 </script>

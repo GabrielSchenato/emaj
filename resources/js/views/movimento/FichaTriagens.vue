@@ -202,12 +202,9 @@
             }),
         watch: {
             params: {
-                handler: _.debounce(
-                        function handler() {
-                            this.getData();
-                        },
-                        500,
-                        ),
+                handler() {
+                    this.getData();
+                },
                 deep: true
             }
         },
@@ -289,6 +286,9 @@
             }
         },
         mounted() {
+            if (this.$store.state.parametrostriagem.parametrosTriagemView.id != null)
+                return;
+
             this.$store.dispatch("getParametrosTriagem").then(() => {
                 let parametros = Object.assign({}, this.$store.state.parametrostriagem.parametrosTriagemView);
                 if (!parametros.id) {

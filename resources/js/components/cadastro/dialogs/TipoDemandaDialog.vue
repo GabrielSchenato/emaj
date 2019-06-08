@@ -60,6 +60,7 @@
                 this.dialog = true;
                 this.formTitle = title;
                 this.tipoDemanda = item;
+                this.$refs.tipoDemandaForm.$validator.reset();
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;

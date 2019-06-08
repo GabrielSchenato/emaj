@@ -13,8 +13,8 @@ export default {
         }
     },
     actions: {
-        getClientes(context) {
-            return window.axios.get('clientes?limit=1500&order=id,desc').then(response => {
+        getClientes(context, params) {
+            return window.axios.get('clientes' + params).then(response => {
                 context.commit('updateClienteList', response.data);
             });
         },

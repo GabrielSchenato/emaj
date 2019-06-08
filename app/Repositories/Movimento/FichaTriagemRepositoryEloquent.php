@@ -196,7 +196,7 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
             'clientes.nome_completo AS nome_cliente',
             'parte_contrarias.nome_completo AS nome_parte_contraria',
             'tipo_demandas.nome AS nome_tipo_demanda',
-            'alunos.nome_completo AS nome_aluno',
+            'alunos.nome_completo AS nome_aluno'
         ];
         return $this->getBySearch($data)
                         ->leftJoin('clientes', 'ficha_triagens.cliente_id', '=', 'clientes.id')
@@ -245,7 +245,7 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
             });
         }
         if (isset($values['ativo'])) {
-            $criteria->where('ativo', '=', (boolean) $values['ativo']);
+            $criteria->where('ficha_triagens.ativo', '=', (boolean) $values['ativo']);
         }
 
         return $criteria;

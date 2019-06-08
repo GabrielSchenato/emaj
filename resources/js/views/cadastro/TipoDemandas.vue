@@ -138,12 +138,9 @@
             }),
         watch: {
             params: {
-                handler: _.debounce(
-                        function handler() {
-                            this.getData();
-                        },
-                        500,
-                        ),
+                handler() {
+                    this.getData();
+                },
                 deep: true
             }
         },

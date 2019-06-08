@@ -48,15 +48,14 @@ abstract class AbstractRepository extends BaseRepository
      *
      * @param       $field
      * @param       $value
-     * @param array $columns
      *
      * @return mixed
      */
-    public function whereLike($field, $value = null, $columns = ['*'])
+    public function whereLike($field, $value = null)
     {
         $this->applyCriteria();
         $this->applyScope();
-        $model = $this->model->where($field, 'LIKE', "%{$value}%")->get($columns);
+        $model = $this->model->where($field, 'LIKE', "%{$value}%");
         $this->resetModel();
 
         return $this->parserResult($model);

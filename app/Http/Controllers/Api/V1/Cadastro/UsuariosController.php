@@ -76,18 +76,4 @@ class UsuariosController extends CrudController
         return $user;
     }
 
-    /**
-     * Retorna todos os dados para os autocomplete
-     * 
-     * @return array
-     */
-    public function autocomplete()
-    {
-        $query = Input::get('query');
-        $this->registro = $this->repository->pushCriteria(AtivoCriteria::class)
-                                           ->pushCriteria(ProfessorCriteria::class)
-                                           ->whereLike('nome_completo', $query, ['id', 'nome_completo']);
-        return $this->registro;
-    }
-
 }

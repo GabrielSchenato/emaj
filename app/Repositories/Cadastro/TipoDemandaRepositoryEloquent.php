@@ -77,4 +77,17 @@ class TipoDemandaRepositoryEloquent extends AbstractRepository implements TipoDe
         return $criteria;
     }
 
+    /**
+     * Método responsável por buscar os dados e retornar para o autocomplete
+     * 
+     * @param string $value
+     */
+    public function getDataAutocomplete($value)
+    {
+        return $this->whereLike('nome', $value)
+                        ->orderBy('nome', 'asc')
+                        ->limit(10)
+                        ->get(['id', 'nome']);
+    }
+
 }

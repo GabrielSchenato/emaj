@@ -168,7 +168,7 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
             'nome_completo' => ['required', 'min:4', 'max:255', Rule::unique('clientes')->ignore($id)],
         ];
     }
-    
+
     /**
      * Método responsável por o número de pré atendimentos no mês
      * 
@@ -177,8 +177,8 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
     public function getPreAtendimentosMes()
     {
         return $this->pushCriteria(PreAtendimentoCriteria::class)
-                    ->pushCriteria(MesCriteria::class)
-                    ->count();
+                        ->pushCriteria(MesCriteria::class)
+                        ->count();
     }
 
     /**
@@ -194,6 +194,55 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
             return false;
         }
         return true;
+    }
+
+    /**
+     * Método responsável por buscar os dados e retornar para o autocomplete
+     * 
+     * @param string $value
+     */
+    public function getDataAutocomplete($value)
+    {
+        return $this->whereLike('nome_completo', $value)
+                        ->orderBy('nome_completo', 'asc')
+                        ->limit(10)
+                        ->get(['id', 'nome_completo']);
+    }
+
+    /**
+     * Método responsável por realizar a busca pelo valor e campo passado
+     * @param array $values
+     * @return mixed
+     */
+    public function getBySearch(array $values)
+    {
+        $criteria = $this->model->newQuery();
+        if (isset($values['id'])) {
+            $criteria->where('id', '=', (int) $values['id']);
+        }
+        if (isset($values['nome_completo'])) {
+            $criteria->where('nome_completo', 'like', "%{$values['nome_completo']}%");
+        }
+        if (isset($values['cpf'])) {
+            $criteria->where('cpf', 'like', "%{$values['cpf']}%");
+        }
+        if (isset($values['rg'])) {
+            $criteria->where('rg', 'like', "%{$values['rg']}%");
+        }
+        if (isset($values['renda'])) {
+            $criteria->where('renda', 'like', "%{$values['renda']}%");
+        }
+        if (isset($values['representado_assistido'])) {
+            $criteria->where('representado_assistido', 'like', "%{$values['representado_assistido']}%");
+        }
+        if (isset($values['ativo'])) {
+            $criteria->where('ativo', '=', (boolean) $values['ativo']);
+        }
+        if (isset($values['created_at'])) {
+            $criteria->where('created_at', 'like', "{$values['created_at']}%");
+        }
+
+        return $criteria;
     }
 
 }

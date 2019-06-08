@@ -23,11 +23,26 @@
                     clearable
                     solo              
                     hide-details
+                    :mask='mask(search.field)'
+                    return-masked-value
                     placeholder="Buscar..."
                     v-model="search.value"
                     class="hidden-sm-and-down"
-                    @input="$emit('input', search)"
+                    @input="emit"
                     ></v-text-field>
+            </v-flex>
+
+            <v-flex xs12 sm6 md8 v-if="type(search.field) == 'money'">
+                <vuetify-money
+                    prepend-inner-icon="search"
+                    flat
+                    clearable
+                    solo              
+                    hide-details
+                    v-model="search.value"
+                    placeholder="Buscar..."
+                    @input="emit"
+                    />
             </v-flex>
 
             <v-flex xs12 sm6 md8 v-else-if="type(search.field) == 'number'">
@@ -41,7 +56,7 @@
                     placeholder="Buscar..."
                     v-model="search.value"
                     class="hidden-sm-and-down"
-                    @input="$emit('input', search)"
+                    @input="emit"
                     ></v-text-field>
             </v-flex>
 
@@ -53,7 +68,7 @@
                     hide-details
                     v-model="search.value"
                     :items="optionsCombo(search.field)"
-                    @change="$emit('input', search)"
+                    @change="emit"
                     ></v-select>
             </v-flex>
 
@@ -82,7 +97,7 @@
                         v-model="search.value"
                         @change="menu = false"
                         locale="pt-br"
-                        @input="$emit('input', search)"
+                        @input="emit"
                         ></v-date-picker>
                 </v-menu>
             </v-flex>
@@ -138,10 +153,19 @@
             optionsCombo(field) {
                 return this.options.find(campo => campo.value === field).options;
             },
+            mask(field) {
+                return this.options.find(campo => campo.value === field).mask ? this.options.find(campo => campo.value === field).mask : '';
+            },
             clearData() {
                 this.search.value = null;
                 this.$emit('input', this.search);
-            }
+            },
+            emit: _.debounce(
+                    function emit() {
+                        this.$emit('input', this.search);
+                    },
+                    500,
+                    )
         }
     };
 </script>
