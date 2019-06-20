@@ -14,6 +14,7 @@
                     <v-container grid-list-md>
                         <aluno-form ref="alunoForm" v-model="aluno"></aluno-form>
                     </v-container>
+                    <small>*Indica os campos que são obrigatórios</small>
                 </v-card-text>
                 <v-card-actions class="pt-0">
                     <v-spacer></v-spacer>

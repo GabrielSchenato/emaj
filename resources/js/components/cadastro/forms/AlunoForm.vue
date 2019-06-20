@@ -91,6 +91,7 @@
                 @input="$emit('input', aluno)"
                 item-value="id"
                 item-text="nome"
+                clearable
                 ></v-select>
         </v-flex>
 
@@ -115,6 +116,7 @@
                 @input="$emit('input', aluno)"
                 item-value="id"
                 item-text="nome"
+                clearable
                 ></v-select>
         </v-flex>
 
@@ -128,6 +130,7 @@
                 @input="$emit('input', aluno)"
                 item-value="id"
                 item-text="nome"
+                clearable
                 ></v-select>
         </v-flex>
 
@@ -136,7 +139,7 @@
                 name="aluno_observacoes"
                 id="aluno_observacoes"
                 v-model="aluno.observacoes"
-                label="Observacoes"
+                label="Observações"
                 @input="$emit('input', aluno)"
                 ></v-text-field>
         </v-flex> 

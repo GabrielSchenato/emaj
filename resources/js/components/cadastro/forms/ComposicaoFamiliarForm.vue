@@ -37,6 +37,7 @@
                     :items="tipoCasa"
                     item-value="id"
                     item-text="nome"
+                    clearable
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-select>
             </v-flex>
@@ -118,11 +119,9 @@
                     name="composicao_familiar_outros_bens"
                     id="composicao_familiar_outros_bens"
                     v-model="composicaoFamiliar.outros_bens"
-                    :label="'Outros Bens' + this.getConfig().asterisco"
-                    v-validate="{required: this.getConfig().required }"
+                    label="Outros Bens"
                     :error-messages="errors.collect('outros bens')"
                     data-vv-name="outros bens"
-                    required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
             </v-flex>
@@ -132,11 +131,9 @@
                     name="composicao_familiar_dividas"
                     id="composicao_familiar_dividas"
                     v-model="composicaoFamiliar.dividas"
-                    :label="'Dívidas' + this.getConfig().asterisco"
-                    v-validate="{required: this.getConfig().required }"
+                    label="Dívidas"
                     :error-messages="errors.collect('dívidas')"
                     data-vv-name="dívidas"
-                    required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
             </v-flex>
@@ -146,11 +143,9 @@
                     name="composicao_familiar_despesas"
                     id="composicao_familiar_despesas"
                     v-model="composicaoFamiliar.despesas"
-                    :label="'Despesas' + this.getConfig().asterisco"
-                    v-validate="{required: this.getConfig().required }"
+                    label="Despesas"
                     :error-messages="errors.collect('despesas')"
                     data-vv-name="despesas"
-                    required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
             </v-flex>
@@ -161,7 +156,7 @@
                     name="composicao_familiar_valor_patrimonio"
                     id="composicao_familiar_valor_patrimonio"
                     v-model="composicaoFamiliar.valor_patrimonio"
-                    :label="'Valor do Patrimônio' + this.getConfig().asterisco"
+                    label="Valor do Patrimônio"
                     v-bind:validations="validationsPatrimonio"
                     @input="$emit('input', composicaoFamiliar)"
                     />

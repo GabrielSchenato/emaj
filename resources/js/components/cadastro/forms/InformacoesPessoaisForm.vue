@@ -138,6 +138,7 @@
                     data-vv-name="sexo"
                     item-value="id"
                     item-text="nome"
+                    clearable
                     @input="$emit('input', informacoesPessoais)"
                     ></v-select>
             </v-flex>
@@ -154,6 +155,7 @@
                     data-vv-name="estado civil"
                     item-value="id"
                     item-text="nome"
+                    clearable
                     @input="$emit('input', informacoesPessoais)"
                     ></v-select>
             </v-flex>

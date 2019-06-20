@@ -3,7 +3,7 @@
 @section('title', __('Início'))
 
 @section('content')
-<div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap js-fullheight background-01" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
@@ -57,7 +57,7 @@
     	<div class="container-fluid">
     		<div class="row d-flex">
     			<div class="col-md-6 d-flex">
-    				<div class="img d-flex align-self-stretch align-items-center justify-content-center" style="background-image:url(images/bg_2.jpg);">
+    				<div class="img d-flex align-self-stretch align-items-center justify-content-center background-02">
     				</div>
     			</div>
     			<div class="col-md-6 px-5 py-5">

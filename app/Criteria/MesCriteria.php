@@ -29,7 +29,7 @@ class MesCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        $model = $model->whereRaw('EXTRACT(MONTH FROM created_at) = EXTRACT(MONTH FROM now())' );
+        $model = $model->whereRaw('EXTRACT(YEAR_MONTH  FROM created_at) = EXTRACT(YEAR_MONTH  FROM now())' );
         return $model;
     }
 }
