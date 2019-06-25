@@ -117,7 +117,7 @@ where
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="14" isBold="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{protocolo}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[IF($F{protocolo} != null,$F{protocolo},"")]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="220" y="30" width="303" height="30" uuid="7d21fb4a-e689-4181-86f1-10b129d2a1f1"/>

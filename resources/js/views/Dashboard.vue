@@ -5,16 +5,16 @@
                 <!-- mini statistic start -->
                 <v-flex lg3 sm6 xs12>
                     <mini-statistic
-                        icon="fa fa-users"
-                        :title="estatisticas.usuarios"
-                        sub-title="Usuários"
+                        icon="fa fa-graduation-cap"
+                        :title="estatisticas.alunos"
+                        sub-title="Alunos"
                         color="grey darken-1"      
                         >
                     </mini-statistic>  
                 </v-flex>
                 <v-flex lg3 sm6 xs12>
                     <mini-statistic
-                        icon="people_outline"
+                        icon="fa fa-users"
                         :title="estatisticas.clientes"
                         sub-title="Clientes"
                         color="grey darken-2"      
@@ -23,9 +23,9 @@
                 </v-flex>          
                 <v-flex lg3 sm6 xs12>
                     <mini-statistic
-                        icon="record_voice_over"
-                        :title="estatisticas.preAtendimentosMes"
-                        sub-title="Pré-atendimentos Mês"
+                        icon="fa fa-user"
+                        :title="estatisticas.parteContrarias"
+                        sub-title="Parte Contrárias"
                         color="grey darken-3"      
                         >
                     </mini-statistic>            

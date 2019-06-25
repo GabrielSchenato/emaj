@@ -27,6 +27,20 @@ interface FichaTriagemRepository extends RepositoryInterface
     public function getTop5DemandasMaisAtendidas();
 
     /**
+     * Método responsável por retornar o número de clientes
+     * 
+     * @return array
+     */
+    public function getNumeroClientes();
+
+    /**
+     * Método responsável por retornar o número de parte contrárias
+     * 
+     * @return array
+     */
+    public function getNumeroParteContrarias();
+
+    /**
      * Método responsável por o número de atendimentos no mês
      * 
      * @return int

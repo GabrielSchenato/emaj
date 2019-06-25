@@ -43,7 +43,7 @@ class TipoDemandaRepositoryEloquent extends AbstractRepository implements TipoDe
     public static function getRules($data)
     {
         return [
-            'nome' => 'required|min:5|max:50'
+            'nome' => 'required|min:5|max:255'
         ];
     }
 

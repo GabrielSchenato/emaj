@@ -163,6 +163,32 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
                 ->get();
         return $top5DemandasMaisAtendidas;
     }
+    
+    /**
+     * Método responsável por retornar o número de clientes
+     * 
+     * @return array
+     */
+    public function getNumeroClientes()
+    {
+        $numeroClientes = DB::table('ficha_triagens')
+                ->distinct('cliente_id')
+                ->count('cliente_id');
+        return $numeroClientes;
+    }
+    
+    /**
+     * Método responsável por retornar o número de parte contrárias
+     * 
+     * @return array
+     */
+    public function getNumeroParteContrarias()
+    {
+        $numeroParteContrarias = DB::table('ficha_triagens')
+                ->distinct('parte_contraria_id')
+                ->count('parte_contraria_id');
+        return $numeroParteContrarias;
+    }
 
     /**
      * Método responsável por o número de atendimentos no mês

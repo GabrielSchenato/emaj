@@ -16,16 +16,16 @@
                     <v-icon>fiber_manual_record</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
-                    Adaptação (Cadastro) Removida a obrigatoriedade dos campos "Outros Bens", "Dívidas", "Despesas" e "Valor do Patrimônio" no cadastro de Clientes
+                    Adaptação (Movimento) Aplicada melhoria na listagem de Ficha de Triagens, destacando de vermelho o nome da Parte Contrária
                 </v-list-tile-content>
-            </v-list-tile>     
+            </v-list-tile>    
             
             <v-list-tile>
                 <v-list-tile-action>
                     <v-icon>fiber_manual_record</v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
-                    Adaptação (Movimento) Aplicada melhoria na listagem de Ficha de Triagens, destacando de vermelho o nome da Parte Contrária
+                    Adaptação (Dashboard) Aplicada melhoria na Dashboard, destando a quantidade de "Alunos", "Clientes", "Parte Contrárias" e "Atendimentos Mês"
                 </v-list-tile-content>
             </v-list-tile>             
 
