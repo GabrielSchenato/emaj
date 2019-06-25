@@ -101,7 +101,6 @@
                         {
                             text: "Nome Completo",
                             value: "nome_completo",
-
                             filterable: true,
                             type: 'text',
                             initial: true
@@ -111,30 +110,25 @@
                             value: "cpf",
                             filterable: true,
                             type: 'text',
-                            initial: true,
                             mask: '###.###.###-##'
                         },
                         {
                             text: "RG",
                             value: "rg",
                             filterable: true,
-                            type: 'text',
-                            initial: true,
-                            mask: '#.###.###'
+                            type: 'text'
                         },
                         {
                             text: "Renda",
                             value: "renda",
                             filterable: true,
-                            type: 'money',
-                            initial: true
+                            type: 'money'
                         },
                         {
                             text: "Representado/Assistido",
                             value: "representado_assistido",
                             filterable: true,
-                            type: 'text',
-                            initial: true
+                            type: 'text'
                         },
                         {
                             text: "Ativo?",
