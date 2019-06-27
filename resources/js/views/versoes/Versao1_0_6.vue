@@ -1,8 +1,8 @@
 <template>
     <v-card class="card--flex-toolbar">
         <v-toolbar card prominent>
-            <v-toolbar-title class="body-6 black--text">v1.0.5</v-toolbar-title>
-            <v-toolbar-title class="body-1 grey--text"><small>27 de Junho de 2019</small></v-toolbar-title>                      
+            <v-toolbar-title class="body-6 black--text">v1.0.6</v-toolbar-title>
+            <v-toolbar-title class="body-1 grey--text"><small>28 de Junho de 2019</small></v-toolbar-title>                      
             <v-spacer></v-spacer>
         </v-toolbar>
         <v-divider></v-divider>
@@ -54,19 +54,14 @@
 
 <script>
     export default {
-        name: "versao1_0_5",
+        name: "versao1_0_6",
         computed: {
             alteracoesPortal() {
                 return [
                     {
                         icon: 'fiber_manual_record',
                         color: 'black',
-                        text: 'Adaptação (Movimento): Aplicada melhoria na listagem de Ficha de Triagens, destacando de vermelho o nome da Parte Contrária'
-                    },
-                    {
-                        icon: 'fiber_manual_record',
-                        color: 'black',
-                        text: 'Adaptação (Dashboard): Aplicada melhoria na Dashboard, destando a quantidade de "Alunos", "Clientes", "Parte Contrárias" e "Atendimentos Mês"'
+                        text: 'Adaptação (Alterações): Aplicada melhoria na listagem de alterações da plataforma'
                     }
                 ];
             },

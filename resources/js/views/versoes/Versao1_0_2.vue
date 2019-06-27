@@ -10,55 +10,43 @@
 
             <h3 class="font-weight-thin font-italic">Portal</h3>
             <v-divider></v-divider>
-            <v-list-tile>
-                <v-list-tile-action>
-                    <v-icon>fiber_manual_record</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
-                    Correção (Cadastro) Aplicada correção nos campos "Renda", "Renda Familiar" e "Valor Patrimônio", corrigindo dessa forma o campo moeda no cadastro do "Cliente"
-                </v-list-tile-content>
-            </v-list-tile>    
-            
-            <v-list-tile>
-                <v-list-tile-action>
-                    <v-icon>fiber_manual_record</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
-                    Adaptação (Movimento) Removido a obrigatoriedade dos campos "Tipo de Demanda" e "Tipo de Status". Habilitado também o campo "Protocolo" para editação na ação de editar na tela de "Ficha de Triagem"
-                </v-list-tile-content>
-            </v-list-tile> 
-            
-            <v-list-tile>
-                <v-list-tile-action>
-                    <v-icon>fiber_manual_record</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
-                    Adaptação (Movimento) Adicionado o campo "Professor" na tela de "Ficha de Triagem"
-                </v-list-tile-content>
-            </v-list-tile> 
-            
-            <v-list-tile>
-                <v-list-tile-action>
-                    <v-icon>fiber_manual_record</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
-                    Adaptação (Cadastro) Adicionado o campo "CPF Representado/Assistido" e "RG Representado/Assistido" na tela de cadastro de "Cliente"
-                </v-list-tile-content>
-            </v-list-tile> 
-            
-            <v-list-tile>
-                <v-list-tile-action>
-                    <v-icon>fiber_manual_record</v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
-                    Adaptação (Movimento) Aplicada diversas modificações na impressão da "Ficha de Triagem", incluindo novos campos e layout melhorado
-                </v-list-tile-content>
-            </v-list-tile> 
-           
+            <br>
+
+            <v-flex sm12>
+                <div slot="widget-content">
+                    <ol class="timeline timeline-activity timeline-point-sm timeline-content-right" style="position: inherit">
+                        <li class="timeline-block" v-for="(item, index) in alteracoesPortal" :key="index">
+                            <div class="timeline-point">
+                                <v-icon :color="item.color">{{ item.icon }}</v-icon>
+                            </div>
+                            <div class="timeline-content">
+                                <div v-html="item.text"></div>
+                            </div>
+                        </li>
+                    </ol>              
+                </div>        
+            </v-flex>       
+
             <br>
 
             <h3 class="font-weight-thin font-italic">Institucional</h3>
-            <v-divider></v-divider>         
+            <v-divider></v-divider>      
+            <br>
+
+            <v-flex sm12>
+                <div slot="widget-content">
+                    <ol class="timeline timeline-activity timeline-point-sm timeline-content-right" style="position: inherit">
+                        <li class="timeline-block" v-for="(item, index) in alteracoesInstitucional" :key="index">
+                            <div class="timeline-point">
+                                <v-icon :color="item.color">{{ item.icon }}</v-icon>
+                            </div>
+                            <div class="timeline-content">
+                                <div v-html="item.text"></div>
+                            </div>
+                        </li>
+                    </ol>              
+                </div>        
+            </v-flex>       
 
         </v-card-text>
     </v-card>    
@@ -66,6 +54,40 @@
 
 <script>
     export default {
-        name: "versao1_0_2"
+        name: "versao1_0_2",
+        computed: {
+            alteracoesPortal() {
+                return [
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Correção (Cadastro): Aplicada correção nos campos "Renda", "Renda Familiar" e "Valor Patrimônio", corrigindo dessa forma o campo moeda no cadastro do "Cliente"'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Movimento): Removido a obrigatoriedade dos campos "Tipo de Demanda" e "Tipo de Status". Habilitado também o campo "Protocolo" para editação na ação de editar na tela de "Ficha de Triagem"'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Movimento): Adicionado o campo "Professor" na tela de "Ficha de Triagem"'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Cadastro): Adicionado o campo "CPF Representado/Assistido" e "RG Representado/Assistido" na tela de cadastro de "Cliente"'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Movimento): Aplicada diversas modificações na impressão da "Ficha de Triagem", incluindo novos campos e layout melhorado'
+                    }
+                ];
+            },
+            alteracoesInstitucional() {
+                return [];
+            }
+        }
     };
 </script>
