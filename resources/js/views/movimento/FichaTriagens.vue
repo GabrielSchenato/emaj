@@ -135,7 +135,7 @@
                 search: {},
                 loading: false,
                 parametrosTriagem: true,
-                pagination: {descending: true},
+                pagination: {descending: true, sortBy: 'id'},
                 fichaTriagens: [],
                 totalFichaTriagens: 0,
                 complex: {

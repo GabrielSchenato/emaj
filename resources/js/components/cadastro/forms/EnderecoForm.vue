@@ -172,7 +172,7 @@
                                 if (self.endereco.id) {
                                     endereco.id = self.endereco.id;
                                 }
-                                self.endereco = _.mapValues(endereco, _.method('toUpperCase'));
+                                self.endereco = _.mapValues(endereco, function(s){ return _.isString(s) ? s.toUpperCase() : s; });
                             }
                     );
                     self.buscandoCep = false;
