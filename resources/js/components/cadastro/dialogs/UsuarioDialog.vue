@@ -14,6 +14,7 @@
                     <v-container grid-list-md>
                         <usuario-form ref="usuarioForm" v-model="usuario"></usuario-form>
                     </v-container>
+                    <small>*Indica os campos que são obrigatórios</small>
                 </v-card-text>
                 <v-card-actions class="pt-0">
                     <v-spacer></v-spacer>
@@ -22,7 +23,7 @@
                         <v-icon right dark>check</v-icon>
                     </v-btn>
 
-                    <v-btn color="blue" flat="flat" @click.native="clear">
+                    <v-btn color="blue" flat="flat" @click.native="clear" :disabled="usuario.id != null">
                         Limpar
                         <v-icon right dark>delete_sweep</v-icon>
                     </v-btn>

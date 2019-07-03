@@ -277,44 +277,45 @@
                 }
             }),
         methods: {
-            getConfig() {                
+            getConfig() {
                 return {
                     required: this.required(),
                     asterisco: this.asterisco()
                 };
             },
-            required(){
-                if(this.informacoesPessoais.parte_contraria){
+            required() {
+                if (this.informacoesPessoais.parte_contraria) {
                     return false;
-                }else if(this.informacoesPessoais.pre_atendimento){
+                } else if (this.informacoesPessoais.pre_atendimento) {
                     return false;
                 }
                 return true;
             },
-            asterisco(){
-                if(this.informacoesPessoais.parte_contraria){
+            asterisco() {
+                if (this.informacoesPessoais.parte_contraria) {
                     return '';
-                }else if(this.informacoesPessoais.pre_atendimento){
+                } else if (this.informacoesPessoais.pre_atendimento) {
                     return '';
                 }
                 return '*';
             },
             informacoesPessoaisContinue() {
-                let valido = true;
+                let isValidForm = true;
                 this.$refs.informacoesPessoaisForm.$refs.moneyRenda.required = this.getConfig().required;
                 this.$refs.informacoesPessoaisForm.$validator
                         .validateAll()
                         .then(valid => {
-                             valido = valid;
-                              this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.validate('renda')
-                                    .then(valid => {
-                                        valido = valid;
+                            isValidForm = valid;
+                            this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.validate('renda')
+                                    .then(isValidRenda => {
+
+                                        if (!isValidForm || !isValidRenda)
+                                            return;
+
+                                        this.step = 2;
+                                        this.erroInformacoesPessoais = false;
                                     });
-                            if(!valido){
-                                return;
-                            }
-                            this.step = 2;
-                            this.erroInformacoesPessoais = false;
+
                         });
             },
             enderecoContinue() {
@@ -326,28 +327,25 @@
                 });
             },
             composicaoFamiliarContinue() {
-                let valido = true;
+                let isValidForm = true;
+                let isValidValorPatrimonio = true;
+
                 this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.required = this.getConfig().required;
                 this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.required = this.getConfig().required;
                 this.$refs.composicaoFamiliarForm.$validator.validateAll().then(valid => {
-                    valido = valid;
-                    
+                    isValidForm = valid;
+
                     this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.validate('valor do patrimônio')
-                              .then(valid => {
-                                  valido = valid;
-                    });
-                    
-                    this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.validate('renda familiar')
-                              .then(valid => {
-                                  valido = valid;
-                    });                    
-                    
-                    if(!valido){
-                        return;
-                    }                 
-                    this.step = 4;
-                    this.erroComposicaoFamiliar = false;
-                    
+                            .then(valid => {
+                                isValidValorPatrimonio = valid;
+                                this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.validate('renda familiar')
+                                        .then(isValidRendaFamiliar => {
+                                            if (!isValidForm || !isValidValorPatrimonio || !isValidRendaFamiliar)
+                                                return;
+                                            this.step = 4;
+                                            this.erroComposicaoFamiliar = false;
+                                        });
+                            });
                 });
             },
             informacoesPessoaisClear() {
@@ -370,8 +368,11 @@
                 this.erroComposicaoFamiliar = false;
                 this.erroTelefones = false;
                 this.$refs.informacoesPessoaisForm.$validator.reset();
+                this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.reset();
                 this.$refs.enderecoForm.$validator.reset();
                 this.$refs.composicaoFamiliarForm.$validator.reset();
+                this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.reset();
+                this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.reset();
                 this.$refs.informacoesPessoaisForm.nacionalidades = item.informacoesPessoais.nacionalidade ? [item.informacoesPessoais.nacionalidade] : [{id: 7, nome: 'Brasileiro'}];
                 this.informacoesPessoais = item.informacoesPessoais;
                 this.endereco = item.endereco;
@@ -403,7 +404,7 @@
                                 this.endereco = {};
                                 this.composicaoFamiliar = {};
                                 this.telefones = [];
-                                this.step = 1;                                
+                                this.step = 1;
                                 window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                             }).catch((resp) => {
                         this.addErrors(resp);
@@ -514,7 +515,7 @@
                         this.$refs.enderecoForm.$validator.errors.add({field: 'estado', msg: resp.response.data.errors.endereco.uf});
                     }
                 }
-                
+
                 if (resp.response.data.errors.composicaoFamiliar) {
                     this.step = 3;
                     this.erroComposicaoFamiliar = true;
@@ -539,8 +540,8 @@
                 }
             },
             validaTelefones() {
-                
-                if ( this.required() && this.telefones.length == 0) {
+
+                if (this.required() && this.telefones.length == 0) {
                     this.step = 4;
                     this.erroTelefones = true;
                     throw 'É necessário inserir pelo menos um telefone!';

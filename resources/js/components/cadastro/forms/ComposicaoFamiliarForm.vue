@@ -37,6 +37,7 @@
                     :items="tipoCasa"
                     item-value="id"
                     item-text="nome"
+                    clearable
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-select>
             </v-flex>
@@ -122,7 +123,6 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('outros bens')"
                     data-vv-name="outros bens"
-                    required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
             </v-flex>
@@ -136,7 +136,6 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('dívidas')"
                     data-vv-name="dívidas"
-                    required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
             </v-flex>
@@ -150,7 +149,6 @@
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('despesas')"
                     data-vv-name="despesas"
-                    required
                     @input="$emit('input', composicaoFamiliar)"
                     ></v-text-field>
             </v-flex>

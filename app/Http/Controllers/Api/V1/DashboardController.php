@@ -24,19 +24,14 @@ class DashboardController extends Controller
 {
 
     /**
+     * @var \Emaj\Repositories\Cadastro\AlunoRepository
+     */
+    private $alunoRepository;
+
+    /**
      * @var FichaTriagemRepositoryEloquent
      */
     private $fichaTriagemRepository;
-
-    /**
-     * @var ClienteRepositoryEloquent
-     */
-    private $clienteRepository;
-
-    /**
-     * @var UsuarioRepositoryEloquent
-     */
-    private $usuarioRepository;
 
     /**
      * Variável com as estatísticas
@@ -44,26 +39,25 @@ class DashboardController extends Controller
      */
     private $registro;
 
-    public function __construct(UsuarioRepositoryEloquent $usuarioRepository, ClienteRepositoryEloquent $clienteRepository, FichaTriagemRepositoryEloquent $fichaTriagemRepository)
+    public function __construct(\Emaj\Repositories\Cadastro\AlunoRepository $alunoRepository, FichaTriagemRepositoryEloquent $fichaTriagemRepository)
     {
-        $this->usuarioRepository = $usuarioRepository;
-        $this->clienteRepository = $clienteRepository;
         $this->fichaTriagemRepository = $fichaTriagemRepository;
+        $this->alunoRepository = $alunoRepository;
     }
 
     public function estatisticas()
     {
         $this->registro = [
-            'usuarios' => (string) $this->usuarioRepository->count(),
-            'clientes' => (string) $this->clienteRepository->count(),
+            'alunos' => (string) $this->alunoRepository->count(),
+            'clientes' => (string) $this->fichaTriagemRepository->getNumeroClientes(),
+            'parteContrarias' => (string) $this->fichaTriagemRepository->getNumeroParteContrarias(),
             'atendimentosMes' => (string) $this->fichaTriagemRepository->getAtendimentosMes(),
-            'preAtendimentosMes' => (string) $this->clienteRepository->getPreAtendimentosMes(),
             'top5DemandasMaisAtendidas' => $this->fichaTriagemRepository->getTop5DemandasMaisAtendidas()
         ];
         return response()->json([
-                        'status' => 'success',
-                        'data' => $this->registro
-                            ], 200);
+                    'status' => 'success',
+                    'data' => $this->registro
+                        ], 200);
     }
 
 }

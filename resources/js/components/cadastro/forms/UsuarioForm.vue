@@ -88,6 +88,7 @@
                 item-value="id"
                 item-text="nome"
                 :disabled="$auth.user().role == 'secretaria' && usuario.role == 'admin'"
+                clearable
                 ></v-select>
         </v-flex>
 

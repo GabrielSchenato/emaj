@@ -22,7 +22,6 @@
                     id="ficha_triagem_protocolo"
                     v-model="fichaTriagem.protocolo"
                     label="Protocolo*"
-                    mask="#####/##"
                     return-masked-value
                     :error-messages="errors.collect('protocolo')"
                     data-vv-name="protocolo"

@@ -44,7 +44,7 @@ class EnderecoRepositoryEloquent extends AbstractRepository implements EnderecoR
         return [
             'cep' => 'required',
             'logradouro' => 'required|max:100',
-            'bairro' => 'required|max:50',
+            'bairro' => 'required|max:255',
             'numero' => 'required|numeric',
             'localidade' => 'required|max:50',
             'uf' => 'required|max:2',

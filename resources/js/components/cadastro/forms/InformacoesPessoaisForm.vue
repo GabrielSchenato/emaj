@@ -77,7 +77,6 @@
                     id="cliente_representado_assistido_rg"
                     v-model="informacoesPessoais.representado_assistido_rg"
                     label="RG Representado/Assistido"
-                    mask="#.###.###"
                     return-masked-value
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
@@ -107,7 +106,6 @@
                     :error-messages="errors.collect('RG')"
                     :label="'RG' + this.getConfig().asterisco"
                     data-vv-name="RG"
-                    mask="#.###.###"
                     return-masked-value
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
@@ -138,6 +136,7 @@
                     data-vv-name="sexo"
                     item-value="id"
                     item-text="nome"
+                    clearable
                     @input="$emit('input', informacoesPessoais)"
                     ></v-select>
             </v-flex>
@@ -154,6 +153,7 @@
                     data-vv-name="estado civil"
                     item-value="id"
                     item-text="nome"
+                    clearable
                     @input="$emit('input', informacoesPessoais)"
                     ></v-select>
             </v-flex>

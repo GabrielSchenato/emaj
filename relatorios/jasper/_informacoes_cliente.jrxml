@@ -258,7 +258,7 @@ end]]>
 					<textFieldExpression><![CDATA["<b>CPF: </b>" + IF($F{cpf} != null,$F{cpf},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="115" y="44" width="80" height="15" uuid="3983c14a-476e-4dd9-adfb-24c669dbaf92"/>
+					<reportElement x="115" y="44" width="135" height="15" uuid="3983c14a-476e-4dd9-adfb-24c669dbaf92"/>
 					<box leftPadding="3">
 						<pen lineWidth="1.0"/>
 						<topPen lineWidth="1.0"/>
@@ -272,7 +272,7 @@ end]]>
 					<textFieldExpression><![CDATA["<b>RG: </b>" + IF($F{rg} != null,$F{rg},"")]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="195" y="44" width="277" height="15" uuid="769cd2f5-0c2f-4647-a878-1ba2e6c63d42">
+					<reportElement x="250" y="44" width="222" height="15" uuid="769cd2f5-0c2f-4647-a878-1ba2e6c63d42">
 						<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					</reportElement>
 					<box leftPadding="3">
