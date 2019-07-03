@@ -62,6 +62,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Alterações): Aplicada melhoria na listagem de alterações da plataforma'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Correção (Padrão): Aplicada correção quando fica muito tempo sem acessar a plataforma, e ao entrar não carregava os dados'
                     }
                 ];
             },

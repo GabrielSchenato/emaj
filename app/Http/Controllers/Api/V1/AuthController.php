@@ -3,12 +3,13 @@
 namespace Emaj\Http\Controllers\Api\V1;
 
 use Emaj\Http\Controllers\Controller;
-use Emaj\Repositories\Cadastro\UserRepository;
 use Emaj\Repositories\Cadastro\UsuarioRepository;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -22,7 +23,6 @@ use Illuminate\Validation\Rule;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.0.0
  */
-
 class AuthController extends Controller
 {
 
@@ -53,7 +53,13 @@ class AuthController extends Controller
         if ($token = $this->guard()->attempt($credentials)) {
             return response()->json(['status' => 'success'], 200)->header('Authorization', $token);
         }
-        return response()->json(['status' => 'error', 'errors' => ['message' => 'E-mail ou senha inválidos, tente novamente!', 'email' => '', 'password' => '']], 401);
+        return response()
+                        ->json(
+                                ['status' => 'error',
+                                    'errors' => [
+                                        'message' => 'E-mail ou senha inválidos, tente novamente!',
+                                        'email' => '',
+                                        'password' => '']], 401);
     }
 
     public function logout()
@@ -95,12 +101,17 @@ class AuthController extends Controller
 
     public function refresh()
     {
-        if ($token = $this->guard()->refresh()) {
-            return response()
-                            ->json(['status' => 'successs'], 200)
-                            ->header('Authorization', $token);
+        try {
+            if ($token = $this->guard()->refresh()) {
+                return response()
+                                ->json(['status' => 'success'], 200)
+                                ->header('Authorization', $token);
+            }
+        } catch (TokenExpiredException $ex) {
+            return response()->json(['error' => 'Token de acesso expirado, faça o login novamente.'], 401);
+        } catch (Exception $ex) {
+            return response()->json(['error' => 'Erro ao atualizar o token de acesso!'], 401);
         }
-        return response()->json(['error' => 'Erro ao atualizar o token de acesso!'], 401);
     }
 
     private function guard()
