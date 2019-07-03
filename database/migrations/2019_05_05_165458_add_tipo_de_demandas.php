@@ -64,7 +64,7 @@ class AddTipoDeDemandas extends Migration
             ['nome' => 'Retificação de Registro Civil', 'descricao' => null, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
             ['nome' => 'Revisional de Alimentos', 'descricao' => null, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
             ['nome' => 'Revisional de Contrato', 'descricao' => null, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['nome' => 'Usucapitão', 'descricao' => null, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['nome' => 'Usucapião', 'descricao' => null, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
                 ]
         );
     }
