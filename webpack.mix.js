@@ -64,6 +64,5 @@ mix.scripts([
     'resources/institucional/js/jquery.animateNumber.min.js',
     'resources/institucional/js/bootstrap-datepicker.js',
     'resources/institucional/js/scrollax.min.js',
-    //'resources/institucional/js/google-map.js',
     'resources/institucional/js/main.js'
 ], 'public/js/institucional.js');

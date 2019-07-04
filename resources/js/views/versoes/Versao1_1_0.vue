@@ -62,16 +62,22 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Padrão): Aplicada melhoria na tela de Login da plataforma'
+                    }
+                ];
+            },
+            alteracoesInstitucional() {
+                return [
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Institucional): Aplicada melhoria na logo da Uniplac e do EMAJ'
                     },
                     {
                         icon: 'fiber_manual_record',
                         color: 'black',
-                        text: 'Adaptação (Institucional): Aplicada melhoria na logo da Uniplac e do EMAJ na página Institucional'
-                    },
+                        text: 'Evolução (Institucional): Criada página Contato'
+                    }
                 ];
-            },
-            alteracoesInstitucional() {
-                return [];
             }
         }
     };

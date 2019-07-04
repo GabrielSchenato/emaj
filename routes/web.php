@@ -23,6 +23,7 @@ Route::namespace('Institucional')
             Route::get('/sobre', 'SobreController')->name('institucional.sobre');
             Route::get('/como-funciona', 'ComoFuncionaController')->name('institucional.como_funciona');
             Route::get('/contato', 'ContatoController')->name('institucional.contato');
+            Route::post('/contato-enviar', 'ContatoController@contatoEnviar')->name('institucional.contato_enviar');
 });
 
 
