@@ -9,8 +9,7 @@
                 <v-layout row wrap>
                     <v-flex xs12 sm6 md1>
                         <v-text-field
-                            name="parametros_triagem_id"
-                            id="id"
+                            name="id"
                             v-model="parametrosTriagem.id"
                             label="ID"
                             disabled
@@ -18,16 +17,15 @@
                             ></v-text-field>
                     </v-flex>     
                     <v-flex xs12 sm6 md4>
-                    <vuetify-money
-                        ref="moneyRenda"
-                        name="parametros_triagem_renda"
-                        id="parametros_triagem_renda"
-                        v-model="parametrosTriagem.renda"
-                        label="Renda*"
-                        v-bind:validations="validations"
-                        @input="$emit('input', parametrosTriagem)"
-                        v-bind:ajudaRenda="ajudaRenda"
-                        />
+                        <vuetify-money
+                            ref="moneyRenda"
+                            name="renda"
+                            v-model="parametrosTriagem.renda"
+                            label="Renda*"
+                            v-bind:validations="validations"
+                            @input="$emit('input', parametrosTriagem)"
+                            v-bind:ajudaRenda="ajudaRenda"
+                            />
                     </v-flex>
                 </v-layout>
             </v-form>

@@ -62,6 +62,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Padrão): Aplicada melhoria na tela de Login da plataforma'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Evolução (Cadastro): Criado no cadastro do aluno uma nova aba "Clientes", onde é possível visualizar todos os clientes em que o aluno está vinculado'
                     }
                 ];
             },

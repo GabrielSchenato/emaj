@@ -20,11 +20,24 @@ use Emaj\Repositories\Cadastro\AlunoRepository;
 class AlunosController extends CrudController
 {
 
+    /**
+     * @var \Emaj\Repositories\Cadastro\ClienteRepository
+     */
+    private $clienteRepository;
     protected $repository;
 
-    public function __construct(AlunoRepository $repository)
+    public function __construct(AlunoRepository $repository, \Emaj\Repositories\Cadastro\ClienteRepository $clienteRepository)
     {
         $this->repository = $repository;
+        $this->clienteRepository = $clienteRepository;
+    }
+
+    public function show($id)
+    {
+        $this->registro = $this->repository->find($id);
+        $this->registro['clientes'] = $this->clienteRepository
+                ->getClientesByAluno($id, ['clientes.*', 'ficha_triagens.created_at as data_vinculo']);
+        return $this->registro;
     }
 
 }

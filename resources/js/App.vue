@@ -45,7 +45,7 @@
       multi-line
       :color="snackbar.color"
       v-model="snackbar.show"
-      v-bind:style="{ zIndex: 1001 }"
+      v-bind:style="{ zIndex: 2000 }"
     >
       <v-icon dark>{{ snackbar.icon }}</v-icon>
         <div id="text-snackbar">&nbsp; {{ snackbar.text }}</div>
