@@ -34,13 +34,21 @@ class Aluno extends Model
         'observacoes',
         'ativo',
     ];
-    
+
     /**
      * Pega todas as Ficha de Triagens associados ao aluno.
      */
     public function ficha_triagens_aluno()
     {
         return $this->hasMany(FichaTriagem::class, 'aluno_id');
+    }
+
+    /**
+     * Pega todas as avaliações associadas ao aluno.
+     */
+    public function avaliacoes()
+    {
+        return $this->hasMany(Avaliacao::class, 'aluno_id')->orderBy('id', 'desc');
     }
 
 }

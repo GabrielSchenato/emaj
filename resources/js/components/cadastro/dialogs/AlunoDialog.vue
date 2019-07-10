@@ -18,12 +18,12 @@
                 </v-toolbar>
                 <v-card-text>
                     <v-card><v-form @submit.prevent="aluno.id != null ? update() : save()">
-                        <v-toolbar card prominent extended color="primary" dark extension-height="15px">
-                            <v-toolbar-title class="headline"></v-toolbar-title>
-                            <v-spacer></v-spacer>
-                        </v-toolbar>
-                        <v-card-text>
-                           
+                            <v-toolbar card prominent extended color="primary" dark extension-height="15px">
+                                <v-toolbar-title class="headline"></v-toolbar-title>
+                                <v-spacer></v-spacer>
+                            </v-toolbar>
+                            <v-card-text>
+
                                 <v-container grid-list-md>
                                     <v-layout wrap>
                                         <v-flex xs12>
@@ -42,85 +42,88 @@
                                                         :editable="aluno.id != null && aluno.clientes.length > 0"
                                                         edit-icon="fa fa-users"
                                                         >Clientes
-                                                    </v-stepper-step>
-                                                    <v-divider></v-divider>
-                                                    <v-stepper-step
-                                                        step="3"
-                                                        :complete="aluno.id != null"
-                                                        :editable="aluno.id != null"
-                                                        edit-icon="playlist_add_check"
-                                                        >Avaliações
-                                                    </v-stepper-step>
-                                                    <v-divider></v-divider>
-                                                </v-stepper-header>
-                                                <v-stepper-items>
-                                                    <v-stepper-content step="1">
+                                                </v-stepper-step>
+                                                <v-divider></v-divider>
+                                                <v-stepper-step
+                                                    step="3"
+                                                    :complete="aluno.id != null"
+                                                    :editable="aluno.id != null"
+                                                    edit-icon="playlist_add_check"
+                                                    >Avaliações
+                                            </v-stepper-step>
+                                            <v-divider></v-divider>
+                                        </v-stepper-header>
+                                        <v-stepper-items>
+                                            <v-stepper-content step="1">
+                                                <v-card>
+                                                    <v-card-text>
                                                         <v-card>
                                                             <v-card-text>
-                                                                <v-card>
-                                                                    <v-card-text>
-                                                                        <v-container grid-list-md>
-                                                                            <v-layout wrap>
-                                                                                
-                                                                                <aluno-form 
-                                                                                    ref="alunoForm"
-                                                                                    v-model="aluno"
-                                                                                    ></aluno-form>
-                                                                                
-                                                                            </v-layout>
-                                                                        </v-container>
-                                                                        <small>*Indica os campos que são obrigatórios</small>
-                                                                    </v-card-text>
-                                                                </v-card>
+                                                                <v-container grid-list-md>
+                                                                    <v-layout wrap>
+
+                                                                        <aluno-form 
+                                                                            ref="alunoForm"
+                                                                            v-model="aluno"
+                                                                            ></aluno-form>
+
+                                                                    </v-layout>
+                                                                </v-container>
+                                                                <small>*Indica os campos que são obrigatórios</small>
                                                             </v-card-text>
                                                         </v-card>
-                                                    </v-stepper-content>
-                                                    <v-stepper-content step="2">
-                                                        <clientes-table v-model="aluno.clientes"></clientes-table>
-                                                    </v-stepper-content>
-                                                    <v-stepper-content step="3">
+                                                    </v-card-text>
+                                                </v-card>
+                                            </v-stepper-content>
+                                            <v-stepper-content step="2">
+                                                <clientes-table v-model="aluno.clientes"></clientes-table>
+                                            </v-stepper-content>
+                                            <v-stepper-content step="3">
+                                                <avaliacoes-table v-model="aluno.avaliacoes" v-bind:idAluno="aluno.id"></avaliacoes-table>
+                                            </v-stepper-content>
+                                        </v-stepper-items>
+                                    </v-stepper>
+                                </v-flex>
+                            </v-layout>
+                        </v-container>
 
-                                                    </v-stepper-content>
-                                                </v-stepper-items>
-                                            </v-stepper>
-                                        </v-flex>
-                                    </v-layout>
-                                </v-container>
-                         
-                        </v-card-text>
-                        <v-card-actions class="pt-0">
-                            <v-spacer></v-spacer>
+                    </v-card-text>
+                    <v-card-actions class="pt-0">
+                        <v-spacer></v-spacer>
 
-                            <v-btn color="green" flat="flat" type="submit">
-                                   Salvar
-                                   <v-icon right dark>check</v-icon>
-                            </v-btn>
+                        <v-btn color="green" flat="flat" type="submit">
+                            Salvar
+                            <v-icon right dark>check</v-icon>
+                        </v-btn>
 
-                            <v-btn color="blue" flat="flat" @click.native="clear" :disabled="aluno.id != null">
-                                   Limpar
-                                   <v-icon right dark>delete_sweep</v-icon>
-                            </v-btn>
+                        <v-btn color="blue" flat="flat" @click.native="clear" :disabled="aluno.id != null">
+                               Limpar
+                               <v-icon right dark>delete_sweep</v-icon>
+                        </v-btn>
 
-                            <v-btn color="red" flat="flat" @click.native="cancel">
-                                Cancelar
-                                <v-icon right dark>cancel</v-icon>
-                            </v-btn>
-                        </v-card-actions>
-                            </v-form>
-                    </v-card>
-                </v-card-text>
+                        <v-btn color="red" flat="flat" @click.native="cancel">
+                            Cancelar
+                            <v-icon right dark>cancel</v-icon>
+                        </v-btn>
+                    </v-card-actions>
+                </v-form>
             </v-card>
-        </v-dialog>
-    </v-layout>
+        </v-card-text>
+    </v-card>
+</v-dialog>
+</v-layout>
 </template>
 
 <script>
     import AlunoForm from "@/components/cadastro/forms/AlunoForm.vue";
     import ClientesTable from "@/components/cadastro/tables/ClientesTable.vue";
+    import AvaliacoesTable from "@/components/cadastro/tables/AvaliacoesTable.vue";
+
     export default {
         components: {
             AlunoForm,
-            ClientesTable
+            ClientesTable,
+            AvaliacoesTable
         },
         data: () => ({
                 aluno: {},

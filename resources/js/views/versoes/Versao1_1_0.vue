@@ -67,6 +67,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Evolução (Cadastro): Criado no cadastro do aluno uma nova aba "Clientes", onde é possível visualizar todos os clientes em que o aluno está vinculado'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Evolução (Cadastro): Criado no cadastro do aluno uma nova aba "Avaliações", onde é possível criar avaliações dos atendimentos dos alunos'
                     }
                 ];
             },

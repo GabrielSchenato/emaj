@@ -30,7 +30,7 @@
                     >
                     <template slot="items" slot-scope="props">
                         <td>{{ props.item.dados_cliente }}</td>
-                        <td>{{ props.item.data_vinculo | formataData }}</td>
+                        <td>{{ props.item.data_vinculo | formataDataHora }}</td>
                         <td>
                         <v-btn depressed outline icon fab dark color="blue" small>
                             <v-icon @click="showCliente(props.item.id)">visibility</v-icon>
@@ -49,14 +49,12 @@
 </template>
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
-    import TelefoneDialog from "@/components/cadastro/dialogs/TelefoneDialog.vue";
     import ClienteDialog from "@/components/cadastro/dialogs/ClienteDialog.vue";
 
     export default {
         name: "clientes-table",
         components: {
             Confirm,
-            TelefoneDialog,
             ClienteDialog
         },
         props: {
@@ -85,7 +83,7 @@
                         }
                     ]
                 },
-                items: [],
+                items: []
             };
         },
         created() {

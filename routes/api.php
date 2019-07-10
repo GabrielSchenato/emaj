@@ -40,16 +40,19 @@ Route::prefix('v1')
             Route::get('fichatriagens/autocomplete', 'Movimento\FichaTriagensController@autocomplete');
             
             Route::get('clientes/autocomplete', 'Cadastro\ClientesController@autocomplete');
+            Route::get('alunos/autocomplete', 'Cadastro\AlunosController@autocomplete');
 
             Route::apiResources([
                 'usuarios' => 'Cadastro\UsuariosController',
                 'tipodemandas' => 'Cadastro\TipoDemandasController',
                 'clientes' => 'Cadastro\ClientesController',
                 'alunos' => 'Cadastro\AlunosController',
+                'avaliacoes' => 'Cadastro\AvaliacoesController',
                 'fichatriagens' => 'Movimento\FichaTriagensController'
             ]);
             Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');
             Route::post('parametrostriagem', 'Cadastro\ParametrosTriagemController@store');
             Route::delete('telefones/{id}', 'Cadastro\TelefonesController@destroy');
             Route::put('telefones/{id}', 'Cadastro\TelefonesController@update');
+            Route::get('avaliacoes-aluno/{id}', 'Cadastro\AvaliacoesController@avaliacoesAluno');
         });
