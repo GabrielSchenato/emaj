@@ -59,7 +59,7 @@
 
                 <template>
                     <object
-                        class="view-pdf"
+                        class="preview-attachment"
                         :type="attachmentPreview.mimetype"
                         :data="attachmentPreview.data"
                         ></object>
@@ -365,7 +365,7 @@
     .v-list__tile--link:hover .v-icon{
         color: #FFFFFFFF!important;
     }
-    .view-pdf {
+    .preview-attachment {
         width: 100%;
         height: 100%;
     }

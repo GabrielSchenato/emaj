@@ -47,7 +47,7 @@ class AvaliacaoArquivo extends Model
     {
         return $this->attributes['nome'] . '.' . $this->attributes['extensao'];
     }
-    
+
     protected function getTamanhoArquivoAttribute()
     {
         return $this->formatBytes($this->attributes['tamanho']);
@@ -68,9 +68,8 @@ class AvaliacaoArquivo extends Model
             $suffixes = array(' bytes', ' KB', ' MB', ' GB', ' TB');
 
             return round(pow(1024, $base - floor($base)), $precision) . $suffixes[floor($base)];
-        } else {
-            return $size;
         }
+        return $size;
     }
 
 }
