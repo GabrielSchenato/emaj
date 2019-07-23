@@ -58,4 +58,12 @@ class Avaliacao extends Model
         return $this->belongsTo(Usuario::class, 'avaliador_id');
     }
 
+    /**
+     * Pega todos os arquivos anexados a essa avaliação.
+     */
+    public function avaliacao_arquivos()
+    {
+        return $this->hasMany(AvaliacaoArquivo::class, 'avaliacao_id');
+    }
+
 }

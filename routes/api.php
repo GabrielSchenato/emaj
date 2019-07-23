@@ -48,6 +48,7 @@ Route::prefix('v1')
                 'clientes' => 'Cadastro\ClientesController',
                 'alunos' => 'Cadastro\AlunosController',
                 'avaliacoes' => 'Cadastro\AvaliacoesController',
+                'avaliacaoarquivos' => 'Cadastro\AvaliacaoArquivosController',
                 'fichatriagens' => 'Movimento\FichaTriagensController'
             ]);
             Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');
@@ -55,4 +56,5 @@ Route::prefix('v1')
             Route::delete('telefones/{id}', 'Cadastro\TelefonesController@destroy');
             Route::put('telefones/{id}', 'Cadastro\TelefonesController@update');
             Route::get('avaliacoes-aluno/{id}', 'Cadastro\AvaliacoesController@avaliacoesAluno');
+            Route::get('avaliacaoarquivos/download/{id}', 'Cadastro\AvaliacaoArquivosController@download');
         });

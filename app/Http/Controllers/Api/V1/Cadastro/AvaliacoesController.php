@@ -24,7 +24,8 @@ class AvaliacoesController extends CrudController
     protected $relationships = [
         'avaliador:id,nome_completo',
         'ficha_triagem:id,cliente_id,parte_contraria_id,tipo_demanda_id,protocolo,numero_processo,created_at',
-        'ficha_triagem.cliente:id,nome_completo,representado_assistido,cpf,rg,renda'];
+        'ficha_triagem.cliente:id,nome_completo,representado_assistido,cpf,rg,renda',
+        'avaliacao_arquivos:id,nome,mimetype,extensao,tamanho,avaliacao_id'];
     protected $repository;
 
     public function __construct(AvaliacaoRepository $repository)

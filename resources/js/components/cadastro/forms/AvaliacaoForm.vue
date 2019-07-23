@@ -97,13 +97,18 @@
 
         <v-card class="mb-4" v-if="avaliacao.id != null">
             <v-toolbar color="blue-grey darken-3" dark flat dense cad>
-                <v-toolbar-title class="subheading">Anexos</v-toolbar-title>
+                <v-toolbar-title class="subheading">Anexos <small class="font-weight-bold font-italic font">(Tamanho máximo permitido: 10MB)</small></v-toolbar-title>
                 <v-spacer></v-spacer>
+                <v-toolbar-items class="hidden-sm-and-down">
+                    <v-btn fab dark color="blue-grey darken-1" @click.native="$refs.avaliacaoArquivoForm.abreTelaAdicionarArquivo">
+                        <v-icon dark>add</v-icon>
+                    </v-btn>
+                </v-toolbar-items>
             </v-toolbar>
             <v-divider></v-divider>
             <v-card-text class="">   
                 <v-layout wrap>
-
+                    <avaliacao-arquivo-form ref="avaliacaoArquivoForm" :idAvaliacao="avaliacao.id" :arquivos="avaliacao.avaliacao_arquivos"></avaliacao-arquivo-form>
                 </v-layout>
             </v-card-text>       
         </v-card>
@@ -112,8 +117,12 @@
 </template>
 <script>
     import moment from 'moment'
+    import AvaliacaoArquivoForm from "@/components/cadastro/forms/AvaliacaoArquivoForm.vue";
     export default {
         name: "avaliacao-form",
+        components: {
+            AvaliacaoArquivoForm
+        },
         props: {
             value: {
                 type: [Object]

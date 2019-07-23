@@ -72,6 +72,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Evolução (Cadastro): Criado no cadastro do aluno uma nova aba "Avaliações", onde é possível criar avaliações dos atendimentos dos alunos'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Evolução (Cadastro): Criado no cadastro do aluno na ação de editar na aba "Avaliações" um novo campo "Anexos", onde é possível inserir arquivos com tamanho máximo de 10MB vinculado com as avaliações dos atendimentos dos alunos'
                     }
                 ];
             },
