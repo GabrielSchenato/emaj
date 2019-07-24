@@ -48,7 +48,6 @@
                             v-model="menu"
                             :close-on-content-click="false"
                             :nudge-right="40"      
-                            :return-value.sync="avaliacao.data"
                             lazy
                             transition="scale-transition"
                             offset-y
@@ -57,8 +56,7 @@
                             >
                             <template v-slot:activator="{ on }">
                                 <v-text-field
-                                    v-model="dataFormatada"
-                                    @blur="avaliacao.data = parseDate(dataFormatada)"
+                                    :value="data"
                                     label="Data*"
                                     readonly
                                     clearable
@@ -135,9 +133,13 @@
                 loadingFichaTriagens: false,
                 autocompleteFichaTriagens: null,
                 menu: false,
-                max: moment().format('YYYY-MM-DD'),
-                dataFormatada: moment(this.value.data).format('L')
+                max: moment().format('YYYY-MM-DD')
             };
+        },
+        computed: {
+            data() {
+                return this.avaliacao.data ? moment(this.avaliacao.data).format('L') : '';
+            }
         },
         watch: {
             value: {
@@ -145,9 +147,6 @@
                     this.avaliacao = Object.assign({}, this.value);
                 },
                 deep: true
-            },
-            'avaliacao.data': function () {
-                this.dataFormatada = moment(this.value.data).format('L');
             },
             autocompleteFichaTriagens: _.debounce(
                     function autocompleteFichaTriagens(busca) {
@@ -176,14 +175,6 @@
                     },
                     500,
                     )
-        },
-        methods: {
-            parseDate(date) {
-                if (!date)
-                    return null;
-
-                return moment(date, 'L').format('YYYY-MM-DD');
-            }
         }
     };
 </script>

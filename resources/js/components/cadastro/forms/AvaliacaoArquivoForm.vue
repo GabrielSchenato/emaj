@@ -117,7 +117,10 @@
                 required: true
             },
             arquivos: {
-                type: [Array]
+                type: [Array],
+                default: (() => {
+                    return [];
+                })
             }
         },
         data() {
@@ -148,6 +151,7 @@
                 this.$refs.input.value = [];
                 if (this.errorFiles.length > 0) {
                     this.errorDialog = true;
+                    this.resetData();
                     return;
                 }
                 this.submit();
@@ -163,13 +167,14 @@
                     }.bind(this)
                 };
                 axios.post('avaliacaoarquivos', this.data, config)
-                        .then((response) => {
+                        .then((resp) => {
                             window.getApp.$emit("APP_SUCCESS", {msg: 'Anexo(s) enviado com sucesso!', timeout: 4500});
-                            for (var i = 0; i < response.data.length; i++) {
-                                this.arquivos.push(response.data[i]);
+                            for (var i = 0; i < resp.data.length; i++) {
+                                this.arquivos.push(resp.data[i]);
                             }
                             this.resetData();
                         }).catch((resp) => {
+                    this.resetData();
                     let msgErro = '';
                     if (resp.response.data.errors)
                         msgErro = resp.response.data.errors;
@@ -238,7 +243,7 @@
                             };
                         });
             },
-            closePreview(){
+            closePreview() {
                 this.preview = false;
                 this.attachmentPreview = null;
             },
@@ -306,8 +311,8 @@
                 }
                 return false;
             },
-            canPreview(type){
-                if(this.checkIsImage(type) == 'image/*' || this.checkIsPdf(type)
+            canPreview(type) {
+                if (this.checkIsImage(type) == 'image/*' || this.checkIsPdf(type)
                         || this.checkIsPlainText(type))
                     return true;
                 return false;
