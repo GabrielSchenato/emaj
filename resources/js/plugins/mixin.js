@@ -8,14 +8,14 @@ export default {
                 data: data
             }).then(response => {
                 const blob = new Blob([response.data], {
-                    type: response.data.type
+                    type: response.headers["content-type"]
                 });
                 const url = window.URL.createObjectURL(blob);
                 const link = document.createElement("a");
                 link.href = url;
                 const contentDisposition =
                         response.headers["content-disposition"];
-                let fileName = "unknown";
+                let fileName = "erro_ao_gerar_arquivo";
                 if (contentDisposition) {
                     fileName = this.getFileNameFromHttpResponse(
                             contentDisposition
