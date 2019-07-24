@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
 
+    protected $appends = ['dados_cliente'];
     protected $fillable = [
         'pre_atendimento',
         'nome_completo',
@@ -61,7 +62,7 @@ class Cliente extends Model
     {
         return $this->hasMany(Telefone::class);
     }
-    
+
     /**
      * Pega todas as Ficha de Triagens associados ao cliente.
      */
@@ -69,7 +70,7 @@ class Cliente extends Model
     {
         return $this->hasMany(FichaTriagem::class, 'cliente_id');
     }
-    
+
     /**
      * Pega todas as Ficha de Triagens associados ao cliente parte contrária.
      */
@@ -84,6 +85,26 @@ class Cliente extends Model
     public function nacionalidade()
     {
         return $this->belongsTo(Nacionalidade::class);
+    }
+
+    protected function getDadosClienteAttribute()
+    {
+        $string = '';
+        $string .= $this->attributes['nome_completo'];
+        $string .= ' (' . $this->attributes['id'] . ')';
+        if (isset($this->attributes['representado_assistido'])) {
+            $string .= ' - Representado/Assistido: ' . $this->attributes['representado_assistido'];
+        }
+        if (isset($this->attributes['cpf'])) {
+            $string .= ' - CPF: ' . $this->attributes['cpf'];
+        }
+        if (isset($this->attributes['rg'])) {
+            $string .= ' - RG: ' . $this->attributes['rg'];
+        }
+        if (isset($this->attributes['renda'])) {
+            $string .= ' - Renda: R$' . number_format($this->attributes['renda'], 2, ',', '.');
+        }
+        return $string;
     }
 
 }

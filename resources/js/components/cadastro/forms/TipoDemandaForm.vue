@@ -2,8 +2,7 @@
     <v-layout wrap>
         <v-flex xs12 sm6 md2>
             <v-text-field
-                name="tipo_demanda_id"
-                id="tipo_demanda_id"
+                name="id"
                 v-model="tipoDemanda.id"
                 label="ID"
                 disabled
@@ -13,8 +12,7 @@
 
         <v-flex xs12 sm6 md4>
             <v-text-field
-                name="tipo_demanda_nome"
-                id="tipo_demanda_nome"
+                name="nome"
                 v-model="tipoDemanda.nome"
                 label="Nome*"
                 v-validate="'required'"
@@ -27,8 +25,7 @@
 
         <v-flex xs12 sm6 md5>
             <v-text-field
-                name="tipo_demanda_descricao"
-                id="tipo_demanda_descricao"
+                name="descricao"
                 v-model="tipoDemanda.descricao"
                 label="Descrição"
                 @input="$emit('input', tipoDemanda)"
@@ -37,8 +34,7 @@
 
         <v-flex xs12 sm6 md1>
             <v-checkbox
-                name="tipo_demanda_ativo"
-                id="tipo_demanda_ativo"
+                name="ativo"
                 v-model="tipoDemanda.ativo"
                 label="Ativo?"
                 @change="$emit('input', tipoDemanda)"

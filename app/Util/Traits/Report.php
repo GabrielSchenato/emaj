@@ -81,7 +81,9 @@ trait Report
         )->execute();
 
         $file = $output . '.' . $formato;
-
+        
+        ob_end_clean();        
+        
         return response()->download($file, $this->nomeRelatorio() . '.' . $formato, [])->deleteFileAfterSend(true);
     }
 

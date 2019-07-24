@@ -4,7 +4,6 @@
             v-model="modValue"
             v-bind:label="label"
             v-bind:name="name"
-            v-bind:id="id"
             v-bind:placeholder="placeholder"
             v-bind:prepend-inner-icon="prependInnerIcon"
             v-bind:flat="flat"

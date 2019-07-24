@@ -4,6 +4,10 @@ namespace Emaj\Providers;
 
 use Emaj\Repositories\Cadastro\AlunoRepository;
 use Emaj\Repositories\Cadastro\AlunoRepositoryEloquent;
+use Emaj\Repositories\Cadastro\AvaliacaoArquivoRepository;
+use Emaj\Repositories\Cadastro\AvaliacaoArquivoRepositoryEloquent;
+use Emaj\Repositories\Cadastro\AvaliacaoRepository;
+use Emaj\Repositories\Cadastro\AvaliacaoRepositoryEloquent;
 use Emaj\Repositories\Cadastro\ClienteRepository;
 use Emaj\Repositories\Cadastro\ClienteRepositoryEloquent;
 use Emaj\Repositories\Cadastro\ComposicaoFamiliarRepository;
@@ -54,6 +58,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(NacionalidadeRepository::class, NacionalidadeRepositoryEloquent::class);
         $this->app->bind(FichaTriagemRepository::class, FichaTriagemRepositoryEloquent::class);
         $this->app->bind(AlunoRepository::class, AlunoRepositoryEloquent::class);
+        $this->app->bind(AvaliacaoRepository::class, AvaliacaoRepositoryEloquent::class);
+        $this->app->bind(AvaliacaoArquivoRepository::class, AvaliacaoArquivoRepositoryEloquent::class);
     }
 
 }

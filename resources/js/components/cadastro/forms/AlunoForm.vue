@@ -2,8 +2,7 @@
     <v-layout wrap>
         <v-flex xs12 sm6 md2>
             <v-text-field
-                name="aluno_id"
-                id="aluno_id"
+                name="id"
                 v-model="aluno.id"
                 label="ID"
                 disabled
@@ -13,8 +12,7 @@
 
         <v-flex xs12 sm6 md5>
             <v-text-field
-                name="aluno_nome_completo"
-                id="aluno_nome_completo"
+                name="nome_completo"
                 v-model="aluno.nome_completo"
                 label="Nome Completo*"
                 v-validate="'required'"
@@ -27,8 +25,7 @@
 
         <v-flex xs12 sm6 md5>
             <v-text-field
-                name="aluno_email"
-                id="aluno_email"
+                name="email"
                 v-model="aluno.email"
                 label="E-mail"
                 :error-messages="errors.collect('e-mail')"
@@ -39,8 +36,7 @@
 
         <v-flex xs12 sm6 md2>
             <v-text-field
-                name="aluno_celular"
-                id="aluno_celular"
+                name="celular"
                 v-model="aluno.celular"
                 label="Celular"
                 mask="(##) #####-####"
@@ -51,8 +47,7 @@
 
         <v-flex xs12 sm6 md2>
             <v-text-field
-                name="aluno_telefone"
-                id="aluno_telefone"
+                name="telefone"
                 v-model="aluno.telefone"
                 label="Telefone"
                 mask="(##) ####-####"
@@ -63,8 +58,7 @@
 
         <v-flex xs12 sm6 md1>
             <v-text-field
-                name="aluno_fase"
-                id="aluno_fase"
+                name="fase"
                 v-model="aluno.fase"
                 label="Fase"
                 @input="$emit('input', aluno)"
@@ -73,8 +67,7 @@
 
         <v-flex xs12 sm6 md2>
             <v-text-field
-                name="aluno_matricula"
-                id="aluno_matricula"
+                name="matricula"
                 v-model="aluno.matricula"
                 label="Matricula"
                 @input="$emit('input', aluno)"
@@ -83,8 +76,7 @@
 
         <v-flex xs12 sm6 md2>
             <v-select
-                name="aluno_disciplina"
-                id="aluno_disciplina"
+                name="disciplina"
                 :items="disciplinas"
                 label="Disciplina"
                 v-model="aluno.disciplina"
@@ -97,8 +89,7 @@
 
         <v-flex xs12 sm6 md1>
             <v-text-field
-                name="aluno_ano"
-                id="aluno_ano"
+                name="ano"
                 v-model="aluno.ano"
                 label="Ano"
                 type="number"
@@ -108,8 +99,7 @@
 
         <v-flex xs12 sm6 md2>
             <v-select
-                name="aluno_semestres"
-                id="aluno_semestres"
+                name="semestres"
                 :items="semestres"
                 label="Semestre"
                 v-model="aluno.semestre"
@@ -122,8 +112,7 @@
 
         <v-flex xs12 sm6 md2>
             <v-select
-                name="aluno_turno"
-                id="aluno_turno"
+                name="turno"
                 :items="turnos"
                 label="Turno"
                 v-model="aluno.turno"
@@ -136,8 +125,7 @@
 
         <v-flex xs12 sm6 md9>
             <v-text-field
-                name="aluno_observacoes"
-                id="aluno_observacoes"
+                name="observacoes"
                 v-model="aluno.observacoes"
                 label="Observações"
                 @input="$emit('input', aluno)"
@@ -146,8 +134,7 @@
 
         <v-flex xs12 sm6 md1>
             <v-checkbox
-                name="aluno_ativo"
-                id="aluno_ativo"
+                name="ativo"
                 v-model="aluno.ativo"
                 label="Ativo?"
                 @change="$emit('input', aluno)"

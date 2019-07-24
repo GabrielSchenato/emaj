@@ -43,8 +43,8 @@
                                     <td>{{ props.item.nome }}</td>
                                     <td>{{ props.item.descricao }}</td>
                                     <td>{{ props.item.ativo | formataAtivo }}</td>
-                                    <td>{{ props.item.created_at | formataData }}</td>
-                                    <td>{{ props.item.updated_at | formataData }}</td>
+                                    <td>{{ props.item.created_at | formataDataHora }}</td>
+                                    <td>{{ props.item.updated_at | formataDataHora }}</td>
                                     <td>
                                     <v-btn depressed outline icon fab dark color="primary" small>
                                         <v-icon @click="editar(props.item.id)">edit</v-icon>
@@ -158,7 +158,6 @@
                         this.getData();
                 });
             },
-
             editar(id) {
                 this.$store.dispatch("getTipoDemanda", id).then(() => {
                     this.$refs.tipoDemandaDialog
