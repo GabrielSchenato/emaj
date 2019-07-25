@@ -20,7 +20,16 @@
                         Sobre
                     </a>
                 </li>
-                <li class="nav-item {{ request()->routeIs('institucional.como_funciona') ? 'active' : '' }}">
+                <li class="nav-item
+                    {{
+                        request()->routeIs('institucional.como_funciona') ||
+                        request()->routeIs('institucional.outras_informacoes') ||
+                        request()->routeIs('institucional.sobre_emaj') ||
+                        request()->routeIs('institucional.requisitos_utilizar_servicos') ||
+                        request()->routeIs('institucional.simular_triagem')
+                        ? 'active' : '' 
+                    }}
+                ">
                     <a href="{{ route('institucional.como_funciona') }}" class="nav-link">
                         Como Funciona
                     </a>

@@ -21,7 +21,11 @@ Route::namespace('Institucional')
         ->group(function () {
             Route::get('/', 'HomeController')->name('institucional.home');
             Route::get('/sobre', 'SobreController')->name('institucional.sobre');
-            Route::get('/como-funciona', 'ComoFuncionaController')->name('institucional.como_funciona');
+            Route::get('/como-funciona', 'ComoFuncionaController@comoFunciona')->name('institucional.como_funciona');
+            Route::get('/como-funciona/outras-informacoes', 'ComoFuncionaController@outrasInformacoes')->name('institucional.outras_informacoes');
+            Route::get('/como-funciona/outras-informacoes/sobre-emaj', 'ComoFuncionaController@sobreEmaj')->name('institucional.sobre_emaj');
+            Route::get('/como-funciona/outras-informacoes/requisitos-utilizar-servicos', 'ComoFuncionaController@requisitosUtilizarServicos')->name('institucional.requisitos_utilizar_servicos');
+            Route::get('/como-funciona/simular-triagem', 'ComoFuncionaController@simularTriagem')->name('institucional.simular_triagem');
             Route::get('/contato', 'ContatoController')->name('institucional.contato');
             Route::post('/contato-enviar', 'ContatoController@contatoEnviar')->name('institucional.contato_enviar');
 });
