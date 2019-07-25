@@ -35,7 +35,10 @@ class AvaliacoesController extends CrudController
 
     public function avaliacoesAluno($id)
     {
-        $this->registro = $this->repository->with($this->relationships())->orderBy('id', 'desc')->findByField('aluno_id', $id);
+        $this->registro = $this->repository
+                ->with($this->relationships())
+                ->orderBy('id', 'desc')
+                ->findByField('aluno_id', $id);
 
         return $this->registro;
     }
