@@ -163,7 +163,7 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
                 ->get();
         return $top5DemandasMaisAtendidas;
     }
-    
+
     /**
      * Método responsável por retornar o número de clientes
      * 
@@ -176,7 +176,7 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
                 ->count('cliente_id');
         return $numeroClientes;
     }
-    
+
     /**
      * Método responsável por retornar o número de parte contrárias
      * 
@@ -277,6 +277,39 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
         }
 
         return $criteria;
+    }
+
+    /**
+     * Método responsável por buscar os dados e retornar para o autocomplete
+     * 
+     * @param string $value
+     * @param int $idAluno
+     */
+    public function getDataAutocomplete($value, int $idAluno = null)
+    {
+        $criteria = $this->model->newQuery();
+
+        $criteria->where(function ($query) use ($value) {
+            $query->whereHas('cliente', function ($subquery ) use ($value) {
+                        $subquery->where('nome_completo', 'like', "%{$value}%");
+                    })
+                    ->orWhereHas('parte_contraria', function ($subquery) use ($value) {
+                        $subquery->where('nome_completo', 'like', "%{$value}%");
+                    })
+                    ->orWhereHas('tipo_demanda', function ($subquery) use ($value) {
+                        $subquery->where('nome', 'like', "%{$value}%");
+                    })
+                    ->orWhere('numero_processo', 'like', "%{$value}%")
+                    ->orWhere('protocolo', 'like', "%{$value}%");
+        });
+
+        if ($idAluno) {
+            $criteria->where('aluno_id', '=', $idAluno);
+        }
+
+        return $criteria->orderBy('created_at', 'desc')
+                ->limit(10)
+                ->get();
     }
 
     public static function getRules($data)

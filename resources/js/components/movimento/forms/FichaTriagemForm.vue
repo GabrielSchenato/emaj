@@ -7,8 +7,7 @@
         <v-layout wrap>
             <v-flex xs12 sm6 md2>
                 <v-text-field
-                    name="ficha_triagem_id"
-                    id="ficha_triagem_id"
+                    name="id"
                     v-model="fichaTriagem.id"
                     label="ID"
                     disabled
@@ -18,8 +17,7 @@
 
             <v-flex xs12 sm6 md2>
                 <v-text-field
-                    name="ficha_triagem_protocolo"
-                    id="ficha_triagem_protocolo"
+                    name="protocolo"
                     v-model="fichaTriagem.protocolo"
                     label="Protocolo*"
                     return-masked-value
@@ -32,10 +30,11 @@
 
             <v-flex xs12 sm6 md8>
                 <v-text-field
-                    name="ficha_triagem_numero_processo"
-                    id="ficha_triagem_numero_processo"
+                    name="numero_processo"
                     v-model="fichaTriagem.numero_processo"
                     label="Número Processo"
+                    mask="#######-##.####.#.##.####"
+                    return-masked-value
                     @input="$emit('input', fichaTriagem)"
                     ></v-text-field>
             </v-flex>
@@ -51,8 +50,7 @@
                 <v-layout wrap>                                      
                     <v-flex xs12 sm6 md6>   
                         <v-autocomplete
-                            name="ficha_triagem_cliente_id"
-                            id="ficha_triagem_cliente_id"
+                            name="cliente_id"
                             :items="clientes"
                             item-text="nome_completo"
                             :search-input.sync="autocompleteClientes"
@@ -76,8 +74,7 @@
 
                     <v-flex xs12 sm6 md6>            
                         <v-autocomplete
-                            name="ficha_triagem_parte_contraria_id"
-                            id="ficha_triagem_parte_contraria_id"
+                            name="parte_contraria_id"
                             :items="parteContrarias"
                             :search-input.sync="autocompleteParteContrarias"
                             :loading="loadingParteContrarias"
@@ -99,8 +96,7 @@
 
                     <v-flex xs12 sm6 md6>
                         <v-checkbox
-                            name="ficha_triagem_ja_foi_atendido"
-                            id="ficha_triagem_ja_foi_atendido"
+                            name="ja_foi_atendido"
                             v-model="fichaTriagem.ja_foi_atendido"
                             label="Já foi atendido pelo escritório?*"
                             @change="$emit('input', fichaTriagem)"
@@ -109,8 +105,7 @@
 
                     <v-flex xs12 sm6 md1>
                         <v-checkbox
-                            name="ficha_triagem_ativo"
-                            id="ficha_triagem_ativo"
+                            name="ativo"
                             v-model="fichaTriagem.ativo"
                             label="Ativo?"
                             @change="$emit('input', fichaTriagem)"
@@ -130,8 +125,7 @@
                 <v-layout wrap>
                     <v-flex xs12 sm6 md6>            
                         <v-autocomplete
-                            name="ficha_triagem_tipo_demanda_id"
-                            id="ficha_triagem_tipo_demanda_id"
+                            name="tipo_demanda_id"
                             :items="tipoDemandas"
                             :search-input.sync="autocompleteTipoDemandas"
                             :loading="loadingTipoDemandas"
@@ -154,8 +148,7 @@
 
                     <v-flex xs12 sm6 md6>   
                         <v-autocomplete
-                            name="ficha_triagem_aluno_id"
-                            id="ficha_triagem_aluno_id"
+                            name="aluno_id"
                             :items="alunos"
                             item-text="nome_completo"
                             :search-input.sync="autocompleteAlunos"
@@ -176,8 +169,7 @@
 
                     <v-flex xs12 sm6 md6>   
                         <v-autocomplete
-                            name="ficha_triagem_professor_id"
-                            id="ficha_triagem_professor_id"
+                            name="professor_id"
                             :items="professores"
                             item-text="nome_completo"
                             :search-input.sync="autocompleteProfessores"
@@ -198,8 +190,7 @@
 
                     <v-flex xs12 sm6 md12>
                         <v-text-field
-                            name="ficha_triagem_outras_informacoes"
-                            id="ficha_triagem_outras_informacoes"
+                            name="outras_informacoes"
                             v-model="fichaTriagem.outras_informacoes"
                             label="Outras Informações"
                             @input="$emit('input', fichaTriagem)"

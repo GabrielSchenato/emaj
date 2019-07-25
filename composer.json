@@ -14,6 +14,7 @@
         "geekcom/phpjasper": "^3.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "laravelcollective/html": "^5.8",
         "prettus/l5-repository": "^2.6",
         "tymon/jwt-auth": "^1.0"
     },

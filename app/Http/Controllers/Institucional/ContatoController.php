@@ -3,6 +3,8 @@
 namespace Emaj\Http\Controllers\Institucional;
 
 use Emaj\Http\Controllers\Controller;
+use Emaj\Mail\ContatoMailable;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -22,6 +24,19 @@ class ContatoController extends Controller
     public function __invoke()
     {
         return view('institucional.contato');
+    }
+
+    public function contatoEnviar()
+    {
+        $this->validate(request(), [
+            'nome' => 'required',
+            'email' => 'required|email',
+            'assunto' => 'required',
+            'mensagem' => 'required'
+        ]);
+        
+        Mail::send(new ContatoMailable(request()->all()));
+        return back()->with('success', 'Obrigado por nos contatar!');
     }
 
 }

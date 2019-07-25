@@ -27,6 +27,7 @@ Route::namespace('Institucional')
             Route::get('/como-funciona/outras-informacoes/requisitos-utilizar-servicos', 'ComoFuncionaController@requisitosUtilizarServicos')->name('institucional.requisitos_utilizar_servicos');
             Route::get('/como-funciona/simular-triagem', 'ComoFuncionaController@simularTriagem')->name('institucional.simular_triagem');
             Route::get('/contato', 'ContatoController')->name('institucional.contato');
+            Route::post('/contato-enviar', 'ContatoController@contatoEnviar')->name('institucional.contato_enviar');
 });
 
 

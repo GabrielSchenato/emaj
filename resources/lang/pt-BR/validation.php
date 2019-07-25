@@ -138,6 +138,10 @@ return [
         'email' => 'e-mail',
         'password' => 'senha',
         'role' => 'nível de permissão',
-        'descricao' => 'descrição'
+        'descricao' => 'descrição',
+        'aluno_id' => 'aluno',
+        'ficha_triagem_id' => 'Ficha de Triagem',
+        'avaliador_id' => 'avaliador',
+        'observacoes' => 'observações'
     ],
 ];

@@ -44,8 +44,8 @@
                         <td>{{ props.item.tipo }}</td>
                         <td>{{ props.item.descricao }}</td>
                         <td>{{ props.item.telefone }}</td>
-                        <td>{{ props.item.created_at | formataData}}</td>
-                        <td>{{ props.item.updated_at | formataData}}</td>
+                        <td>{{ props.item.created_at | formataDataHora}}</td>
+                        <td>{{ props.item.updated_at | formataDataHora}}</td>
                         <td>
                         <v-btn depressed outline icon fab dark color="primary" small>
                             <v-icon @click="editItem(props.item)">edit</v-icon>

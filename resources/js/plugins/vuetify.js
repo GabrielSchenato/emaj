@@ -4,6 +4,7 @@ import pt from 'vuetify/es5/locale/pt'
 import 'vuetify/src/stylus/app.styl'
 import '../theme/default.styl'
 import colors from 'vuetify/es5/util/colors'
+import '@mdi/font/css/materialdesignicons.css' 
 Vue.use(Vuetify, {
   theme: {
     primary: colors.grey.darken3,
@@ -15,7 +16,7 @@ Vue.use(Vuetify, {
     warning: '#FFC107',
   },
   customProperties: true,
-  iconfont: 'fa4',
+  iconfont: ['fa4', 'mdi'],
   lang: {
     locales: { pt },
     current: 'pt'

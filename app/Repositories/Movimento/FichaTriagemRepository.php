@@ -46,4 +46,12 @@ interface FichaTriagemRepository extends RepositoryInterface
      * @return int
      */
     public function getAtendimentosMes();
+
+    /**
+     * Método responsável por buscar os dados e retornar para o autocomplete
+     * 
+     * @param string $value
+     * @param int $idAluno
+     */
+    public function getDataAutocomplete($value, int $idAluno = null);
 }

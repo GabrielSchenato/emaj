@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">        
         <a class="navbar-brand" href="{{ route('institucional.home') }}">
-            <img src="/images/logo_emaj_uniplac_branco.png" height="110" width="260" alt="Universidade do Planalto Catarinense - UNIPLAC e Escritório Modelo de Assistência Jurídica – EMAJ" id="logo_emaj_uniplac" class="navbar-brand">
+            <img src="/images/logo_emaj_uniplac_branco.png" height="95" width="260" alt="Universidade do Planalto Catarinense - UNIPLAC e Escritório Modelo de Assistência Jurídica – EMAJ" id="logo_emaj_uniplac" class="navbar-brand">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
