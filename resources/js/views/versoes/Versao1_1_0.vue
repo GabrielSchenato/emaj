@@ -101,6 +101,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Institucional): Ajustado os conteúdos da página inicial'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Evolução (Institucional): Criada página Como Funciona com informações sobre o EMAJ'
                     }
                 ];
             }
