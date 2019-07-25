@@ -13,7 +13,7 @@
                     <span>Assistência jurídica</span> <span>gratuita à</span> <span>população hipossuficiente</span>
                 </h1>
                 <p>
-                    <a href="#" class="btn btn-primary py-3 px-4 disabled" data-placement="bottom" data-toggle="tooltip" title="Não disponível">Fazer um agendamento</a>
+                    <a class="btn btn-primary py-3 px-4 disabled" data-placement="bottom" data-toggle="tooltip" title="Não disponível">Fazer um agendamento</a>
                 </p>
             </div>
         </div>
@@ -27,28 +27,28 @@
                 <div class="icon"><span class="flaticon-auction"></span></div>
                 <div class="media-body">
                     <h3 class="heading mb-3"><a href="#">Cumprimento de Sentença</a></h3>
-                    <p>Breve descrição do serviço.</p>
-                </div>
-            </div>
-            <div class="col-md-3 text-center services align-self-stretch ftco-animate p-4">
-                <div class="icon"><span class="flaticon-lawyer"></span></div>
-                <div class="media-body">
-                    <h3 class="heading mb-3"><a href="#">Alvará Judicial</a></h3>
-                    <p>Breve descrição do serviço.</p>
+                    <p>É o procedimento utilizado para concretizar o que foi determinado pelo juiz na sentença.</p>
                 </div>
             </div>
             <div class="col-md-3 text-center services align-self-stretch ftco-animate p-4">
                 <div class="icon"><span class="flaticon-money"></span></div>
                 <div class="media-body">
-                    <h3 class="heading mb-3"><a href="#">Cobrança</a></h3>
-                    <p>Breve descrição do serviço.</p>
+                    <h3 class="heading mb-3"><a href="#">Inventário</a></h3>
+                    <p>É o processo pelo qual se faz um levantamento de todos os bens de determinada pessoa após sua morte.</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center services align-self-stretch ftco-animate p-4">
+                <div class="icon"><span class="flaticon-family"></span></div>
+                <div class="media-body">
+                    <h3 class="heading mb-3"><a href="#">Investigação de Paternidade</a></h3>
+                    <p>Se ao realizar um registro de nascimento, a pessoa indicada pela mãe como suposto pai se nega a efetuar o reconhecimento da criança, inicia-se o processo investigativo de tal situação.</p>
                 </div>
             </div>
             <div class="col-md-3 text-center services align-self-stretch ftco-animate p-4">
                 <div class="icon"><span class="ion-ios-help-circle-outline"></span></div>
                 <div class="media-body">
                     <h3 class="heading mb-3"><a href="#">Consulta Jurídica</a></h3>
-                    <p>Breve descrição do serviço.</p>
+                    <p>Consiste no esclarecimento técnico sobre o direito aplicável a questões ou casos concretos nos quais avultem interesses pessoais legítimos ou direitos próprios lesados ou ameaçados de lesão, apreciando da existência ou não de fundamento legal para a pretensão do utente.</p>
                 </div>
             </div>
         </div>
@@ -75,9 +75,9 @@
                         <div class="block-18 text-center py-4 bg-light mb-4">
                             <div class="text">
                                 <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="flaticon-lawyer"></span>
+                                    <span class="fa fa-graduation-cap"></span>
                                 </div>
-                                <strong class="number" data-number="100">0</strong>
+                                <strong class="number" data-number="{{ $estatistica['alunos'] }}">0</strong>
                                 <span>Acadêmicos</span>
                             </div>
                         </div>
@@ -86,10 +86,10 @@
                         <div class="block-18 text-center py-4 bg-light mb-4">
                             <div class="text">
                                 <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="flaticon-handshake"></span>
+                                    <span class="fa fa-gavel"></span>
                                 </div>
-                                <strong class="number" data-number="2000">0</strong>
-                                <span>Casos Atendidos</span>
+                                <strong class="number" data-number="{{ $estatistica['tipoDemandasAtendidas'] }}">0</strong>
+                                <span>Tipo de Demandas Atendidas</span>
                             </div>
                         </div>
                     </div>
@@ -97,10 +97,10 @@
                         <div class="block-18 text-center py-4 bg-light mb-4">
                             <div class="text">
                                 <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="ion-ios-checkbox-outline"></span>
+                                    <span class="fa fa-users"></span>
                                 </div>
-                                <strong class="number" data-number="1500">0</strong>
-                                <span>Casos de Sucesso</span>
+                                <strong class="number" data-number="{{ $estatistica['clientes'] }}">0</strong>
+                                <span>Clientes</span>
                             </div>
                         </div>
                     </div>
@@ -108,10 +108,10 @@
                         <div class="block-18 text-center py-4 bg-light mb-4">
                             <div class="text">
                                 <div class="icon d-flex justify-content-center align-items-center">
-                                    <span class="flaticon-medal"></span>
+                                    <span class="fa fa-user-plus"></span>
                                 </div>
-                                <strong class="number" data-number="5000">0</strong>
-                                <span>Formandos</span>
+                                <strong class="number" data-number="{{ $estatistica['atendimentosMes'] }}">0</strong>
+                                <span>Atendimentos Mês</span>
                             </div>
                         </div>
                     </div>

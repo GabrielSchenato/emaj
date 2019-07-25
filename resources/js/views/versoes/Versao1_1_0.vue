@@ -91,6 +91,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Evolução (Institucional): Criada página Contato'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Institucional): Ajustado os conteúdos da página inicial'
                     }
                 ];
             }

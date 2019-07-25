@@ -3,8 +3,8 @@
 namespace Emaj\Http\Controllers\Api\V1;
 
 use Emaj\Http\Controllers\Controller;
-use Emaj\Repositories\Cadastro\ClienteRepositoryEloquent;
-use Emaj\Repositories\Cadastro\UsuarioRepositoryEloquent;
+use Emaj\Repositories\Cadastro\AlunoRepository;
+use Emaj\Repositories\Movimento\FichaTriagemRepository;
 use Emaj\Repositories\Movimento\FichaTriagemRepositoryEloquent;
 use function response;
 
@@ -24,12 +24,12 @@ class DashboardController extends Controller
 {
 
     /**
-     * @var \Emaj\Repositories\Cadastro\AlunoRepository
+     * @var AlunoRepository
      */
     private $alunoRepository;
 
     /**
-     * @var FichaTriagemRepositoryEloquent
+     * @var FichaTriagemRepository
      */
     private $fichaTriagemRepository;
 
@@ -39,7 +39,7 @@ class DashboardController extends Controller
      */
     private $registro;
 
-    public function __construct(\Emaj\Repositories\Cadastro\AlunoRepository $alunoRepository, FichaTriagemRepositoryEloquent $fichaTriagemRepository)
+    public function __construct(AlunoRepository $alunoRepository, FichaTriagemRepository $fichaTriagemRepository)
     {
         $this->fichaTriagemRepository = $fichaTriagemRepository;
         $this->alunoRepository = $alunoRepository;

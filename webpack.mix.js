@@ -45,6 +45,7 @@ mix.styles([
     'resources/institucional/css/bootstrap-datepicker.css',
     'resources/institucional/css/jquery.timepicker.css',
     'resources/institucional/css/flaticon.css',
+    'resources/institucional/css/font-awesome.css',
     'resources/institucional/css/icomoon.css',
     'resources/institucional/css/style.css'
 ], 'public/css/institucional.css');
