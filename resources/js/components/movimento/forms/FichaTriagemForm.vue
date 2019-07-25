@@ -33,6 +33,8 @@
                     name="numero_processo"
                     v-model="fichaTriagem.numero_processo"
                     label="Número Processo"
+                    mask="#######-##.####.#.##.####"
+                    return-masked-value
                     @input="$emit('input', fichaTriagem)"
                     ></v-text-field>
             </v-flex>
