@@ -37,7 +37,7 @@
                                     <td>{{ props.item.protocolo }}</td>
                                     <td>{{ props.item.numero_processo }}</td>
                                     <td>{{ props.item.nome_cliente }}</td>
-                                    <td id="red">{{ props.item.nome_parte_contraria }}</td>
+                                    <td class="vermelho">{{ props.item.nome_parte_contraria }}</td>
                                     <td>{{ props.item.nome_tipo_demanda }}</td>
                                     <td>{{ props.item.status }}</td>
                                     <td>{{ props.item.nome_aluno }}</td>
@@ -301,9 +301,3 @@
         }
     };
 </script>
-
-<style scoped lang="css">
-    #red {
-        color: red;
-    }
-</style>

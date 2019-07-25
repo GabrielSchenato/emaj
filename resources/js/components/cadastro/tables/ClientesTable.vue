@@ -29,11 +29,15 @@
                     disable-initial-sort
                     >
                     <template slot="items" slot-scope="props">
-                        <td>{{ props.item.dados_cliente }}</td>
-                        <td>{{ props.item.data_vinculo | formataDataHora }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.cliente.dados_cliente }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.professor ? props.item.professor.dados_usuario : 'Não informado' }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.protocolo }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.numero_processo }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.outras_informacoes }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.created_at | formataDataHora }}</td>
                         <td>
                         <v-btn depressed outline icon fab dark color="blue" small>
-                            <v-icon @click="showCliente(props.item.id)">visibility</v-icon>
+                            <v-icon @click="showCliente(props.item.cliente.id)">visibility</v-icon>
                         </v-btn>
                         </td>
                     </template>
@@ -70,11 +74,27 @@
                     headers: [
                         {
                             text: "Cliente",
-                            value: "dados_cliente"
+                            value: "cliente.dados_cliente"
                         },
                         {
-                            text: "Data Vínculo",
-                            value: "data_vinculo"
+                            text: "Professor",
+                            value: "professor.dados_usuario"
+                        },
+                        {
+                            text: "Protocolo",
+                            value: "protocolo"
+                        },
+                        {
+                            text: "N.º Processo",
+                            value: "numero_processo"
+                        },
+                        {
+                            text: "Outras Informações",
+                            value: "outras_informacoes"
+                        },
+                        {
+                            text: "Data",
+                            value: "created_at"
                         },
                         {
                             text: "Ação",

@@ -90,26 +90,29 @@ class FichaTriagem extends Model
     protected function getDadosFichaTriagemAttribute()
     {
         $string = '';
-        
+
         $cliente = $this->cliente;
         $parteContraria = $this->parte_contraria;
         $tipoDemanda = $this->tipo_demanda;
 
-        $string .= 'Cliente: ' . $cliente->nome_completo;
-        $string .= ' (' . $cliente->id . ')';
+
+        if ($cliente) {
+            $string .= 'Cliente: ' . $cliente->nome_completo;
+            $string .= ' (' . $cliente->id . ')';
+        }
         if ($parteContraria) {
             $string .= ' - Parte Contrária: ' . $parteContraria->nome_completo;
         }
-        if(isset($this->attributes['protocolo'])){
+        if (isset($this->attributes['protocolo'])) {
             $string .= ' - Protocolo: ' . $this->attributes['protocolo'];
         }
-        if(isset($this->attributes['numero_processo'])){
+        if (isset($this->attributes['numero_processo'])) {
             $string .= ' - N.º Processo: ' . $this->attributes['numero_processo'];
         }
-        if($tipoDemanda){
+        if ($tipoDemanda) {
             $string .= ' - Demanda: ' . $tipoDemanda->nome;
         }
-        if(isset($this->attributes['created_at'])){
+        if (isset($this->attributes['created_at'])) {
             $string .= ' - Data: ' . \Carbon\Carbon::parse($this->attributes['created_at'])->format('d/m/Y');
         }
         return $string;

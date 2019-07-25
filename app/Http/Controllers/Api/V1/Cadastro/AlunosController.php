@@ -2,11 +2,8 @@
 
 namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
-use Emaj\Criteria\AtivoCriteria;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\AlunoRepository;
-use Emaj\Repositories\Cadastro\AvaliacaoRepository;
-use Emaj\Repositories\Cadastro\ClienteRepository;
 use Emaj\Repositories\Movimento\FichaTriagemRepository;
 
 /**
@@ -26,6 +23,9 @@ class AlunosController extends CrudController
 
     protected $relationships = [
         'avaliacoes.avaliador:id,nome_completo',
+        'ficha_triagens_aluno.cliente:id,nome_completo,representado_assistido',
+        'ficha_triagens_aluno.professor:id,nome_completo',
+        'ficha_triagens_aluno:id,aluno_id,cliente_id,professor_id,protocolo,numero_processo,ativo,outras_informacoes,created_at',
         'avaliacoes.ficha_triagem:id,cliente_id,parte_contraria_id,tipo_demanda_id,protocolo,numero_processo,created_at',
         'avaliacoes.ficha_triagem.cliente:id,nome_completo,representado_assistido,cpf,rg,renda'];
 
@@ -33,31 +33,17 @@ class AlunosController extends CrudController
      * @var FichaTriagemRepository
      */
     private $fichaTriagemRepository;
-
-    /**
-     * @var ClienteRepository
-     */
-    private $clienteRepository;
-
-    /**
-     * @var AvaliacaoRepository
-     */
-    private $avaliacaoRepository;
     protected $repository;
 
-    public function __construct(AlunoRepository $repository, ClienteRepository $clienteRepository, AvaliacaoRepository $avaliacaoRepository, FichaTriagemRepository $fichaTriagemRepository)
+    public function __construct(AlunoRepository $repository, FichaTriagemRepository $fichaTriagemRepository)
     {
         $this->repository = $repository;
-        $this->clienteRepository = $clienteRepository;
-        $this->avaliacaoRepository = $avaliacaoRepository;
         $this->fichaTriagemRepository = $fichaTriagemRepository;
     }
 
     public function show($id)
     {
         $this->registro = $this->repository->with($this->relationships())->find($id);
-        $this->registro['clientes'] = $this->clienteRepository
-                ->getClientesByAluno($id, ['clientes.*', 'ficha_triagens.created_at as data_vinculo']);
         return $this->registro;
     }
 

@@ -38,8 +38,8 @@
                                                     <v-divider></v-divider>
                                                     <v-stepper-step
                                                         step="2"
-                                                        :complete="aluno.id != null && aluno.clientes.length > 0"
-                                                        :editable="aluno.id != null && aluno.clientes.length > 0"
+                                                        :complete="aluno.id != null && aluno.ficha_triagens_aluno.length > 0"
+                                                        :editable="aluno.id != null && aluno.ficha_triagens_aluno.length > 0"
                                                         edit-icon="fa fa-users"
                                                         >Clientes
                                                 </v-stepper-step>
@@ -76,7 +76,8 @@
                                                 </v-card>
                                             </v-stepper-content>
                                             <v-stepper-content step="2">
-                                                <clientes-table v-model="aluno.clientes"></clientes-table>
+                                                <clientes-table v-model="aluno.ficha_triagens_aluno"></clientes-table>
+                                                <small><b class="vermelho">Vermelho: </b>Indica os processos que foram arquivados/inativados</small>
                                             </v-stepper-content>
                                             <v-stepper-content step="3">
                                                 <avaliacoes-table v-model="aluno.avaliacoes" v-bind:idAluno="aluno.id"></avaliacoes-table>
