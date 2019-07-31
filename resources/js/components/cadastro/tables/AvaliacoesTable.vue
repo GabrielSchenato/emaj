@@ -37,7 +37,7 @@
                     >
                     <template slot="items" slot-scope="props">
                         <td>{{ props.item.id }}</td>
-                        <td>{{ props.item.ficha_triagem.dados_ficha_triagem }}</td>
+                        <td>{{ props.item.ficha_triagem ? props.item.ficha_triagem.dados_ficha_triagem : 'Não informado' }}</td>
                         <td>{{ props.item.avaliador.dados_usuario }}</td>
                         <td>{{ props.item.data | formataData}}</td>
                         <td>
