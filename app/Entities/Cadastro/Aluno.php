@@ -40,7 +40,7 @@ class Aluno extends Model
      */
     public function ficha_triagens_aluno()
     {
-        return $this->hasMany(FichaTriagem::class, 'aluno_id');
+        return $this->hasMany(FichaTriagem::class, 'aluno_id')->orderBy('created_at', 'desc');
     }
 
     /**
@@ -48,7 +48,7 @@ class Aluno extends Model
      */
     public function avaliacoes()
     {
-        return $this->hasMany(Avaliacao::class, 'aluno_id')->orderBy('id', 'desc');
+        return $this->hasMany(Avaliacao::class, 'aluno_id')->orderBy('created_at', 'desc');
     }
 
 }
