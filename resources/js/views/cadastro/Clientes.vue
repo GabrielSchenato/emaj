@@ -46,7 +46,7 @@
                                     <td>{{ props.item.renda | formataMoeda}}</td>
                                     <td>{{ props.item.representado_assistido }}</td>
                                     <td>{{ props.item.ativo | formataAtivo}}</td>
-                                    <td>{{ props.item.created_at | formataData }}</td>
+                                    <td>{{ props.item.created_at | formataDataHora }}</td>
                                     <td>
                                     <v-btn depressed outline icon fab dark color="primary" small>
                                         <v-icon @click="editar(props.item.id)">edit</v-icon>

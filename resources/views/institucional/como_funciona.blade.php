@@ -26,13 +26,37 @@
     </div>
 </section>
 
-<section class="ftco-section services-section bg-light">
-    <div class="container mt-0">
+<section class="ftco-section bg-light">
+    <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 text-center heading-section ftco-animate">
-                <h2 class="mb-4">Página em construção... Aguarde</h2>
+                <span class="subheading">Bem-Vindo</span>
+                <h2 class="mb-4">Qual ação você gostaria de tomar?</h2>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-3 col-lg-2 text-center">
+                <a href="{{ route('institucional.outras_informacoes') }}">
+                    <div class="practice-area ftco-animate">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <span class="oi oi-question-mark"></span>
+                        </div>
+                        <h3>Outras Informações</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 col-lg-2 text-center">
+                <a href="{{ route('institucional.simular_triagem') }}">
+                    <div class="practice-area ftco-animate">
+                        <div class="icon d-flex justify-content-center align-items-center">
+                            <span class="oi oi-person"></span>
+                        </div>
+                        <h3><a href="#">Simular Triagem</a></h3>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
 </section>
+
 @endsection

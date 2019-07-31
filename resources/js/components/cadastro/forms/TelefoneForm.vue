@@ -3,8 +3,7 @@
         <v-layout wrap>
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="telefone_id"
-                    id="telefone_id"
+                    name="id"
                     v-model="telefone.id"
                     label="ID"
                     disabled
@@ -14,8 +13,7 @@
 
             <v-flex xs12 sm6 md3>
                 <v-select
-                    name="telefone_tipo"
-                    id="telefone_tipo"
+                    name="tipo"
                     v-model="telefone.tipo"
                     label="Tipo*"
                     v-validate="'required'"
@@ -30,8 +28,7 @@
 
             <v-flex xs12 sm6 md3>
                 <v-text-field
-                    name="telefone_descricao"
-                    id="telefone_descricao"
+                    name="descricao"
                     v-model="telefone.descricao"
                     label="Descrição"
                     :error-messages="errors.collect('descrição')"
@@ -42,8 +39,7 @@
 
             <v-flex xs12 sm6 md4>
                 <v-text-field
-                    name="telefone_telefone"
-                    id="telefone_telefone"
+                    name="telefone"
                     v-model="telefone.telefone"
                     label="Telefone*"
                     v-validate="'required'"

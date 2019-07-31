@@ -19,9 +19,29 @@ use Emaj\Http\Controllers\Controller;
 class ComoFuncionaController extends Controller
 {
 
-    public function __invoke()
+    public function comoFunciona()
     {
         return view('institucional.como_funciona');
+    }
+
+    public function outrasInformacoes()
+    {
+        return view('institucional.outras_informacoes');
+    }
+    
+    public function sobreEmaj()
+    {
+        return view('institucional.sobre_emaj');
+    }
+    
+    public function requisitosUtilizarServicos()
+    {
+        return view('institucional.requisitos_utilizar_servicos');
+    }
+    
+    public function simularTriagem()
+    {
+        return view('institucional.simular_triagem');
     }
 
 }

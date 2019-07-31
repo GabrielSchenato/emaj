@@ -7,8 +7,7 @@
         <v-layout wrap>
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="endereco_id"
-                    id="endereco_id"
+                    name="id"
                     v-model="endereco.id"
                     label="ID"
                     disabled
@@ -18,8 +17,7 @@
 
             <v-flex xs12 sm6 md2>
                 <v-text-field
-                    name="endereco_cep"
-                    id="endereco_cep"
+                    name="cep"
                     v-model="endereco.cep"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('CEP')"
@@ -35,8 +33,7 @@
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="endereco_logradouro"
-                    id="endereco_logradouro"
+                    name="logradouro"
                     v-model="endereco.logradouro"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('logradouro')"
@@ -49,8 +46,7 @@
 
             <v-flex xs12 sm6 md4>
                 <v-text-field
-                    name="endereco_complemento"
-                    id="endereco_complemento"
+                    name="complemento"
                     v-model="endereco.complemento"
                     label="Complemento"
                     data-vv-name="complemento"
@@ -60,8 +56,7 @@
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="endereco_bairro"
-                    id="endereco_bairro"
+                    name="bairro"
                     v-model="endereco.bairro"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('bairro')"
@@ -74,8 +69,7 @@
             
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="endereco_numero"
-                    id="endereco_numero"
+                    name="numero"
                     v-model="endereco.numero"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('número')"
@@ -89,8 +83,7 @@
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="endereco_localidade"
-                    id="endereco_localidade"
+                    name="localidade"
                     v-model="endereco.localidade"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('cidade')"
@@ -103,8 +96,7 @@
 
             <v-flex xs12 sm6 md1>
                 <v-text-field
-                    name="endereco_uf"
-                    id="endereco_uf"
+                    name="uf"
                     v-model="endereco.uf"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('estado')"
@@ -117,8 +109,7 @@
 
             <v-flex xs12 sm6 md5>
                 <v-text-field
-                    name="endereco_endereco_local_trabalho"
-                    id="endereco_endereco_local_trabalho"
+                    name="endereco_local_trabalho"
                     v-model="endereco.endereco_local_trabalho"
                     label="Endereço do Local de Trabalho"
                     @input="$emit('input', endereco)"

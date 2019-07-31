@@ -245,4 +245,26 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
         return $criteria;
     }
 
+    /**
+     * Método responsável por buscar os clientes vinculados a um determinado aluno.
+     * 
+     * @param int $IdAluno
+     * @param array $columns
+     * @return array
+     */
+    public function getClientesByAluno(int $IdAluno, array $columns = ['*'])
+    {
+        $subQuery = '(SELECT ft.id
+                    FROM ficha_triagens ft
+                    WHERE ft.cliente_id = clientes.id
+                    ORDER BY ft.created_at ASC
+                    LIMIT 1)';
+        return $this->model
+                        ->join('ficha_triagens', 'ficha_triagens.id', '=', DB::raw($subQuery))
+                        ->where('ficha_triagens.aluno_id', '=', $IdAluno)
+                        ->groupBy('clientes.id')
+                        ->orderBy('clientes.nome_completo', 'asc')
+                        ->get($columns);
+    }
+
 }

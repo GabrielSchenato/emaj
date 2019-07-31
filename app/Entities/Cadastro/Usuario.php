@@ -34,6 +34,7 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
      * @var string
      */
     protected $table = 'usuarios';
+    protected $appends = ['dados_usuario'];
 
     /**
      * The attributes that are mass assignable.
@@ -62,8 +63,7 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return $this->getKey();
     }
-    
-    
+
     /**
      * Pega todas as Ficha de Triagens associados ao professor.
      */
@@ -71,5 +71,13 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return $this->hasMany(FichaTriagem::class, 'professor_id');
     }
-    
+
+    protected function getDadosUsuarioAttribute()
+    {
+        $string = '';
+        $string .= $this->attributes['nome_completo'];
+        $string .= ' (' . $this->attributes['id'] . ')';
+        return $string;
+    }
+
 }

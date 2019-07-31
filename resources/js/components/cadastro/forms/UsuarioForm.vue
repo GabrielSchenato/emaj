@@ -19,8 +19,7 @@
 
         <v-flex xs12 sm6 md2>
             <v-text-field
-                name="usuario_id"
-                id="usuario_id"
+                name="id"
                 v-model="usuario.id"
                 label="ID"
                 disabled
@@ -30,8 +29,7 @@
 
         <v-flex xs12 sm6 md4>
             <v-text-field
-                name="usuario_nome_completo"
-                id="usuario_nome_completo"
+                name="nome_completo"
                 v-model="usuario.nome_completo"
                 label="Nome Completo*"
                 v-validate="'required'"
@@ -45,8 +43,7 @@
 
         <v-flex xs12 sm6 md6>
             <v-text-field
-                name="usuario_email"
-                id="usuario_email"
+                name="email"
                 v-model="usuario.email"
                 label="E-mail*"
                 v-validate="'required'"
@@ -59,8 +56,7 @@
 
         <v-flex xs12 sm6 md4>
             <v-text-field
-                name="usuario_telefone"
-                id="usuario_telefone"
+                name="telefone"
                 v-model="usuario.telefone"
                 label="Telefone*"
                 v-validate="'required'"
@@ -75,8 +71,7 @@
 
         <v-flex xs12 sm6 md4>
             <v-select
-                name="usuario_role"
-                id="usuario_role"
+                name="role"
                 :items="roles"
                 label="Nível de Permissão*"
                 v-model="usuario.role"
@@ -94,8 +89,7 @@
 
         <v-flex xs12 sm6 md4>
             <v-text-field
-                name="usuario_password"
-                id="usuario_password"
+                name="password"
                 v-model="usuario.password"
                 :label="'Senha' + getConfig.asterisco"
                 v-validate="{required: getConfig.required }"
@@ -117,8 +111,7 @@
 
         <v-flex xs12 sm6 md4>
             <v-text-field
-                name="usuario_password_confirmation"
-                id="usuario_password_confirmation"
+                name="password_confirmation"
                 v-model="usuario.password_confirmation"
                 :label="'Confirmar Senha' + getConfig.asterisco"
                 v-validate="{required: getConfig.required }"
@@ -137,8 +130,7 @@
 
         <v-flex xs12 sm6 md2>
             <v-checkbox
-                name="usuario_professor"
-                id="usuario_professor"
+                name="professor"
                 v-model="usuario.professor"
                 label="Professor?"
                 @change="$emit('input', usuario)"
@@ -147,8 +139,7 @@
 
         <v-flex xs12 sm6 md1>
             <v-checkbox
-                name="usuario_ativo"
-                id="usuario_ativo"
+                name="ativo"
                 v-model="usuario.ativo"
                 label="Ativo?"
                 @change="$emit('input', usuario)"

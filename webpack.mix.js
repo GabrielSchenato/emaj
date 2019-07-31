@@ -45,6 +45,7 @@ mix.styles([
     'resources/institucional/css/bootstrap-datepicker.css',
     'resources/institucional/css/jquery.timepicker.css',
     'resources/institucional/css/flaticon.css',
+    'resources/institucional/css/font-awesome.css',
     'resources/institucional/css/icomoon.css',
     'resources/institucional/css/style.css'
 ], 'public/css/institucional.css');
@@ -64,6 +65,5 @@ mix.scripts([
     'resources/institucional/js/jquery.animateNumber.min.js',
     'resources/institucional/js/bootstrap-datepicker.js',
     'resources/institucional/js/scrollax.min.js',
-    //'resources/institucional/js/google-map.js',
     'resources/institucional/js/main.js'
 ], 'public/js/institucional.js');

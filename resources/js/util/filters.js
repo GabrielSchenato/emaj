@@ -14,9 +14,15 @@ Vue.filter('formataDataComDiaNafrente', function (value) {
     }
 });
 
-Vue.filter('formataData', function (value) {
+Vue.filter('formataDataHora', function (value) {
     if (value) {
         return moment(String(value)).format('L LTS');
+    }
+});
+
+Vue.filter('formataData', function (value) {
+    if (value) {
+        return moment(String(value)).format('L');
     }
 });
 

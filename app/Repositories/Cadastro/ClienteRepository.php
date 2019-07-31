@@ -32,4 +32,13 @@ interface ClienteRepository extends RepositoryInterface
      * @param string $value
      */
     public function getDataAutocomplete($value);
+
+    /**
+     * Método responsável por buscar os clientes vinculados a um determinado aluno.
+     * 
+     * @param int $IdAluno
+     * @param array $columns
+     * @return array
+     */
+    public function getClientesByAluno(int $IdAluno, array $columns = ['*']);
 }

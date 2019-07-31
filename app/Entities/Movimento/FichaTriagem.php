@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FichaTriagem extends Model
 {
-    
+
     public const AJUIZADO = 'Ajuizado';
     public const NAO_AJUIZADO = 'Não Ajuizado';
 
@@ -32,7 +32,7 @@ class FichaTriagem extends Model
      * @var string
      */
     protected $table = 'ficha_triagens';
-    
+    protected $appends = ['dados_ficha_triagem'];
     protected $fillable = [
         'ja_foi_atendido',
         'cliente_id',
@@ -54,7 +54,7 @@ class FichaTriagem extends Model
     {
         return $this->belongsTo(Cliente::class, 'cliente_id');
     }
-    
+
     /**
      * Pega o tipo de demanda associado a essa ficha de triagem.
      */
@@ -62,7 +62,7 @@ class FichaTriagem extends Model
     {
         return $this->belongsTo(TipoDemanda::class);
     }
-    
+
     /**
      * Pega a parte contrária associado a essa ficha de triagem.
      */
@@ -70,7 +70,7 @@ class FichaTriagem extends Model
     {
         return $this->belongsTo(Cliente::class, 'parte_contraria_id');
     }
-    
+
     /**
      * Pega o aluno associado a essa ficha de triagem.
      */
@@ -78,13 +78,44 @@ class FichaTriagem extends Model
     {
         return $this->belongsTo(Aluno::class, 'aluno_id');
     }
-    
+
     /**
      * Pega o professor associado a essa ficha de triagem.
      */
     public function professor()
     {
         return $this->belongsTo(Usuario::class, 'professor_id');
+    }
+
+    protected function getDadosFichaTriagemAttribute()
+    {
+        $string = '';
+
+        $cliente = $this->cliente;
+        $parteContraria = $this->parte_contraria;
+        $tipoDemanda = $this->tipo_demanda;
+
+
+        if ($cliente) {
+            $string .= 'Cliente: ' . $cliente->nome_completo;
+            $string .= ' (' . $cliente->id . ')';
+        }
+        if ($parteContraria) {
+            $string .= ' - Parte Contrária: ' . $parteContraria->nome_completo;
+        }
+        if (isset($this->attributes['protocolo'])) {
+            $string .= ' - Protocolo: ' . $this->attributes['protocolo'];
+        }
+        if (isset($this->attributes['numero_processo'])) {
+            $string .= ' - N.º Processo: ' . $this->attributes['numero_processo'];
+        }
+        if ($tipoDemanda) {
+            $string .= ' - Demanda: ' . $tipoDemanda->nome;
+        }
+        if (isset($this->attributes['created_at'])) {
+            $string .= ' - Data: ' . \Carbon\Carbon::parse($this->attributes['created_at'])->format('d/m/Y');
+        }
+        return $string;
     }
 
 }

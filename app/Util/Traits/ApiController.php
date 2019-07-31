@@ -124,7 +124,7 @@ trait ApiController
      * @param array $data
      * @return array
      */
-    private function order(array $data)
+    protected function order(array $data)
     {
         $order = $data['order'] ?? null;
         if ($order) {
