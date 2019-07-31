@@ -5,6 +5,7 @@ namespace Emaj\Util\Traits;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use function response;
 
 /**
@@ -52,12 +53,12 @@ trait ApiController
     {
         $data = $request->all();
 
-        if ($errors = $this->hasErrors($data)) {
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => $errors
-                            ], 422);
-        }
+//        if ($errors = $this->hasErrors($data)) {
+//            return response()->json([
+//                        'status' => 'error',
+//                        'errors' => $errors
+//                            ], 422);
+//        }
         $this->registro = $this->repository->create($data);
         return $this->registro;
     }
@@ -65,12 +66,12 @@ trait ApiController
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        if ($errors = $this->hasErrors($data)) {
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => $errors
-                            ], 422);
-        }
+//        if ($errors = $this->hasErrors($data)) {
+//            return response()->json([
+//                        'status' => 'error',
+//                        'errors' => $errors
+//                            ], 422);
+//        }
         $this->registro = $this->repository->update($data, $id);
         return $this->registro;
     }
@@ -113,6 +114,7 @@ trait ApiController
         if (method_exists($this->repository, 'getRules')) {
             $validator = Validator::make($data, $this->repository->getRules($data));
             if ($validator->fails()) {
+                throw new ValidationException($validator);
                 return $validator->errors();
             }
         }

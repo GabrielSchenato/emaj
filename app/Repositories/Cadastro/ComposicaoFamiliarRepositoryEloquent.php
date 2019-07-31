@@ -40,7 +40,16 @@ class ComposicaoFamiliarRepositoryEloquent extends AbstractRepository implements
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public static function getRules($data)
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
     {
         return [
             'renda_familiar' => 'required|numeric',

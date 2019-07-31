@@ -80,23 +80,26 @@
         },
         methods: {
             save() {
+                let isValidForm = true;
+                this.$refs.moneyRenda.required = true;
                 this.$validator.validateAll().then(valid => {
-                    if (valid) {
-                        this.$store
-                                .dispatch("saveParametrosTriagem", this.parametrosTriagem)
-                                .then(() => {
-                                    this.$store.dispatch("getParametrosTriagem").then(() => {
-                                        this.parametrosTriagem = this.$store.state.parametrostriagem.parametrosTriagemView;
-                                    }).catch((resp) => {
-                                        window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
-                                    });
-                                    window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
-                                }).catch((resp) => {
-                            this.addErrors(resp);
-                        });
+                    isValidForm = valid;
+                    this.$refs.moneyRenda.$validator.validate('renda')
+                            .then(isValidRenda => {
 
+                                if (!isValidForm || !isValidRenda)
+                                    return;
 
-                    }
+                                this.$store
+                                        .dispatch("saveParametrosTriagem", this.parametrosTriagem)
+                                        .then((resp) => {
+                                            this.parametrosTriagem = resp.data;
+                                            this.$store.state.parametrostriagem.parametrosTriagemView = this.parametrosTriagem;
+                                            window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
+                                        }).catch((resp) => {
+                                    this.addErrors(resp);
+                                });
+                            });
                 });
             },
             addErrors(resp) {

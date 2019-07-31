@@ -29,22 +29,10 @@ class ParametrosTriagemController extends CrudController
 
     public function show($id = null)
     {
-        if ($this->registro = $this->repository->first())
+        if ($this->registro = $this->repository->first()) {
             return $this->registro;
-        return response()->json([]);
-    }
-
-    public function store(\Illuminate\Http\Request $request)
-    {
-        $data = $request->all();
-        if ($errors = $this->hasErrors($data)) {
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => $errors
-                            ], 422);
         }
-        $this->registro = $this->repository->first() ? $this->repository->first()->toArray() : $data;
-        return $this->repository->updateOrCreate($this->registro, $data);
+        return response()->json([]);
     }
 
 }

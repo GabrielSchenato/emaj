@@ -4,16 +4,21 @@ namespace Emaj\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
+
     /**
      * A list of the exception types that are not reported.
      *
      * @var array
      */
     protected $dontReport = [
-        //
+            //
     ];
 
     /**
@@ -40,12 +45,25 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function render($request, Exception $exception)
     {
+        if ($request->is("api/*")) {
+            if ($exception instanceof ValidationException) {
+                return response()->json([
+                            'status' => 'error',
+                            'errors' => $exception->errors()
+                                ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
+            }
+            return response()->json([
+                        'status' => 'error',
+                        'errors' => $exception->getMessage()
+                            ], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
+        }
         return parent::render($request, $exception);
     }
+
 }

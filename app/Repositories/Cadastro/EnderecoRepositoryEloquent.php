@@ -39,7 +39,16 @@ class EnderecoRepositoryEloquent extends AbstractRepository implements EnderecoR
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public static function getRules($data)
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
     {
         return [
             'cep' => 'required',
@@ -48,6 +57,7 @@ class EnderecoRepositoryEloquent extends AbstractRepository implements EnderecoR
             'numero' => 'required|numeric',
             'localidade' => 'required|max:50',
             'uf' => 'required|max:2',
+            'cliente_id' => 'required|numeric'
         ];
     }
 

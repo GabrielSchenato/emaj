@@ -31,7 +31,7 @@ Route::prefix('v1/auth')
 
 
 Route::prefix('v1')
-        ->middleware('auth')
+        //->middleware('auth')
         ->namespace('Api\V1')
         ->group(function () {
             Route::get('dashboard/estatisticas', 'DashboardController@estatisticas');

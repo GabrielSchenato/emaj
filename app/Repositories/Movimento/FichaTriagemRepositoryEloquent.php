@@ -308,11 +308,20 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
         }
 
         return $criteria->orderBy('created_at', 'desc')
-                ->limit(10)
-                ->get();
+                        ->limit(10)
+                        ->get();
     }
 
-    public static function getRules($data)
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
     {
         return [
             'protocolo' => 'required',

@@ -393,12 +393,10 @@
                         .open(
                                 'Adicionar um novo Cliente',
                                 {
-                                    informacoesPessoais: {
-                                        ativo: true,
-                                        nacionalidade_id: 7
-                                    },
+                                    ativo: true,
+                                    nacionalidade_id: 7,
                                     endereco: {},
-                                    composicaoFamiliar: {},
+                                    composicao_familiar: {},
                                     telefones: []
                                 },
                                 {

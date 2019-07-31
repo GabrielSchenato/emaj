@@ -279,7 +279,7 @@
         methods: {
             getConfig() {
                 return {
-                    required: this.required(),
+                    required: !this.required(),
                     asterisco: this.asterisco()
                 };
             },
@@ -373,10 +373,10 @@
                 this.$refs.composicaoFamiliarForm.$validator.reset();
                 this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.reset();
                 this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.reset();
-                this.$refs.informacoesPessoaisForm.nacionalidades = item.informacoesPessoais.nacionalidade ? [item.informacoesPessoais.nacionalidade] : [{id: 7, nome: 'Brasileiro'}];
-                this.informacoesPessoais = item.informacoesPessoais;
+                this.$refs.informacoesPessoaisForm.nacionalidades = item.nacionalidade ? [item.nacionalidade] : [{id: 7, nome: 'Brasileiro'}];
+                this.informacoesPessoais = item;
                 this.endereco = item.endereco;
-                this.composicaoFamiliar = item.composicaoFamiliar;
+                this.composicaoFamiliar = item.composicao_familiar;
                 this.telefones = item.telefones;
                 this.step = 1;
                 this.options = Object.assign(this.options, options);
@@ -458,84 +458,84 @@
             },
             addErrors(resp) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
-                if (resp.response.data.errors.informacoesPessoais) {
+                if (resp.response.data.errors) {
                     this.step = 1;
                     this.erroInformacoesPessoais = true;
-                    if (resp.response.data.errors.informacoesPessoais.nome_completo) {
-                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'nome completo', msg: resp.response.data.errors.informacoesPessoais.nome_completo});
+                    if (resp.response.data.errors.nome_completo) {
+                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'nome completo', msg: resp.response.data.errors.nome_completo});
                     }
-                    if (resp.response.data.errors.informacoesPessoais.cpf) {
-                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'CPF', msg: resp.response.data.errors.informacoesPessoais.cpf});
+                    if (resp.response.data.errors.cpf) {
+                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'CPF', msg: resp.response.data.errors.cpf});
                     }
-                    if (resp.response.data.errors.informacoesPessoais.rg) {
-                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'RG', msg: resp.response.data.errors.informacoesPessoais.rg});
+                    if (resp.response.data.errors.rg) {
+                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'RG', msg: resp.response.data.errors.rg});
                     }
-                    if (resp.response.data.errors.informacoesPessoais.profissao) {
-                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'profissão', msg: resp.response.data.errors.informacoesPessoais.profissao});
+                    if (resp.response.data.errors.profissao) {
+                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'profissão', msg: resp.response.data.errors.profissao});
                     }
-                    if (resp.response.data.errors.informacoesPessoais.sexo) {
-                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'Sexo', msg: resp.response.data.errors.informacoesPessoais.sexo});
+                    if (resp.response.data.errors.sexo) {
+                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'Sexo', msg: resp.response.data.errors.sexo});
                     }
-                    if (resp.response.data.errors.informacoesPessoais.estado_civil) {
-                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'estado civil', msg: resp.response.data.errors.informacoesPessoais.estado_civil});
+                    if (resp.response.data.errors.estado_civil) {
+                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'estado civil', msg: resp.response.data.errors.estado_civil});
                     }
-                    if (resp.response.data.errors.informacoesPessoais.email) {
-                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'e-mail', msg: resp.response.data.errors.informacoesPessoais.email});
+                    if (resp.response.data.errors.email) {
+                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'e-mail', msg: resp.response.data.errors.email});
                     }
-                    if (resp.response.data.errors.informacoesPessoais.renda) {
-                        this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.errors.add({field: 'renda', msg: resp.response.data.errors.informacoesPessoais.renda});
+                    if (resp.response.data.errors.renda) {
+                        this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.errors.add({field: 'renda', msg: resp.response.data.errors.renda});
                     }
-                    if (resp.response.data.errors.informacoesPessoais.local_trabalho) {
-                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'local de trabalho', msg: resp.response.data.errors.informacoesPessoais.local_trabalho});
+                    if (resp.response.data.errors.local_trabalho) {
+                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'local de trabalho', msg: resp.response.data.errors.local_trabalho});
                     }
-                    if (resp.response.data.errors.informacoesPessoais.nacionalidade_id) {
-                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'nacionalidade', msg: resp.response.data.errors.informacoesPessoais.nacionalidade_id});
+                    if (resp.response.data.errors.nacionalidade_id) {
+                        this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'nacionalidade', msg: resp.response.data.errors.nacionalidade_id});
                     }
                 }
 
-                if (resp.response.data.errors.endereco) {
+                if (resp.response.data.errors) {
                     this.step = 2;
                     this.erroEndereco = true;
-                    if (resp.response.data.errors.endereco.bairro) {
-                        this.$refs.enderecoForm.$validator.errors.add({field: 'bairro', msg: resp.response.data.errors.endereco.bairro});
+                    if (resp.response.data.errors.bairro) {
+                        this.$refs.enderecoForm.$validator.errors.add({field: 'bairro', msg: resp.response.data.errors.bairro});
                     }
-                    if (resp.response.data.errors.endereco.cep) {
-                        this.$refs.enderecoForm.$validator.errors.add({field: 'CEP', msg: resp.response.data.errors.endereco.cep});
+                    if (resp.response.data.errors.cep) {
+                        this.$refs.enderecoForm.$validator.errors.add({field: 'CEP', msg: resp.response.data.errors.cep});
                     }
-                    if (resp.response.data.errors.endereco.numero) {
-                        this.$refs.enderecoForm.$validator.errors.add({field: 'número', msg: resp.response.data.errors.endereco.numero});
+                    if (resp.response.data.errors.numero) {
+                        this.$refs.enderecoForm.$validator.errors.add({field: 'número', msg: resp.response.data.errors.numero});
                     }
-                    if (resp.response.data.errors.endereco.localidade) {
-                        this.$refs.enderecoForm.$validator.errors.add({field: 'cidade', msg: resp.response.data.errors.endereco.localidade});
+                    if (resp.response.data.errors.localidade) {
+                        this.$refs.enderecoForm.$validator.errors.add({field: 'cidade', msg: resp.response.data.errors.localidade});
                     }
-                    if (resp.response.data.errors.endereco.logradouro) {
-                        this.$refs.enderecoForm.$validator.errors.add({field: 'logradouro', msg: resp.response.data.errors.endereco.logradouro});
+                    if (resp.response.data.errors.logradouro) {
+                        this.$refs.enderecoForm.$validator.errors.add({field: 'logradouro', msg: resp.response.data.errors.logradouro});
                     }
-                    if (resp.response.data.errors.endereco.uf) {
-                        this.$refs.enderecoForm.$validator.errors.add({field: 'estado', msg: resp.response.data.errors.endereco.uf});
+                    if (resp.response.data.errors.uf) {
+                        this.$refs.enderecoForm.$validator.errors.add({field: 'estado', msg: resp.response.data.errors.uf});
                     }
                 }
 
-                if (resp.response.data.errors.composicaoFamiliar) {
+                if (resp.response.data.errors) {
                     this.step = 3;
                     this.erroComposicaoFamiliar = true;
-                    if (resp.response.data.errors.composicaoFamiliar.renda_familiar) {
-                        this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.errors.add({field: 'renda familiar', msg: resp.response.data.errors.composicaoFamiliar.renda_familiar});
+                    if (resp.response.data.errors.renda_familiar) {
+                        this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.errors.add({field: 'renda familiar', msg: resp.response.data.errors.renda_familiar});
                     }
-                    if (resp.response.data.errors.composicaoFamiliar.casa) {
-                        this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'casa', msg: resp.response.data.errors.composicaoFamiliar.casa});
+                    if (resp.response.data.errors.casa) {
+                        this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'casa', msg: resp.response.data.errors.casa});
                     }
-                    if (resp.response.data.errors.composicaoFamiliar.outros_bens) {
-                        this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'outros bens', msg: resp.response.data.errors.composicaoFamiliar.outros_bens});
+                    if (resp.response.data.errors.outros_bens) {
+                        this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'outros bens', msg: resp.response.data.errors.outros_bens});
                     }
-                    if (resp.response.data.errors.composicaoFamiliar.dividas) {
-                        this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'dívidas', msg: resp.response.data.errors.composicaoFamiliar.dividas});
+                    if (resp.response.data.errors.dividas) {
+                        this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'dívidas', msg: resp.response.data.errors.dividas});
                     }
-                    if (resp.response.data.errors.composicaoFamiliar.despesas) {
-                        this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'despesas', msg: resp.response.data.errors.composicaoFamiliar.despesas});
+                    if (resp.response.data.errors.despesas) {
+                        this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'despesas', msg: resp.response.data.errors.despesas});
                     }
-                    if (resp.response.data.errors.composicaoFamiliar.valor_patrimonio) {
-                        this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.errors.add({field: 'valor do patrimônio', msg: resp.response.data.errors.composicaoFamiliar.valor_patrimonio});
+                    if (resp.response.data.errors.valor_patrimonio) {
+                        this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.errors.add({field: 'valor do patrimônio', msg: resp.response.data.errors.valor_patrimonio});
                     }
                 }
             },

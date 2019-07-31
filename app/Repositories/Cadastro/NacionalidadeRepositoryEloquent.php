@@ -52,4 +52,9 @@ class NacionalidadeRepositoryEloquent extends AbstractRepository implements Naci
                         ->get(['id', 'nome']);
     }
 
+    public function getRules(array $data, int $id = null)
+    {
+        return [];
+    }
+
 }

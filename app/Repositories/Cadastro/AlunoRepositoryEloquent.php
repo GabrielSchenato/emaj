@@ -40,9 +40,17 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public static function getRules($data)
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
     {
-        $id = isset($data['id']) ? $data['id'] : null;
         return [
             'nome_completo' => 'required|min:5',
             'email' => ['nullable', 'email', Rule::unique('alunos')->ignore($id)]
