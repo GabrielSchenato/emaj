@@ -40,6 +40,36 @@ class AvaliacaoRepositoryEloquent extends AbstractRepository implements Avaliaca
     }
 
     /**
+     * @override
+     * Save a new entity in repository
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     *
+     * @return mixed
+     */
+    public function create(array $attributes)
+    {
+        $attributes['avaliador_id'] = auth()->user()->id;
+        return parent::create($attributes);
+    }
+
+    /**
+     * Método responsável por pegar todas as avaliações por aluno
+     * 
+     * @param int $idAluno
+     * @param array $relationships
+     * @return mixed
+     */
+    public function getAvaliacoesByAluno(int $idAluno, array $relationships = [])
+    {
+        return $this->with($relationships)
+                        ->orderBy('id', 'desc')
+                        ->findByField('aluno_id', $idAluno);
+    }
+
+    /**
      * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
      * um registro
      * 
