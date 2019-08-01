@@ -6,10 +6,8 @@ use Emaj\Criteria\MesCriteria;
 use Emaj\Criteria\PreAtendimentoCriteria;
 use Emaj\Entities\Cadastro\Cliente;
 use Emaj\Repositories\AbstractRepository;
-use Exception;
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -50,6 +48,7 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
         $this->enderecoRepository = $enderecoRepository;
         $this->composicaoFamiliarRepository = $composicaoFamiliarRepository;
         $this->telefoneRepository = $telefoneRepository;
+        $this->setWrapNameException('cliente');
     }
 
     /**

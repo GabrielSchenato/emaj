@@ -4,6 +4,7 @@ namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\ComposicaoFamiliar;
 use Emaj\Repositories\AbstractRepository;
+use Illuminate\Container\Container;
 use Illuminate\Validation\Rule;
 use Prettus\Repository\Criteria\RequestCriteria;
 
@@ -22,6 +23,11 @@ use Prettus\Repository\Criteria\RequestCriteria;
 class ComposicaoFamiliarRepositoryEloquent extends AbstractRepository implements ComposicaoFamiliarRepository
 {
 
+    public function __construct(Container $app)
+    {
+        parent::__construct($app);
+        $this->setWrapNameException('composicao_familiar');
+    }
     /**
      * Specify Model class name
      *

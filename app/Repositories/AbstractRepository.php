@@ -3,8 +3,8 @@
 namespace Emaj\Repositories;
 
 use Emaj\Criteria\AtivoCriteria;
+use Emaj\Exceptions\ValidationException;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
@@ -25,9 +25,18 @@ abstract class AbstractRepository extends BaseRepository
     /**
      * Váriavel responsável por armazenar o valor se será necessário
      * realizar as validações
+     * 
      * @var boolean 
      */
     private $needToValidate = true;
+
+    /**
+     * Váriavel responsável por armazenar a chave do array para
+     * envolver as mensagens de erro de validação da exception
+     * 
+     * @var string
+     */
+    private $wrapNameException = null;
 
     /**
      * @override
@@ -62,6 +71,17 @@ abstract class AbstractRepository extends BaseRepository
         return parent::update($attributes, $id);
     }
 
+    /**
+     * @override
+     * Update or Create an entity in repository
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     * @param array $values
+     *
+     * @return mixed
+     */
     public function updateOrCreate(array $attributes, array $values = array())
     {
         $id = isset($attributes['id']) ? $attributes['id'] : null;
@@ -145,12 +165,14 @@ abstract class AbstractRepository extends BaseRepository
      * 
      * @throws ValidationException
      */
-    private function validate(array $attributes, int $id = null)
+    protected function validate(array $attributes, int $id = null)
     {
         if ($this->getNeedToValidate()) {
             $validator = Validator::make($attributes, $this->getRules($attributes, $id));
             if ($validator->fails()) {
-                throw new ValidationException($validator);
+                $validationException = new ValidationException($validator);
+                $validationException->setWrapName($this->getWrapNameException());
+                throw $validationException;
             }
         }
     }
@@ -163,6 +185,24 @@ abstract class AbstractRepository extends BaseRepository
     public function setNeedToValidate($needToValidate)
     {
         $this->needToValidate = $needToValidate;
+        return $this;
+    }
+
+    public function getWrapNameException()
+    {
+        return $this->wrapNameException;
+    }
+
+    /**
+     * Utilizado para setar a chave de um array para enviar os 
+     * erros de validação para o front-end
+     * 
+     * @param string $wrapNameException
+     * @return $this
+     */
+    public function setWrapNameException($wrapNameException)
+    {
+        $this->wrapNameException = $wrapNameException;
         return $this;
     }
 

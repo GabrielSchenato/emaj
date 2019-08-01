@@ -4,6 +4,7 @@ namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\Endereco;
 use Emaj\Repositories\AbstractRepository;
+use Illuminate\Container\Container;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
@@ -20,6 +21,12 @@ use Prettus\Repository\Criteria\RequestCriteria;
  */
 class EnderecoRepositoryEloquent extends AbstractRepository implements EnderecoRepository
 {
+
+    public function __construct(Container $app)
+    {
+        parent::__construct($app);
+        $this->setWrapNameException('endereco');
+    }
 
     /**
      * Specify Model class name
