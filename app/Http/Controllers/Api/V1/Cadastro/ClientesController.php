@@ -4,10 +4,7 @@ namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\ClienteRepository;
-use Emaj\Repositories\Cadastro\ComposicaoFamiliarRepository;
-use Emaj\Repositories\Cadastro\EnderecoRepository;
 use Emaj\Repositories\Cadastro\NacionalidadeRepository;
-use Emaj\Repositories\Cadastro\TelefoneRepository;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -37,32 +34,13 @@ class ClientesController extends CrudController
     private $nacionalidadeRepository;
 
     /**
-     * @var TelefoneRepository
-     */
-    private $telefoneRepository;
-
-    /**
-     * @var ComposicaoFamiliarRepository
-     */
-    private $composicaoFamiliarRepository;
-
-    /**
-     * @var EnderecoRepository
-     */
-    private $enderecoRepository;
-
-    /**
      * @var ClienteRepository
      */
     protected $repository;
 
-    public function __construct(ClienteRepository $repository, EnderecoRepository $enderecoRepository, ComposicaoFamiliarRepository $composicaoFamiliarRepository, TelefoneRepository $telefoneRepository, NacionalidadeRepository $nacionalidadeRepository)
+    public function __construct(ClienteRepository $repository, NacionalidadeRepository $nacionalidadeRepository)
     {
         $this->repository = $repository;
-        $this->enderecoRepository = $enderecoRepository;
-        $this->composicaoFamiliarRepository = $composicaoFamiliarRepository;
-        $this->telefoneRepository = $telefoneRepository;
-        $this->nacionalidadeRepository = $nacionalidadeRepository;
     }
 
     /**

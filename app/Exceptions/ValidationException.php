@@ -1,19 +1,20 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace Emaj\Exceptions;
 
 use Illuminate\Validation\ValidationException as ValidationExceptionIlluminate;
 
 /**
- * Description of ValidationException
+ * Classe responsável por lançar exception de validação
  *
- * @author gabri
+ * PHP version 7.2
+ *
+ * @category   Exception
+ * @package    Exceptions
+ * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link       https://www.uniplaclages.edu.br/
+ * @since      1.1.1
  */
 class ValidationException extends ValidationExceptionIlluminate
 {
