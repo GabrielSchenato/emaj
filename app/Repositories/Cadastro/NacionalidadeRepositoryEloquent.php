@@ -52,6 +52,15 @@ class NacionalidadeRepositoryEloquent extends AbstractRepository implements Naci
                         ->get(['id', 'nome']);
     }
 
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
     public function getRules(array $data, int $id = null)
     {
         return [];

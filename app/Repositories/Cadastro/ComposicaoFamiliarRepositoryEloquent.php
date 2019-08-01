@@ -4,6 +4,7 @@ namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\ComposicaoFamiliar;
 use Emaj\Repositories\AbstractRepository;
+use Emaj\Util\TiposCasa;
 use Illuminate\Container\Container;
 use Illuminate\Validation\Rule;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -59,7 +60,7 @@ class ComposicaoFamiliarRepositoryEloquent extends AbstractRepository implements
     {
         return [
             'renda_familiar' => 'required|numeric',
-            'casa' => ['required', Rule::in(['Alugada', 'Própria', 'Cedida'])],
+            'casa' => ['required', Rule::in(TiposCasa::getTiposCasa())],
             'outros_bens' => 'required|max:255',
             'dividas' => 'required|max:255',
             'despesas' => 'required|max:255',

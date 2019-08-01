@@ -3,7 +3,7 @@
 namespace Emaj\Util;
 
 /**
- * Classe responsável pelas regras de acesso da plataforma.
+ * Classe responsável pelos tipos de casas cadastraveis na plataforma.
  *
  * PHP Version 7.2
  *
@@ -14,26 +14,28 @@ namespace Emaj\Util;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.1.0
  */
-class Roles
+class TiposCasa
 {
 
-    const ADMIN = 'admin';
-    const SECRETARIA = 'secretaria';
+    const ALUGADA = 'Alugada';
+    const PROPRIA = 'Própria';
+    const CEDIDA = 'Cedida';
 
     /**
      * @var array
      */
     private static $valores = [
-        self::ADMIN,
-        self::SECRETARIA
+        self::ALUGADA,
+        self::PROPRIA,
+        self::CEDIDA
     ];
 
     /**
-     * Método responsável por retornar a lista de regras.
+     * Método responsável por retornar a lista de casas.
      * 
      * @return string
      */
-    public static function getRoles()
+    public static function getTiposCasa()
     {
         return self::$valores;
     }

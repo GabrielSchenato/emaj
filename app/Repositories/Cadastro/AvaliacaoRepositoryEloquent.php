@@ -4,7 +4,6 @@ namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\Avaliacao;
 use Emaj\Repositories\AbstractRepository;
-use Illuminate\Validation\Rule;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
@@ -40,9 +39,17 @@ class AvaliacaoRepositoryEloquent extends AbstractRepository implements Avaliaca
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public static function getRules($data)
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
     {
-        $id = isset($data['id']) ? $data['id'] : null;
         return [
             'aluno_id' => 'required|numeric',
             'ficha_triagem_id' => 'required|numeric',

@@ -60,12 +60,21 @@ class AvaliacaoArquivoRepositoryEloquent extends AbstractRepository implements A
         return $stored;
     }
 
-    public static function getRules($data)
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
     {
         return [
         ];
     }
-    
+
     /**
      * Método responsável por pegar o nome do arquivo sem extensão.
      * 
