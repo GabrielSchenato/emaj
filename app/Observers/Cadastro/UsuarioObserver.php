@@ -3,7 +3,6 @@
 namespace Emaj\Observers\Cadastro;
 
 use Emaj\Entities\Cadastro\Usuario;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * Classe responsável por modificar a entidade usuário quando necessário
@@ -19,20 +18,12 @@ use Illuminate\Support\Facades\Hash;
  */
 class UsuarioObserver
 {
-    public function saving(Usuario $user)
-    {
-        if (request()->hasFile('image_url')) {
-            $data = request()->all();
-            $user->avatar = $this->convertImageBinary($data['image_url']);
-        }
-        $user->password = Hash::make(request()->get('password'));
-    }
 
-    protected function convertImageBinary($image)
+    public function saving(Usuario $usuario)
     {
-        $binary = file_get_contents($image);
-        $avatar = base64_encode($binary);
-        return $avatar;
+        if (!empty(request()->get('password'))) {
+            $usuario->password = bcrypt(request()->get('password'));
+        }
     }
 
 }

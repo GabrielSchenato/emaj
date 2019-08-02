@@ -2,6 +2,8 @@
 
 namespace Emaj\Util;
 
+use Illuminate\Http\UploadedFile;
+
 /**
  * Classe responsável por conter alguns métodos reutilizaveis.
  *
@@ -27,6 +29,30 @@ class Functions
     public static function getMoedaFormatadaReal($value)
     {
         return number_format($value, 2, ',', '.');
+    }
+
+    /**
+     * Método responsável por convertar uma arquivo para binário
+     * 
+     * @param UploadedFile $file
+     * @return string
+     */
+    public static function convertFileBinary($file)
+    {
+        $binary = file_get_contents($file->getRealPath());
+        $binaryBase64Encode = base64_encode($binary);
+        return $binaryBase64Encode;
+    }
+
+    /**
+     * Método responsável por pegar o nome do arquivo sem extensão.
+     * 
+     * @param UploadedFile $file
+     * @return string
+     */
+    public static function getNomeArquivoSemExtensao($file)
+    {
+        return basename($file->getClientOriginalName(), '.' . $file->getClientOriginalExtension());
     }
 
 }

@@ -6,6 +6,7 @@ use Emaj\Entities\Cadastro\Usuario;
 use Emaj\Mail\EdicaoUsuarioMailable;
 use Emaj\Mail\NovoUsuarioMailable;
 use Emaj\Repositories\AbstractRepository;
+use Emaj\Util\Functions;
 use Emaj\Util\Roles;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
@@ -58,6 +59,7 @@ class UsuarioRepositoryEloquent extends AbstractRepository implements UsuarioRep
      */
     public function create(array $attributes)
     {
+        $this->setAvatar($attributes);
         $usuario = parent::create($attributes);
         Mail::to($usuario->email)
                 ->send(new NovoUsuarioMailable($usuario, $attributes['password']));
@@ -77,6 +79,7 @@ class UsuarioRepositoryEloquent extends AbstractRepository implements UsuarioRep
      */
     public function update(array $attributes, $id)
     {
+        $this->setAvatar($attributes);
         $usuario = parent::update($attributes, $id);
         if (isset($attributes['password'])) {
             Mail::to($usuario->email)->send(new EdicaoUsuarioMailable($usuario, $attributes['password']));
@@ -149,6 +152,19 @@ class UsuarioRepositoryEloquent extends AbstractRepository implements UsuarioRep
                         ->orderBy('nome_completo', 'asc')
                         ->limit(10)
                         ->get(['id', 'nome_completo']);
+    }
+
+    /**
+     * Método responsável por setar o avatar se estiver sendo enviado
+     * 
+     * @param array $attributes
+     */
+    private function setAvatar(&$attributes)
+    {
+        if (isset($attributes['image_url'])) {
+            $attributes['avatar'] = Functions::convertFileBinary($attributes['image_url']);
+            unset($attributes['image_url']);
+        }
     }
 
 }

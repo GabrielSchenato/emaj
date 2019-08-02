@@ -7,6 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Classe responsável por gerenciar o envio de email
+ *
+ * PHP version 7.2
+ *
+ * @category   Mail
+ * @package    Mail
+ * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link       https://www.uniplaclages.edu.br/
+ * @since      1.0.0
+ */
 class NovoUsuarioMailable extends Mailable implements ShouldQueue
 {
 
