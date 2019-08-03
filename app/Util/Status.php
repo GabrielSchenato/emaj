@@ -3,7 +3,7 @@
 namespace Emaj\Util;
 
 /**
- * Classe responsável pelos tipos de casas cadastraveis na plataforma.
+ * Classe responsável pelos Status.
  *
  * PHP Version 7.2
  *
@@ -14,28 +14,26 @@ namespace Emaj\Util;
  * @link       https://www.uniplaclages.edu.br/
  * @since      1.1.0
  */
-class TiposCasa
+class Status
 {
 
-    const ALUGADA = 'Alugada';
-    const PROPRIA = 'Própria';
-    const CEDIDA = 'Cedida';
+    const AJUIZADO = 'Ajuizado';
+    const NAO_AJUIZADO = 'Não Ajuizado';
 
     /**
      * @var array
      */
     private static $valores = [
-        self::ALUGADA,
-        self::PROPRIA,
-        self::CEDIDA
+        self::AJUIZADO,
+        self::NAO_AJUIZADO
     ];
 
     /**
-     * Método responsável por retornar a lista de casas.
+     * Método responsável por retornar a lista de status.
      * 
      * @return string
      */
-    public static function getTiposCasa()
+    public static function getTiposStatus()
     {
         return self::$valores;
     }

@@ -81,9 +81,9 @@ trait Report
         )->execute();
 
         $file = $output . '.' . $formato;
-        
-        ob_end_clean();        
-        
+
+        ob_end_clean();
+
         return response()->download($file, $this->nomeRelatorio() . '.' . $formato, [])->deleteFileAfterSend(true);
     }
 
@@ -93,7 +93,7 @@ trait Report
      */
     protected function nomeRelatorio()
     {
-        return $this->nomeRelatorio . '_' . \Carbon\Carbon::now();
+        return $this->nomeRelatorio . '_' . now();
     }
 
     /**

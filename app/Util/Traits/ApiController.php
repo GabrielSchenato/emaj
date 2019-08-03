@@ -3,10 +3,8 @@
 namespace Emaj\Util\Traits;
 
 use Illuminate\Database\QueryException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
-use function response;
 
 /**
  * Trait responsável por gerenciar as requisições para a API
@@ -34,6 +32,12 @@ trait ApiController
      */
     protected $registro;
 
+    /**
+     * Método responsável por retornar os registros para o front-end.
+     * 
+     * @param Request $request
+     * @return mixed
+     */
     public function index(Request $request)
     {
         $data = $request->all();
@@ -43,81 +47,78 @@ trait ApiController
         return $this->registro;
     }
 
+    /**
+     * Método responsável por buscar o registro e retornar para o front-end.
+     * 
+     * @param int $id
+     * @return mixed
+     */
     public function show($id)
     {
         $this->registro = $this->repository->with($this->relationships())->find($id);
         return $this->registro;
     }
 
+    /**
+     * Método responsável salvar o registro e retornar para o front-end.
+     * 
+     * @param Request $request
+     * @return mixed
+     */
     public function store(Request $request)
     {
         $data = $request->all();
-
-//        if ($errors = $this->hasErrors($data)) {
-//            return response()->json([
-//                        'status' => 'error',
-//                        'errors' => $errors
-//                            ], 422);
-//        }
         $this->registro = $this->repository->create($data);
         return $this->registro;
     }
 
+    /**
+     * Método responsável atualizar o registro e retornar para o front-end.
+     * 
+     * @param Request $request
+     * @param int $id
+     * @return mixed
+     */
     public function update(Request $request, $id)
     {
         $data = $request->all();
-//        if ($errors = $this->hasErrors($data)) {
-//            return response()->json([
-//                        'status' => 'error',
-//                        'errors' => $errors
-//                            ], 422);
-//        }
         $this->registro = $this->repository->update($data, $id);
         return $this->registro;
     }
 
+    /**
+     * Método responsável por deletar o registro.
+     * 
+     * @param int $id
+     * @return boolean
+     */
     public function destroy($id)
     {
         try {
-            $this->repository = $this->repository->delete($id);
-            return response()->json($this->repository);
+            return response()->json([
+                        'status' => $this->repository->delete($id) ? 'success' : 'error'
+            ]);
         } catch (QueryException $ex) {
             if ($ex->getCode() == 23000) {
                 return response()->json([
                             'status' => 'error',
-                            'errors' => 'Esse registro está sendo utilizado em outro lugar.'
-                                ], 422);
+                            'errors' => 'Não foi possível deletar esse registro, pois o mesmo possui algum vínculo a outro registro.'
+                                ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
             }
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => ''
-                            ], 422);
         }
     }
 
+    /**
+     * Método responsável por retornar os relacionamentos da entidade.
+     * 
+     * @return array
+     */
     protected function relationships()
     {
         if (isset($this->relationships)) {
             return $this->relationships;
         }
         return [];
-    }
-
-    /**
-     * Método responsavél por verificar se existe erro nos dados que estão sendo inseridos.
-     * 
-     * @param array $data
-     * @return array|void
-     */
-    protected function hasErrors($data)
-    {
-        if (method_exists($this->repository, 'getRules')) {
-            $validator = Validator::make($data, $this->repository->getRules($data));
-            if ($validator->fails()) {
-                throw new ValidationException($validator);
-                return $validator->errors();
-            }
-        }
     }
 
     /**

@@ -3,13 +3,16 @@
 namespace Emaj\Repositories\Movimento;
 
 use Emaj\Criteria\MesCriteria;
+use Emaj\Entities\Cadastro\Cliente;
 use Emaj\Entities\Movimento\FichaTriagem;
+use Emaj\Exceptions\ValidationException;
 use Emaj\Repositories\AbstractRepository;
-use Emaj\Repositories\Cadastro\ClienteRepositoryEloquent;
-use Emaj\Repositories\Cadastro\ParametroTriagemRepositoryEloquent;
-use Exception;
+use Emaj\Repositories\Cadastro\ClienteRepository;
+use Emaj\Repositories\Cadastro\ParametroTriagemRepository;
+use Emaj\Util\Functions;
+use Emaj\Util\Status;
+use Illuminate\Container\Container;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
@@ -26,6 +29,29 @@ use Prettus\Repository\Criteria\RequestCriteria;
  */
 class FichaTriagemRepositoryEloquent extends AbstractRepository implements FichaTriagemRepository
 {
+
+    /**
+     * @var ClienteRepository
+     */
+    private $clienteRepository;
+
+    /**
+     * @var ParametroTriagemRepository
+     */
+    private $parametroTriagemRepository;
+
+    /**
+     *
+     * @var Cliente 
+     */
+    private $cliente;
+
+    public function __construct(Container $app, ParametroTriagemRepository $parametroTriagemRepository, ClienteRepository $clienteRepository)
+    {
+        parent::__construct($app);
+        $this->parametroTriagemRepository = $parametroTriagemRepository;
+        $this->clienteRepository = $clienteRepository;
+    }
 
     /**
      * Specify Model class name
@@ -45,106 +71,52 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * @override
+     * Save a new entity in repository
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     *
+     * @return mixed
+     */
     public function create(array $attributes)
     {
-        try {
-            DB::beginTransaction();
-
-            if (isset($attributes['numero_processo'])) {
-                $attributes['status'] = FichaTriagem::AJUIZADO;
-            } else {
-                $attributes['status'] = FichaTriagem::NAO_AJUIZADO;
-            }
-
-            $validator = Validator::make($attributes, $this->getRules($attributes));
-            if ($validator->fails()) {
-                return response()->json([
-                            'status' => 'error',
-                            'errors' => $validator->errors()
-                                ], 422);
-            }
-
-            if (isset($attributes['parte_contraria_id']) && $attributes['cliente_id'] == $attributes['parte_contraria_id']) {
-                return response()->json([
-                            'status' => 'error',
-                            'errors' => ['cliente_parte_contraria' => 'Você não pode usar o mesmo cliente no campo parte contrária!']
-                                ], 422);
-            }
-
-            $clienteRepository = new ClienteRepositoryEloquent($this->app);
-            $cliente = $clienteRepository->find($attributes['cliente_id']);
-
-            if ($cliente->cpf == null && $cliente->rg == null && $cliente->renda == null) {
-                return response()->json([
-                            'status' => 'error',
-                            'errors' => ['cliente_invalido' => 'Os dados desse cliente estão incompletos!']
-                                ], 422);
-            }
-
-            $parametrosTriagemRepository = new ParametroTriagemRepositoryEloquent($this->app);
-            $parametrosTriagem = $parametrosTriagemRepository->first();
-
-            if ($cliente->renda > $parametrosTriagem->renda) {
-                return response()->json([
-                            'status' => 'error',
-                            'errors' => ['cliente_renda_superior' => 'A renda desse cliente está acima dos valores permitidos!']
-                                ], 422);
-            }
-
-            parent::create($attributes);
-
-            DB::commit();
-        } catch (Exception $ex) {
-            DB::rollback();
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => $ex->getMessage()
-                            ], 422);
-        }
+        return $this->save($attributes);
     }
 
+    /**
+     * @override
+     * Update a entity in repository by id
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     * @param       $id
+     *
+     * @return mixed
+     */
     public function update(array $attributes, $id)
     {
-        if (isset($attributes['numero_processo'])) {
-            $attributes['status'] = FichaTriagem::AJUIZADO;
-        } else {
-            $attributes['status'] = FichaTriagem::NAO_AJUIZADO;
-        }
-        $validator = Validator::make($attributes, $this->getRules($attributes));
-        if ($validator->fails()) {
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => $validator->errors()
-                            ], 422);
-        }
+        return $this->save($attributes, $id);
+    }
 
-        if (isset($attributes['parte_contraria_id']) && $attributes['cliente_id'] == $attributes['parte_contraria_id']) {
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => ['cliente_parte_contraria' => 'Você não pode usar o mesmo cliente no campo parte contrária!']
-                            ], 422);
-        }
-
-        $clienteRepository = new ClienteRepositoryEloquent($this->app);
-        $cliente = $clienteRepository->find($attributes['cliente_id']);
-
-        if ($cliente->cpf == null && $cliente->rg == null && $cliente->renda == null) {
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => ['cliente_invalido' => 'Os dados desse cliente estão incompletos!']
-                            ], 422);
-        }
-
-        $parametrosTriagemRepository = new ParametroTriagemRepositoryEloquent($this->app);
-        $parametrosTriagem = $parametrosTriagemRepository->first();
-
-        if ($cliente->renda > $parametrosTriagem->renda) {
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => ['cliente_renda_superior' => 'A renda desse cliente está acima dos valores permitidos!']
-                            ], 422);
-        }
-        parent::update($attributes, $id);
+    /**
+     * Método responsável por criar ou atualizar o registro de uma ficha de triagem.
+     * 
+     * @param array $attributes
+     * @param int | null $id
+     * @return array
+     * @throws ValidationException
+     */
+    private function save(array $attributes, $id = null)
+    {
+        $this->setStatus($attributes);
+        $this->validaClienteIgualParteContraria($attributes);
+        $this->validaDadosCliente($attributes);
+        $this->validaRendaCliente();
+        return parent::updateOrCreate(['id' => $id], $attributes);
     }
 
     /**
@@ -329,6 +301,75 @@ class FichaTriagemRepositoryEloquent extends AbstractRepository implements Ficha
             'parte_contraria_id' => 'nullable|numeric',
             'aluno_id' => 'nullable|numeric',
         ];
+    }
+
+    /**
+     * Método responsável por setar o valor no status
+     * 
+     * @param array $attributes
+     */
+    private function setStatus(&$attributes)
+    {
+        if (isset($attributes['numero_processo'])) {
+            $attributes['status'] = Status::AJUIZADO;
+        } else {
+            $attributes['status'] = Status::NAO_AJUIZADO;
+        }
+    }
+
+    /**
+     * Método responsável por verificar se o cliente não é igual a parte contrária
+     * 
+     * @param array $attributes
+     * @throws ValidationException
+     */
+    private function validaClienteIgualParteContraria($attributes)
+    {
+        if (isset($attributes['parte_contraria_id']) && $attributes['cliente_id'] == $attributes['parte_contraria_id']) {
+            throw ValidationException::withMessages([
+                'cliente_id' => 'Cliente e Parte Contrária iguais, por favor verifique.'
+            ]);
+        }
+    }
+
+    /**
+     * Método responsável por verificar se os dados do cliente estão incompletos
+     * 
+     * @param array $attributes
+     * @throws ValidationException
+     */
+    private function validaDadosCliente($attributes)
+    {
+        if (!isset($attributes['cliente_id'])) {
+            throw ValidationException::withMessages([
+                'cliente_id' => 'É necessário informar o Cliente.'
+            ]);
+        }
+        $this->cliente = $this->clienteRepository->find((int) $attributes['cliente_id']);
+
+        if ($this->cliente->parte_contraria) {
+            throw ValidationException::withMessages([
+                'cliente_id' => 'Os dados desse Cliente estão incompletos, por favor verifique o cadastro do mesmo.'
+            ]);
+        }
+    }
+
+    /**
+     * Método responsável por verificar se a renda do cliente está dentro do limite
+     * dos parametros da triagem
+     * 
+     * @throws ValidationException
+     */
+    private function validaRendaCliente()
+    {
+        $parametrosTriagem = $this->parametroTriagemRepository->first();
+
+        if ($this->cliente->renda > $parametrosTriagem->renda) {
+            $msg = 'A renda desse cliente está acima dos valores permitidos que é de R$ ' . Functions::getMoedaFormatadaReal($parametrosTriagem->renda) . ', por favor verifique.';
+            throw ValidationException::withMessages([
+                'cliente_id' => $msg
+            ]);
+        }
     }
 
 }
