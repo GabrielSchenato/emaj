@@ -1,11 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use Emaj\Util\TiposCasa;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateComposicaoFamiliaresTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -16,7 +18,7 @@ class CreateComposicaoFamiliaresTable extends Migration
         Schema::create('composicao_familiares', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->float('renda_familiar')->nullable();
-            $table->enum('casa', ['Alugada', 'Própria', 'Cedida'])->nullable();
+            $table->enum('casa', TiposCasa::getTiposCasa())->nullable();
             $table->boolean('possui_carro')->nullable();
             $table->string('marca_carro', 50)->nullable();
             $table->integer('ano_carro')->nullable();
@@ -43,4 +45,5 @@ class CreateComposicaoFamiliaresTable extends Migration
     {
         Schema::dropIfExists('composicao_familiares');
     }
+
 }

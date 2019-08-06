@@ -3,6 +3,7 @@
 namespace Emaj\Entities\Cadastro;
 
 use Emaj\Entities\Movimento\FichaTriagem;
+use Emaj\Util\Functions;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
 
-    protected $appends = ['dados_cliente'];
+    protected $appends = ['parte_contraria', 'dados_cliente'];
     protected $fillable = [
         'pre_atendimento',
         'nome_completo',
@@ -87,24 +88,88 @@ class Cliente extends Model
         return $this->belongsTo(Nacionalidade::class);
     }
 
+    /**
+     * Método responsável por montar os dados do cliente.
+     * 
+     * @return string
+     */
     protected function getDadosClienteAttribute()
     {
-        $string = '';
-        $string .= $this->attributes['nome_completo'];
-        $string .= ' (' . $this->attributes['id'] . ')';
-        if (isset($this->attributes['representado_assistido'])) {
-            $string .= ' - Representado/Assistido: ' . $this->attributes['representado_assistido'];
+        $string = $this->nome_completo . " ({$this->id})";
+        if ($this->representado_assistido) {
+            $string .= " - Representado/Assistido: {$this->representado_assistido}";
         }
-        if (isset($this->attributes['cpf'])) {
-            $string .= ' - CPF: ' . $this->attributes['cpf'];
+        if ($this->cpf) {
+            $string .= " - CPF: {$this->cpf}";
         }
-        if (isset($this->attributes['rg'])) {
-            $string .= ' - RG: ' . $this->attributes['rg'];
+        if ($this->rg) {
+            $string .= " - RG: {$this->rg}";
         }
-        if (isset($this->attributes['renda'])) {
-            $string .= ' - Renda: R$' . number_format($this->attributes['renda'], 2, ',', '.');
+        if ($this->renda) {
+            $string .= " - Renda: R$ " . Functions::getMoedaFormatadaReal($this->renda);
         }
-        return $string;
+        return $string;        
     }
 
+    /**
+     * Método responsável por verificar e retornar se o é parte contraria
+     * ou não.
+     * 
+     * @return boolean
+     */
+    protected function getParteContrariaAttribute()
+    {
+        if ($this->isEmptyCliente() || $this->isEmptyEndereco() || $this->isEmptyComposicaoFamiliar() || count($this->telefones) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Método responsável por verificar se existem os dados do cliente.
+     * 
+     * @return boolean
+     */
+    private function isEmptyCliente()
+    {
+        if (!$this->cpf || !$this->rg
+                || !$this->profissao || !$this->sexo
+                || !$this->estado_civil || !$this->renda
+                && (bool) $this->pre_atendimento == false) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Método responsável por verificar se o cliente possui os dados
+     * obrigatorios do endereço.
+     * 
+     * @return boolean
+     */
+    private function isEmptyEndereco()
+    {
+        if (!$this->endereco->cep || !$this->endereco->logradouro 
+                || !$this->endereco->bairro || !$this->endereco->numero 
+                || !$this->endereco->localidade || !$this->endereco->uf) {
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Método responsável por verificar se o cliente possui os dados
+     * obrigatorios da composição familiar.
+     * 
+     * @return boolean
+     */
+    private function isEmptyComposicaoFamiliar()
+    {
+        if (!$this->composicao_familiar->renda_familiar || !$this->composicao_familiar->casa
+                || !$this->composicao_familiar->outros_bens || !$this->composicao_familiar->dividas
+                || !$this->composicao_familiar->despesas || !$this->composicao_familiar->valor_patrimonio) {
+            return true;
+        }
+        return false;
+    }
 }

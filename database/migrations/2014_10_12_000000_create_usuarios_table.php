@@ -1,11 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use Emaj\Util\Roles;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateUsuariosTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -19,7 +21,7 @@ class CreateUsuariosTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['admin', 'secretaria']);
+            $table->enum('role', Roles::getRoles());
             $table->string('telefone', 15);
             $table->boolean('ativo')->default(true);
             $table->rememberToken();
@@ -37,4 +39,5 @@ class CreateUsuariosTable extends Migration
     {
         Schema::dropIfExists('usuarios');
     }
+
 }

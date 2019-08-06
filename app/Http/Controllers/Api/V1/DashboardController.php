@@ -37,7 +37,7 @@ class DashboardController extends Controller
      * Variável com as estatísticas
      * @var array 
      */
-    private $registro;
+    protected $registro;
 
     public function __construct(AlunoRepository $alunoRepository, FichaTriagemRepository $fichaTriagemRepository)
     {

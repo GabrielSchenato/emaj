@@ -41,12 +41,6 @@ class AlunosController extends CrudController
         $this->fichaTriagemRepository = $fichaTriagemRepository;
     }
 
-    public function show($id)
-    {
-        $this->registro = $this->repository->with($this->relationships())->find($id);
-        return $this->registro;
-    }
-
     /**
      * Retorna todos os dados para os autocomplete
      * 

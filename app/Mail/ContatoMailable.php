@@ -7,6 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
+/**
+ * Classe responsável por gerenciar o envio de email
+ *
+ * PHP version 7.2
+ *
+ * @category   Mail
+ * @package    Mail
+ * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link       https://www.uniplaclages.edu.br/
+ * @since      1.1.0
+ */
 class ContatoMailable extends Mailable implements ShouldQueue
 {
 
@@ -33,9 +45,9 @@ class ContatoMailable extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->markdown('emails.contato')
-                ->subject('Nova mensagem do portal do EMAJ')
-                ->from($this->dados['email'], $this->dados['nome'])
-                ->to('emaj@uniplaclages.edu.br', config('app.name'));
+                        ->subject('Nova mensagem do portal do EMAJ')
+                        ->from($this->dados['email'], $this->dados['nome'])
+                        ->to(config('app.email'), config('app.name'));
     }
 
 }

@@ -2,30 +2,34 @@
 
 namespace Emaj\Providers;
 
-use Emaj\Repositories\Cadastro\AlunoRepository;
-use Emaj\Repositories\Cadastro\AlunoRepositoryEloquent;
-use Emaj\Repositories\Cadastro\AvaliacaoArquivoRepository;
-use Emaj\Repositories\Cadastro\AvaliacaoArquivoRepositoryEloquent;
-use Emaj\Repositories\Cadastro\AvaliacaoRepository;
-use Emaj\Repositories\Cadastro\AvaliacaoRepositoryEloquent;
-use Emaj\Repositories\Cadastro\ClienteRepository;
-use Emaj\Repositories\Cadastro\ClienteRepositoryEloquent;
-use Emaj\Repositories\Cadastro\ComposicaoFamiliarRepository;
-use Emaj\Repositories\Cadastro\ComposicaoFamiliarRepositoryEloquent;
-use Emaj\Repositories\Cadastro\EnderecoRepository;
-use Emaj\Repositories\Cadastro\EnderecoRepositoryEloquent;
-use Emaj\Repositories\Cadastro\NacionalidadeRepository;
-use Emaj\Repositories\Cadastro\NacionalidadeRepositoryEloquent;
-use Emaj\Repositories\Cadastro\ParametroTriagemRepository;
-use Emaj\Repositories\Cadastro\ParametroTriagemRepositoryEloquent;
-use Emaj\Repositories\Cadastro\TelefoneRepository;
-use Emaj\Repositories\Cadastro\TelefoneRepositoryEloquent;
-use Emaj\Repositories\Cadastro\TipoDemandaRepository;
-use Emaj\Repositories\Cadastro\TipoDemandaRepositoryEloquent;
-use Emaj\Repositories\Cadastro\UsuarioRepository;
-use Emaj\Repositories\Cadastro\UsuarioRepositoryEloquent;
-use Emaj\Repositories\Movimento\FichaTriagemRepository;
-use Emaj\Repositories\Movimento\FichaTriagemRepositoryEloquent;
+use Emaj\Repositories\Cadastro\{
+    AlunoRepository,
+    AlunoRepositoryEloquent,
+    AvaliacaoArquivoRepository,
+    AvaliacaoArquivoRepositoryEloquent,
+    AvaliacaoRepository,
+    AvaliacaoRepositoryEloquent,
+    ClienteRepository,
+    ClienteRepositoryEloquent,
+    ComposicaoFamiliarRepository,
+    ComposicaoFamiliarRepositoryEloquent,
+    EnderecoRepository,
+    EnderecoRepositoryEloquent,
+    NacionalidadeRepository,
+    NacionalidadeRepositoryEloquent,
+    ParametroTriagemRepository,
+    ParametroTriagemRepositoryEloquent,
+    TelefoneRepository,
+    TelefoneRepositoryEloquent,
+    TipoDemandaRepository,
+    TipoDemandaRepositoryEloquent,
+    UsuarioRepository,
+    UsuarioRepositoryEloquent,
+};
+use Emaj\Repositories\Movimento\{
+    FichaTriagemRepository,
+    FichaTriagemRepositoryEloquent
+};
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider

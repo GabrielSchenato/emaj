@@ -6,10 +6,10 @@ use Emaj\Criteria\MesCriteria;
 use Emaj\Criteria\PreAtendimentoCriteria;
 use Emaj\Entities\Cadastro\Cliente;
 use Emaj\Repositories\AbstractRepository;
-use Exception;
+use Illuminate\Container\Container;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
@@ -26,6 +26,30 @@ use Prettus\Repository\Criteria\RequestCriteria;
  */
 class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRepository
 {
+
+    /**
+     * @var TelefoneRepository
+     */
+    private $telefoneRepository;
+
+    /**
+     * @var ComposicaoFamiliarRepository
+     */
+    private $composicaoFamiliarRepository;
+
+    /**
+     * @var EnderecoRepository
+     */
+    private $enderecoRepository;
+
+    public function __construct(Container $app, EnderecoRepository $enderecoRepository, ComposicaoFamiliarRepository $composicaoFamiliarRepository, TelefoneRepository $telefoneRepository)
+    {
+        parent::__construct($app);
+        $this->enderecoRepository = $enderecoRepository;
+        $this->composicaoFamiliarRepository = $composicaoFamiliarRepository;
+        $this->telefoneRepository = $telefoneRepository;
+        $this->setWrapNameException('cliente');
+    }
 
     /**
      * Specify Model class name
@@ -45,111 +69,125 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * @override
+     * Save a new entity in repository
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     *
+     * @return mixed
+     */
     public function create(array $attributes)
     {
-        try {
-            DB::beginTransaction();
-
-            $validator = Validator::make($attributes['informacoesPessoais'], $this->getRules($attributes['informacoesPessoais']));
-            if ($validator->fails()) {
-                return response()->json([
-                            'status' => 'error',
-                            'errors' => ['informacoesPessoais' => $validator->errors()]
-                                ], 422);
-            }
-
-            if ($this->required($attributes['informacoesPessoais'])) {
-                $validator = Validator::make($attributes['endereco'], EnderecoRepositoryEloquent::getRules($attributes['endereco']));
-                if ($validator->fails()) {
-                    return response()->json([
-                                'status' => 'error',
-                                'errors' => ['endereco' => $validator->errors()]
-                                    ], 422);
-                }
-            }
-
-            if ($this->required($attributes['informacoesPessoais'])) {
-                $validator = Validator::make($attributes['composicaoFamiliar'], ComposicaoFamiliarRepositoryEloquent::getRules($attributes['composicaoFamiliar']));
-                if ($validator->fails()) {
-                    return response()->json([
-                                'status' => 'error',
-                                'errors' => ['composicaoFamiliar' => $validator->errors()]
-                                    ], 422);
-                }
-            }
-
-            $cliente = parent::create($attributes['informacoesPessoais']);
-            $cliente->endereco()->create($attributes['endereco']);
-            $cliente->composicao_familiar()->create($attributes['composicaoFamiliar']);
-            $cliente->telefones()->createMany($attributes['telefones']);
-            DB::commit();
-        } catch (Exception $ex) {
-            DB::rollback();
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => $ex->getMessage()
-                            ], 422);
-        }
+        return $this->save($attributes, null);
     }
 
+    /**
+     * @override
+     * Update a entity in repository by id
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     * @param       $id
+     *
+     * @return mixed
+     */
     public function update(array $attributes, $id)
     {
+        return $this->save($attributes, $id);
+    }
+
+    /**
+     * Método responsável por criar ou atualizar o registro de um cliente.
+     * 
+     * @param array $attributes
+     * @param int | null $id
+     * @return array
+     * @throws ValidationException
+     */
+    private function save(array $attributes, $id = null)
+    {
         try {
             DB::beginTransaction();
-            $validator = Validator::make($attributes['informacoesPessoais'], $this->getRules($attributes['informacoesPessoais']));
-            if ($validator->fails()) {
-                return response()->json([
-                            'status' => 'error',
-                            'errors' => ['informacoesPessoais' => $validator->errors()]
-                                ], 422);
-            }
 
-            if ($this->required($attributes['informacoesPessoais'])) {
-                $validator = Validator::make($attributes['endereco'], EnderecoRepositoryEloquent::getRules($attributes['endereco']));
-                if ($validator->fails()) {
-                    return response()->json([
-                                'status' => 'error',
-                                'errors' => ['endereco' => $validator->errors()]
-                                    ], 422);
-                }
-            }
+            $required = $this->required($attributes['informacoesPessoais']);
+            $this->enderecoRepository->setNeedToValidate($required);
+            $this->composicaoFamiliarRepository->setNeedToValidate($required);
+            $this->telefoneRepository->setNeedToValidate($required);
 
-            if ($this->required($attributes['informacoesPessoais'])) {
-                $validator = Validator::make($attributes['composicaoFamiliar'], ComposicaoFamiliarRepositoryEloquent::getRules($attributes['composicaoFamiliar']));
-                if ($validator->fails()) {
-                    return response()->json([
-                                'status' => 'error',
-                                'errors' => ['composicaoFamiliar' => $validator->errors()]
-                                    ], 422);
-                }
-            }
+            $cliente = parent::updateOrCreate(['id' => $id], $attributes['informacoesPessoais']);
 
-            $cliente = parent::update($attributes['informacoesPessoais'], $id);
-            $cliente->endereco()->update($attributes['endereco'], $attributes['endereco']['id']);
-            $cliente->composicao_familiar()->update($attributes['composicaoFamiliar'], $attributes['composicaoFamiliar']['id']);
-            $telefoneRepository = new TelefoneRepositoryEloquent($this->app);
-            foreach ($attributes['telefones'] as $telefone) {
-                if (isset($telefone['id'])) {
-                    $telefoneRepository->update($telefone, $telefone['id']);
-                } else {
-                    $telefone = array_merge($telefone, ['cliente_id' => $id]);
-                    $telefoneRepository->create($telefone);
-                }
-            }
+            $this->saveEndereco($attributes, $cliente->id);
+            $this->saveComposicaoFamiliar($attributes, $cliente->id);
+            $this->saveTelefones($attributes, $cliente->id);
+
             DB::commit();
-        } catch (Exception $ex) {
+            return ['status' => 'success'];
+        } catch (ValidationException $ex) {
             DB::rollback();
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => $ex->getMessage()
-                            ], 422);
+            throw $ex;
+        } catch (\Exception $ex) {
+            DB::rollback();
+            throw $ex;
         }
     }
 
-    public static function getRules($data)
+    /**
+     * Método responsável por criar ou atualizar o endereço do cliente.
+     * 
+     * @param array $attributes
+     * @param int $idCliente
+     */
+    private function saveEndereco(array $attributes, int $idCliente)
     {
-        $id = isset($data['id']) ? $data['id'] : null;
-        if (self::required($data)) {
+        $endereco = array_merge($attributes['endereco'], ['cliente_id' => $idCliente]);
+        $id = $endereco['id'] ?? null;
+        $this->enderecoRepository->updateOrCreate(['id' => $id], $endereco);
+    }
+
+    /**
+     * Método responsável por criar ou atualizar a composição familiar do cliente.
+     * 
+     * @param array $attributes
+     * @param int $idCliente
+     */
+    private function saveComposicaoFamiliar(array $attributes, int $idCliente)
+    {
+        $composicaoFamiliar = array_merge($attributes['composicaoFamiliar'], ['cliente_id' => $idCliente]);
+        $id = $composicaoFamiliar['id'] ?? null;
+        $this->composicaoFamiliarRepository->updateOrCreate(['id' => $id], $composicaoFamiliar);
+    }
+
+    /**
+     * Método responsável por criar ou atualizar os telefones do cliente.
+     * 
+     * @param array $attributes
+     * @param int $idCliente
+     */
+    private function saveTelefones(array $attributes, int $idCliente)
+    {
+        foreach ($attributes['telefones'] as $telefone) {
+            $telefone = array_merge($telefone, ['cliente_id' => $idCliente]);
+            $id = $telefone['id'] ?? null;
+            $this->telefoneRepository->updateOrCreate(['id' => $id], $telefone);
+        }
+    }
+
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
+    {
+        if ($this->required($data)) {
             return [
                 'nome_completo' => ['required', 'min:4', 'max:255', Rule::unique('clientes')->ignore($id)],
                 'cpf' => 'required',
@@ -186,7 +224,7 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
      * @param array $data
      * @return boolean
      */
-    private static function required($data)
+    private function required($data)
     {
         if (isset($data['parte_contraria']) && $data['parte_contraria']) {
             return false;

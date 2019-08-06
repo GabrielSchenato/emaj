@@ -20,6 +20,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
  */
 class ParametroTriagemRepositoryEloquent extends AbstractRepository implements ParametroTriagemRepository
 {
+
     /**
      * Specify Model class name
      *
@@ -37,11 +38,37 @@ class ParametroTriagemRepositoryEloquent extends AbstractRepository implements P
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
-    public static function getRules($data)
+
+    /**
+     * @override
+     * Save a new entity in repository
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     *
+     * @return mixed
+     */
+    public function create(array $attributes)
+    {
+        $parametrosTriagem = $this->first() ? $this->first()->toArray() : $attributes;
+        return $this->updateOrCreate($parametrosTriagem, $attributes);
+    }
+
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
     {
         return [
             'renda' => 'required|numeric'
         ];
     }
+
 }

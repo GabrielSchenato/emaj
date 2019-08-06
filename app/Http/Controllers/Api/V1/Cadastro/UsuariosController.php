@@ -2,15 +2,8 @@
 
 namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
-use Emaj\Criteria\AtivoCriteria;
-use Emaj\Criteria\ProfessorCriteria;
 use Emaj\Http\Controllers\CrudController;
-use Emaj\Mail\EdicaoUsuarioMailable;
-use Emaj\Mail\NovoUsuarioMailable;
 use Emaj\Repositories\Cadastro\UsuarioRepository;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Mail;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -32,48 +25,6 @@ class UsuariosController extends CrudController
     public function __construct(UsuarioRepository $repository)
     {
         $this->repository = $repository;
-    }
-
-    public function store(Request $request)
-    {
-        $data = $request->all();
-
-        if ($errors = $this->hasErrors($data)) {
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => $errors
-                            ], 422);
-        }
-        $this->registro = $this->repository->create($data);
-        Mail::to($data['email'])->send(new NovoUsuarioMailable($this->registro, $data['password']));
-        return $this->registro;
-    }
-    
-    public function update(Request $request, $id)
-    {
-        $data = $request->all();
-        if ($errors = $this->hasErrors($data)) {
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => $errors
-                            ], 422);
-        }
-        $this->registro = $this->repository->update($data, $id);
-        if(isset($data['password'])){
-            Mail::to($data['email'])->send(new EdicaoUsuarioMailable($this->registro, $data['password']));
-        }
-        return $this->registro;
-    }
-
-    public function me()
-    {
-        $result = auth()->user();
-        $user = [];
-        if ($result) {
-            $user = $this->repository->find($result->id);
-        }
-
-        return $user;
     }
 
 }

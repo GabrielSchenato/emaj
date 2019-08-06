@@ -82,7 +82,7 @@
                                     this.fichaTriagem = {};
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
-                            this.addErrors(resp);
+                            this.addErrors(resp.response.data);
                         });
 
 
@@ -100,7 +100,7 @@
                                     this.fichaTriagem = {};
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados atualizados com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
-                            this.addErrors(resp);
+                            this.addErrors(resp.response.data);
                         });
                     }
                 });
@@ -114,31 +114,19 @@
                 this.fichaTriagem = {};
                 this.$refs.fichaTriagemForm.$validator.errors.clear();
             },
-            addErrors(resp) {
+            addErrors(data) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
-                if (resp.response.data.errors.protocolo) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'protocolo', msg: resp.response.data.errors.protocolo});
+                if (data.errors.protocolo) {
+                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'protocolo', msg: data.errors.protocolo});
                 }
-                if (resp.response.data.errors.cliente_id) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'cliente', msg: resp.response.data.errors.cliente_id});
+                if (data.errors.cliente_id) {
+                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'cliente', msg: data.errors.cliente_id});
                 }
-                if (resp.response.data.errors.cliente_parte_contraria) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'cliente', msg: resp.response.data.errors.cliente_parte_contraria});
+                if (data.errors.parte_contraria_id) {
+                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'parte contrária', msg: data.errors.parte_contraria_id});
                 }
-                if (resp.response.data.errors.cliente_invalido) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'cliente', msg: resp.response.data.errors.cliente_invalido});
-                }
-                if (resp.response.data.errors.cliente_renda_superior) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'cliente', msg: resp.response.data.errors.cliente_renda_superior});
-                }
-                if (resp.response.data.errors.parte_contraria_id) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'parte contrária', msg: resp.response.data.errors.parte_contraria_id});
-                }
-                if (resp.response.data.errors.tipo_demanda_id) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'tipo de demanda', msg: resp.response.data.errors.tipo_demanda_id});
-                }
-                if (resp.response.data.errors.tipo_status_id) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'tipo de status', msg: resp.response.data.errors.tipo_status_id});
+                if (data.errors.tipo_demanda_id) {
+                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'tipo de demanda', msg: data.errors.tipo_demanda_id});
                 }
             }
         }
