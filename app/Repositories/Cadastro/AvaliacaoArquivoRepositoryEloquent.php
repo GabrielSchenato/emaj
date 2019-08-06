@@ -4,6 +4,7 @@ namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\AvaliacaoArquivo;
 use Emaj\Repositories\AbstractRepository;
+use Emaj\Util\Functions;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
@@ -49,8 +50,8 @@ class AvaliacaoArquivoRepositoryEloquent extends AbstractRepository implements A
 
         $stored = [];
         foreach ($files as $file) {
-            $attributes['nome'] = $this->getNomeArquivo($file);
-            $attributes['arquivo'] = base64_encode(file_get_contents($file->getRealPath()));
+            $attributes['nome'] = Functions::getNomeArquivoSemExtensao($file);
+            $attributes['arquivo'] = Functions::convertFileBinary($file);
             $attributes['mimetype'] = $file->getMimeType();
             $attributes['extensao'] = $file->getClientOriginalExtension();
             $attributes['tamanho'] = $file->getSize();
@@ -60,21 +61,19 @@ class AvaliacaoArquivoRepositoryEloquent extends AbstractRepository implements A
         return $stored;
     }
 
-    public static function getRules($data)
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
     {
         return [
         ];
-    }
-    
-    /**
-     * Método responsável por pegar o nome do arquivo sem extensão.
-     * 
-     * @param type $file
-     * @return string
-     */
-    private function getNomeArquivo($file)
-    {
-        return basename($file->getClientOriginalName(), '.' . $file->getClientOriginalExtension());
     }
 
 }

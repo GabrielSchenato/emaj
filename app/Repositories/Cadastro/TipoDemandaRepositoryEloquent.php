@@ -5,6 +5,7 @@ namespace Emaj\Repositories\Cadastro;
 use Emaj\Entities\Cadastro\TipoDemanda;
 use Emaj\Repositories\AbstractRepository;
 use Emaj\Repositories\Cadastro\TipoDemandaRepository;
+use Illuminate\Validation\Rule;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
@@ -40,10 +41,19 @@ class TipoDemandaRepositoryEloquent extends AbstractRepository implements TipoDe
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public static function getRules($data)
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
     {
         return [
-            'nome' => 'required|min:5|max:255'
+            'nome' => ['required', 'min:5', 'max:255', Rule::unique('tipo_demandas')->ignore($id)]
         ];
     }
 

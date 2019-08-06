@@ -25,9 +25,6 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
 
     use Notifiable;
 
-    public const ADMIN = 'admin';
-    public const SECRETARIA = 'secretaria';
-
     /**
      * The database table used by the model.
      *

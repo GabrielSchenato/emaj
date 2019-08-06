@@ -19,4 +19,12 @@ use Emaj\Repositories\RepositoryInterface;
 interface AvaliacaoRepository extends RepositoryInterface
 {
 
+    /**
+     * Método responsável por pegar todas as avaliações por aluno
+     * 
+     * @param int $idAluno
+     * @param array $relationships
+     * @return mixed
+     */
+    public function getAvaliacoesByAluno(int $idAluno, array $relationships = []);
 }

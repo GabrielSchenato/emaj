@@ -23,9 +23,6 @@ use Illuminate\Database\Eloquent\Model;
 class FichaTriagem extends Model
 {
 
-    public const AJUIZADO = 'Ajuizado';
-    public const NAO_AJUIZADO = 'Não Ajuizado';
-
     /**
      * The database table used by the model.
      *

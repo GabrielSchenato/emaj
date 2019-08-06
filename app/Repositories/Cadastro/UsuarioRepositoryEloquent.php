@@ -3,9 +3,16 @@
 namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\Usuario;
+use Emaj\Mail\EdicaoUsuarioMailable;
+use Emaj\Mail\NovoUsuarioMailable;
 use Emaj\Repositories\AbstractRepository;
+use Emaj\Util\Functions;
+use Emaj\Util\Roles;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Validator\Exceptions\ValidatorException;
+use function app;
 
 /**
  * Repository responsável por gerenciar a entidade User
@@ -40,14 +47,62 @@ class UsuarioRepositoryEloquent extends AbstractRepository implements UsuarioRep
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public static function getRules($data)
+    /**
+     * @override
+     * Save a new entity in repository
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     *
+     * @return mixed
+     */
+    public function create(array $attributes)
     {
-        $id = isset($data['id']) ? $data['id'] : null;
+        $this->setAvatar($attributes);
+        $usuario = parent::create($attributes);
+        Mail::to($usuario->email)
+                ->send(new NovoUsuarioMailable($usuario, $attributes['password']));
+        return $usuario;
+    }
+
+    /**
+     * @override
+     * Update a entity in repository by id
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     * @param       $id
+     *
+     * @return mixed
+     */
+    public function update(array $attributes, $id)
+    {
+        $this->setAvatar($attributes);
+        $usuario = parent::update($attributes, $id);
+        if (isset($attributes['password'])) {
+            Mail::to($usuario->email)->send(new EdicaoUsuarioMailable($usuario, $attributes['password']));
+        }
+        return $usuario;
+    }
+
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
+    {
         return [
             'nome_completo' => 'required|min:5',
             'email' => ['required', 'email', Rule::unique('usuarios')->ignore($id)],
             'password' => [$id ? '' : 'required', 'min:6', 'confirmed'],
-            'role' => ['required', Rule::in(['admin', 'secretaria', 'aluno'])],
+            'role' => ['required', Rule::in(Roles::getRoles())],
             'avatar' => 'nullable',
             'telefone' => 'required|min:8',
         ];
@@ -97,6 +152,19 @@ class UsuarioRepositoryEloquent extends AbstractRepository implements UsuarioRep
                         ->orderBy('nome_completo', 'asc')
                         ->limit(10)
                         ->get(['id', 'nome_completo']);
+    }
+
+    /**
+     * Método responsável por setar o avatar se estiver sendo enviado
+     * 
+     * @param array $attributes
+     */
+    private function setAvatar(&$attributes)
+    {
+        if (isset($attributes['image_url'])) {
+            $attributes['avatar'] = Functions::convertFileBinary($attributes['image_url']);
+            unset($attributes['image_url']);
+        }
     }
 
 }

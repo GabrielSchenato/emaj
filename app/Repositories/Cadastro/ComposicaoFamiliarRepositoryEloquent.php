@@ -4,6 +4,8 @@ namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\ComposicaoFamiliar;
 use Emaj\Repositories\AbstractRepository;
+use Emaj\Util\TiposCasa;
+use Illuminate\Container\Container;
 use Illuminate\Validation\Rule;
 use Prettus\Repository\Criteria\RequestCriteria;
 
@@ -22,6 +24,11 @@ use Prettus\Repository\Criteria\RequestCriteria;
 class ComposicaoFamiliarRepositoryEloquent extends AbstractRepository implements ComposicaoFamiliarRepository
 {
 
+    public function __construct(Container $app)
+    {
+        parent::__construct($app);
+        $this->setWrapNameException('composicao_familiar');
+    }
     /**
      * Specify Model class name
      *
@@ -40,11 +47,20 @@ class ComposicaoFamiliarRepositoryEloquent extends AbstractRepository implements
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public static function getRules($data)
+    /**
+     * Método responsável por retornar as regras a serem aplicadas ao criar ou editar
+     * um registro
+     * 
+     * @param array $data
+     * @param int $id
+     * 
+     * @return array Regras para serem aplicadas
+     */
+    public function getRules(array $data, int $id = null)
     {
         return [
             'renda_familiar' => 'required|numeric',
-            'casa' => ['required', Rule::in(['Alugada', 'Própria', 'Cedida'])],
+            'casa' => ['required', Rule::in(TiposCasa::getTiposCasa())],
             'outros_bens' => 'required|max:255',
             'dividas' => 'required|max:255',
             'despesas' => 'required|max:255',

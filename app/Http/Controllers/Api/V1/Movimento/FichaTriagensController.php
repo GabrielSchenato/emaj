@@ -28,6 +28,8 @@ use function request;
 class FichaTriagensController extends CrudController
 {
 
+    use Report;
+
     /**
      * @var UsuarioRepository
      */
@@ -47,9 +49,10 @@ class FichaTriagensController extends CrudController
      * @var ClienteRepository
      */
     private $clienteRepository;
-
-    use Report;
-
+    /**
+     *
+     * @var FichaTriagemRepository
+     */
     protected $repository;
     protected $relationships = [
         'cliente:id,nome_completo',

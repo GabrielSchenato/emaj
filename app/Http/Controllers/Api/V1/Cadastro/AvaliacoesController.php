@@ -33,28 +33,9 @@ class AvaliacoesController extends CrudController
         $this->repository = $repository;
     }
 
-    public function avaliacoesAluno($id)
+    public function avaliacoesAluno($idAluno)
     {
-        $this->registro = $this->repository
-                ->with($this->relationships())
-                ->orderBy('id', 'desc')
-                ->findByField('aluno_id', $id);
-
-        return $this->registro;
-    }
-
-    public function store(Request $request)
-    {
-        $data = $request->all();
-        $data['avaliador_id'] = auth()->user()->id;
-        if ($errors = $this->hasErrors($data)) {
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => $errors
-                            ], 422);
-        }
-        $this->registro = $this->repository->create($data);
-        return $this->registro;
+        return $this->repository->getAvaliacoesByAluno($idAluno, $this->relationships());
     }
 
 }
