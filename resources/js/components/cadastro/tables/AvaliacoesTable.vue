@@ -36,10 +36,22 @@
                     :loading="loading"
                     >
                     <template slot="items" slot-scope="props">
-                        <td>{{ props.item.id }}</td>
-                        <td>{{ props.item.ficha_triagem ? props.item.ficha_triagem.dados_ficha_triagem : 'Não informado' }}</td>
-                        <td>{{ props.item.avaliador.dados_usuario }}</td>
-                        <td>{{ props.item.data | formataData}}</td>
+
+                        <td @click="expandRow(props)">
+                            {{ props.item.id }}
+                        </td>
+                        <td @click="expandRow(props)">
+                            {{ props.item.ficha_triagem ? props.item.ficha_triagem.dados_ficha_triagem : 'Não informado' }}
+                        </td>
+                        <td @click="expandRow(props)">
+                            {{ props.item.avaliador.dados_usuario }}
+                        </td>
+                        <td @click="expandRow(props)">
+                            {{ props.item.quantidade_anexos }}
+                        </td>
+                        <td @click="expandRow(props)">
+                            {{ props.item.data | formataData}}
+                        </td>
                         <td>
                         <v-btn depressed outline icon fab dark color="primary" small>
                             <v-icon @click="editar(props.item.id)">edit</v-icon>
@@ -48,6 +60,26 @@
                             <v-icon @click="deletar(props.item)">delete</v-icon>
                         </v-btn>
                         </td>
+
+                    </template>
+
+                    <template v-slot:expand="props">
+                        <v-card flat>
+                            <v-card-text>
+                                <v-alert
+                                    :value="true"
+                                    color="info"
+                                    icon="sms_failed"
+                                    outline
+                                    >
+                                    <b>Observações: </b>
+                                    <div>
+                                        {{ props.item.observacoes }}
+                                    </div>
+                                </v-alert>
+
+                            </v-card-text>
+                        </v-card>
                     </template>
 
                     <template
@@ -76,6 +108,9 @@
             },
             idAluno: {
                 type: Number
+            },
+            nomeAluno: {
+                type: String
             }
         },
         data() {
@@ -95,6 +130,10 @@
                         {
                             text: "Avaliador",
                             value: "avaliador.dados_usuario"
+                        },
+                        {
+                            text: "Quant. de Anexos",
+                            value: "quantidade_anexos"
                         },
                         {
                             text: "Data",
@@ -130,7 +169,11 @@
                 this.$refs.avaliacaoDialog
                         .open(
                                 'Adicionar uma nova Avaliação do Aluno',
-                                {data: moment().format('YYYY-MM-DD'), aluno_id: this.idAluno},
+                                {
+                                    data: moment().format('YYYY-MM-DD'),
+                                    aluno_id: this.idAluno,
+                                    nome_aluno: this.nomeAluno
+                                },
                                 {
                                     color: "blue"
                                 }
@@ -141,10 +184,12 @@
             },
             editar(id) {
                 this.$store.dispatch("getAvaliacao", id).then(() => {
+                    let avaliacao = this.$store.state.avaliacao.avaliacaoView;
+                    avaliacao.nome_aluno = this.nomeAluno;
                     this.$refs.avaliacaoDialog
                             .open(
                                     'Editar um Avaliação do Aluno',
-                                    this.$store.state.avaliacao.avaliacaoView,
+                                    avaliacao,
                                     {
                                         color: "blue"
                                     }
@@ -185,6 +230,9 @@
                         msgErro = resp.response.data.errors;
                     window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
                 }).finally(() => (this.loading = false));
+            },
+            expandRow(props) {
+                props.expanded = !props.expanded;
             }
         }
     };

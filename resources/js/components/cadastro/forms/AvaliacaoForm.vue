@@ -10,6 +10,15 @@
                     @input="$emit('input', avaliacao)"
                     ></v-text-field>
             </v-flex>
+            <v-flex xs12 sm6 md10>
+                <v-text-field
+                    name="nome_aluno"
+                    v-model="avaliacao.nome_aluno"
+                    label="Aluno"
+                    disabled
+                    @input="$emit('input', avaliacao)"
+                    ></v-text-field>
+            </v-flex>
         </v-layout>
 
         <v-card class="mb-4">
@@ -61,6 +70,7 @@
                                     readonly
                                     clearable
                                     v-on="on"
+                                    @click:clear="clearData()"
                                     v-validate="{required: true }"
                                     :error-messages="errors.collect('Data')"
                                     data-vv-name="Data"
@@ -85,6 +95,7 @@
                             v-validate="{required: true }"
                             :error-messages="errors.collect('Observações')"
                             data-vv-name="Observações"
+                            clearable
                             @input="$emit('input', avaliacao)"
                             ></v-textarea>
                     </v-flex>
@@ -175,6 +186,12 @@
                     },
                     500,
                     )
+        },
+        methods: {
+            clearData() {
+                this.avaliacao.data = null;
+                this.$emit('input', this.avaliacao);
+            }
         }
     };
 </script>

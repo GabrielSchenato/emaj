@@ -26,6 +26,7 @@ class Avaliacao extends Model
      * @var string
      */
     protected $table = 'avaliacoes';
+    protected $appends = ['quantidade_anexos'];
     protected $fillable = [
         'aluno_id',
         'ficha_triagem_id',
@@ -64,6 +65,17 @@ class Avaliacao extends Model
     public function avaliacao_arquivos()
     {
         return $this->hasMany(AvaliacaoArquivo::class, 'avaliacao_id');
+    }
+
+    /**
+     * Método responsável por verificar quantos anexos existem vinculados a essa
+     * avaliação.
+     * 
+     * @return int
+     */
+    protected function getQuantidadeAnexosAttribute()
+    {
+        return $this->avaliacao_arquivos->count();
     }
 
 }
