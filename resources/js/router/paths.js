@@ -132,6 +132,15 @@ export default [
     )
   },
   {
+    path: '/relatorio/relatividadesprestadas',
+    meta: { breadcrumb: true, auth: true },
+    name: 'relatorio/relatividadesprestadas',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/relatorio/RelatorioAtividadesPrestadas.vue`
+    )
+  },
+  {
     path: '/alteracoes',
     meta: { breadcrumb: true, auth: true },
     name: 'Alterações',
