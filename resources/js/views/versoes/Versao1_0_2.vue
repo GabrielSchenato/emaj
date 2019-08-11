@@ -66,7 +66,7 @@
                     {
                         icon: 'fiber_manual_record',
                         color: 'black',
-                        text: 'Adaptação (Movimento): Removido a obrigatoriedade dos campos "Tipo de Demanda" e "Tipo de Status". Habilitado também o campo "Protocolo" para editação na ação de editar na tela de "Ficha de Triagem"'
+                        text: 'Adaptação (Movimento): Removido a obrigatoriedade dos campos "Tipo de Demanda" e "Tipo de Status". Habilitado também o campo "Protocolo" para edição na ação de editar na tela de "Ficha de Triagem"'
                     },
                     {
                         icon: 'fiber_manual_record',
