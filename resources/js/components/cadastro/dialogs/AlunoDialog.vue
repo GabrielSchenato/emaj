@@ -80,7 +80,13 @@
                                                 <small><b class="vermelho">Vermelho: </b>Indica os processos que foram arquivados/inativados</small>
                                             </v-stepper-content>
                                             <v-stepper-content step="3">
-                                                <avaliacoes-table v-model="aluno.avaliacoes" v-bind:idAluno="aluno.id"></avaliacoes-table>
+                                                <avaliacoes-table 
+                                                    v-model="aluno.avaliacoes" 
+                                                    v-bind:idAluno="aluno.id"
+                                                    v-bind:nomeAluno="aluno.nome_completo"
+                                                    >                                                        
+                                                </avaliacoes-table>
+                                                <small><b>Dica: </b>Clique na linha para expandir e visualizar mais informações.</small>
                                             </v-stepper-content>
                                         </v-stepper-items>
                                     </v-stepper>

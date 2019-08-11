@@ -1,8 +1,8 @@
 <template>
     <v-card class="card--flex-toolbar">
         <v-toolbar card prominent>
-            <v-toolbar-title class="body-6 black--text">v1.0.2</v-toolbar-title>
-            <v-toolbar-title class="body-1 grey--text"><small>22 de Maio de 2019</small></v-toolbar-title>                      
+            <v-toolbar-title class="body-6 black--text">v1.1.1</v-toolbar-title>
+            <v-toolbar-title class="body-1 grey--text"><small>15 de Agosto de 2019</small></v-toolbar-title>                      
             <v-spacer></v-spacer>
         </v-toolbar>
         <v-divider></v-divider>
@@ -46,7 +46,7 @@
                         </li>
                     </ol>              
                 </div>        
-            </v-flex>       
+            </v-flex>    
 
         </v-card-text>
     </v-card>    
@@ -54,39 +54,20 @@
 
 <script>
     export default {
-        name: "versao1_0_2",
+        name: "versao1_1_1",
         computed: {
             alteracoesPortal() {
                 return [
                     {
                         icon: 'fiber_manual_record',
                         color: 'black',
-                        text: 'Correção (Cadastro): Aplicada correção nos campos "Renda", "Renda Familiar" e "Valor Patrimônio", corrigindo dessa forma o campo moeda no cadastro do "Cliente"'
-                    },
-                    {
-                        icon: 'fiber_manual_record',
-                        color: 'black',
-                        text: 'Adaptação (Movimento): Removido a obrigatoriedade dos campos "Tipo de Demanda" e "Tipo de Status". Habilitado também o campo "Protocolo" para edição na ação de editar na tela de "Ficha de Triagem"'
-                    },
-                    {
-                        icon: 'fiber_manual_record',
-                        color: 'black',
-                        text: 'Adaptação (Movimento): Adicionado o campo "Professor" na tela de "Ficha de Triagem"'
-                    },
-                    {
-                        icon: 'fiber_manual_record',
-                        color: 'black',
-                        text: 'Adaptação (Cadastro): Adicionado o campo "CPF Representado/Assistido" e "RG Representado/Assistido" na tela de cadastro de "Cliente"'
-                    },
-                    {
-                        icon: 'fiber_manual_record',
-                        color: 'black',
-                        text: 'Adaptação (Movimento): Aplicada diversas modificações na impressão da "Ficha de Triagem", incluindo novos campos e layout melhorado'
+                        text: 'Adaptação (Cadastro): Aplicada melhoria na tela de "Alunos" na aba "Avaliações" para quando clicar na linha expandir a mesma e mostrar mais informações sobre a avaliação'
                     }
                 ];
             },
             alteracoesInstitucional() {
-                return [];
+                return [
+                ];
             }
         }
     };

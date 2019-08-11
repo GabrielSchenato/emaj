@@ -90,7 +90,7 @@ trait ApiController
      * Método responsável por deletar o registro.
      * 
      * @param int $id
-     * @return boolean
+     * @return mixed
      */
     public function destroy($id)
     {
