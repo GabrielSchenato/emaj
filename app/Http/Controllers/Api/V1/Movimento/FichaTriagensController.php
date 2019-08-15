@@ -86,19 +86,19 @@ class FichaTriagensController extends CrudController
     public function autocomplete()
     {
         $this->registro = [];
-        if (strlen($ac = request()->get('nome_cliente')) > 0) {
+        if ((strlen($ac = request()->get('cliente_id')) > 0) || (strlen($ac = request()->get('parte_contraria_id')) > 0)) {
             $this->registro = $this->clienteRepository->pushCriteria(AtivoCriteria::class)
                     ->getDataAutocomplete($ac);
         }
-        if (strlen($ac = request()->get('nome_tipo_demanda')) > 0) {
+        if (strlen($ac = request()->get('tipo_demanda_id')) > 0) {
             $this->registro = $this->tipoDemandaRepository->pushCriteria(AtivoCriteria::class)
                     ->getDataAutocomplete($ac);
         }
-        if (strlen($ac = request()->get('nome_aluno')) > 0) {
+        if (strlen($ac = request()->get('aluno_id')) > 0) {
             $this->registro = $this->alunoRepository->pushCriteria(AtivoCriteria::class)
                     ->getDataAutocomplete($ac);
         }
-        if (strlen($ac = request()->get('nome_professor')) > 0) {
+        if (strlen($ac = request()->get('professor_id')) > 0) {
             $this->registro = $this->usuarioRepository->pushCriteria(ProfessorCriteria::class)
                     ->pushCriteria(AtivoCriteria::class)
                     ->getDataAutocomplete($ac);
