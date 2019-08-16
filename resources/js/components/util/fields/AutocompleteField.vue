@@ -112,7 +112,7 @@
             prepareParams(busca) {
                 return {
                     ...{
-                            [this.options.field]: busca.replace(' ', '%20')
+                            [this.options.field]: busca
                     },
                     ...this.options.otherParams
                 };

@@ -19,6 +19,10 @@ class TrimStrings extends Middleware
         'nome_aluno',
         'nome_professor',
         'nacionalidade',
-        'ficha_triagem'
+        'ficha_triagem',
+        'parte_contraria_id',
+        'tipo_demanda_id',
+        'professor_id',
+        'aluno_id'
     ];
 }
