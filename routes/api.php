@@ -41,6 +41,9 @@ Route::prefix('v1')
             
             Route::get('clientes/autocomplete', 'Cadastro\ClientesController@autocomplete');
             Route::get('alunos/autocomplete', 'Cadastro\AlunosController@autocomplete');
+            
+            Route::get('protocolos/autocomplete', 'Cadastro\ProtocolosController@autocomplete');
+            Route::get('protocoloalunos/autocomplete', 'Cadastro\ProtocoloAlunosController@autocomplete');
 
             Route::apiResources([
                 'usuarios' => 'Cadastro\UsuariosController',
@@ -49,6 +52,8 @@ Route::prefix('v1')
                 'alunos' => 'Cadastro\AlunosController',
                 'avaliacoes' => 'Cadastro\AvaliacoesController',
                 'avaliacaoarquivos' => 'Cadastro\AvaliacaoArquivosController',
+                'protocolos' => 'Cadastro\ProtocolosController',
+                'protocoloalunos' => 'Cadastro\ProtocoloAlunosController',
                 'fichatriagens' => 'Movimento\FichaTriagensController'
             ]);
             Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');

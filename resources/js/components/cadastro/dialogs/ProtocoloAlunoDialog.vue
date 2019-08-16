@@ -5,15 +5,17 @@
         @keydown.esc="cancel"
         v-bind:style="{ zIndex: options.zIndex }"
         >
-        <v-form @submit.prevent="fichaTriagem.id != null ? update() : save()">
+        <v-form @submit.prevent="protocoloAluno.id != null ? update() : save()">
             <v-card>
                 <v-toolbar dark :color="options.color" dense flat>
                            <v-toolbar-title class="white--text">{{ formTitle }}</v-toolbar-title>
                 </v-toolbar>
+
                 <v-card-text>
                     <v-container grid-list-md>
-                        <ficha-triagem-form ref="fichaTriagemForm" v-model="fichaTriagem"></ficha-triagem-form>
+                        <protocolo-aluno-form ref="protocoloAlunoForm" v-model="protocoloAluno"></protocolo-aluno-form>
                     </v-container>
+                    <small>*Indica os campos que são obrigatórios</small>
                 </v-card-text>
                 <v-card-actions class="pt-0">
                     <v-spacer></v-spacer>
@@ -22,7 +24,7 @@
                         <v-icon right dark>check</v-icon>
                     </v-btn>
 
-                    <v-btn color="blue" flat="flat" @click.native="clear" :disabled="fichaTriagem.id != null">
+                    <v-btn color="blue" flat="flat" @click.native="clear" :disabled="protocoloAluno.id != null">
                            Limpar
                            <v-icon right dark>delete_sweep</v-icon>
                     </v-btn>
@@ -37,13 +39,20 @@
 </template>
 
 <script>
-    import FichaTriagemForm from "@/components/movimento/forms/FichaTriagemForm.vue";
+    import ProtocoloAlunoForm from "@/components/cadastro/forms/ProtocoloAlunoForm.vue";
+
     export default {
         components: {
-            FichaTriagemForm
+            ProtocoloAlunoForm
+        },
+        props: {
+            idProtocolo: {
+                accept: Number,
+                required: true
+            }
         },
         data: () => ({
-                fichaTriagem: {},
+                protocoloAluno: {},
                 dialog: false,
                 resolve: null,
                 reject: null,
@@ -51,20 +60,17 @@
                 options: {
                     color: "primary",
                     width: 1000,
-                    zIndex: 500
+                    zIndex: 1000
                 }
             }),
         methods: {
             open(title, item, options) {
-                this.$refs.fichaTriagemForm.$validator.reset();
                 this.dialog = true;
                 this.formTitle = title;
-                this.fichaTriagem = item;
-                this.$refs.fichaTriagemForm.$refs.autocompleteCliente.values = item.cliente ? [item.cliente] : [];
-                this.$refs.fichaTriagemForm.$refs.autocompleteParteContraria.values = item.parte_contraria ? [item.parte_contraria] : [];
-                this.$refs.fichaTriagemForm.$refs.autocompleteTipoDemanda.values = item.tipo_demanda ? [item.tipo_demanda] : [];
-                this.$refs.fichaTriagemForm.$refs.autocompleteAluno.values = item.aluno ? [item.aluno] : [];
-                this.$refs.fichaTriagemForm.$refs.autocompleteProfessor.values = item.professor ? [item.professor] : [];
+                this.protocoloAluno = item;
+                this.$refs.protocoloAlunoForm.$refs.autocompleteAluno.values = item.aluno ? [item.aluno] : [];
+                this.$refs.protocoloAlunoForm.$refs.autocompleteProfessor.values = item.professor ? [item.professor] : [];
+                this.$refs.protocoloAlunoForm.$validator.reset();
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;
@@ -72,35 +78,38 @@
                 });
             },
             save() {
-                this.$refs.fichaTriagemForm.$validator.validateAll().then(valid => {
+                this.$refs.protocoloAlunoForm.$validator.validateAll().then(valid => {
                     if (valid) {
                         this.$store
-                                .dispatch("newFichaTriagem", this.fichaTriagem)
+                                .dispatch("newProtocoloAluno", {
+                                    ...this.protocoloAluno,
+                                    ...{
+                                            protocolo_id: this.idProtocolo
+                                    }
+                                })
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
-                                    this.fichaTriagem = {};
+                                    this.protocoloAluno = {};
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
-                            this.addErrors(resp.response.data);
+                            this.addErrors(resp);
                         });
-
-
                     }
                 });
             },
             update() {
-                this.$refs.fichaTriagemForm.$validator.validateAll().then(valid => {
+                this.$refs.protocoloAlunoForm.$validator.validateAll().then(valid => {
                     if (valid) {
                         this.$store
-                                .dispatch("updateFichaTriagem", this.fichaTriagem)
+                                .dispatch("updateProtocoloAluno", this.protocoloAluno)
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
-                                    this.fichaTriagem = {};
+                                    this.protocoloAluno = {};
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados atualizados com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
-                            this.addErrors(resp.response.data);
+                            this.addErrors(resp);
                         });
                     }
                 });
@@ -108,25 +117,21 @@
             cancel() {
                 this.resolve(false);
                 this.dialog = false;
-                this.$refs.fichaTriagemForm.$validator.errors.clear();
             },
             clear() {
-                this.fichaTriagem = {};
-                this.$refs.fichaTriagemForm.$validator.errors.clear();
+                this.protocoloAluno = {};
+                this.$refs.protocoloAlunoForm.$validator.errors.clear();
             },
-            addErrors(data) {
+            addErrors(resp) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
-                if (data.errors.protocolo) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'protocolo', msg: data.errors.protocolo});
+                if (resp.response.data.errors.aluno_id) {
+                    this.$refs.protocoloAlunoForm.$validator.errors.add({field: 'Aluno', msg: resp.response.data.errors.aluno_id});
                 }
-                if (data.errors.cliente_id) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'Cliente', msg: data.errors.cliente_id});
+                if (resp.response.data.errors.professor_id) {
+                    this.$refs.protocoloAlunoForm.$validator.errors.add({field: 'Professor', msg: resp.response.data.errors.professor_id});
                 }
-                if (data.errors.parte_contraria_id) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'Parte Contrária', msg: data.errors.parte_contraria_id});
-                }
-                if (data.errors.tipo_demanda_id) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'Tipo de Demanda', msg: data.errors.tipo_demanda_id});
+                if (resp.response.data.errors.data_vinculo) {
+                    this.$refs.protocoloAlunoForm.$validator.errors.add({field: 'Data Vínculo', msg: resp.response.data.errors.data_vinculo});
                 }
             }
         }

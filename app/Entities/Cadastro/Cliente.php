@@ -63,6 +63,14 @@ class Cliente extends Model
     {
         return $this->hasMany(Telefone::class);
     }
+    
+    /**
+     * Pega todos os Protocolos associados ao cliente.
+     */
+    public function protocolos()
+    {
+        return $this->hasMany(Protocolo::class);
+    }
 
     /**
      * Pega todas as Ficha de Triagens associados ao cliente.

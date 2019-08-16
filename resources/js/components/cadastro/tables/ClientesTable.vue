@@ -53,13 +53,11 @@
 </template>
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
-    import ClienteDialog from "@/components/cadastro/dialogs/ClienteDialog.vue";
 
     export default {
         name: "clientes-table",
         components: {
-            Confirm,
-            ClienteDialog
+            Confirm
         },
         props: {
             value: {

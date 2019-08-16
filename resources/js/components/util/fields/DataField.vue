@@ -1,39 +1,35 @@
-<template>
-    <v-flex xs12 sm6 md2>   
-        <v-menu
-            ref="menu"
-            v-model="menu"
-            :close-on-content-click="false"
-            :nudge-right="40"      
-            lazy
-            transition="scale-transition"
-            offset-y
-            full-width
-            min-width="290px"
-            >
-            <template v-slot:activator="{ on }">
-                <v-text-field
-                    :value="dataFormatada"
-                    :label="label"
-                    readonly
-                    clearable
-                    v-on="on"
-                    @click:clear="clearData()"
-                    v-validate="{required: options.required }"
-                    :error-messages="errors.collect(options.name)"
-                    :data-vv-name="options.name"
-                    ></v-text-field>
-            </template>
-            <v-date-picker 
-                v-model="data"
-                no-title scrollable
-                locale="pt-br"
-                :max="options.max"
-                :min="options.min"
-                @input="$emit('input', data); menu = false">
-            </v-date-picker>
-        </v-menu>
-    </v-flex>
+<template> 
+    <v-menu
+        ref="menu"
+        v-model="menu"
+        :close-on-content-click="false"
+        :nudge-right="40"      
+        lazy
+        transition="scale-transition"
+        offset-y
+        full-width
+        min-width="290px"
+        >
+        <template v-slot:activator="{ on }">
+            <v-text-field
+                :value="dataFormatada"
+                :label="label"
+                readonly
+                clearable
+                v-on="on"
+                @click:clear="clearData()"
+                v-bind:error-messages="errorMessages"
+                ></v-text-field>
+        </template>
+        <v-date-picker 
+            v-model="data"
+            no-title scrollable
+            locale="pt-br"
+            :max="options.max"
+            :min="options.min"
+            @input="$emit('input', data); menu = false">
+        </v-date-picker>
+    </v-menu>
 </template>
 <script>
     import moment from 'moment'
@@ -45,6 +41,9 @@
             },
             options: {
                 type: [Object]
+            },
+            errorMessages: {
+                type: Array
             }
         },
         data() {

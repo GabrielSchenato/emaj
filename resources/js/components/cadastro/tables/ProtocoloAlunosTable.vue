@@ -1,14 +1,18 @@
 <template>
     <div id="pageTable">
         <v-container grid-list-xl fluid>
-            <v-layout row wrap>
+            <v-layout row wrap>                
                 <v-flex lg12>
                     <v-card>
                         <v-toolbar card color="white">
-                            <v-btn color="primary" dark @click="adicionar">Adicionar
+                            <v-btn color="primary" @click="adicionar">Adicionar
                                 <v-icon right dark>add</v-icon>
                             </v-btn>
-                            <usuario-dialog ref="usuarioDialog"></usuario-dialog>
+                            <protocolo-aluno-dialog
+                                ref="protocoloAlunosDialog"
+                                v-bind:idProtocolo="idProtocolo"
+                                >
+                            </protocolo-aluno-dialog>
                             <confirm ref="confirm"></confirm>
                             <v-divider class="mx-2" inset vertical></v-divider>
                             <filter-form
@@ -22,53 +26,31 @@
                         <v-card-text class="pa-0">
                             <v-data-table
                                 :headers="complex.headers"
-                                :items="usuarios"
+                                :items="protocoloAlunos"
                                 :pagination.sync="pagination" 
-                                :total-items="totalUsuarios"
+                                :total-items="totalProtocoloAlunos"
                                 :rows-per-page-items="[10,25,50,100]"
                                 class="elevation-1"
                                 item-key="id"
-                                select-all
-                                v-model="complex.selected"
                                 rows-per-page-text="Linhas por página"
                                 no-results-text="Nenhum registro correspondente encontrado"
                                 no-data-text="Não há registros para serem exibidos."
                                 :loading="loading"
                                 >
-                                <template slot="items" slot-scope="props">
-                                    <td>
-                                    <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
-                                    </td>
-                                    <td>{{ props.item.id }}</td>
-                                    <td>
-                                    <v-avatar size="32">
-                                        <img :src="'data:image/jpeg;base64,' + props.item.avatar" alt>
-                                    </v-avatar>
-                                    </td>
-                                    <td>{{ props.item.nome_completo }}</td>
-                                    <td>{{ props.item.email }}</td>
-                                    <td>{{ props.item.telefone }}</td>
-                                    <td>{{ props.item.role | formataRole }}</td>
-                                    <td>{{ props.item.professor | formataAtivo }}</td>
+                                <template slot="items" slot-scope="props">              
+                                    <td>{{ props.item.nome_aluno }}</td>
+                                    <td>{{ props.item.nome_professor }}</td>
+                                    <td>{{ props.item.data_vinculo | formataData }}</td>
                                     <td>{{ props.item.ativo | formataAtivo }}</td>
                                     <td>
-                                    <v-btn 
-                                        depressed outline icon fab dark
-                                        color="primary"
-                                        small
-                                        :disabled="props.item.id == $auth.user().id">
+                                    <v-btn depressed outline icon fab dark color="primary" small>
                                         <v-icon @click="editar(props.item.id)">edit</v-icon>
                                     </v-btn>
-                                    <v-btn 
-                                        depressed outline icon fab dark 
-                                        color="pink"
-                                        small
-                                        :disabled="props.item.id == $auth.user().id || (props.item.role == 'admin' && $auth.user().role == 'secretaria')">
+                                    <v-btn depressed outline icon fab dark color="pink" small>
                                         <v-icon @click="deletar(props.item)">delete</v-icon>
                                     </v-btn>
                                     </td>
                                 </template>
-
                                 <template
                                     slot="pageText"
                                     slot-scope="props"
@@ -84,68 +66,48 @@
 
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
-    import UsuarioDialog from "@/components/cadastro/dialogs/UsuarioDialog.vue";
+    import ProtocoloAlunoDialog from "@/components/cadastro/dialogs/ProtocoloAlunoDialog.vue";
+    import moment from 'moment'
 
     export default {
         components: {
             Confirm,
-            UsuarioDialog
+            ProtocoloAlunoDialog
         },
-
+        props: {
+            idProtocolo: {
+                accept: Number,
+                required: true
+            }
+        },
         data: () => ({
                 dialog: false,
                 search: {},
-                loading: true,
-                pagination: {descending: true},
-                usuarios: [],
-                totalUsuarios: 0,
+                loading: false,
+                pagination: {descending: true, sortBy: 'id'},
+                protocoloAlunos: [],
+                totalProtocoloAlunos: 0,
                 complex: {
                     selected: [],
                     headers: [
                         {
-                            text: "ID",
-                            value: "id",
-                            filterable: true,
-                            type: 'number'
-                        },
-                        {
-                            text: "Avatar",
-                            value: "avatar",
-                            sortable: false
-                        },
-                        {
-                            text: "Nome Completo",
-                            value: "nome_completo",
+                            text: "Aluno",
+                            value: "nome_aluno",
                             filterable: true,
                             type: 'text',
                             initial: true
                         },
                         {
-                            text: "E-mail",
-                            value: "email",
+                            text: "Professor",
+                            value: "nome_professor",
                             filterable: true,
                             type: 'text'
                         },
                         {
-                            text: "Telefone",
-                            value: "telefone",
+                            text: "Data Vínculo",
+                            value: "data_vinculo",
                             filterable: true,
-                            type: 'text',
-                            mask: '(##) #####-####'
-                        },
-                        {
-                            text: "Nível de Permissão",
-                            value: "role",
-                            filterable: true,
-                            type: 'combo',
-                            options: [{text: 'Administrador', value: 'admin'}, {text: 'Secretária', value: 'secretaria'}]
-                        },
-                        {
-                            text: "Professor?",
-                            value: "professor",
-                            filterable: true,
-                            type: 'combo',
-                            options: [{text: 'Sim', value: 1}, {text: 'Não', value: 0}]
+                            type: 'datetime'
                         },
                         {
                             text: "Ativo?",
@@ -172,10 +134,13 @@
         },
         methods: {
             adicionar() {
-                this.$refs.usuarioDialog
+                this.$refs.protocoloAlunosDialog
                         .open(
-                                'Adicionar um novo Usuário',
-                                {ativo: true},
+                                'Adicionar um novo vínculo Aluno/Professor',
+                                {
+                                    ativo: true,
+                                    data_vinculo: moment().format('YYYY-MM-DD')
+                                },
                                 {
                                     color: "blue"
                                 }
@@ -186,14 +151,11 @@
             },
 
             editar(id) {
-                this.$store.dispatch("getUsuario", id).then(() => {
-                    let avatar = this.$store.state.usuario.usuarioView.avatar;
-                    let usuario = Object.assign({}, this.$store.state.usuario.usuarioView);
-                    usuario.avatar = {avatar};
-                    this.$refs.usuarioDialog
+                this.$store.dispatch("getProtocoloAluno", id).then(() => {
+                    this.$refs.protocoloAlunosDialog
                             .open(
-                                    'Editar um Usuário',
-                                    usuario,
+                                    'Editar vínculo Aluno/Professor',
+                                    this.$store.state.protocoloalunos.protocoloAlunosView,
                                     {
                                         color: "blue"
                                     }
@@ -206,18 +168,18 @@
 
             deletar(item) {
                 this.$refs.confirm
-                        .open("Deletar " + item.nome_completo, "Você tem certeza que deseja deletar esse usuário?", {
+                        .open("Deletar", "Você tem certeza que deseja deletar esse vínculo Aluno/Professor?", {
                             color: "red"
                         })
                         .then(confirm => {
                             if (confirm) {
-                                this.$store.dispatch("removeUsuario", item).then(() => {
-                                    window.getApp.$emit("APP_SUCCESS", {msg: 'Deletado com sucesso!', timeout: 2000});
+                                this.$store.dispatch("removeProtocoloAluno", item).then(() => {
                                     this.getData();
+                                    window.getApp.$emit("APP_SUCCESS", {msg: 'Deletado com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                                     let msgErro = '';
                                     if (resp.response.data.errors)
-                                        msgErro = resp.response.data.errors
+                                        msgErro = resp.response.data.errors;
                                     window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
                                 });
                             }
@@ -225,9 +187,9 @@
             },
             getData() {
                 this.loading = true;
-                this.$store.dispatch("getUsuarios", this.paginationTable(this.params)).then(() => {
-                    this.usuarios = this.$store.state.usuario.usuarioList.data;
-                    this.totalUsuarios = this.$store.state.usuario.usuarioList.total;
+                window.axios.get(`protocoloalunos${this.paginationTable(this.params)}&protocolo_id=${this.idProtocolo}`).then(response => {
+                    this.protocoloAlunos = response.data.data;
+                    this.totalProtocoloAlunos = response.data.total;
                     this.loading = false;
                 }).catch((resp) => {
                     this.loading = false;

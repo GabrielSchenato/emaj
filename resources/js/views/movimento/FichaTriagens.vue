@@ -121,13 +121,11 @@
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
     import FichaTriagemDialog from "@/components/movimento/dialogs/FichaTriagemDialog.vue";
-    import FilterForm from "@/components/FilterForm";
 
     export default {
         components: {
             Confirm,
-            FichaTriagemDialog,
-            FilterForm
+            FichaTriagemDialog
         },
 
         data: () => ({

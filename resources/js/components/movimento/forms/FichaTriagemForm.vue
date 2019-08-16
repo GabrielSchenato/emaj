@@ -163,20 +163,16 @@
     </div>
 </template>
 <script>
-    import ClienteDialog from "@/components/cadastro/dialogs/ClienteDialog.vue";
     import TipoDemandaDialog from "@/components/cadastro/dialogs/TipoDemandaDialog.vue";
     import AlunoDialog from "@/components/cadastro/dialogs/AlunoDialog.vue";
     import UsuarioDialog from "@/components/cadastro/dialogs/UsuarioDialog.vue";
-    import AutocompleteField from "@/components/util/fields/AutocompleteField";
 
     export default {
         name: "ficha-triagem-form",
         components: {
-            ClienteDialog,
             TipoDemandaDialog,
             AlunoDialog,
-            UsuarioDialog,
-            AutocompleteField
+            UsuarioDialog
         },
         $_veeValidate: {
             validator: "new"

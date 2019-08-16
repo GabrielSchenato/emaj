@@ -63,6 +63,13 @@
                                                         >Telefones
                                                         <small v-if="erroTelefones">Existem erros, por favor verifique!</small>
                                                     </v-stepper-step>
+                                                    <v-divider></v-divider>
+                                                    <v-stepper-step
+                                                        step="5"
+                                                        :complete="step > 5 || informacoesPessoais.id != null"
+                                                        :editable="step > 5 || informacoesPessoais.id != null"
+                                                        >Protocolos
+                                                    </v-stepper-step>
                                                 </v-stepper-header>
                                                 <v-stepper-items>
                                                     <v-stepper-content step="1">
@@ -208,6 +215,28 @@
                                                             </v-btn>
                                                         </v-card-actions>
                                                     </v-stepper-content>
+
+                                                    <v-stepper-content step="5" v-if="informacoesPessoais.id">
+                                                        <v-card>
+                                                            <v-card-text>
+                                                                <protocolos-table
+                                                                    v-bind:idCliente="informacoesPessoais.id"
+                                                                    v-bind:nomeCliente="informacoesPessoais.nome_completo"
+                                                                    >
+                                                                </protocolos-table>
+                                                            </v-card-text>
+                                                        </v-card>
+                                                        <v-card-actions class="pt-0">
+                                                            <v-spacer></v-spacer>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <v-btn color="blue-grey darken-1" dark @click.native="step = 4">
+                                                                Voltar
+                                                                <v-icon right dark>arrow_back</v-icon>
+                                                            </v-btn>
+                                                        </v-card-actions>
+                                                    </v-stepper-content>
                                                 </v-stepper-items>
                                             </v-stepper>
                                         </v-flex>
@@ -236,14 +265,11 @@
 </template>
 
 <script>
-    import Vue from "vue";
-    import VeeValidate from "vee-validate";
     import InformacoesPessoaisForm from "@/components/cadastro/forms/InformacoesPessoaisForm.vue";
     import EnderecoForm from "@/components/cadastro/forms/EnderecoForm.vue";
     import ComposicaoFamiliarForm from "@/components/cadastro/forms/ComposicaoFamiliarForm.vue";
     import TelefonesTable from "@/components/cadastro/tables/TelefonesTable.vue";
-
-    Vue.use(VeeValidate);
+    import ProtocolosTable from "@/components/cadastro/tables/ProtocolosTable.vue";
 
     export default {
         name: "cliente-dialog",
@@ -251,10 +277,8 @@
             InformacoesPessoaisForm,
             EnderecoForm,
             ComposicaoFamiliarForm,
-            TelefonesTable
-        },
-        $_veeValidate: {
-            validator: "new"
+            TelefonesTable,
+            ProtocolosTable
         },
         data: () => ({
                 informacoesPessoais: {},
@@ -375,8 +399,8 @@
                 this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.reset();
                 this.$refs.informacoesPessoaisForm.nacionalidades = item.nacionalidade ? [item.nacionalidade] : [{id: 7, nome: 'Brasileiro'}];
                 this.informacoesPessoais = item;
-                this.endereco = item.endereco;
-                this.composicaoFamiliar = item.composicao_familiar;
+                this.endereco = item.endereco ? item.endereco : {};
+                this.composicaoFamiliar = item.composicao_familiar ? item.composicao_familiar : {};
                 this.telefones = item.telefones;
                 this.step = 1;
                 this.options = Object.assign(this.options, options);

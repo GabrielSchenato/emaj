@@ -1,14 +1,19 @@
 <template>
     <div id="pageTable">
         <v-container grid-list-xl fluid>
-            <v-layout row wrap>
+            <v-layout row wrap>                
                 <v-flex lg12>
                     <v-card>
                         <v-toolbar card color="white">
-                            <v-btn color="primary" dark @click="adicionar">Adicionar
+                            <v-btn color="primary" @click="adicionar">Adicionar
                                 <v-icon right dark>add</v-icon>
                             </v-btn>
-                            <usuario-dialog ref="usuarioDialog"></usuario-dialog>
+                            <protocolo-dialog
+                                ref="protocoloDialog"
+                                v-bind:idCliente="idCliente"
+                                v-bind:nomeCliente="nomeCliente"
+                                >
+                            </protocolo-dialog>
                             <confirm ref="confirm"></confirm>
                             <v-divider class="mx-2" inset vertical></v-divider>
                             <filter-form
@@ -22,53 +27,33 @@
                         <v-card-text class="pa-0">
                             <v-data-table
                                 :headers="complex.headers"
-                                :items="usuarios"
+                                :items="protocolos"
                                 :pagination.sync="pagination" 
-                                :total-items="totalUsuarios"
+                                :total-items="totalProtocolos"
                                 :rows-per-page-items="[10,25,50,100]"
                                 class="elevation-1"
                                 item-key="id"
-                                select-all
-                                v-model="complex.selected"
                                 rows-per-page-text="Linhas por página"
                                 no-results-text="Nenhum registro correspondente encontrado"
                                 no-data-text="Não há registros para serem exibidos."
                                 :loading="loading"
                                 >
-                                <template slot="items" slot-scope="props">
-                                    <td>
-                                    <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
-                                    </td>
-                                    <td>{{ props.item.id }}</td>
-                                    <td>
-                                    <v-avatar size="32">
-                                        <img :src="'data:image/jpeg;base64,' + props.item.avatar" alt>
-                                    </v-avatar>
-                                    </td>
-                                    <td>{{ props.item.nome_completo }}</td>
-                                    <td>{{ props.item.email }}</td>
-                                    <td>{{ props.item.telefone }}</td>
-                                    <td>{{ props.item.role | formataRole }}</td>
-                                    <td>{{ props.item.professor | formataAtivo }}</td>
+                                <template slot="items" slot-scope="props">                                       
+                                    <td>{{ props.item.protocolo }}</td>
+                                    <td>{{ props.item.numero_processo }}</td>
+                                    <td class="vermelho">{{ props.item.nome_parte_contraria }}</td>
+                                    <td>{{ props.item.nome_tipo_demanda }}</td>
+                                    <td>{{ props.item.status }}</td>
                                     <td>{{ props.item.ativo | formataAtivo }}</td>
                                     <td>
-                                    <v-btn 
-                                        depressed outline icon fab dark
-                                        color="primary"
-                                        small
-                                        :disabled="props.item.id == $auth.user().id">
+                                    <v-btn depressed outline icon fab dark color="primary" small>
                                         <v-icon @click="editar(props.item.id)">edit</v-icon>
                                     </v-btn>
-                                    <v-btn 
-                                        depressed outline icon fab dark 
-                                        color="pink"
-                                        small
-                                        :disabled="props.item.id == $auth.user().id || (props.item.role == 'admin' && $auth.user().role == 'secretaria')">
+                                    <v-btn depressed outline icon fab dark color="pink" small>
                                         <v-icon @click="deletar(props.item)">delete</v-icon>
                                     </v-btn>
                                     </td>
                                 </template>
-
                                 <template
                                     slot="pageText"
                                     slot-scope="props"
@@ -84,68 +69,64 @@
 
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
-    import UsuarioDialog from "@/components/cadastro/dialogs/UsuarioDialog.vue";
+    import ProtocoloDialog from "@/components/cadastro/dialogs/ProtocoloDialog.vue";
 
     export default {
         components: {
             Confirm,
-            UsuarioDialog
+            ProtocoloDialog
         },
-
+        props: {
+            idCliente: {
+                accept: Number,
+                required: true
+            },
+            nomeCliente: {
+                accept: String,
+                required: true
+            }
+        },
         data: () => ({
                 dialog: false,
                 search: {},
-                loading: true,
-                pagination: {descending: true},
-                usuarios: [],
-                totalUsuarios: 0,
+                loading: false,
+                pagination: {descending: true, sortBy: 'id'},
+                protocolos: [],
+                totalProtocolos: 0,
                 complex: {
                     selected: [],
                     headers: [
                         {
-                            text: "ID",
-                            value: "id",
-                            filterable: true,
-                            type: 'number'
-                        },
-                        {
-                            text: "Avatar",
-                            value: "avatar",
-                            sortable: false
-                        },
-                        {
-                            text: "Nome Completo",
-                            value: "nome_completo",
+                            text: "Protocolo",
+                            value: "protocolo",
                             filterable: true,
                             type: 'text',
                             initial: true
                         },
                         {
-                            text: "E-mail",
-                            value: "email",
+                            text: "N.º Processo",
+                            value: "numero_processo",
                             filterable: true,
                             type: 'text'
                         },
                         {
-                            text: "Telefone",
-                            value: "telefone",
+                            text: "Parte Contrária",
+                            value: "nome_parte_contraria",
                             filterable: true,
-                            type: 'text',
-                            mask: '(##) #####-####'
+                            type: 'text'
                         },
                         {
-                            text: "Nível de Permissão",
-                            value: "role",
+                            text: "Tipo de Demanda",
+                            value: "nome_tipo_demanda",
                             filterable: true,
-                            type: 'combo',
-                            options: [{text: 'Administrador', value: 'admin'}, {text: 'Secretária', value: 'secretaria'}]
+                            type: 'text'
                         },
                         {
-                            text: "Professor?",
-                            value: "professor",
+                            text: "Status",
+                            value: "status",
                             filterable: true,
                             type: 'combo',
-                            options: [{text: 'Sim', value: 1}, {text: 'Não', value: 0}]
+                            options: [{text: 'Ajuizado', value: 'Ajuizado'}, {text: 'Não Ajuizado', value: 'Não Ajuizado'}]
                         },
                         {
                             text: "Ativo?",
@@ -172,9 +153,9 @@
         },
         methods: {
             adicionar() {
-                this.$refs.usuarioDialog
+                this.$refs.protocoloDialog
                         .open(
-                                'Adicionar um novo Usuário',
+                                'Adicionar um novo Protocolo',
                                 {ativo: true},
                                 {
                                     color: "blue"
@@ -186,14 +167,12 @@
             },
 
             editar(id) {
-                this.$store.dispatch("getUsuario", id).then(() => {
-                    let avatar = this.$store.state.usuario.usuarioView.avatar;
-                    let usuario = Object.assign({}, this.$store.state.usuario.usuarioView);
-                    usuario.avatar = {avatar};
-                    this.$refs.usuarioDialog
+                this.$refs.protocoloDialog.protocolo = {};
+                this.$store.dispatch("getProtocolo", id).then(() => {
+                    this.$refs.protocoloDialog
                             .open(
-                                    'Editar um Usuário',
-                                    usuario,
+                                    'Editar um Protocolo',
+                                    this.$store.state.protocolo.protocoloView,
                                     {
                                         color: "blue"
                                     }
@@ -206,18 +185,18 @@
 
             deletar(item) {
                 this.$refs.confirm
-                        .open("Deletar " + item.nome_completo, "Você tem certeza que deseja deletar esse usuário?", {
+                        .open("Deletar", "Você tem certeza que deseja deletar esse Protocolo?", {
                             color: "red"
                         })
                         .then(confirm => {
                             if (confirm) {
-                                this.$store.dispatch("removeUsuario", item).then(() => {
-                                    window.getApp.$emit("APP_SUCCESS", {msg: 'Deletado com sucesso!', timeout: 2000});
+                                this.$store.dispatch("removeProtocolo", item).then(() => {
                                     this.getData();
+                                    window.getApp.$emit("APP_SUCCESS", {msg: 'Deletado com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                                     let msgErro = '';
                                     if (resp.response.data.errors)
-                                        msgErro = resp.response.data.errors
+                                        msgErro = resp.response.data.errors;
                                     window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
                                 });
                             }
@@ -225,9 +204,9 @@
             },
             getData() {
                 this.loading = true;
-                this.$store.dispatch("getUsuarios", this.paginationTable(this.params)).then(() => {
-                    this.usuarios = this.$store.state.usuario.usuarioList.data;
-                    this.totalUsuarios = this.$store.state.usuario.usuarioList.total;
+                window.axios.get(`protocolos${this.paginationTable(this.params)}&cliente_id=${this.idCliente}`).then(response => {
+                    this.protocolos = response.data.data;
+                    this.totalProtocolos = response.data.total;
                     this.loading = false;
                 }).catch((resp) => {
                     this.loading = false;
