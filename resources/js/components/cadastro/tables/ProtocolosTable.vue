@@ -47,12 +47,42 @@
                                     <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.status }}</td>
                                     <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.ativo | formataAtivo }}</td>
                                     <td>
-                                    <v-btn depressed outline icon fab dark color="primary" small>
-                                        <v-icon @click="editar(props.item.id)">edit</v-icon>
-                                    </v-btn>
-                                    <v-btn depressed outline icon fab dark color="pink" small>
-                                        <v-icon @click="deletar(props.item)">delete</v-icon>
-                                    </v-btn>
+                                    <v-tooltip bottom>
+                                        <template v-slot:activator="{ on }">
+                                            <v-btn depressed icon fab dark color="primary" small v-on="on">
+                                                <v-icon
+                                                    @click="imprimirFichaTriagem(
+                                                    {
+                                                    cliente_id: props.item.cliente_id,
+                                                    parte_contraria_id: props.item.parte_contraria_id,
+                                                    protocolo_id: props.item.id
+                                                    }
+                                                    )"
+                                                    >print
+                                                </v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>Imprimir Ficha de Triagem</span>
+                                    </v-tooltip>
+
+                                    <v-tooltip bottom>
+                                        <template v-slot:activator="{ on }">
+                                            <v-btn depressed outline icon fab dark color="primary" small v-on="on">
+                                                <v-icon @click="editar(props.item.id)">edit</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>Editar</span>
+                                    </v-tooltip>
+
+                                    <v-tooltip bottom>
+                                        <template v-slot:activator="{ on }">
+                                            <v-btn depressed outline icon fab dark color="pink" small v-on="on"F>
+                                                <v-icon @click="deletar(props.item)">delete</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>Deletar</span>
+                                    </v-tooltip>
+
                                     </td>
                                 </template>
                                 <template
@@ -219,6 +249,10 @@
                         msgErro = resp.response.data.errors;
                     window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
                 }).finally(() => (this.loading = false));
+            },
+            imprimirFichaTriagem(object) {
+                let data = {...object, ...{formato: "pdf"}};
+                this.gerarImpressao(data, "/protocolos/imprimir-ficha-triagem");
             }
         },
         computed: {

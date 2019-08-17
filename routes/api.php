@@ -38,11 +38,13 @@ Route::prefix('v1')
 
             Route::post('fichatriagens/imprimir-ficha-triagem', 'Movimento\FichaTriagensController@imprimirFichaTriagem');
             Route::get('fichatriagens/autocomplete', 'Movimento\FichaTriagensController@autocomplete');
-            
+
             Route::get('clientes/autocomplete', 'Cadastro\ClientesController@autocomplete');
             Route::get('alunos/autocomplete', 'Cadastro\AlunosController@autocomplete');
-            
+
             Route::get('protocolos/autocomplete', 'Cadastro\ProtocolosController@autocomplete');
+            Route::post('protocolos/imprimir-ficha-triagem', 'Cadastro\ProtocolosController@imprimirFichaTriagem');
+
             Route::get('protocoloalunos/autocomplete', 'Cadastro\ProtocoloAlunosController@autocomplete');
 
             Route::apiResources([

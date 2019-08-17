@@ -7,6 +7,7 @@ use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\ClienteRepository;
 use Emaj\Repositories\Cadastro\ProtocoloRepository;
 use Emaj\Repositories\Cadastro\TipoDemandaRepository;
+use Emaj\Util\Traits\Report;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -22,6 +23,8 @@ use Emaj\Repositories\Cadastro\TipoDemandaRepository;
  */
 class ProtocolosController extends CrudController
 {
+
+    use Report;
 
     /**
      * @var ClienteRepository
@@ -63,6 +66,14 @@ class ProtocolosController extends CrudController
         }
 
         return $this->registro;
+    }
+
+    public function imprimirFichaTriagem()
+    {
+        $this->nomeRelatorio = 'ficha_triagem';
+        $this->nomeRelatorioJasper = 'ficha_triagem';
+        $this->titulo = 'Ficha de Triagem';
+        return $this->gerarImpressao();
     }
 
 }
