@@ -72,7 +72,13 @@
                                                         v-if="protocolo.id"
                                                         >                                                 
                                                     </protocolo-alunos-table>
-                                                    <small><b>Dica: </b>Clique na linha para expandir e visualizar mais informações.</small>
+                                                    <ul>
+                                                        <li>
+                                                            <small>
+                                                                <b class="vermelho">Vermelho: </b>Indica os alunos/professores que estão inativos neste protocolo
+                                                            </small>
+                                                        </li>
+                                                    </ul>
                                                 </v-stepper-content>
                                             </v-stepper-items>
                                         </v-stepper>

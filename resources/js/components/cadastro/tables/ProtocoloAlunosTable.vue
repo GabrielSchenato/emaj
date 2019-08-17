@@ -38,10 +38,10 @@
                                 :loading="loading"
                                 >
                                 <template slot="items" slot-scope="props">              
-                                    <td>{{ props.item.nome_aluno }}</td>
-                                    <td>{{ props.item.nome_professor }}</td>
-                                    <td>{{ props.item.data_vinculo | formataData }}</td>
-                                    <td>{{ props.item.ativo | formataAtivo }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.nome_aluno }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.nome_professor }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.data_vinculo | formataData }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.ativo | formataAtivo }}</td>
                                     <td>
                                     <v-btn depressed outline icon fab dark color="primary" small>
                                         <v-icon @click="editar(props.item.id)">edit</v-icon>

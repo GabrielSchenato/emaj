@@ -225,6 +225,12 @@
                                                                     v-bind:nomeRepresentadoAssistido="informacoesPessoais.representado_assistido"
                                                                     >
                                                                 </protocolos-table>
+                                                                
+                                                                <ul>
+                                                                    <li><small><b class="vermelho">Vermelho: </b>Indica os protocolos que foram arquivados/inativados</small></li>
+                                                                    <li><small><b class="azul">Azul: </b>Destaca quando um protocolo possui uma Parte Contrária</small></li>
+                                                                </ul>
+
                                                             </v-card-text>
                                                         </v-card>
                                                         <v-card-actions class="pt-0">

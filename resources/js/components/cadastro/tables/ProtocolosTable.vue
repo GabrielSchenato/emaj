@@ -40,12 +40,12 @@
                                 :loading="loading"
                                 >
                                 <template slot="items" slot-scope="props">                                       
-                                    <td>{{ props.item.protocolo }}</td>
-                                    <td>{{ props.item.numero_processo }}</td>
-                                    <td class="vermelho">{{ props.item.nome_parte_contraria }}</td>
-                                    <td>{{ props.item.nome_tipo_demanda }}</td>
-                                    <td>{{ props.item.status }}</td>
-                                    <td>{{ props.item.ativo | formataAtivo }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.protocolo }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.numero_processo }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo, azul: props.item.nome_parte_contraria != null && props.item.ativo }">{{ props.item.nome_parte_contraria }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.nome_tipo_demanda }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.status }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.ativo | formataAtivo }}</td>
                                     <td>
                                     <v-btn depressed outline icon fab dark color="primary" small>
                                         <v-icon @click="editar(props.item.id)">edit</v-icon>

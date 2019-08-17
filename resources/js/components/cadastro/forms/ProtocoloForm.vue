@@ -1,5 +1,12 @@
 <template>
     <div>
+        <v-alert
+            :value="!protocolo.ativo"
+            type="info"
+            >
+            Inativando o protocolo você estará inativando os alunos e professores vinculados a ele.
+        </v-alert>       
+        
         <cliente-dialog ref="parteContrariaDialog"></cliente-dialog>
         <tipo-demanda-dialog ref="tipoDemandaDialog"></tipo-demanda-dialog>
         <v-layout wrap>

@@ -9,6 +9,7 @@ use Emaj\Repositories\AbstractRepository;
 use Emaj\Util\Functions;
 use Emaj\Util\Status;
 use Illuminate\Container\Container;
+use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
@@ -27,6 +28,11 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
 {
 
     /**
+     * @var ProtocoloAlunoRepository
+     */
+    private $protocoloAlunoRepository;
+
+    /**
      * @var ClienteRepository
      */
     private $clienteRepository;
@@ -42,11 +48,12 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
      */
     private $cliente;
 
-    public function __construct(Container $app, ParametroTriagemRepository $parametroTriagemRepository, ClienteRepository $clienteRepository)
+    public function __construct(Container $app, ParametroTriagemRepository $parametroTriagemRepository, ClienteRepository $clienteRepository, ProtocoloAlunoRepository $protocoloAlunoRepository)
     {
         parent::__construct($app);
         $this->parametroTriagemRepository = $parametroTriagemRepository;
         $this->clienteRepository = $clienteRepository;
+        $this->protocoloAlunoRepository = $protocoloAlunoRepository;
     }
 
     /**
@@ -95,7 +102,22 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
      */
     public function update(array $attributes, $id)
     {
-        return $this->save($attributes, $id);
+        try {
+            DB::beginTransaction();
+
+            $this->inativaProtocoloAlunos($attributes, $id);
+
+            $protocolo = $this->save($attributes, $id);
+
+            DB::commit();
+            return $protocolo;
+        } catch (ValidationException $ex) {
+            DB::rollback();
+            throw $ex;
+        } catch (\Exception $ex) {
+            DB::rollback();
+            throw $ex;
+        }
     }
 
     /**
@@ -264,6 +286,28 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
             throw ValidationException::withMessages([
                 'cliente_id' => $msg
             ]);
+        }
+    }
+
+    /**
+     * Método responsável por inativar os protocolos alunos quando o protocolo
+     * está sendo inativado
+     *
+     * @param array $attributes
+     * @param       $id
+     *
+     * @return void
+     */
+    private function inativaProtocoloAlunos(array $attributes, $id)
+    {
+        $ativo = isset($attributes['ativo']) ? $attributes['ativo'] : null;
+
+        if (!$ativo) {
+            $protocoloAlunos = $this->protocoloAlunoRepository->findByField('protocolo_id', (int) $id);
+            foreach ($protocoloAlunos as $protocoloAluno) {
+                $protocoloAluno->ativo = false;
+                $this->protocoloAlunoRepository->update($protocoloAluno->toArray(), $protocoloAluno->id);
+            }
         }
     }
 
