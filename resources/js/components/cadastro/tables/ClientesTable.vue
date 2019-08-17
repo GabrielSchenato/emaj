@@ -29,15 +29,15 @@
                     disable-initial-sort
                     >
                     <template slot="items" slot-scope="props">
-                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.cliente.dados_cliente }}</td>
-                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.professor ? props.item.professor.dados_usuario : 'Não informado' }}</td>
-                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.protocolo }}</td>
-                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.numero_processo }}</td>
-                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.outras_informacoes }}</td>
-                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.created_at | formataDataHora }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.protocolo.cliente.dados_cliente }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.professor ? props.item.professor.dados_usuario : 'Não informado' }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.protocolo.protocolo }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.protocolo.numero_processo }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.protocolo.observacoes }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.data_vinculo | formataData }}</td>
                         <td>
                         <v-btn depressed outline icon fab dark color="blue" small>
-                            <v-icon @click="showCliente(props.item.cliente.id)">visibility</v-icon>
+                            <v-icon @click="showCliente(props.item.protocolo.cliente.id)">visibility</v-icon>
                         </v-btn>
                         </td>
                     </template>
@@ -72,7 +72,7 @@
                     headers: [
                         {
                             text: "Cliente",
-                            value: "cliente.dados_cliente"
+                            value: "protocolo.cliente.dados_cliente"
                         },
                         {
                             text: "Professor",
@@ -80,19 +80,19 @@
                         },
                         {
                             text: "Protocolo",
-                            value: "protocolo"
+                            value: "protocolo.protocolo"
                         },
                         {
                             text: "N.º Processo",
-                            value: "numero_processo"
+                            value: "protocolo.numero_processo"
                         },
                         {
                             text: "Outras Informações",
-                            value: "outras_informacoes"
+                            value: "protocolo.observacoes"
                         },
                         {
-                            text: "Data",
-                            value: "created_at"
+                            text: "Data Vínculo",
+                            value: "data_vinculo"
                         },
                         {
                             text: "Ação",
@@ -129,6 +129,7 @@
                                         color: "blue"
                                     }
                             );
+                    this.$refs.clienteDialog.step = 5;
                 });
             }
         }

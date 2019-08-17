@@ -28,6 +28,9 @@ class AlunosController extends CrudController
     private $protocoloAlunoRepository;
     protected $relationships = [
         'avaliacoes.avaliador:id,nome_completo',
+        'protocolo_alunos.protocolo:id,cliente_id,protocolo,numero_processo,observacoes,ativo',
+        'protocolo_alunos.protocolo.cliente:id,nome_completo,representado_assistido',
+        'protocolo_alunos.professor:id,nome_completo',
         'ficha_triagens_aluno.cliente:id,nome_completo,representado_assistido',
         'ficha_triagens_aluno.professor:id,nome_completo',
         'ficha_triagens_aluno:id,aluno_id,cliente_id,professor_id,protocolo,numero_processo,ativo,outras_informacoes,created_at',
@@ -55,9 +58,9 @@ class AlunosController extends CrudController
             $this->registro = $this->protocoloAlunoRepository
                     ->pushCriteria(new AlunoCriteria($idAluno))
                     ->getDataAutocomplete($ac, [
-                        'protocolo',
-                        'protocolo.cliente',
-                    ]);
+                'protocolo',
+                'protocolo.cliente',
+            ]);
         }
         return $this->registro;
     }

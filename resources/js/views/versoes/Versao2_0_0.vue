@@ -83,7 +83,7 @@
                     {
                         icon: 'fiber_manual_record',
                         color: 'black',
-                        text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro do "Aluno" na "Observações", agora possui um campo "Protocolo" não obrigatório, onde é possível puxar todos os protocolos em que o aluno está vinculado'
+                        text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro do "Aluno" na aba "Observações", agora possui um campo "Protocolo" não obrigatório, onde é possível puxar todos os protocolos em que o aluno está vinculado'
                     },
                     {
                         icon: 'fiber_manual_record',
@@ -94,6 +94,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Cadastro): Aplicada melhorias na impressão da Ficha de Triagem'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro do "Aluno" na aba "Clientes", para buscar os vinculos realizados através dos protocolos'
                     }
                 ];
             },
