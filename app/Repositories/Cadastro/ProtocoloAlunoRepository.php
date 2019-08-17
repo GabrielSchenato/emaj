@@ -14,9 +14,16 @@ use Emaj\Repositories\RepositoryInterface;
  * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @link       https://www.uniplaclages.edu.br/
- * @since      1.1.1
+ * @since      2.0.0
  */
 interface ProtocoloAlunoRepository extends RepositoryInterface
 {
-    //
+
+    /**
+     * Método responsável por buscar os dados e retornar para o autocomplete
+     * 
+     * @param string $value
+     * @param array $relationships
+     */
+    public function getDataAutocomplete($value, array $relationships = []);
 }

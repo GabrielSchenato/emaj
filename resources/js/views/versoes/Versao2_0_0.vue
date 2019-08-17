@@ -79,6 +79,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro do "Aluno" renomeando a aba "Avaliações" para "Observações"'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro do "Aluno" na "Observações", agora possui um campo "Protocolo" não obrigatório, onde é possível puxar todos os protocolos em que o aluno está vinculado'
                     }
                 ];
             },

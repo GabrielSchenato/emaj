@@ -109,8 +109,10 @@
                 this.$refs.avaliacaoForm.$validator.errors.clear();
             },
             clear() {
-                let idAluno = this.avaliacao.aluno_id;
-                this.avaliacao = {aluno_id: idAluno};
+                this.avaliacao = {
+                    aluno_id: this.avaliacao.aluno_id,
+                    nome_aluno: this.avaliacao.nome_aluno
+                };
                 this.$refs.avaliacaoForm.$validator.errors.clear();
             },
             addErrors(resp) {

@@ -16,7 +16,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
  * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @link       https://www.uniplaclages.edu.br/
- * @since      1.1.1
+ * @since      2.0.0
  */
 class ProtocoloAlunoRepositoryEloquent extends AbstractRepository implements ProtocoloAlunoRepository
 {
@@ -97,6 +97,34 @@ class ProtocoloAlunoRepositoryEloquent extends AbstractRepository implements Pro
         }
 
         return $criteria;
+    }
+
+    /**
+     * Método responsável por buscar os dados e retornar para o autocomplete
+     * 
+     * @param string $value
+     * @param array $relationships
+     */
+    public function getDataAutocomplete($value, array $relationships = [])
+    {
+        $this->applyCriteria();
+        $criteria = $this->model->newQuery();
+
+        $criteria->where(function ($query) use ($value) {
+            $query->whereHas('protocolo', function ($subquery ) use ($value) {
+                $subquery->whereHas('cliente', function ($subquery ) use ($value) {
+                            $subquery->where('nome_completo', 'like', "%{$value}%")
+                            ->orWhere('representado_assistido', 'like', "%{$value}%");
+                        })
+                        ->orWhere('protocolo', 'like', "%{$value}%")
+                        ->orWhere('numero_processo', 'like', "%{$value}%");
+            });
+        });
+
+        return $criteria->orderBy('created_at', 'desc')
+                        ->limit(10)
+                        ->with($relationships)
+                        ->get();
     }
 
     /**

@@ -36,6 +36,13 @@ class Aluno extends Model
     ];
 
     /**
+     * Pega todas Protocolos Alunos associados ao aluno.
+     */
+    public function protocolo_alunos()
+    {
+        return $this->hasMany(ProtocoloAluno::class, 'aluno_id')->orderBy('created_at', 'desc');
+    }
+    /**
      * Pega todas as Ficha de Triagens associados ao aluno.
      */
     public function ficha_triagens_aluno()

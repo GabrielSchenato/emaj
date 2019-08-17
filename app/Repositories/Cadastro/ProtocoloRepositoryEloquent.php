@@ -22,7 +22,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
  * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @link       https://www.uniplaclages.edu.br/
- * @since      1.1.1
+ * @since      2.0.0
  */
 class ProtocoloRepositoryEloquent extends AbstractRepository implements ProtocoloRepository
 {
