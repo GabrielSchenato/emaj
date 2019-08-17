@@ -4,9 +4,8 @@ namespace Emaj\Http\Controllers\Institucional;
 
 use Emaj\Http\Controllers\Controller;
 use Emaj\Repositories\Cadastro\AlunoRepository;
+use Emaj\Repositories\Cadastro\ProtocoloRepository;
 use Emaj\Repositories\Cadastro\TipoDemandaRepository;
-use Emaj\Repositories\Movimento\FichaTriagemRepository;
-use Emaj\Repositories\Movimento\FichaTriagemRepositoryEloquent;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -24,34 +23,33 @@ class HomeController extends Controller
 {
 
     /**
+     * @var ProtocoloRepository
+     */
+    private $protocoloRepository;
+
+    /**
      * @var TipoDemandaRepository
      */
     private $tipoDemandaRepository;
-
-    /**
-     * @var FichaTriagemRepository
-     */
-    private $fichaTriagemRepository;
 
     /**
      * @var AlunoRepository
      */
     private $alunoRepository;
 
-    public function __construct(AlunoRepository $alunoRepository, FichaTriagemRepository $fichaTriagemRepository, TipoDemandaRepository $tipoDemandaRepository)
+    public function __construct(AlunoRepository $alunoRepository, ProtocoloRepository $protocoloRepository, TipoDemandaRepository $tipoDemandaRepository)
     {
         $this->alunoRepository = $alunoRepository;
-        $this->fichaTriagemRepository = $fichaTriagemRepository;
         $this->tipoDemandaRepository = $tipoDemandaRepository;
+        $this->protocoloRepository = $protocoloRepository;
     }
 
     public function __invoke()
     {
         $estatistica = [
             'alunos' => (string) $this->alunoRepository->count(),
-            'clientes' => (string) $this->fichaTriagemRepository->getNumeroClientes(),
-            'parteContrarias' => (string) $this->fichaTriagemRepository->getNumeroParteContrarias(),
-            'atendimentosMes' => (string) $this->fichaTriagemRepository->getAtendimentosMes(),
+            'clientes' => (string) $this->protocoloRepository->getNumeroClientes(),
+            'atendimentosMes' => (string) $this->protocoloRepository->getAtendimentosMes(),
             'tipoDemandasAtendidas' => $this->tipoDemandaRepository->count()
         ];
         return view('institucional.home', compact("estatistica"));

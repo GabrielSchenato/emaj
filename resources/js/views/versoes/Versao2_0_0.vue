@@ -99,11 +99,21 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro do "Aluno" na aba "Clientes", para buscar os vinculos realizados através dos protocolos'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Dashboard): Alterada a forma de buscar as estatísticas da Ficha de Triagem para Protocolos'
                     }
                 ];
             },
             alteracoesInstitucional() {
                 return [
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Início): Alterada a forma de buscar as estatísticas da Ficha de Triagem para Protocolos'
+                    }
                 ];
             }
         }

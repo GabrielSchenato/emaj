@@ -2,6 +2,7 @@
 
 namespace Emaj\Repositories\Cadastro;
 
+use Emaj\Criteria\MesCriteria;
 use Emaj\Entities\Cadastro\Cliente;
 use Emaj\Entities\Cadastro\Protocolo;
 use Emaj\Exceptions\ValidationException;
@@ -135,6 +136,58 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
         $this->validaDadosCliente($attributes);
         $this->validaRendaCliente();
         return parent::updateOrCreate(['id' => $id], $attributes);
+    }
+
+    /**
+     * Método responsável por pegar as 5 demandas mais utilizadas
+     * 
+     * @return array
+     */
+    public function getTop5DemandasMaisAtendidas()
+    {
+        $top5DemandasMaisAtendidas = DB::table('protocolos')
+                ->select(DB::raw('count(tipo_demandas.nome) as value, tipo_demandas.nome as name'))
+                ->join('tipo_demandas', 'tipo_demandas.id', '=', 'protocolos.tipo_demanda_id')
+                ->groupBy('tipo_demandas.nome')
+                ->orderBy('value', 'DESC')
+                ->limit('5')
+                ->get();
+        return $top5DemandasMaisAtendidas;
+    }
+
+    /**
+     * Método responsável por retornar o número de clientes
+     * 
+     * @return array
+     */
+    public function getNumeroClientes()
+    {
+        return $this->model
+                        ->distinct('cliente_id')
+                        ->count('cliente_id');
+    }
+
+    /**
+     * Método responsável por retornar o número de parte contrárias
+     * 
+     * @return array
+     */
+    public function getNumeroParteContrarias()
+    {
+        return $this->model
+                        ->distinct('parte_contraria_id')
+                        ->count('parte_contraria_id');
+    }
+
+    /**
+     * Método responsável por o número de atendimentos no mês
+     * 
+     * @return int
+     */
+    public function getAtendimentosMes()
+    {
+        return $this->pushCriteria(MesCriteria::class)
+                        ->count();
     }
 
     /**

@@ -18,5 +18,32 @@ use Emaj\Repositories\RepositoryInterface;
  */
 interface ProtocoloRepository extends RepositoryInterface
 {
-    //
+
+    /**
+     * Método responsável por pegar as 5 demandas mais utilizadas
+     * 
+     * @return array
+     */
+    public function getTop5DemandasMaisAtendidas();
+
+    /**
+     * Método responsável por retornar o número de clientes
+     * 
+     * @return array
+     */
+    public function getNumeroClientes();
+
+    /**
+     * Método responsável por retornar o número de parte contrárias
+     * 
+     * @return array
+     */
+    public function getNumeroParteContrarias();
+
+    /**
+     * Método responsável por o número de atendimentos no mês
+     * 
+     * @return int
+     */
+    public function getAtendimentosMes();
 }
