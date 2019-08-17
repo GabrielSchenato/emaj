@@ -168,7 +168,7 @@
             adicionar() {
                 this.$refs.avaliacaoDialog
                         .open(
-                                'Adicionar uma nova Avaliação do Aluno',
+                                'Adicionar uma nova Observação do Aluno',
                                 {
                                     data: moment().format('YYYY-MM-DD'),
                                     aluno_id: this.idAluno,
@@ -188,7 +188,7 @@
                     avaliacao.nome_aluno = this.nomeAluno;
                     this.$refs.avaliacaoDialog
                             .open(
-                                    'Editar um Avaliação do Aluno',
+                                    'Editar uma Observação do Aluno',
                                     avaliacao,
                                     {
                                         color: "blue"
@@ -201,7 +201,7 @@
             },
             deletar(item) {
                 this.$refs.confirm
-                        .open("Deletar", "Você tem certeza que deseja deletar essa Avaliação do Aluno?", {
+                        .open("Deletar", "Você tem certeza que deseja deletar essa Observação do Aluno?", {
                             color: "red"
                         })
                         .then(confirm => {

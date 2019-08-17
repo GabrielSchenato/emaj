@@ -23,7 +23,7 @@
 
         <v-card class="mb-4">
             <v-toolbar color="blue-grey darken-3" dark flat dense cad>
-                <v-toolbar-title class="subheading">Dados da Avaliação</v-toolbar-title>
+                <v-toolbar-title class="subheading">Dados da Observação</v-toolbar-title>
                 <v-spacer></v-spacer>
             </v-toolbar>
             <v-divider></v-divider>
