@@ -49,7 +49,7 @@
                                                     :complete="aluno.id != null"
                                                     :editable="aluno.id != null"
                                                     edit-icon="playlist_add_check"
-                                                    >Avaliações
+                                                    >Observações
                                             </v-stepper-step>
                                             <v-divider></v-divider>
                                         </v-stepper-header>

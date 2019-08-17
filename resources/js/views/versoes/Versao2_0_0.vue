@@ -1,8 +1,8 @@
 <template>
     <v-card class="card--flex-toolbar">
         <v-toolbar card prominent>
-            <v-toolbar-title class="body-6 black--text">v1.1.1</v-toolbar-title>
-            <v-toolbar-title class="body-1 grey--text"><small>15 de Agosto de 2019</small></v-toolbar-title>                      
+            <v-toolbar-title class="body-6 black--text">v2.0.0</v-toolbar-title>
+            <v-toolbar-title class="body-1 grey--text"><small>19 de Agosto de 2019</small></v-toolbar-title>                      
             <v-spacer></v-spacer>
         </v-toolbar>
         <v-divider></v-divider>
@@ -54,7 +54,7 @@
 
 <script>
     export default {
-        name: "versao1_1_1",
+        name: "versao2_0_0",
         computed: {
             alteracoesPortal() {
                 return [
@@ -62,6 +62,23 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Cadastro): Aplicada melhoria na tela de "Alunos" na aba "Avaliações" para quando clicar na linha expandir a mesma e mostrar mais informações sobre a avaliação'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Cadastro): Implementado uma nova aba no cadastro do "Cliente" chamada "Protocolos" onde é possível adicionar vários protocolos para o mesmo cliente.\n\
+                        No cadastro do protocolo foram criados os campos "Protocolo" onde este é obrigatório, e os demais não obrigatórios como, "Número Processo", "Parte Contrária", "Tipo de Demanda" e "Observações"'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Cadastro): Implementado dentro do cadastro do protocolo, uma nova aba chamada "Alunos/Professores Vinculados" a onde está, lista e permite o cadastro de "Aluno", "Professor" e "Data Vínculo"\n\
+                        estes campos obrigatórios'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro do "Aluno" renomeando a aba "Avaliações" para "Observações"'
                     }
                 ];
             },
