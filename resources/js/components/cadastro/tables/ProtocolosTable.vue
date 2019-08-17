@@ -12,6 +12,7 @@
                                 ref="protocoloDialog"
                                 v-bind:idCliente="idCliente"
                                 v-bind:nomeCliente="nomeCliente"
+                                v-bind:nomeRepresentadoAssistido="nomeRepresentadoAssistido"
                                 >
                             </protocolo-dialog>
                             <confirm ref="confirm"></confirm>
@@ -84,6 +85,9 @@
             nomeCliente: {
                 accept: String,
                 required: true
+            },
+            nomeRepresentadoAssistido: {
+                accept: String
             }
         },
         data: () => ({

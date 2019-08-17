@@ -151,7 +151,7 @@
                 this.formTitle = title;
                 this.step = 1;
                 this.aluno = item;
-                this.$refs.alunoForm.$validator.reset();
+                this.$refs.alunoForm.$validator.errors.clear();
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;

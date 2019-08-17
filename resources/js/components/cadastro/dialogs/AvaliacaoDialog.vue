@@ -59,7 +59,7 @@
             }),
         methods: {
             open(title, item, options) {
-                this.$refs.avaliacaoForm.$validator.reset();
+                this.$refs.avaliacaoForm.$validator.errors.clear();
                 this.dialog = true;
                 this.formTitle = title;
                 this.avaliacao = item;

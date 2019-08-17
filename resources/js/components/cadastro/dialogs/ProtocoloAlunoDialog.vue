@@ -70,7 +70,7 @@
                 this.protocoloAluno = item;
                 this.$refs.protocoloAlunoForm.$refs.autocompleteAluno.values = item.aluno ? [item.aluno] : [];
                 this.$refs.protocoloAlunoForm.$refs.autocompleteProfessor.values = item.professor ? [item.professor] : [];
-                this.$refs.protocoloAlunoForm.$validator.reset();
+                this.$refs.protocoloAlunoForm.$validator.errors.clear();
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;

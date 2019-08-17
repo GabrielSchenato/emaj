@@ -4,8 +4,7 @@
         <tipo-demanda-dialog ref="tipoDemandaDialog"></tipo-demanda-dialog>
         <v-layout wrap>
 
-
-            <v-flex xs12 sm6 md11>
+            <v-flex xs12 sm6 md6>
                 <v-text-field
                     name="cliente"
                     v-model="nomeCliente"
@@ -16,13 +15,15 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md1>
-                <v-checkbox
-                    name="ativo"
-                    v-model="protocolo.ativo"
-                    label="Ativo?"
-                    @change="$emit('input', protocolo)"
-                    ></v-checkbox>
+            <v-flex xs12 sm6 md6>
+                <v-text-field
+                    name="representado_assistido"
+                    v-model="nomeRepresentadoAssistido"
+                    label="Representado/Assistido"
+                    disabled
+                    :error-messages="errors.collect('Representado/Assistido')"
+                    data-vv-name="Representado/Assistido"
+                    ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md2>
@@ -58,6 +59,15 @@
                     return-masked-value
                     @input="$emit('input', protocolo)"
                     ></v-text-field>
+            </v-flex>
+
+            <v-flex xs12 sm6 md1>
+                <v-checkbox
+                    name="ativo"
+                    v-model="protocolo.ativo"
+                    label="Ativo?"
+                    @change="$emit('input', protocolo)"
+                    ></v-checkbox>
             </v-flex>
         </v-layout>
 
@@ -126,6 +136,9 @@
             nomeCliente: {
                 accept: String,
                 required: true
+            },
+            nomeRepresentadoAssistido: {
+                accept: String
             }
         },
         data() {

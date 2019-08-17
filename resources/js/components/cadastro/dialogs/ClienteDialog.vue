@@ -222,6 +222,7 @@
                                                                 <protocolos-table
                                                                     v-bind:idCliente="informacoesPessoais.id"
                                                                     v-bind:nomeCliente="informacoesPessoais.nome_completo"
+                                                                    v-bind:nomeRepresentadoAssistido="informacoesPessoais.representado_assistido"
                                                                     >
                                                                 </protocolos-table>
                                                             </v-card-text>
@@ -391,12 +392,12 @@
                 this.erroEndereco = false;
                 this.erroComposicaoFamiliar = false;
                 this.erroTelefones = false;
-                this.$refs.informacoesPessoaisForm.$validator.reset();
-                this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.reset();
-                this.$refs.enderecoForm.$validator.reset();
-                this.$refs.composicaoFamiliarForm.$validator.reset();
-                this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.reset();
-                this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.reset();
+                this.$refs.informacoesPessoaisForm.$validator.errors.clear();
+                this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.errors.clear();
+                this.$refs.enderecoForm.$validator.errors.clear();
+                this.$refs.composicaoFamiliarForm.$validator.errors.clear();
+                this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.errors.clear();
+                this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.errors.clear();
                 this.$refs.informacoesPessoaisForm.nacionalidades = item.nacionalidade ? [item.nacionalidade] : [{id: 7, nome: 'Brasileiro'}];
                 this.informacoesPessoais = item;
                 this.endereco = item.endereco ? item.endereco : {};

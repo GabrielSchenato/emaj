@@ -57,6 +57,7 @@
                                                                             ref="protocoloForm"
                                                                             v-model="protocolo"
                                                                             v-bind:nomeCliente="nomeCliente"
+                                                                            v-bind:nomeRepresentadoAssistido="nomeRepresentadoAssistido"
                                                                             ></protocolo-form>
                                                                     </v-container>
                                                                     <small>*Indica os campos que são obrigatórios</small>
@@ -123,6 +124,9 @@
             nomeCliente: {
                 accept: String,
                 required: true
+            },
+            nomeRepresentadoAssistido: {
+                accept: String
             }
         },
         data: () => ({
@@ -146,7 +150,7 @@
                 this.protocolo = item;
                 this.$refs.protocoloForm.$refs.autocompleteTipoDemanda.values = item.tipo_demanda ? [item.tipo_demanda] : [];
                 this.$refs.protocoloForm.$refs.autocompleteParteContraria.values = item.parte_contraria ? [item.parte_contraria] : [];
-                this.$refs.protocoloForm.$validator.reset();
+                this.$refs.protocoloForm.$validator.errors.clear();
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;

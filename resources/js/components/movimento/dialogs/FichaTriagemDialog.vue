@@ -56,7 +56,7 @@
             }),
         methods: {
             open(title, item, options) {
-                this.$refs.fichaTriagemForm.$validator.reset();
+                this.$refs.fichaTriagemForm.$validator.errors.clear();
                 this.dialog = true;
                 this.formTitle = title;
                 this.fichaTriagem = item;
