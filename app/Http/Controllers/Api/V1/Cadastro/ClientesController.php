@@ -41,6 +41,7 @@ class ClientesController extends CrudController
     public function __construct(ClienteRepository $repository, NacionalidadeRepository $nacionalidadeRepository)
     {
         $this->repository = $repository;
+        $this->nacionalidadeRepository = $nacionalidadeRepository;
     }
 
     /**

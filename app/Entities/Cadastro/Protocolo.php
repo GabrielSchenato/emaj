@@ -58,11 +58,11 @@ class Protocolo extends Model
     }
 
     /**
-     * Pega todas Protocolos Alunos associados a esse protocolo.
+     * Pega todos Protocolos Alunos Professores associados a esse protocolo.
      */
-    public function protocolo_alunos()
+    public function protocolo_alunos_professores()
     {
-        return $this->hasMany(ProtocoloAluno::class, 'protocolo_id');
+        return $this->hasMany(ProtocoloAlunoProfessor::class, 'protocolo_id');
     }
 
     protected function getDadosProtocoloAttribute()

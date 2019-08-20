@@ -67,11 +67,11 @@
                                                     </v-card>
                                                 </v-stepper-content>
                                                 <v-stepper-content step="2">
-                                                    <protocolo-alunos-table 
+                                                    <protocolo-alunos-professores-table 
                                                         v-bind:idProtocolo="protocolo.id"
                                                         v-if="protocolo.id"
                                                         >                                                 
-                                                    </protocolo-alunos-table>
+                                                    </protocolo-alunos-professores-table>
                                                     <ul>
                                                         <li>
                                                             <small>
@@ -115,12 +115,12 @@
 
 <script>
     import ProtocoloForm from "@/components/cadastro/forms/ProtocoloForm.vue";
-    import ProtocoloAlunosTable from "@/components/cadastro/tables/ProtocoloAlunosTable.vue";
+    import ProtocoloAlunosProfessoresTable from "@/components/cadastro/tables/ProtocoloAlunosProfessoresTable.vue";
 
     export default {
         components: {
             ProtocoloForm,
-            ProtocoloAlunosTable
+            ProtocoloAlunosProfessoresTable
         },
         props: {
             idCliente: {

@@ -45,7 +45,7 @@ Route::prefix('v1')
             Route::get('protocolos/autocomplete', 'Cadastro\ProtocolosController@autocomplete');
             Route::post('protocolos/imprimir-ficha-triagem', 'Cadastro\ProtocolosController@imprimirFichaTriagem');
 
-            Route::get('protocoloalunos/autocomplete', 'Cadastro\ProtocoloAlunosController@autocomplete');
+            Route::get('protocoloalunosprofessores/autocomplete', 'Cadastro\ProtocoloAlunosProfessoresController@autocomplete');
 
             Route::apiResources([
                 'usuarios' => 'Cadastro\UsuariosController',
@@ -55,7 +55,7 @@ Route::prefix('v1')
                 'avaliacoes' => 'Cadastro\AvaliacoesController',
                 'avaliacaoarquivos' => 'Cadastro\AvaliacaoArquivosController',
                 'protocolos' => 'Cadastro\ProtocolosController',
-                'protocoloalunos' => 'Cadastro\ProtocoloAlunosController',
+                'protocoloalunosprofessores' => 'Cadastro\ProtocoloAlunosProfessoresController',
                 'fichatriagens' => 'Movimento\FichaTriagensController'
             ]);
             Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');

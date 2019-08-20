@@ -29,9 +29,9 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
 {
 
     /**
-     * @var ProtocoloAlunoRepository
+     * @var ProtocoloAlunoProfessorRepository
      */
-    private $protocoloAlunoRepository;
+    private $protocoloAlunoProfessorRepository;
 
     /**
      * @var ClienteRepository
@@ -49,12 +49,12 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
      */
     private $cliente;
 
-    public function __construct(Container $app, ParametroTriagemRepository $parametroTriagemRepository, ClienteRepository $clienteRepository, ProtocoloAlunoRepository $protocoloAlunoRepository)
+    public function __construct(Container $app, ParametroTriagemRepository $parametroTriagemRepository, ClienteRepository $clienteRepository, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository)
     {
         parent::__construct($app);
         $this->parametroTriagemRepository = $parametroTriagemRepository;
         $this->clienteRepository = $clienteRepository;
-        $this->protocoloAlunoRepository = $protocoloAlunoRepository;
+        $this->protocoloAlunoProfessorRepository = $protocoloAlunoProfessorRepository;
     }
 
     /**
@@ -106,7 +106,7 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
         try {
             DB::beginTransaction();
 
-            $this->inativaProtocoloAlunos($attributes, $id);
+            $this->inativaProtocoloAlunosProfessores($attributes, $id);
 
             $protocolo = $this->save($attributes, $id);
 
@@ -343,7 +343,7 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
     }
 
     /**
-     * Método responsável por inativar os protocolos alunos quando o protocolo
+     * Método responsável por inativar os protocolos alunos professores quando o protocolo
      * está sendo inativado
      *
      * @param array $attributes
@@ -351,15 +351,15 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
      *
      * @return void
      */
-    private function inativaProtocoloAlunos(array $attributes, $id)
+    private function inativaProtocoloAlunosProfessores(array $attributes, $id)
     {
         $ativo = isset($attributes['ativo']) ? $attributes['ativo'] : null;
 
         if (!$ativo) {
-            $protocoloAlunos = $this->protocoloAlunoRepository->findByField('protocolo_id', (int) $id);
+            $protocoloAlunos = $this->protocoloAlunoProfessorRepository->findByField('protocolo_id', (int) $id);
             foreach ($protocoloAlunos as $protocoloAluno) {
                 $protocoloAluno->ativo = false;
-                $this->protocoloAlunoRepository->update($protocoloAluno->toArray(), $protocoloAluno->id);
+                $this->protocoloAlunoProfessorRepository->update($protocoloAluno->toArray(), $protocoloAluno->id);
             }
         }
     }

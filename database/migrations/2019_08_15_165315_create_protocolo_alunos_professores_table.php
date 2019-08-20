@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProtocoloAlunosTable extends Migration
+class CreateProtocoloAlunosProfessoresTable extends Migration
 {
 
     /**
@@ -14,7 +14,7 @@ class CreateProtocoloAlunosTable extends Migration
      */
     public function up()
     {
-        Schema::create('protocolo_alunos', function (Blueprint $table) {
+        Schema::create('protocolo_alunos_professores', function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('protocolo_id');
@@ -40,7 +40,7 @@ class CreateProtocoloAlunosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('protocolo_alunos');
+        Schema::dropIfExists('protocolo_alunos_professores');
     }
 
 }

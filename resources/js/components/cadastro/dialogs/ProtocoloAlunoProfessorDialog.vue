@@ -5,7 +5,7 @@
         @keydown.esc="cancel"
         v-bind:style="{ zIndex: options.zIndex }"
         >
-        <v-form @submit.prevent="protocoloAluno.id != null ? update() : save()">
+        <v-form @submit.prevent="protocoloAlunoProfessor.id != null ? update() : save()">
             <v-card>
                 <v-toolbar dark :color="options.color" dense flat>
                            <v-toolbar-title class="white--text">{{ formTitle }}</v-toolbar-title>
@@ -13,7 +13,7 @@
 
                 <v-card-text>
                     <v-container grid-list-md>
-                        <protocolo-aluno-form ref="protocoloAlunoForm" v-model="protocoloAluno"></protocolo-aluno-form>
+                        <protocolo-aluno-professor-form ref="protocoloAlunoProfessorForm" v-model="protocoloAlunoProfessor"></protocolo-aluno-professor-form>
                     </v-container>
                     <small>*Indica os campos que são obrigatórios</small>
                 </v-card-text>
@@ -24,7 +24,7 @@
                         <v-icon right dark>check</v-icon>
                     </v-btn>
 
-                    <v-btn color="blue" flat="flat" @click.native="clear" :disabled="protocoloAluno.id != null">
+                    <v-btn color="blue" flat="flat" @click.native="clear" :disabled="protocoloAlunoProfessor.id != null">
                            Limpar
                            <v-icon right dark>delete_sweep</v-icon>
                     </v-btn>
@@ -39,11 +39,11 @@
 </template>
 
 <script>
-    import ProtocoloAlunoForm from "@/components/cadastro/forms/ProtocoloAlunoForm.vue";
+    import ProtocoloAlunoProfessorForm from "@/components/cadastro/forms/ProtocoloAlunoProfessorForm.vue";
 
     export default {
         components: {
-            ProtocoloAlunoForm
+            ProtocoloAlunoProfessorForm
         },
         props: {
             idProtocolo: {
@@ -52,7 +52,7 @@
             }
         },
         data: () => ({
-                protocoloAluno: {},
+                protocoloAlunoProfessor: {},
                 dialog: false,
                 resolve: null,
                 reject: null,
@@ -67,10 +67,10 @@
             open(title, item, options) {
                 this.dialog = true;
                 this.formTitle = title;
-                this.protocoloAluno = item;
-                this.$refs.protocoloAlunoForm.$refs.autocompleteAluno.values = item.aluno ? [item.aluno] : [];
-                this.$refs.protocoloAlunoForm.$refs.autocompleteProfessor.values = item.professor ? [item.professor] : [];
-                this.$refs.protocoloAlunoForm.$validator.errors.clear();
+                this.protocoloAlunoProfessor = item;
+                this.$refs.protocoloAlunoProfessorForm.$refs.autocompleteAluno.values = item.aluno ? [item.aluno] : [];
+                this.$refs.protocoloAlunoProfessorForm.$refs.autocompleteProfessor.values = item.professor ? [item.professor] : [];
+                this.$refs.protocoloAlunoProfessorForm.$validator.errors.clear();
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;
@@ -78,11 +78,11 @@
                 });
             },
             save() {
-                this.$refs.protocoloAlunoForm.$validator.validateAll().then(valid => {
+                this.$refs.protocoloAlunoProfessorForm.$validator.validateAll().then(valid => {
                     if (valid) {
                         this.$store
-                                .dispatch("newProtocoloAluno", {
-                                    ...this.protocoloAluno,
+                                .dispatch("newProtocoloAlunoProfessor", {
+                                    ...this.protocoloAlunoProfessor,
                                     ...{
                                             protocolo_id: this.idProtocolo
                                     }
@@ -90,7 +90,7 @@
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
-                                    this.protocoloAluno = {};
+                                    this.protocoloAlunoProfessor = {};
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);
@@ -99,14 +99,14 @@
                 });
             },
             update() {
-                this.$refs.protocoloAlunoForm.$validator.validateAll().then(valid => {
+                this.$refs.protocoloAlunoProfessorForm.$validator.validateAll().then(valid => {
                     if (valid) {
                         this.$store
-                                .dispatch("updateProtocoloAluno", this.protocoloAluno)
+                                .dispatch("updateProtocoloAlunoProfessor", this.protocoloAlunoProfessor)
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
-                                    this.protocoloAluno = {};
+                                    this.protocoloAlunoProfessor = {};
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados atualizados com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);
@@ -119,19 +119,19 @@
                 this.dialog = false;
             },
             clear() {
-                this.protocoloAluno = {};
-                this.$refs.protocoloAlunoForm.$validator.errors.clear();
+                this.protocoloAlunoProfessor = {};
+                this.$refs.protocoloAlunoProfessorForm.$validator.errors.clear();
             },
             addErrors(resp) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
                 if (resp.response.data.errors.aluno_id) {
-                    this.$refs.protocoloAlunoForm.$validator.errors.add({field: 'Aluno', msg: resp.response.data.errors.aluno_id});
+                    this.$refs.protocoloAlunoProfessorForm.$validator.errors.add({field: 'Aluno', msg: resp.response.data.errors.aluno_id});
                 }
                 if (resp.response.data.errors.professor_id) {
-                    this.$refs.protocoloAlunoForm.$validator.errors.add({field: 'Professor', msg: resp.response.data.errors.professor_id});
+                    this.$refs.protocoloAlunoProfessorForm.$validator.errors.add({field: 'Professor', msg: resp.response.data.errors.professor_id});
                 }
                 if (resp.response.data.errors.data_vinculo) {
-                    this.$refs.protocoloAlunoForm.$validator.errors.add({field: 'Data Vínculo', msg: resp.response.data.errors.data_vinculo});
+                    this.$refs.protocoloAlunoProfessorForm.$validator.errors.add({field: 'Data Vínculo', msg: resp.response.data.errors.data_vinculo});
                 }
             }
         }

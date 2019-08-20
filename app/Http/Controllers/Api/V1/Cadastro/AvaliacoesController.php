@@ -4,7 +4,6 @@ namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\AvaliacaoRepository;
-use Illuminate\Http\Request;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas

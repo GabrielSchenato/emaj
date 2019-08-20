@@ -6,7 +6,7 @@ use Emaj\Criteria\AtivoCriteria;
 use Emaj\Criteria\ProfessorCriteria;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\AlunoRepository;
-use Emaj\Repositories\Cadastro\ProtocoloAlunoRepository;
+use Emaj\Repositories\Cadastro\ProtocoloAlunoProfessorRepository;
 use Emaj\Repositories\Cadastro\UsuarioRepository;
 
 /**
@@ -21,7 +21,7 @@ use Emaj\Repositories\Cadastro\UsuarioRepository;
  * @link       https://www.uniplaclages.edu.br/
  * @since      2.0.0
  */
-class ProtocoloAlunosController extends CrudController
+class ProtocoloAlunosProfessoresController extends CrudController
 {
 
     /**
@@ -38,7 +38,7 @@ class ProtocoloAlunosController extends CrudController
         'aluno:id,nome_completo',
         'professor:id,nome_completo'];
 
-    public function __construct(ProtocoloAlunoRepository $repository, AlunoRepository $alunoRepository, UsuarioRepository $usuarioRepository)
+    public function __construct(ProtocoloAlunoProfessorRepository $repository, AlunoRepository $alunoRepository, UsuarioRepository $usuarioRepository)
     {
         $this->repository = $repository;
         $this->alunoRepository = $alunoRepository;

@@ -5,7 +5,7 @@ namespace Emaj\Repositories\Cadastro;
 use Emaj\Repositories\RepositoryInterface;
 
 /**
- * Repository interface responsável por gerenciar a entidade Protocolo Aluno
+ * Repository interface responsável por gerenciar a entidade Protocolo Aluno Professor
  *
  * PHP version 7.2
  *
@@ -16,7 +16,7 @@ use Emaj\Repositories\RepositoryInterface;
  * @link       https://www.uniplaclages.edu.br/
  * @since      2.0.0
  */
-interface ProtocoloAlunoRepository extends RepositoryInterface
+interface ProtocoloAlunoProfessorRepository extends RepositoryInterface
 {
 
     /**

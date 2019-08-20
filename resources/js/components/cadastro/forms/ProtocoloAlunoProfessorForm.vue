@@ -6,10 +6,10 @@
             <v-flex xs12 sm6 md2>
                 <v-text-field
                     name="id"
-                    v-model="protocoloAluno.id"
+                    v-model="protocoloAlunoProfessor.id"
                     label="ID"
                     disabled
-                    @input="$emit('input', protocoloAluno)"
+                    @input="$emit('input', protocoloAlunoProfessor)"
                     ></v-text-field>
             </v-flex>
 
@@ -32,8 +32,8 @@
                             v-bind:options="optionsAluno"
                             :create="criarAluno"
                             :edit="editarAluno"
-                            v-model="protocoloAluno.aluno_id"
-                            @input="$emit('input', protocoloAluno)"
+                            v-model="protocoloAlunoProfessor.aluno_id"
+                            @input="$emit('input', protocoloAlunoProfessor)"
                             ></autocomplete-field>
                     </v-flex>
 
@@ -46,8 +46,8 @@
                             v-bind:options="optionsProfessor"
                             :create="criarProfessor"
                             :edit="editarProfessor"
-                            v-model="protocoloAluno.professor_id"
-                            @input="$emit('input', protocoloAluno)"
+                            v-model="protocoloAlunoProfessor.professor_id"
+                            @input="$emit('input', protocoloAlunoProfessor)"
                             ></autocomplete-field>
                     </v-flex>
 
@@ -58,8 +58,8 @@
                             :data-vv-name="optionsDataVinculo.name"
                             v-validate="{required: optionsDataVinculo.required }"
                             v-bind:options="optionsDataVinculo"
-                            v-model="protocoloAluno.data_vinculo"
-                            @input="$emit('input', protocoloAluno)"
+                            v-model="protocoloAlunoProfessor.data_vinculo"
+                            @input="$emit('input', protocoloAlunoProfessor)"
                             >                                    
                         </data-field>
                     </v-flex>
@@ -67,9 +67,9 @@
                     <v-flex xs12 sm6 md1>
                         <v-checkbox
                             name="ativo"
-                            v-model="protocoloAluno.ativo"
+                            v-model="protocoloAlunoProfessor.ativo"
                             label="Ativo?"
-                            @change="$emit('input', protocoloAluno)"
+                            @change="$emit('input', protocoloAlunoProfessor)"
                             ></v-checkbox>
                     </v-flex>
 
@@ -85,7 +85,7 @@
     import moment from 'moment'
 
     export default {
-        name: "protocolo-aluno-form",
+        name: "protocolo-aluno-professor-form",
         components: {
             AlunoDialog,
             UsuarioDialog
@@ -97,7 +97,7 @@
         },
         data() {
             return {
-                protocoloAluno: Object.assign({}, this.value)
+                protocoloAlunoProfessor: Object.assign({}, this.value)
             };
         },
         computed: {
@@ -107,7 +107,7 @@
                     required: true,
                     itemText: 'nome_completo',
                     name: 'Aluno',
-                    url: 'protocoloalunos/autocomplete',
+                    url: 'protocoloalunosprofessores/autocomplete',
                     helperCreateEdit: true
                 };
             },
@@ -117,7 +117,7 @@
                     required: true,
                     itemText: 'nome_completo',
                     name: 'Professor',
-                    url: 'protocoloalunos/autocomplete',
+                    url: 'protocoloalunosprofessores/autocomplete',
                     helperCreateEdit: true
                 };
             },
@@ -132,7 +132,7 @@
         watch: {
             value: {
                 handler() {
-                    this.protocoloAluno = Object.assign({}, this.value);
+                    this.protocoloAlunoProfessor = Object.assign({}, this.value);
                 },
                 deep: true
             }

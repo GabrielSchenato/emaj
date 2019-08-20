@@ -3,9 +3,9 @@
 namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
 use Emaj\Criteria\AlunoCriteria;
+use Emaj\Entities\Cadastro\ProtocoloAlunoProfessor;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\AlunoRepository;
-use Emaj\Repositories\Cadastro\ProtocoloAlunoRepository;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -23,14 +23,14 @@ class AlunosController extends CrudController
 {
 
     /**
-     * @var ProtocoloAlunoRepository
+     * @var ProtocoloAlunoProfessor
      */
-    private $protocoloAlunoRepository;
+    private $protocoloAlunoProfessorRepository;
     protected $relationships = [
         'avaliacoes.avaliador:id,nome_completo',
-        'protocolo_alunos.protocolo:id,cliente_id,protocolo,numero_processo,observacoes,ativo',
-        'protocolo_alunos.protocolo.cliente:id,nome_completo,representado_assistido',
-        'protocolo_alunos.professor:id,nome_completo',
+        'protocolo_alunos_professores.protocolo:id,cliente_id,protocolo,numero_processo,observacoes,ativo',
+        'protocolo_alunos_professores.protocolo.cliente:id,nome_completo,representado_assistido',
+        'protocolo_alunos_professores.professor:id,nome_completo',
         'ficha_triagens_aluno.cliente:id,nome_completo,representado_assistido',
         'ficha_triagens_aluno.professor:id,nome_completo',
         'ficha_triagens_aluno:id,aluno_id,cliente_id,professor_id,protocolo,numero_processo,ativo,outras_informacoes,created_at',
@@ -39,10 +39,10 @@ class AlunosController extends CrudController
     ];
     protected $repository;
 
-    public function __construct(AlunoRepository $repository, ProtocoloAlunoRepository $protocoloAlunoRepository)
+    public function __construct(AlunoRepository $repository, ProtocoloAlunoProfessor $protocoloAlunoProfessorRepository)
     {
         $this->repository = $repository;
-        $this->protocoloAlunoRepository = $protocoloAlunoRepository;
+        $this->protocoloAlunoProfessorRepository = $protocoloAlunoProfessorRepository;
     }
 
     /**
@@ -55,7 +55,7 @@ class AlunosController extends CrudController
         $this->registro = [];
         if (strlen($ac = request()->get('protocolo_id')) > 0) {
             $idAluno = request()->get('aluno_id');
-            $this->registro = $this->protocoloAlunoRepository
+            $this->registro = $this->protocoloAlunoProfessorRepository
                     ->pushCriteria(new AlunoCriteria($idAluno))
                     ->getDataAutocomplete($ac, [
                 'protocolo',

@@ -5,7 +5,7 @@ namespace Emaj\Entities\Cadastro;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Classe da entidade Protocolo Aluno
+ * Classe da entidade Protocolo Aluno Professor
  *
  * PHP version 7.2
  *
@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @link       https://www.uniplaclages.edu.br/
  * @since      2.0.0
  */
-class ProtocoloAluno extends Model
+class ProtocoloAlunoProfessor extends Model
 {
 
     /**
@@ -24,7 +24,7 @@ class ProtocoloAluno extends Model
      *
      * @var string
      */
-    protected $table = 'protocolo_alunos';
+    protected $table = 'protocolo_alunos_professores';
     //protected $appends = ['dados_ficha_triagem'];
     protected $fillable = [
         'protocolo_id',

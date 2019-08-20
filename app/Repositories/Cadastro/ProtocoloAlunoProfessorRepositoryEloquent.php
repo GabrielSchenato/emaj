@@ -2,12 +2,12 @@
 
 namespace Emaj\Repositories\Cadastro;
 
-use Emaj\Entities\Cadastro\ProtocoloAluno;
+use Emaj\Entities\Cadastro\ProtocoloAlunoProfessor;
 use Emaj\Repositories\AbstractRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
- * Repository responsável por gerenciar a entidade Protocolo Aluno
+ * Repository responsável por gerenciar a entidade Protocolo Aluno Professor
  *
  * PHP version 7.2
  *
@@ -18,7 +18,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
  * @link       https://www.uniplaclages.edu.br/
  * @since      2.0.0
  */
-class ProtocoloAlunoRepositoryEloquent extends AbstractRepository implements ProtocoloAlunoRepository
+class ProtocoloAlunoProfessorRepositoryEloquent extends AbstractRepository implements ProtocoloAlunoProfessorRepository
 {
 
     /**
@@ -28,7 +28,7 @@ class ProtocoloAlunoRepositoryEloquent extends AbstractRepository implements Pro
      */
     public function model()
     {
-        return ProtocoloAluno::class;
+        return ProtocoloAlunoProfessor::class;
     }
 
     /**
@@ -52,18 +52,18 @@ class ProtocoloAlunoRepositoryEloquent extends AbstractRepository implements Pro
     public function getDataIndex(int $limit = 10, array $columns = ['*'], array $order = ['id', 'desc'], array $data = [])
     {
         $columns = [
-            'protocolo_alunos.id',
-            'protocolo_alunos.protocolo_id',
-            'protocolo_alunos.aluno_id',
+            'protocolo_alunos_professores.id',
+            'protocolo_alunos_professores.protocolo_id',
+            'protocolo_alunos_professores.aluno_id',
             'alunos.nome_completo AS nome_aluno',
-            'protocolo_alunos.professor_id',
+            'protocolo_alunos_professores.professor_id',
             'usuarios.nome_completo AS nome_professor',
-            'protocolo_alunos.data_vinculo',
-            'protocolo_alunos.ativo',
+            'protocolo_alunos_professores.data_vinculo',
+            'protocolo_alunos_professores.ativo',
         ];
         return $this->getBySearch($data)
-                        ->join('alunos', 'protocolo_alunos.aluno_id', '=', 'alunos.id')
-                        ->join('usuarios', 'protocolo_alunos.professor_id', '=', 'usuarios.id')
+                        ->join('alunos', 'protocolo_alunos_professores.aluno_id', '=', 'alunos.id')
+                        ->join('usuarios', 'protocolo_alunos_professores.professor_id', '=', 'usuarios.id')
                         ->orderBy($order[0], $order[1])
                         ->paginate($limit, $columns);
     }
@@ -87,13 +87,13 @@ class ProtocoloAlunoRepositoryEloquent extends AbstractRepository implements Pro
             });
         }
         if (isset($values['data_vinculo'])) {
-            $criteria->where('protocolo_alunos.data_vinculo', '=', $values['data_vinculo']);
+            $criteria->where('protocolo_alunos_professores.data_vinculo', '=', $values['data_vinculo']);
         }
         if (isset($values['protocolo_id'])) {
-            $criteria->where('protocolo_alunos.protocolo_id', '=', $values['protocolo_id']);
+            $criteria->where('protocolo_alunos_professores.protocolo_id', '=', $values['protocolo_id']);
         }
         if (isset($values['ativo'])) {
-            $criteria->where('protocolo_alunos.ativo', '=', (boolean) $values['ativo']);
+            $criteria->where('protocolo_alunos_professores.ativo', '=', (boolean) $values['ativo']);
         }
 
         return $criteria;

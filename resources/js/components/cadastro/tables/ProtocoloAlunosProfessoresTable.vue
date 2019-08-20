@@ -8,11 +8,11 @@
                             <v-btn color="primary" @click="adicionar">Adicionar
                                 <v-icon right dark>add</v-icon>
                             </v-btn>
-                            <protocolo-aluno-dialog
-                                ref="protocoloAlunosDialog"
+                            <protocolo-aluno-professor-dialog
+                                ref="protocoloAlunosProfessoresDialog"
                                 v-bind:idProtocolo="idProtocolo"
                                 >
-                            </protocolo-aluno-dialog>
+                            </protocolo-aluno-professor-dialog>
                             <confirm ref="confirm"></confirm>
                             <v-divider class="mx-2" inset vertical></v-divider>
                             <filter-form
@@ -26,9 +26,9 @@
                         <v-card-text class="pa-0">
                             <v-data-table
                                 :headers="complex.headers"
-                                :items="protocoloAlunos"
+                                :items="protocoloAlunosProfessores"
                                 :pagination.sync="pagination" 
-                                :total-items="totalProtocoloAlunos"
+                                :total-items="totalProtocoloAlunosProfessores"
                                 :rows-per-page-items="[10,25,50,100]"
                                 class="elevation-1"
                                 item-key="id"
@@ -66,13 +66,13 @@
 
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
-    import ProtocoloAlunoDialog from "@/components/cadastro/dialogs/ProtocoloAlunoDialog.vue";
+    import ProtocoloAlunoProfessorDialog from "@/components/cadastro/dialogs/ProtocoloAlunoProfessorDialog.vue";
     import moment from 'moment'
 
     export default {
         components: {
             Confirm,
-            ProtocoloAlunoDialog
+            ProtocoloAlunoProfessorDialog
         },
         props: {
             idProtocolo: {
@@ -85,8 +85,8 @@
                 search: {},
                 loading: false,
                 pagination: {descending: true, sortBy: 'id'},
-                protocoloAlunos: [],
-                totalProtocoloAlunos: 0,
+                protocoloAlunosProfessores: [],
+                totalProtocoloAlunosProfessores: 0,
                 complex: {
                     selected: [],
                     headers: [
@@ -134,7 +134,7 @@
         },
         methods: {
             adicionar() {
-                this.$refs.protocoloAlunosDialog
+                this.$refs.protocoloAlunosProfessoresDialog
                         .open(
                                 'Adicionar um novo vínculo Aluno/Professor',
                                 {
@@ -151,11 +151,11 @@
             },
 
             editar(id) {
-                this.$store.dispatch("getProtocoloAluno", id).then(() => {
-                    this.$refs.protocoloAlunosDialog
+                this.$store.dispatch("getProtocoloAlunoProfessor", id).then(() => {
+                    this.$refs.protocoloAlunosProfessoresDialog
                             .open(
                                     'Editar vínculo Aluno/Professor',
-                                    this.$store.state.protocoloalunos.protocoloAlunosView,
+                                    this.$store.state.protocoloalunosprofessores.protocoloAlunosProfessoresView,
                                     {
                                         color: "blue"
                                     }
@@ -173,7 +173,7 @@
                         })
                         .then(confirm => {
                             if (confirm) {
-                                this.$store.dispatch("removeProtocoloAluno", item).then(() => {
+                                this.$store.dispatch("removeProtocoloAlunoProfessor", item).then(() => {
                                     this.getData();
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Deletado com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
@@ -187,9 +187,9 @@
             },
             getData() {
                 this.loading = true;
-                window.axios.get(`protocoloalunos${this.paginationTable(this.params)}&protocolo_id=${this.idProtocolo}`).then(response => {
-                    this.protocoloAlunos = response.data.data;
-                    this.totalProtocoloAlunos = response.data.total;
+                window.axios.get(`protocoloalunosprofessores${this.paginationTable(this.params)}&protocolo_id=${this.idProtocolo}`).then(response => {
+                    this.protocoloAlunosProfessores = response.data.data;
+                    this.totalProtocoloAlunosProfessores = response.data.total;
                     this.loading = false;
                 }).catch((resp) => {
                     this.loading = false;
