@@ -404,7 +404,7 @@
                 this.$refs.composicaoFamiliarForm.$validator.errors.clear();
                 this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.errors.clear();
                 this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.errors.clear();
-                this.$refs.informacoesPessoaisForm.nacionalidades = item.nacionalidade ? [item.nacionalidade] : [{id: 7, nome: 'Brasileiro'}];
+                this.$refs.informacoesPessoaisForm.nacionalidades = item.nacionalidade ? [item.nacionalidade] : [{id: 7, nome: 'BRASILEIRO'}];
                 this.informacoesPessoais = item;
                 this.endereco = item.endereco ? item.endereco : {};
                 this.composicaoFamiliar = item.composicao_familiar ? item.composicao_familiar : {};
