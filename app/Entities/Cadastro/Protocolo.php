@@ -21,7 +21,10 @@ use Illuminate\Database\Eloquent\Model;
 class Protocolo extends Model
 {
 
-    protected $appends = ['dados_protocolo'];
+    protected $appends = [
+        'dados_protocolo',
+        'protocolo_alunos_professores_ativos'
+    ];
     protected $fillable = [
         'cliente_id',
         'protocolo',
@@ -63,6 +66,17 @@ class Protocolo extends Model
     public function protocolo_alunos_professores()
     {
         return $this->hasMany(ProtocoloAlunoProfessor::class, 'protocolo_id');
+    }
+
+    protected function getProtocoloAlunosProfessoresAtivosAttribute()
+    {
+        return $this->hasMany(ProtocoloAlunoProfessor::class, 'protocolo_id')
+                        ->where('ativo', '=', true)
+                        ->with([
+                            'aluno:id,nome_completo',
+                            'professor:id,nome_completo'
+                        ])
+                        ->get();
     }
 
     protected function getDadosProtocoloAttribute()

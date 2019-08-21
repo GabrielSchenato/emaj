@@ -251,7 +251,7 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
             $criteria->where('cliente_id', '=', (int) $values['cliente_id']);
         }
         if (isset($values['ativo'])) {
-            $criteria->where('ficha_triagens.ativo', '=', (boolean) $values['ativo']);
+            $criteria->where('protocolos.ativo', '=', (boolean) $values['ativo']);
         }
 
         return $criteria;

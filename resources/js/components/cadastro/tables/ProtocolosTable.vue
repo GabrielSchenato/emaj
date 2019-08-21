@@ -40,12 +40,24 @@
                                 :loading="loading"
                                 >
                                 <template slot="items" slot-scope="props">                                       
-                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.protocolo }}</td>
-                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.numero_processo }}</td>
-                                    <td v-bind:class="{ vermelho: !props.item.ativo, azul: props.item.nome_parte_contraria != null && props.item.ativo }">{{ props.item.nome_parte_contraria }}</td>
-                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.nome_tipo_demanda }}</td>
-                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.status }}</td>
-                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.ativo | formataAtivo }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }" @click="expandRow(props)">
+                                        {{ props.item.protocolo }}
+                                    </td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }" @click="expandRow(props)">
+                                        {{ props.item.numero_processo }}
+                                    </td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo, azul: props.item.nome_parte_contraria != null && props.item.ativo }" @click="expandRow(props)">
+                                        {{ props.item.nome_parte_contraria }}
+                                    </td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }" @click="expandRow(props)">
+                                        {{ props.item.nome_tipo_demanda }}
+                                    </td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }" @click="expandRow(props)">
+                                        {{ props.item.status }}
+                                    </td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }" @click="expandRow(props)">
+                                        {{ props.item.ativo | formataAtivo }}
+                                    </td>
                                     <td>
                                     <v-tooltip bottom>
                                         <template v-slot:activator="{ on }">
@@ -85,6 +97,29 @@
 
                                     </td>
                                 </template>
+
+                                <template v-slot:expand="props">
+                                    <v-card flat hover>                                        
+                                        <v-card-text class="pa-0">
+                                            <template>
+                                                <v-data-table
+                                                    :headers="headers"
+                                                    :items="props.item.protocolo_alunos_professores_ativos"
+                                                    hide-actions
+                                                    class="elevation-0 table-striped"
+                                                    >
+                                                    <template slot="items" slot-scope="props">
+                                                        <td class="text-xs-left">{{ props.item.aluno.nome_completo }}</td>
+                                                        <td class="text-xs-left">{{ props.item.professor.nome_completo }}</td>                                                        
+                                                        <td class="text-xs-left">{{ props.item.data_vinculo | formataData }}</td>                                                        
+                                                    </template>
+                                                </v-data-table>
+                                            </template>
+                                            <v-divider></v-divider>
+                                        </v-card-text>
+                                    </v-card>
+                                </template>
+
                                 <template
                                     slot="pageText"
                                     slot-scope="props"
@@ -175,7 +210,12 @@
                             sortable: false
                         }
                     ]
-                }
+                },
+                headers: [
+                    {text: 'Aluno', value: 'aluno.nome_completo'},
+                    {text: 'Professor', value: 'professor.nome_completo'},
+                    {text: 'Data Vínculo', value: 'data_vinculo'}
+                ]
             }),
         watch: {
             params: {
@@ -253,6 +293,9 @@
             imprimirFichaTriagem(object) {
                 let data = {...object, ...{formato: "pdf"}};
                 this.gerarImpressao(data, "/protocolos/imprimir-ficha-triagem");
+            },
+            expandRow(props) {
+                props.expanded = !props.expanded;
             }
         },
         computed: {

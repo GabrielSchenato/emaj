@@ -229,6 +229,7 @@
                                                                 <ul>
                                                                     <li><small><b class="vermelho">Vermelho: </b>Indica os protocolos que foram arquivados/inativados</small></li>
                                                                     <li><small><b class="azul">Azul: </b>Destaca quando um protocolo possui uma Parte Contrária</small></li>
+                                                                    <li><small><b>Dica: </b>Clique na linha para expandir e visualizar mais informações</small></li>
                                                                 </ul>
 
                                                             </v-card-text>

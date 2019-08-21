@@ -3,8 +3,11 @@
 namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\Aluno;
+use Emaj\Exceptions\ValidationException;
 use Emaj\Repositories\AbstractRepository;
+use Exception;
 use Illuminate\Container\Container;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Prettus\Repository\Criteria\RequestCriteria;
 
@@ -65,8 +68,18 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
      */
     public function update(array $attributes, $id)
     {
-        $this->inativaProtocoloAlunosProfessores($attributes, $id);
-        return parent::update($attributes, $id);
+        try {
+            $this->inativaProtocoloAlunosProfessores($attributes, $id);
+            $aluno = parent::update($attributes, $id);
+            DB::commit();
+            return $aluno;
+        } catch (ValidationException $ex) {
+            DB::rollback();
+            throw $ex;
+        } catch (Exception $ex) {
+            DB::rollback();
+            throw $ex;
+        }
     }
 
     /**
