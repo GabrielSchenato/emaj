@@ -29,6 +29,7 @@ class ComposicaoFamiliarRepositoryEloquent extends AbstractRepository implements
         parent::__construct($app);
         $this->setWrapNameException('composicao_familiar');
     }
+
     /**
      * Specify Model class name
      *
@@ -45,6 +46,24 @@ class ComposicaoFamiliarRepositoryEloquent extends AbstractRepository implements
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    /**
+     * @override
+     * Update or Create an entity in repository
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     * @param array $values
+     *
+     * @return mixed
+     */
+    public function updateOrCreate(array $attributes, array $values = array())
+    {
+        $this->limpaCamposCarro($attributes);
+        $this->limpaCamposMoto($attributes);
+        return parent::updateOrCreate($attributes, $values);
     }
 
     /**
@@ -66,6 +85,36 @@ class ComposicaoFamiliarRepositoryEloquent extends AbstractRepository implements
             'despesas' => 'required|max:255',
             'valor_patrimonio' => 'required|max:255'
         ];
+    }
+
+    /**
+     * Método responsável por limpar os campos relacionados ao carro do cliente
+     * quando desmarcado parametro possui_carro
+     * 
+     * @param array $attributes
+     */
+    private function limpaCamposCarro(&$attributes)
+    {
+        if (isset($attributes['possui_carro']) && $attributes['possui_carro'] == false) {
+            $attributes['possui_carro'] = null;
+            $attributes['marca_carro'] = null;
+            $attributes['ano_carro'] = null;
+        }
+    }
+
+    /**
+     * Método responsável por limpar os campos relacionados a moto do cliente
+     * quando desmarcado parametro possui_moto
+     * 
+     * @param array $attributes
+     */
+    private function limpaCamposMoto(&$attributes)
+    {
+        if (isset($attributes['possui_moto']) && $attributes['possui_moto'] == false) {
+            $attributes['possui_moto'] = null;
+            $attributes['marca_moto'] = null;
+            $attributes['ano_moto'] = null;
+        }
     }
 
 }

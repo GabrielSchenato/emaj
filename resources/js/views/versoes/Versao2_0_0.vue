@@ -104,6 +104,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Dashboard): Alterada a forma de buscar as estatísticas da Ficha de Triagem para Protocolos'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Cadastro): Aplicada melhoria na impressão da Ficha de Triagem, para exibir os campos da Parte Contrária mesmo quando não tenha uma'
                     }
                 ];
             },

@@ -55,14 +55,14 @@
 		us.nome_completo,
 		' ') SEPARATOR '<br>'))
 	FROM
-		protocolo_alunos pa
+		protocolo_alunos_professores pap
 	JOIN alunos al ON
-		al.id = pa.aluno_id
+		al.id = pap.aluno_id
 	JOIN usuarios us ON
-		us.id = pa.professor_id
+		us.id = pap.professor_id
 	WHERE
-		pa.protocolo_id = pro.id
-		AND pa.ativo
+		pap.protocolo_id = pro.id
+		AND pap.ativo
 	LIMIT 5 ) AS alunos_professores
 FROM
 	protocolos pro
