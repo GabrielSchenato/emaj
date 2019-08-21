@@ -225,7 +225,7 @@
                                                                     v-bind:nomeRepresentadoAssistido="informacoesPessoais.representado_assistido"
                                                                     >
                                                                 </protocolos-table>
-                                                                
+
                                                                 <ul>
                                                                     <li><small><b class="vermelho">Vermelho: </b>Indica os protocolos que foram arquivados/inativados</small></li>
                                                                     <li><small><b class="azul">Azul: </b>Destaca quando um protocolo possui uma Parte Contrária</small></li>
@@ -429,14 +429,25 @@
 
                     this.$store
                             .dispatch("newCliente", dados)
-                            .then(() => {
+                            .then((resp) => {
                                 this.resolve(true);
-                                this.dialog = false;
-                                this.informacoesPessoais = {};
-                                this.endereco = {};
-                                this.composicaoFamiliar = {};
-                                this.telefones = [];
-                                this.step = 1;
+
+                                if (this.informacoesPessoais.parte_contraria) {
+                                    this.dialog = false;
+                                    this.informacoesPessoais = {};
+                                    this.endereco = {};
+                                    this.composicaoFamiliar = {};
+                                    this.telefones = [];
+                                    this.step = 1;
+                                } else {
+                                    this.dialog = true;
+                                    this.informacoesPessoais = resp.data.informacoesPessoais;
+                                    this.endereco = resp.data.endereco;
+                                    this.composicaoFamiliar = resp.data.composicaoFamiliar;
+                                    this.telefones = resp.data.telefones;
+                                    this.step = 5;
+                                }
+
                                 window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                             }).catch((resp) => {
                         this.addErrors(resp.response.data);

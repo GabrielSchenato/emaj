@@ -119,6 +119,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro de "Cliente", na aba "Protocolos" incluindo um aviso quando o cliente já foi uma parte contrária'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro de "Cliente", para quando salvar o mesmo e não ser uma parte contrária manter a janela aberta para inserir protocolos'
                     }
                 ];
             },
