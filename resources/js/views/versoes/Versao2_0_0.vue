@@ -109,6 +109,16 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Cadastro): Aplicada melhoria na impressão da Ficha de Triagem, para exibir os campos da Parte Contrária mesmo quando não tenha uma'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro de "Cliente", na aba "Protocolos" incluindo a opção de clicar sobre a linha do registro e expandir para visualizar os alunos e professores vinculados ao protocolo'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro de "Cliente", na aba "Protocolos" incluindo um aviso quando o cliente já foi uma parte contrária'
                     }
                 ];
             },

@@ -47,6 +47,8 @@ Route::prefix('v1')
 
             Route::get('protocoloalunosprofessores/autocomplete', 'Cadastro\ProtocoloAlunosProfessoresController@autocomplete');
 
+            Route::get('clientes/is-parte-contraria/{id}', 'Cadastro\ClientesController@isParteContraria');
+
             Route::apiResources([
                 'usuarios' => 'Cadastro\UsuariosController',
                 'tipodemandas' => 'Cadastro\TipoDemandasController',

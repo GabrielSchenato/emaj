@@ -48,6 +48,14 @@ class ProtocolosController extends CrudController
         $this->clienteRepository = $clienteRepository;
     }
 
+    public function imprimirFichaTriagem()
+    {
+        $this->nomeRelatorio = 'ficha_triagem';
+        $this->nomeRelatorioJasper = 'ficha_triagem';
+        $this->titulo = 'Ficha de Triagem';
+        return $this->gerarImpressao();
+    }
+
     /**
      * Retorna todos os dados para os autocomplete
      * 
@@ -66,14 +74,6 @@ class ProtocolosController extends CrudController
         }
 
         return $this->registro;
-    }
-
-    public function imprimirFichaTriagem()
-    {
-        $this->nomeRelatorio = 'ficha_triagem';
-        $this->nomeRelatorioJasper = 'ficha_triagem';
-        $this->titulo = 'Ficha de Triagem';
-        return $this->gerarImpressao();
     }
 
 }

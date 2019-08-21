@@ -5,6 +5,7 @@ namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\ClienteRepository;
 use Emaj\Repositories\Cadastro\NacionalidadeRepository;
+use Emaj\Repositories\Cadastro\ProtocoloRepository;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -21,6 +22,10 @@ use Emaj\Repositories\Cadastro\NacionalidadeRepository;
 class ClientesController extends CrudController
 {
 
+    /**
+     * @var ProtocoloRepository
+     */
+    private $protocoloRepository;
     protected $relationships = [
         'nacionalidade:id,nome',
         'endereco',
@@ -38,10 +43,22 @@ class ClientesController extends CrudController
      */
     protected $repository;
 
-    public function __construct(ClienteRepository $repository, NacionalidadeRepository $nacionalidadeRepository)
+    public function __construct(ClienteRepository $repository, NacionalidadeRepository $nacionalidadeRepository, ProtocoloRepository $protocoloRepository)
     {
         $this->repository = $repository;
         $this->nacionalidadeRepository = $nacionalidadeRepository;
+        $this->protocoloRepository = $protocoloRepository;
+    }
+
+    /**
+     * Método responsável por retornar os dados se o cliente já foi uma parte contrária
+     * 
+     * @param int $idCliente
+     * @return mixed
+     */
+    public function isParteContraria(int $idCliente)
+    {
+        return $this->protocoloRepository->findByField('parte_contraria_id', $idCliente);
     }
 
     /**

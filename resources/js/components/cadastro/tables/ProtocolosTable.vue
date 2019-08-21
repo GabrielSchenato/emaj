@@ -227,16 +227,27 @@
         },
         methods: {
             adicionar() {
-                this.$refs.protocoloDialog
-                        .open(
-                                'Adicionar um novo Protocolo',
-                                {ativo: true},
-                                {
-                                    color: "blue"
-                                }
-                        ).then(confirm => {
-                    if (confirm)
-                        this.getData();
+                window.axios.get('clientes/is-parte-contraria/' + this.idCliente)
+                        .then(response => {
+                            this.$refs.protocoloDialog
+                                    .open(
+                                            'Adicionar um novo Protocolo',
+                                            {
+                                                ativo: true,
+                                                isParteContrariaDados: response.data
+                                            },
+                                            {
+                                                color: "blue"
+                                            }
+                                    ).then(confirm => {
+                                if (confirm)
+                                    this.getData();
+                            });
+                        }).catch((resp) => {
+                    let msgErro = '';
+                    if (resp.response.data.errors)
+                        msgErro = resp.response.data.errors;
+                    window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
                 });
             },
 
