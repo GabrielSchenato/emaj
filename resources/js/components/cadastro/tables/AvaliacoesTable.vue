@@ -41,7 +41,7 @@
                             {{ props.item.id }}
                         </td>
                         <td @click="expandRow(props)">
-                            {{ props.item.ficha_triagem ? props.item.ficha_triagem.dados_ficha_triagem : 'Não informado' }}
+                            {{ props.item.protocolo ? props.item.protocolo.dados_protocolo : 'Não informado' }}
                         </td>
                         <td @click="expandRow(props)">
                             {{ props.item.avaliador.dados_usuario }}
@@ -124,8 +124,8 @@
                             value: "id"
                         },
                         {
-                            text: "Ficha de Triagem",
-                            value: "ficha_triagem.dados_ficha_triagem"
+                            text: "Protocolo",
+                            value: "protocolo.dados_protocolo"
                         },
                         {
                             text: "Avaliador",

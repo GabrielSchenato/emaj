@@ -1,147 +1,155 @@
 <template>
-    <v-layout wrap>
-        <v-flex xs12 sm6 md2>
-            <v-text-field
-                name="id"
-                v-model="aluno.id"
-                label="ID"
-                disabled
-                @input="$emit('input', aluno)"
-                ></v-text-field>
-        </v-flex>
+    <div>
+        <v-alert
+            :value="!aluno.ativo"
+            type="info"
+            >
+            Inativando o aluno você estará também inativando o vinculo do mesmo aos protocolos.
+        </v-alert> 
+        <v-layout wrap>
+            <v-flex xs12 sm6 md2>
+                <v-text-field
+                    name="id"
+                    v-model="aluno.id"
+                    label="ID"
+                    disabled
+                    @input="$emit('input', aluno)"
+                    ></v-text-field>
+            </v-flex>
 
-        <v-flex xs12 sm6 md5>
-            <v-text-field
-                name="nome_completo"
-                v-model="aluno.nome_completo"
-                label="Nome Completo*"
-                v-validate="'required'"
-                :error-messages="errors.collect('nome completo')"
-                data-vv-name="nome completo"
-                required
-                @input="$emit('input', aluno)"
-                ></v-text-field>
-        </v-flex>
+            <v-flex xs12 sm6 md5>
+                <v-text-field
+                    name="nome_completo"
+                    v-model="aluno.nome_completo"
+                    label="Nome Completo*"
+                    v-validate="'required'"
+                    :error-messages="errors.collect('nome completo')"
+                    data-vv-name="nome completo"
+                    required
+                    @input="$emit('input', aluno)"
+                    ></v-text-field>
+            </v-flex>
 
-        <v-flex xs12 sm6 md5>
-            <v-text-field
-                name="email"
-                v-model="aluno.email"
-                label="E-mail"
-                :error-messages="errors.collect('e-mail')"
-                data-vv-name="e-mail"
-                @input="$emit('input', aluno)"
-                ></v-text-field>
-        </v-flex>
+            <v-flex xs12 sm6 md5>
+                <v-text-field
+                    name="email"
+                    v-model="aluno.email"
+                    label="E-mail"
+                    :error-messages="errors.collect('e-mail')"
+                    data-vv-name="e-mail"
+                    @input="$emit('input', aluno)"
+                    ></v-text-field>
+            </v-flex>
 
-        <v-flex xs12 sm6 md2>
-            <v-text-field
-                name="celular"
-                v-model="aluno.celular"
-                label="Celular"
-                mask="(##) #####-####"
-                return-masked-value
-                @input="$emit('input', aluno)"
-                ></v-text-field>
-        </v-flex>
+            <v-flex xs12 sm6 md2>
+                <v-text-field
+                    name="celular"
+                    v-model="aluno.celular"
+                    label="Celular"
+                    mask="(##) #####-####"
+                    return-masked-value
+                    @input="$emit('input', aluno)"
+                    ></v-text-field>
+            </v-flex>
 
-        <v-flex xs12 sm6 md2>
-            <v-text-field
-                name="telefone"
-                v-model="aluno.telefone"
-                label="Telefone"
-                mask="(##) ####-####"
-                return-masked-value
-                @input="$emit('input', aluno)"
-                ></v-text-field>
-        </v-flex>
+            <v-flex xs12 sm6 md2>
+                <v-text-field
+                    name="telefone"
+                    v-model="aluno.telefone"
+                    label="Telefone"
+                    mask="(##) ####-####"
+                    return-masked-value
+                    @input="$emit('input', aluno)"
+                    ></v-text-field>
+            </v-flex>
 
-        <v-flex xs12 sm6 md1>
-            <v-text-field
-                name="fase"
-                v-model="aluno.fase"
-                label="Fase"
-                @input="$emit('input', aluno)"
-                ></v-text-field>
-        </v-flex>
+            <v-flex xs12 sm6 md1>
+                <v-text-field
+                    name="fase"
+                    v-model="aluno.fase"
+                    label="Fase"
+                    @input="$emit('input', aluno)"
+                    ></v-text-field>
+            </v-flex>
 
-        <v-flex xs12 sm6 md2>
-            <v-text-field
-                name="matricula"
-                v-model="aluno.matricula"
-                label="Matricula"
-                @input="$emit('input', aluno)"
-                ></v-text-field>
-        </v-flex>            
+            <v-flex xs12 sm6 md2>
+                <v-text-field
+                    name="matricula"
+                    v-model="aluno.matricula"
+                    label="Matricula"
+                    @input="$emit('input', aluno)"
+                    ></v-text-field>
+            </v-flex>            
 
-        <v-flex xs12 sm6 md2>
-            <v-select
-                name="disciplina"
-                :items="disciplinas"
-                label="Disciplina"
-                v-model="aluno.disciplina"
-                @input="$emit('input', aluno)"
-                item-value="id"
-                item-text="nome"
-                clearable
-                ></v-select>
-        </v-flex>
+            <v-flex xs12 sm6 md2>
+                <v-select
+                    name="disciplina"
+                    :items="disciplinas"
+                    label="Disciplina"
+                    v-model="aluno.disciplina"
+                    @input="$emit('input', aluno)"
+                    item-value="id"
+                    item-text="nome"
+                    clearable
+                    ></v-select>
+            </v-flex>
 
-        <v-flex xs12 sm6 md1>
-            <v-text-field
-                name="ano"
-                v-model="aluno.ano"
-                label="Ano"
-                type="number"
-                @input="$emit('input', aluno)"
-                ></v-text-field>
-        </v-flex> 
+            <v-flex xs12 sm6 md1>
+                <v-text-field
+                    name="ano"
+                    v-model="aluno.ano"
+                    label="Ano"
+                    type="number"
+                    @input="$emit('input', aluno)"
+                    ></v-text-field>
+            </v-flex> 
 
-        <v-flex xs12 sm6 md2>
-            <v-select
-                name="semestres"
-                :items="semestres"
-                label="Semestre"
-                v-model="aluno.semestre"
-                @input="$emit('input', aluno)"
-                item-value="id"
-                item-text="nome"
-                clearable
-                ></v-select>
-        </v-flex>
+            <v-flex xs12 sm6 md2>
+                <v-select
+                    name="semestres"
+                    :items="semestres"
+                    label="Semestre"
+                    v-model="aluno.semestre"
+                    @input="$emit('input', aluno)"
+                    item-value="id"
+                    item-text="nome"
+                    clearable
+                    ></v-select>
+            </v-flex>
 
-        <v-flex xs12 sm6 md2>
-            <v-select
-                name="turno"
-                :items="turnos"
-                label="Turno"
-                v-model="aluno.turno"
-                @input="$emit('input', aluno)"
-                item-value="id"
-                item-text="nome"
-                clearable
-                ></v-select>
-        </v-flex>
+            <v-flex xs12 sm6 md2>
+                <v-select
+                    name="turno"
+                    :items="turnos"
+                    label="Turno"
+                    v-model="aluno.turno"
+                    @input="$emit('input', aluno)"
+                    item-value="id"
+                    item-text="nome"
+                    clearable
+                    ></v-select>
+            </v-flex>
 
-        <v-flex xs12 sm6 md9>
-            <v-text-field
-                name="observacoes"
-                v-model="aluno.observacoes"
-                label="Observações"
-                @input="$emit('input', aluno)"
-                ></v-text-field>
-        </v-flex> 
+            <v-flex xs12 sm6 md9>
+                <v-text-field
+                    name="observacoes"
+                    v-model="aluno.observacoes"
+                    label="Observações"
+                    @input="$emit('input', aluno)"
+                    ></v-text-field>
+            </v-flex> 
 
-        <v-flex xs12 sm6 md1>
-            <v-checkbox
-                name="ativo"
-                v-model="aluno.ativo"
-                label="Ativo?"
-                @change="$emit('input', aluno)"
-                ></v-checkbox>
-        </v-flex>
+            <v-flex xs12 sm6 md1>
+                <v-checkbox
+                    name="ativo"
+                    v-model="aluno.ativo"
+                    label="Ativo?"
+                    @change="$emit('input', aluno)"
+                    ></v-checkbox>
+            </v-flex>
 
-    </v-layout>
+        </v-layout>
+    </div>
 </template>
 <script>
     export default {

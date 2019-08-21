@@ -74,10 +74,10 @@ class Protocolo extends Model
         $tipoDemanda = $this->tipo_demanda;
 
         if (isset($this->attributes['protocolo'])) {
-            $string .= "Protocolo: {$this->attributes['protocolo']}";
+            $string .= "Protocolo: {$this->attributes['protocolo']}  - ";
         }
         if ($cliente) {
-            $string .= " - Cliente: {$cliente->nome_completo}";
+            $string .= "Cliente: {$cliente->nome_completo}";
             if ($cliente->representado_assistido) {
                 $string .= " - Representado/Assistido: {$cliente->representado_assistido}";
             }

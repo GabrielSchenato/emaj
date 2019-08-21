@@ -29,7 +29,7 @@ class Avaliacao extends Model
     protected $appends = ['quantidade_anexos'];
     protected $fillable = [
         'aluno_id',
-        'ficha_triagem_id',
+        'protocolo_id',
         'avaliador_id',
         'data',
         'observacoes'
@@ -46,9 +46,9 @@ class Avaliacao extends Model
     /**
      * Pega a ficha de triagem associada a essa avaliação.
      */
-    public function ficha_triagem()
+    public function protocolo()
     {
-        return $this->belongsTo(FichaTriagem::class, 'ficha_triagem_id');
+        return $this->belongsTo(Protocolo::class, 'protocolo_id');
     }
 
     /**

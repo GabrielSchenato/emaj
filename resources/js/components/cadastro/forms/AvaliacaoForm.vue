@@ -115,6 +115,7 @@
                     field: 'protocolo_id',
                     required: false,
                     itemText: 'protocolo.dados_protocolo',
+                    itemValue: 'protocolo_id',
                     name: 'Protocolo',
                     url: 'alunos/autocomplete',
                     otherParams: {

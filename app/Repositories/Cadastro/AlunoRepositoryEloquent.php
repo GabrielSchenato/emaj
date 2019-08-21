@@ -4,6 +4,7 @@ namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\Aluno;
 use Emaj\Repositories\AbstractRepository;
+use Illuminate\Container\Container;
 use Illuminate\Validation\Rule;
 use Prettus\Repository\Criteria\RequestCriteria;
 
@@ -23,6 +24,17 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
 {
 
     /**
+     * @var ProtocoloAlunoProfessorRepository
+     */
+    private $protocoloAlunoProfessorRepository;
+
+    public function __construct(Container $app, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository)
+    {
+        parent::__construct($app);
+        $this->protocoloAlunoProfessorRepository = $protocoloAlunoProfessorRepository;
+    }
+
+    /**
      * Specify Model class name
      *
      * @return string
@@ -38,6 +50,23 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    /**
+     * @override
+     * Update a entity in repository by id
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     * @param       $id
+     *
+     * @return mixed
+     */
+    public function update(array $attributes, $id)
+    {
+        $this->inativaProtocoloAlunosProfessores($attributes, $id);
+        return parent::update($attributes, $id);
     }
 
     /**
@@ -98,6 +127,28 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
                         ->orderBy('nome_completo', 'asc')
                         ->limit(10)
                         ->get(['id', 'nome_completo']);
+    }
+
+    /**
+     * Método responsável por inativar os protocolos alunos professores quando o protocolo
+     * está sendo inativado
+     *
+     * @param array $attributes
+     * @param       $id
+     *
+     * @return void
+     */
+    private function inativaProtocoloAlunosProfessores(array $attributes, $id)
+    {
+        $ativo = isset($attributes['ativo']) ? $attributes['ativo'] : null;
+
+        if (!$ativo) {
+            $protocoloAlunosProfessores = $this->protocoloAlunoProfessorRepository->findByField('aluno_id', (int) $id);
+            foreach ($protocoloAlunosProfessores as $protocoloAlunoProfessor) {
+                $protocoloAlunoProfessor->ativo = false;
+                $this->protocoloAlunoProfessorRepository->update($protocoloAlunoProfessor->toArray(), $protocoloAlunoProfessor->id);
+            }
+        }
     }
 
 }

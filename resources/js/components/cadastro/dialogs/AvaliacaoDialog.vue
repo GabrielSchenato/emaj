@@ -63,7 +63,7 @@
                 this.dialog = true;
                 this.formTitle = title;
                 this.avaliacao = item;
-                this.$refs.avaliacaoForm.fichaTriagens = item.ficha_triagem ? [item.ficha_triagem] : [];
+                this.$refs.avaliacaoForm.autocompleteProtocolos = item.protocolo ? [item.protocolo] : [];
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;
@@ -77,8 +77,8 @@
                                 .dispatch("newAvaliacao", this.avaliacao)
                                 .then((resp) => {
                                     this.resolve(true);
-                                    this.dialog = true;
-                                    this.avaliacao = resp.data;
+                                    this.dialog = false;
+                                    this.avaliacao = {};
                                     this.formTitle = "Editar um Avaliação do Aluno";
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {

@@ -356,10 +356,10 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
         $ativo = isset($attributes['ativo']) ? $attributes['ativo'] : null;
 
         if (!$ativo) {
-            $protocoloAlunos = $this->protocoloAlunoProfessorRepository->findByField('protocolo_id', (int) $id);
-            foreach ($protocoloAlunos as $protocoloAluno) {
-                $protocoloAluno->ativo = false;
-                $this->protocoloAlunoProfessorRepository->update($protocoloAluno->toArray(), $protocoloAluno->id);
+            $protocoloAlunosProfessores = $this->protocoloAlunoProfessorRepository->findByField('protocolo_id', (int) $id);
+            foreach ($protocoloAlunosProfessores as $protocoloAlunoProfessor) {
+                $protocoloAlunoProfessor->ativo = false;
+                $this->protocoloAlunoProfessorRepository->update($protocoloAlunoProfessor->toArray(), $protocoloAlunoProfessor->id);
             }
         }
     }

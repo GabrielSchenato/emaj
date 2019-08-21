@@ -29,12 +29,12 @@
                     disable-initial-sort
                     >
                     <template slot="items" slot-scope="props">
-                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.protocolo.cliente.dados_cliente }}</td>
-                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.professor ? props.item.professor.dados_usuario : 'Não informado' }}</td>
-                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.protocolo.protocolo }}</td>
-                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.protocolo.numero_processo }}</td>
-                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.protocolo.observacoes }}</td>
-                        <td v-bind:class="{ vermelho: !props.item.protocolo.ativo }">{{ props.item.data_vinculo | formataData }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.protocolo.cliente.dados_cliente }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.professor ? props.item.professor.dados_usuario : 'Não informado' }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.protocolo.protocolo }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.protocolo.numero_processo }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.protocolo.observacoes }}</td>
+                        <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.data_vinculo | formataData }}</td>
                         <td>
                         <v-btn depressed outline icon fab dark color="blue" small>
                             <v-icon @click="showCliente(props.item.protocolo.cliente.id)">visibility</v-icon>

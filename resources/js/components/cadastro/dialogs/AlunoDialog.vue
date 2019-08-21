@@ -77,7 +77,7 @@
                                             </v-stepper-content>
                                             <v-stepper-content step="2">
                                                 <clientes-table v-model="aluno.protocolo_alunos_professores"></clientes-table>
-                                                <small><b class="vermelho">Vermelho: </b>Indica os processos que foram arquivados/inativados</small>
+                                                <small><b class="vermelho">Vermelho: </b>Indica os protocolos em que o aluno não está mais ativo</small>
                                             </v-stepper-content>
                                             <v-stepper-content step="3">
                                                 <avaliacoes-table 
@@ -88,7 +88,7 @@
                                                 </avaliacoes-table>
 
                                                 <ul>
-                                                    <li><small><b class="vermelho">Vermelho: </b>Indica os protocolos que foram arquivados/inativados</small></li>
+                                                    <li><small><b>Dica: </b>Clique na linha para expandir e visualizar mais informações</small></li>
                                                 </ul>
 
                                             </v-stepper-content>

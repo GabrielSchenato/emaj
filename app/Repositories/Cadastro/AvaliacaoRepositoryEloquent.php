@@ -82,7 +82,7 @@ class AvaliacaoRepositoryEloquent extends AbstractRepository implements Avaliaca
     {
         return [
             'aluno_id' => 'required|numeric',
-            'ficha_triagem_id' => 'required|numeric',
+            'protocolo_id' => 'nullable|numeric',
             'avaliador_id' => 'required|numeric',
             'data' => 'required|date',
             'observacoes' => 'required'

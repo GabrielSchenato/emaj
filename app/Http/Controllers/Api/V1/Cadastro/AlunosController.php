@@ -3,9 +3,9 @@
 namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 
 use Emaj\Criteria\AlunoCriteria;
-use Emaj\Entities\Cadastro\ProtocoloAlunoProfessor;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\AlunoRepository;
+use Emaj\Repositories\Cadastro\ProtocoloAlunoProfessorRepository;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -23,7 +23,7 @@ class AlunosController extends CrudController
 {
 
     /**
-     * @var ProtocoloAlunoProfessor
+     * @var ProtocoloAlunoProfessorRepository
      */
     private $protocoloAlunoProfessorRepository;
     protected $relationships = [
@@ -34,12 +34,12 @@ class AlunosController extends CrudController
         'ficha_triagens_aluno.cliente:id,nome_completo,representado_assistido',
         'ficha_triagens_aluno.professor:id,nome_completo',
         'ficha_triagens_aluno:id,aluno_id,cliente_id,professor_id,protocolo,numero_processo,ativo,outras_informacoes,created_at',
-        'avaliacoes.ficha_triagem:id,cliente_id,parte_contraria_id,tipo_demanda_id,protocolo,numero_processo,created_at',
-        'avaliacoes.ficha_triagem.cliente:id,nome_completo,representado_assistido,cpf,rg,renda'
+        'avaliacoes.protocolo:id,cliente_id,parte_contraria_id,tipo_demanda_id,protocolo,numero_processo,created_at',
+        'avaliacoes.protocolo.cliente:id,nome_completo,representado_assistido,cpf,rg,renda'
     ];
     protected $repository;
 
-    public function __construct(AlunoRepository $repository, ProtocoloAlunoProfessor $protocoloAlunoProfessorRepository)
+    public function __construct(AlunoRepository $repository, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository)
     {
         $this->repository = $repository;
         $this->protocoloAlunoProfessorRepository = $protocoloAlunoProfessorRepository;
