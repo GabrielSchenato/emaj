@@ -129,6 +129,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Adaptação (Movimento): Removido do menu as movimentações de Ficha de Triagens'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Adaptação (Cadastro): Aplicada melhoria no cadastro de "Cliente", na aba "Protocolos", no campo "Protocolo" validando o mesmo para só permitir salvar se o valor estiver seguindo o padrão #####/##'
                     }
                 ];
             },
