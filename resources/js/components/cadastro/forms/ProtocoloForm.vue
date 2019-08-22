@@ -6,7 +6,7 @@
             >
             Inativando o protocolo você estará inativando os alunos e professores vinculados a ele.
         </v-alert>       
-        
+
         <cliente-dialog ref="parteContrariaDialog"></cliente-dialog>
         <tipo-demanda-dialog ref="tipoDemandaDialog"></tipo-demanda-dialog>
         <v-layout wrap>
@@ -52,7 +52,7 @@
                     autofocus
                     :error-messages="errors.collect('Protocolo')"
                     data-vv-name="Protocolo"
-                    v-validate="{required: true }"
+                    v-validate="{required: true, isValidProtocolo: protocolo.protocolo}"
                     @input="$emit('input', protocolo)"                    
                     ></v-text-field>
             </v-flex>
@@ -152,6 +152,18 @@
             return {
                 protocolo: Object.assign({}, this.value)
             };
+        },
+        created() {
+            this.$validator.extend(
+                    'isValidProtocolo', {
+                        getMessage: field => `O campo ${field} deve seguir o padrão #####/##`,
+                        validate: (value) => {
+                            // value must be > zero
+                            if (/^(\d{0,8}\/\d{2})$/g.test(value))
+                                return true;
+                            return false;
+                        }
+                    });
         },
         computed: {
             optionsParteContraria() {

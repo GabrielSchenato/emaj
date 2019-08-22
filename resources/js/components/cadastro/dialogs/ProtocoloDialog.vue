@@ -55,7 +55,7 @@
                                                                     <v-container grid-list-md>
 
                                                                         <v-alert    
-                                                                            v-model="alert"
+                                                                            v-model="protocolo.isParteContrariaDados && protocolo.isParteContrariaDados.length > 0 ? true : false"
                                                                             type="info"
                                                                             outline
                                                                             dismissible
@@ -167,15 +167,13 @@
                     width: 1000,
                     zIndex: 1000
                 },
-                step: 1,
-                alert: false
+                step: 1
             }),
         methods: {
             open(title, item, options) {
                 this.dialog = true;
                 this.formTitle = title;
                 this.step = 1;
-                this.alert = (item.isParteContrariaDados && item.isParteContrariaDados.length > 0);
                 this.protocolo = item;
                 this.$refs.protocoloForm.$refs.autocompleteTipoDemanda.values = item.tipo_demanda ? [item.tipo_demanda] : [];
                 this.$refs.protocoloForm.$refs.autocompleteParteContraria.values = item.parte_contraria ? [item.parte_contraria] : [];
