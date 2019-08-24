@@ -2,7 +2,7 @@
     <v-card class="card--flex-toolbar">
         <v-toolbar card prominent>
             <v-toolbar-title class="body-6 black--text">v2.0.0</v-toolbar-title>
-            <v-toolbar-title class="body-1 grey--text"><small>19 de Agosto de 2019</small></v-toolbar-title>                      
+            <v-toolbar-title class="body-1 grey--text"><small>26 de Agosto de 2019</small></v-toolbar-title>                      
             <v-spacer></v-spacer>
         </v-toolbar>
         <v-divider></v-divider>
