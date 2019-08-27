@@ -23,16 +23,6 @@ const Menu = [
         role: ['admin', 'secretaria']
     },
     {divider: true},
-    {header: 'Movimentação do Sistema'},
-    {
-        title: 'Movimentos',
-        group: 'movimento',
-        component: 'movimento',
-        icon: 'compare_arrows',
-        itens: [
-            {name: 'fichatriagens', title: 'Ficha de Triagens', component: 'movimento/fichatriagens'}
-        ]
-    },
     {header: 'Estatísticas'},
     {divider: true},
     {
@@ -44,6 +34,26 @@ const Menu = [
             {name: 'relatividadesprestadas', title: 'Atividades Prestadas', component: 'relatorio/relatividadesprestadas', role: ['admin', 'secretaria']}
         ]
     },
+    /*{header: 'Movimentação do Sistema'},
+     {
+     title: 'Movimentos',
+     group: 'movimento',
+     component: 'movimento',
+     icon: 'compare_arrows',
+     itens: [
+     { name: 'fichatriagens', title: 'Ficha de Triagens', component: 'movimento/fichatriagens' },
+     ]
+     },  */
+    /*{ header: 'Estatísticas' },
+     { divider: true },
+     {
+     title: 'Relatórios',
+     group: 'forms',
+     component: 'forms',
+     icon: 'description',
+     itens: [
+     ]
+     },*/
     {divider: true},
     {header: 'Extras'},
     {

@@ -4,8 +4,8 @@ namespace Emaj\Http\Controllers\Api\V1;
 
 use Emaj\Http\Controllers\Controller;
 use Emaj\Repositories\Cadastro\AlunoRepository;
+use Emaj\Repositories\Cadastro\ProtocoloRepository;
 use Emaj\Repositories\Movimento\FichaTriagemRepository;
-use Emaj\Repositories\Movimento\FichaTriagemRepositoryEloquent;
 use function response;
 
 /**
@@ -39,20 +39,20 @@ class DashboardController extends Controller
      */
     protected $registro;
 
-    public function __construct(AlunoRepository $alunoRepository, FichaTriagemRepository $fichaTriagemRepository)
+    public function __construct(AlunoRepository $alunoRepository, ProtocoloRepository $protocoloRepository)
     {
-        $this->fichaTriagemRepository = $fichaTriagemRepository;
         $this->alunoRepository = $alunoRepository;
+        $this->protocoloRepository = $protocoloRepository;
     }
 
     public function estatisticas()
     {
         $this->registro = [
             'alunos' => (string) $this->alunoRepository->count(),
-            'clientes' => (string) $this->fichaTriagemRepository->getNumeroClientes(),
-            'parteContrarias' => (string) $this->fichaTriagemRepository->getNumeroParteContrarias(),
-            'atendimentosMes' => (string) $this->fichaTriagemRepository->getAtendimentosMes(),
-            'top5DemandasMaisAtendidas' => $this->fichaTriagemRepository->getTop5DemandasMaisAtendidas()
+            'clientes' => (string) $this->protocoloRepository->getNumeroClientes(),
+            'parteContrarias' => (string) $this->protocoloRepository->getNumeroParteContrarias(),
+            'atendimentosMes' => (string) $this->protocoloRepository->getAtendimentosMes(),
+            'top5DemandasMaisAtendidas' => $this->protocoloRepository->getTop5DemandasMaisAtendidas()
         ];
         return response()->json([
                     'status' => 'success',

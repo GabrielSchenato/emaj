@@ -120,12 +120,17 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
 
             $cliente = parent::updateOrCreate(['id' => $id], $attributes['informacoesPessoais']);
 
-            $this->saveEndereco($attributes, $cliente->id);
-            $this->saveComposicaoFamiliar($attributes, $cliente->id);
-            $this->saveTelefones($attributes, $cliente->id);
+            $endereco = $this->saveEndereco($attributes, $cliente->id);
+            $composicaoFamiliar = $this->saveComposicaoFamiliar($attributes, $cliente->id);
+            $telefones = $this->saveTelefones($attributes, $cliente->id);
 
             DB::commit();
-            return ['status' => 'success'];
+            return [
+                'informacoesPessoais' => $cliente,
+                'endereco' => $endereco,
+                'composicaoFamiliar' => $composicaoFamiliar,
+                'telefones' => $telefones
+            ];
         } catch (ValidationException $ex) {
             DB::rollback();
             throw $ex;
@@ -140,12 +145,13 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
      * 
      * @param array $attributes
      * @param int $idCliente
+     * @return mixed
      */
     private function saveEndereco(array $attributes, int $idCliente)
     {
         $endereco = array_merge($attributes['endereco'], ['cliente_id' => $idCliente]);
         $id = $endereco['id'] ?? null;
-        $this->enderecoRepository->updateOrCreate(['id' => $id], $endereco);
+        return $this->enderecoRepository->updateOrCreate(['id' => $id], $endereco);
     }
 
     /**
@@ -153,12 +159,13 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
      * 
      * @param array $attributes
      * @param int $idCliente
+     * @return mixed
      */
     private function saveComposicaoFamiliar(array $attributes, int $idCliente)
     {
         $composicaoFamiliar = array_merge($attributes['composicaoFamiliar'], ['cliente_id' => $idCliente]);
         $id = $composicaoFamiliar['id'] ?? null;
-        $this->composicaoFamiliarRepository->updateOrCreate(['id' => $id], $composicaoFamiliar);
+        return $this->composicaoFamiliarRepository->updateOrCreate(['id' => $id], $composicaoFamiliar);
     }
 
     /**
@@ -166,14 +173,17 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
      * 
      * @param array $attributes
      * @param int $idCliente
+     * @return mixed
      */
     private function saveTelefones(array $attributes, int $idCliente)
     {
+        $telefones = [];
         foreach ($attributes['telefones'] as $telefone) {
             $telefone = array_merge($telefone, ['cliente_id' => $idCliente]);
             $id = $telefone['id'] ?? null;
-            $this->telefoneRepository->updateOrCreate(['id' => $id], $telefone);
+            $telefones[] = $this->telefoneRepository->updateOrCreate(['id' => $id], $telefone);
         }
+        return $telefones;
     }
 
     /**

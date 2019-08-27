@@ -24,7 +24,7 @@
                     :error-messages="errors.collect('protocolo')"
                     data-vv-name="protocolo"
                     v-validate="{required: true }"
-                    @input="$emit('input', fichaTriagem)"
+                    @input="$emit('input', fichaTriagem)"                    
                     ></v-text-field>
             </v-flex>
 
@@ -49,49 +49,31 @@
             <v-card-text class="">   
                 <v-layout wrap>                                      
                     <v-flex xs12 sm6 md6>   
-                        <v-autocomplete
-                            name="cliente_id"
-                            :items="clientes"
-                            item-text="nome_completo"
-                            :search-input.sync="autocompleteClientes"
-                            :loading="loadingClientes"
-                            hide-no-data
-                            clearable
-                            placeholder="Comece a digitar para pesquisar"
-                            autofocus
-                            item-value="id"
-                            no-data-text="Não há registros para serem exibidos."
-                            label="Cliente*"
+                        <autocomplete-field
+                            ref="autocompleteCliente"
+                            v-bind:errorMessages="errors.collect(optionsCliente.name)"
+                            :data-vv-name="optionsCliente.name"
+                            v-validate="{required: optionsCliente.required }"
+                            v-bind:options="optionsCliente"
+                            :create="criarCliente"
+                            :edit="editarCliente"
                             v-model="fichaTriagem.cliente_id"
-                            v-validate="{required: true }"
-                            :error-messages="errors.collect('cliente')"
-                            data-vv-name="cliente"
                             @input="$emit('input', fichaTriagem)"
-                            :prepend-icon="fichaTriagem.cliente_id != null ? 'create' : 'add_box'"
-                            @click:prepend="fichaTriagem.cliente_id != null ? editarCliente(fichaTriagem.cliente_id) : criarCliente()"
-                            ></v-autocomplete>
+                            ></autocomplete-field>
                     </v-flex>
 
-                    <v-flex xs12 sm6 md6>            
-                        <v-autocomplete
-                            name="parte_contraria_id"
-                            :items="parteContrarias"
-                            :search-input.sync="autocompleteParteContrarias"
-                            :loading="loadingParteContrarias"
-                            hide-no-data
-                            clearable
-                            placeholder="Comece a digitar para pesquisar"
-                            item-text="nome_completo"
-                            item-value="id"
-                            no-data-text="Não há registros para serem exibidos."
-                            label="Parte Contrária"
+                    <v-flex xs12 sm6 md6>   
+                        <autocomplete-field
+                            ref="autocompleteParteContraria"
+                            v-bind:errorMessages="errors.collect(optionsParteContraria.name)"
+                            :data-vv-name="optionsParteContraria.name"
+                            v-validate="{required: optionsParteContraria.required }"
+                            v-bind:options="optionsParteContraria"
+                            :create="criarCliente"
+                            :edit="editarCliente"
                             v-model="fichaTriagem.parte_contraria_id"
-                            :error-messages="errors.collect('parte contrária')"
-                            data-vv-name="parte contrária"
-                            :prepend-icon="fichaTriagem.parte_contraria_id != null ? 'create' : 'add_box'"
-                            @click:prepend="fichaTriagem.parte_contraria_id != null ? editarCliente(fichaTriagem.parte_contraria_id) : criarCliente()"
                             @input="$emit('input', fichaTriagem)"
-                            ></v-autocomplete>
+                            ></autocomplete-field>
                     </v-flex>
 
                     <v-flex xs12 sm6 md6>
@@ -123,69 +105,47 @@
             <v-divider></v-divider>
             <v-card-text class="">   
                 <v-layout wrap>
-                    <v-flex xs12 sm6 md6>            
-                        <v-autocomplete
-                            name="tipo_demanda_id"
-                            :items="tipoDemandas"
-                            :search-input.sync="autocompleteTipoDemandas"
-                            :loading="loadingTipoDemandas"
-                            hide-no-data
-                            clearable
-                            placeholder="Comece a digitar para pesquisar"
-                            item-text="nome"
-                            item-value="id"
-                            no-data-text="Não há registros para serem exibidos."
-                            label="Tipo de Demanda"
+
+                    <v-flex xs12 sm6 md6>   
+                        <autocomplete-field
+                            ref="autocompleteTipoDemanda"
+                            v-bind:errorMessages="errors.collect(optionsTipoDemanda.name)"
+                            :data-vv-name="optionsTipoDemanda.name"
+                            v-validate="{required: optionsTipoDemanda.required }"
+                            v-bind:options="optionsTipoDemanda"
+                            :create="criarTipoDemanda"
+                            :edit="editarTipoDemanda"
                             v-model="fichaTriagem.tipo_demanda_id"
-                            v-validate="{required: false }"
-                            :error-messages="errors.collect('tipo de demanda')"
-                            data-vv-name="tipo de demanda"
                             @input="$emit('input', fichaTriagem)"
-                            :prepend-icon="fichaTriagem.tipo_demanda_id != null ? 'create' : 'add_box'"
-                            @click:prepend="fichaTriagem.tipo_demanda_id != null ? editarTipoDemanda(fichaTriagem.tipo_demanda_id) : criarTipoDemanda()"
-                            ></v-autocomplete>
+                            ></autocomplete-field>
                     </v-flex>
 
                     <v-flex xs12 sm6 md6>   
-                        <v-autocomplete
-                            name="aluno_id"
-                            :items="alunos"
-                            item-text="nome_completo"
-                            :search-input.sync="autocompleteAlunos"
-                            :loading="loadingAlunos"
-                            hide-no-data
-                            clearable
-                            placeholder="Comece a digitar para pesquisar"
-                            autofocus
-                            item-value="id"
-                            no-data-text="Não há registros para serem exibidos."
-                            label="Aluno"
+                        <autocomplete-field
+                            ref="autocompleteAluno"
+                            v-bind:errorMessages="errors.collect(optionsAluno.name)"
+                            :data-vv-name="optionsAluno.name"
+                            v-validate="{required: optionsAluno.required }"
+                            v-bind:options="optionsAluno"
+                            :create="criarAluno"
+                            :edit="editarAluno"
                             v-model="fichaTriagem.aluno_id"
                             @input="$emit('input', fichaTriagem)"
-                            :prepend-icon="fichaTriagem.aluno_id != null ? 'create' : 'add_box'"
-                            @click:prepend="fichaTriagem.aluno_id != null ? editarAluno(fichaTriagem.aluno_id) : criarAluno()"
-                            ></v-autocomplete>
+                            ></autocomplete-field>
                     </v-flex>
 
                     <v-flex xs12 sm6 md6>   
-                        <v-autocomplete
-                            name="professor_id"
-                            :items="professores"
-                            item-text="nome_completo"
-                            :search-input.sync="autocompleteProfessores"
-                            :loading="loadingProfessores"
-                            hide-no-data
-                            clearable
-                            placeholder="Comece a digitar para pesquisar"
-                            autofocus
-                            item-value="id"
-                            no-data-text="Não há registros para serem exibidos."
-                            label="Professor"
+                        <autocomplete-field
+                            ref="autocompleteProfessor"
+                            v-bind:errorMessages="errors.collect(optionsProfessor.name)"
+                            :data-vv-name="optionsProfessor.name"
+                            v-validate="{required: optionsProfessor.required }"
+                            v-bind:options="optionsProfessor"
+                            :create="criarProfessor"
+                            :edit="editarProfessor"
                             v-model="fichaTriagem.professor_id"
                             @input="$emit('input', fichaTriagem)"
-                            :prepend-icon="fichaTriagem.professor_id != null ? 'create' : 'add_box'"
-                            @click:prepend="fichaTriagem.professor_id != null ? editarProfessor(fichaTriagem.professor_id) : criarProfessor()"
-                            ></v-autocomplete>
+                            ></autocomplete-field>
                     </v-flex>
 
                     <v-flex xs12 sm6 md12>
@@ -203,7 +163,6 @@
     </div>
 </template>
 <script>
-    import ClienteDialog from "@/components/cadastro/dialogs/ClienteDialog.vue";
     import TipoDemandaDialog from "@/components/cadastro/dialogs/TipoDemandaDialog.vue";
     import AlunoDialog from "@/components/cadastro/dialogs/AlunoDialog.vue";
     import UsuarioDialog from "@/components/cadastro/dialogs/UsuarioDialog.vue";
@@ -211,7 +170,6 @@
     export default {
         name: "ficha-triagem-form",
         components: {
-            ClienteDialog,
             TipoDemandaDialog,
             AlunoDialog,
             UsuarioDialog
@@ -243,6 +201,58 @@
                 loadingProfessores: false,
                 autocompleteProfessores: null
             };
+        },
+        computed: {
+            optionsCliente() {
+                return {
+                    field: 'cliente_id',
+                    required: true,
+                    itemText: 'nome_completo',
+                    name: 'Cliente',
+                    url: 'fichatriagens/autocomplete',
+                    helperCreateEdit: true
+                };
+            },
+            optionsParteContraria() {
+                return {
+                    field: 'parte_contraria_id',
+                    required: false,
+                    itemText: 'nome_completo',
+                    name: 'Parte Contrária',
+                    url: 'fichatriagens/autocomplete',
+                    helperCreateEdit: true
+                };
+            },
+            optionsTipoDemanda() {
+                return {
+                    field: 'tipo_demanda_id',
+                    required: false,
+                    itemText: 'nome',
+                    name: 'Tipo de Demanda',
+                    url: 'fichatriagens/autocomplete',
+                    helperCreateEdit: true
+                };
+            },
+            optionsAluno() {
+                return {
+                    field: 'aluno_id',
+                    required: false,
+                    itemText: 'nome_completo',
+                    name: 'Aluno',
+                    url: 'fichatriagens/autocomplete',
+                    helperCreateEdit: true
+                };
+            },
+            optionsProfessor() {
+                return {
+                    field: 'professor_id',
+                    required: false,
+                    itemText: 'nome_completo',
+                    name: 'Professor',
+                    url: 'fichatriagens/autocomplete',
+                    helperCreateEdit: true
+                };
+            }
         },
         watch: {
             value: {

@@ -85,13 +85,11 @@
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
     import UsuarioDialog from "@/components/cadastro/dialogs/UsuarioDialog.vue";
-    import FilterForm from "@/components/FilterForm";
 
     export default {
         components: {
             Confirm,
-            UsuarioDialog,
-            FilterForm
+            UsuarioDialog
         },
 
         data: () => ({

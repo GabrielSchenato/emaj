@@ -9,7 +9,6 @@
                     hide-details
                     chips
                     name="campo_busca"
-                    id="campo_busca"
                     v-model="search.field"
                     :items="campos"
                     @change="clearData()"

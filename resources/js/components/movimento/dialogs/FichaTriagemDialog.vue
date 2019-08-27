@@ -56,15 +56,15 @@
             }),
         methods: {
             open(title, item, options) {
-                this.$refs.fichaTriagemForm.$validator.reset();
+                this.$refs.fichaTriagemForm.$validator.errors.clear();
                 this.dialog = true;
                 this.formTitle = title;
                 this.fichaTriagem = item;
-                this.$refs.fichaTriagemForm.clientes = item.cliente ? [item.cliente] : [];
-                this.$refs.fichaTriagemForm.parteContrarias = item.parte_contraria ? [item.parte_contraria] : [];
-                this.$refs.fichaTriagemForm.tipoDemandas = item.tipo_demanda ? [item.tipo_demanda] : [];
-                this.$refs.fichaTriagemForm.alunos = item.aluno ? [item.aluno] : [];
-                this.$refs.fichaTriagemForm.professores = item.professor ? [item.professor] : [];
+                this.$refs.fichaTriagemForm.$refs.autocompleteCliente.values = item.cliente ? [item.cliente] : [];
+                this.$refs.fichaTriagemForm.$refs.autocompleteParteContraria.values = item.parte_contraria ? [item.parte_contraria] : [];
+                this.$refs.fichaTriagemForm.$refs.autocompleteTipoDemanda.values = item.tipo_demanda ? [item.tipo_demanda] : [];
+                this.$refs.fichaTriagemForm.$refs.autocompleteAluno.values = item.aluno ? [item.aluno] : [];
+                this.$refs.fichaTriagemForm.$refs.autocompleteProfessor.values = item.professor ? [item.professor] : [];
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;
@@ -120,13 +120,13 @@
                     this.$refs.fichaTriagemForm.$validator.errors.add({field: 'protocolo', msg: data.errors.protocolo});
                 }
                 if (data.errors.cliente_id) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'cliente', msg: data.errors.cliente_id});
+                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'Cliente', msg: data.errors.cliente_id});
                 }
                 if (data.errors.parte_contraria_id) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'parte contrária', msg: data.errors.parte_contraria_id});
+                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'Parte Contrária', msg: data.errors.parte_contraria_id});
                 }
                 if (data.errors.tipo_demanda_id) {
-                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'tipo de demanda', msg: data.errors.tipo_demanda_id});
+                    this.$refs.fichaTriagemForm.$validator.errors.add({field: 'Tipo de Demanda', msg: data.errors.tipo_demanda_id});
                 }
             }
         }

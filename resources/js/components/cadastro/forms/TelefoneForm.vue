@@ -46,7 +46,7 @@
                     :error-messages="errors.collect('telefone')"
                     data-vv-name="telefone"
                     return-masked-value
-                    :mask="telefone.tipo == 'Celular' ? '(##) #####-####' : '(##) ####-####'"
+                    :mask="getMask(telefone.tipo)"
                     @input="$emit('input', telefone)"
                     ></v-text-field>
             </v-flex>
@@ -66,13 +66,16 @@
         },
         data() {
             return {
-                tipoTelefone: [{
+                tipoTelefone: [
+                    {
                         id: 'Celular',
-                        nome: 'Celular'
+                        nome: 'Celular',
+                        mask: '(##) #####-####'
                     },
                     {
                         id: 'Residencial',
-                        nome: 'Residencial'
+                        nome: 'Residencial',
+                        mask: '(##) ####-####'
 
                     }],
                 telefone: Object.assign({}, this.value) //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
@@ -87,6 +90,11 @@
             }
         },
         methods: {
+            getMask(tipo) {
+                if (!tipo)
+                    return;
+                return this.tipoTelefone.find(campo => campo.id === tipo).mask;
+            }
         }
     };
 </script>

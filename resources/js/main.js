@@ -17,6 +17,8 @@ import './plugins/vuetify'
 import mixin from './plugins/mixin'
 import './util/filters'
 import './util/vuetify-money/';
+import _ from 'lodash';
+import '@/components'
 
 Validator.localize({pt_BR: pt_BR});
 Vue.use(VeeValidate, {locale: 'pt_BR'});
@@ -41,7 +43,7 @@ sync(store, router);
 Vue.mixin(mixin);
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount("#app");

@@ -73,13 +73,11 @@
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
     import ClienteDialog from "@/components/cadastro/dialogs/ClienteDialog.vue";
-    import FilterForm from "@/components/FilterForm";
 
     export default {
         components: {
             Confirm,
-            ClienteDialog,
-            FilterForm
+            ClienteDialog
         },
 
         data: () => ({
@@ -180,6 +178,7 @@
                 });
             },
             editar(id) {
+                this.$refs.clienteDialog.informacoesPessoais = {};
                 this.$store.dispatch("getCliente", id).then(() => {
                     this.$refs.clienteDialog
                             .open(

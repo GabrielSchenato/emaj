@@ -38,8 +38,8 @@
                                                     <v-divider></v-divider>
                                                     <v-stepper-step
                                                         step="2"
-                                                        :complete="aluno.id != null && aluno.ficha_triagens_aluno.length > 0"
-                                                        :editable="aluno.id != null && aluno.ficha_triagens_aluno.length > 0"
+                                                        :complete="aluno.id != null && aluno.protocolo_alunos_professores.length > 0"
+                                                        :editable="aluno.id != null && aluno.protocolo_alunos_professores.length > 0"
                                                         edit-icon="fa fa-users"
                                                         >Clientes
                                                 </v-stepper-step>
@@ -49,7 +49,7 @@
                                                     :complete="aluno.id != null"
                                                     :editable="aluno.id != null"
                                                     edit-icon="playlist_add_check"
-                                                    >Avaliações
+                                                    >Observações
                                             </v-stepper-step>
                                             <v-divider></v-divider>
                                         </v-stepper-header>
@@ -76,8 +76,8 @@
                                                 </v-card>
                                             </v-stepper-content>
                                             <v-stepper-content step="2">
-                                                <clientes-table v-model="aluno.ficha_triagens_aluno"></clientes-table>
-                                                <small><b class="vermelho">Vermelho: </b>Indica os processos que foram arquivados/inativados</small>
+                                                <clientes-table v-model="aluno.protocolo_alunos_professores"></clientes-table>
+                                                <small><b class="vermelho">Vermelho: </b>Indica os protocolos em que o aluno não está mais ativo</small>
                                             </v-stepper-content>
                                             <v-stepper-content step="3">
                                                 <avaliacoes-table 
@@ -86,7 +86,11 @@
                                                     v-bind:nomeAluno="aluno.nome_completo"
                                                     >                                                        
                                                 </avaliacoes-table>
-                                                <small><b>Dica: </b>Clique na linha para expandir e visualizar mais informações.</small>
+
+                                                <ul>
+                                                    <li><small><b>Dica: </b>Clique na linha para expandir e visualizar mais informações</small></li>
+                                                </ul>
+
                                             </v-stepper-content>
                                         </v-stepper-items>
                                     </v-stepper>
@@ -151,7 +155,7 @@
                 this.formTitle = title;
                 this.step = 1;
                 this.aluno = item;
-                this.$refs.alunoForm.$validator.reset();
+                this.$refs.alunoForm.$validator.errors.clear();
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;

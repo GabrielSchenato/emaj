@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="_informacoes_cliente" pageWidth="595" pageHeight="842" whenNoDataType="NoPages" columnWidth="575" leftMargin="0" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0de6ea09-c971-48d9-8bb1-4090dd68acd3">
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="_informacoes_cliente" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="575" leftMargin="0" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0de6ea09-c971-48d9-8bb1-4090dd68acd3">
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -649,7 +649,9 @@ end]]>
 					<textElement verticalAlignment="Middle" markup="html">
 						<font size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["<b>Carro: </b>" + IF($F{possui_carro} != null,"Sim","Não") + " " + IF($F{marca_carro} != null,"<b>Marca:</b> " + $F{marca_carro},"") + " " +  IF($F{ano_carro} != null,"<b>Ano: </b>" + $F{ano_carro},"")]]></textFieldExpression>
+					<textFieldExpression><![CDATA["<b>Carro: </b>" + ($F{possui_carro} != null ? "Sim&nbsp;" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp")
++ "<b>Marca: </b>" + ($F{marca_carro} != null ? $F{marca_carro} + "&nbsp;" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
++ "<b>Ano: </b>" + ($F{ano_carro} != null ? $F{ano_carro} + "&nbsp;" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement x="260" y="34" width="263" height="15" uuid="a8c9fdae-1f8d-432c-a25e-fe5b44b773c3">
@@ -665,7 +667,9 @@ end]]>
 					<textElement verticalAlignment="Middle" markup="html">
 						<font size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA["<b>Moto: </b>" + IF($F{possui_moto} != null,"Sim","Não") + " " + IF($F{marca_moto} != null,"<b>Marca:</b> " + $F{marca_moto},"") + " " +  IF($F{ano_moto} != null,"<b>Ano: </b>" + $F{ano_moto},"")]]></textFieldExpression>
+					<textFieldExpression><![CDATA["<b>Moto: </b>" + ($F{possui_moto} != null ? "Sim&nbsp;" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp")
++ "<b>Marca: </b>" + ($F{marca_moto} != null ? $F{marca_moto} + "&nbsp;" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
++ "<b>Ano: </b>" + ($F{ano_moto} != null ? $F{ano_moto} + "&nbsp;" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="false">
 					<reportElement x="0" y="64" width="523" height="15" uuid="a2587f2f-fd23-448c-8519-7f83dc068b50">

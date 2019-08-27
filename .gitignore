@@ -22,3 +22,6 @@ npm-debug.log
 yarn-error.log
 nbproject/
 .idea/
+relatorios/jasper/.project
+relatorios/jasper/.gitignore
+relatorios/jasper/.settings/
