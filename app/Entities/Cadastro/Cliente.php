@@ -63,13 +63,22 @@ class Cliente extends Model
     {
         return $this->hasMany(Telefone::class);
     }
-    
+
     /**
-     * Pega todos os Protocolos associados ao cliente.
+     * Pega todos os Protocolos como cliente associados ao cliente.
      */
-    public function protocolos()
+    public function protocolos_cliente()
     {
-        return $this->hasMany(Protocolo::class);
+        return $this->hasMany(Protocolo::class, 'cliente_id');
+    }
+
+    /**
+     * Pega todos os Protocolos como Parte Contrária associados 
+     * ao cliente.
+     */
+    public function protocolos_parte_contraria()
+    {
+        return $this->hasMany(Protocolo::class, 'parte_contraria_id');
     }
 
     /**
@@ -116,7 +125,7 @@ class Cliente extends Model
         if ($this->renda) {
             $string .= " - Renda: R$ " . Functions::getMoedaFormatadaReal($this->renda);
         }
-        return $string;        
+        return $string;
     }
 
     /**
@@ -127,7 +136,12 @@ class Cliente extends Model
      */
     protected function getParteContrariaAttribute()
     {
-        if ($this->isEmptyCliente() || $this->isEmptyEndereco() || $this->isEmptyComposicaoFamiliar() || count($this->telefones) == 0) {
+        if (($this->isEmptyCliente() 
+                || $this->isEmptyEndereco() 
+                || $this->isEmptyComposicaoFamiliar() 
+                || count($this->telefones) == 0) 
+                && $this->protocolos_cliente()->count() === 0
+                && (bool) $this->pre_atendimento == false) {
             return true;
         }
         return false;
@@ -140,10 +154,7 @@ class Cliente extends Model
      */
     private function isEmptyCliente()
     {
-        if (!$this->cpf || !$this->rg
-                || !$this->profissao || !$this->sexo
-                || !$this->estado_civil || !$this->renda
-                && (bool) $this->pre_atendimento == false) {
+        if (!$this->cpf || !$this->rg || !$this->profissao || !$this->sexo || !$this->estado_civil || !$this->renda) {
             return true;
         }
         return false;
@@ -157,14 +168,12 @@ class Cliente extends Model
      */
     private function isEmptyEndereco()
     {
-        if (!$this->endereco->cep || !$this->endereco->logradouro 
-                || !$this->endereco->bairro || !$this->endereco->numero 
-                || !$this->endereco->localidade || !$this->endereco->uf) {
+        if (!$this->endereco->cep || !$this->endereco->logradouro || !$this->endereco->bairro || !$this->endereco->numero || !$this->endereco->localidade || !$this->endereco->uf) {
             return true;
         }
         return false;
     }
-    
+
     /**
      * Método responsável por verificar se o cliente possui os dados
      * obrigatorios da composição familiar.
@@ -173,11 +182,10 @@ class Cliente extends Model
      */
     private function isEmptyComposicaoFamiliar()
     {
-        if (!$this->composicao_familiar->renda_familiar || !$this->composicao_familiar->casa
-                || !$this->composicao_familiar->outros_bens || !$this->composicao_familiar->dividas
-                || !$this->composicao_familiar->despesas || !$this->composicao_familiar->valor_patrimonio) {
+        if (!$this->composicao_familiar->renda_familiar || !$this->composicao_familiar->casa || !$this->composicao_familiar->outros_bens || !$this->composicao_familiar->dividas || !$this->composicao_familiar->despesas || !$this->composicao_familiar->valor_patrimonio) {
             return true;
         }
         return false;
     }
+
 }

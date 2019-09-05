@@ -47,14 +47,17 @@
                 <v-text-field
                     name="protocolo"
                     v-model="protocolo.protocolo"
-                    label="Protocolo*"
                     return-masked-value
                     autofocus
                     :error-messages="errors.collect('Protocolo')"
                     data-vv-name="Protocolo"
                     v-validate="{required: true, isValidProtocolo: protocolo.protocolo}"
                     @input="$emit('input', protocolo)"                    
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        Protocolo<span class="required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md8>
