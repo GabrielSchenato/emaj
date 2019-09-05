@@ -36,12 +36,14 @@
                     name="nome_completo"
                     v-model="informacoesPessoais.nome_completo"
                     v-validate="{required: true }"
-                    :error-messages="errors.collect('nome completo')"
-                    label="Nome Completo*"
-                    data-vv-name="nome completo"
-                    required
+                    :error-messages="errors.collect('Nome Completo')"
+                    data-vv-name="Nome Completo"
                     @input="$emit('input', informacoesPessoais)"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        Nome Completo<span class="required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md5>
@@ -70,7 +72,6 @@
                     name="representado_assistido_rg"
                     v-model="informacoesPessoais.representado_assistido_rg"
                     label="RG Representado/Assistido"
-                    return-masked-value
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
@@ -81,12 +82,15 @@
                     v-model="informacoesPessoais.cpf"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('CPF')"
-                    :label="'CPF' + this.getConfig().asterisco"
                     data-vv-name="CPF"
                     mask="###.###.###-##"
                     return-masked-value
                     @input="$emit('input', informacoesPessoais)"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        CPF<span class="required" v-if="getConfig().required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md2>
@@ -95,11 +99,14 @@
                     v-model="informacoesPessoais.rg"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('RG')"
-                    :label="'RG' + this.getConfig().asterisco"
                     data-vv-name="RG"
                     return-masked-value
                     @input="$emit('input', informacoesPessoais)"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        RG<span class="required" v-if="getConfig().required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md5>
@@ -107,64 +114,64 @@
                     name="profissao"
                     v-model="informacoesPessoais.profissao"
                     v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('profissão')"
-                    :label="'Profissão' + this.getConfig().asterisco"
-                    data-vv-name="profissão"
+                    :error-messages="errors.collect('Profissão')"
+                    data-vv-name="Profissão"
                     @input="$emit('input', informacoesPessoais)"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        Profissão<span class="required" v-if="getConfig().required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md2>
                 <v-select
                     name="sexo"
                     :items="sexo"
-                    :label="'Sexo' + this.getConfig().asterisco"
                     v-model="informacoesPessoais.sexo"
                     v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('sexo')"
-                    data-vv-name="sexo"
+                    :error-messages="errors.collect('Sexo')"
+                    data-vv-name="Sexo"
                     item-value="id"
                     item-text="nome"
                     clearable
                     @input="$emit('input', informacoesPessoais)"
-                    ></v-select>
+                    >
+                    <template v-slot:label>
+                        Sexo<span class="required" v-if="getConfig().required">*</span>
+                    </template>
+                </v-select>
             </v-flex>
 
             <v-flex xs12 sm6 md2>
                 <v-select
                     name="estado_civil"
                     :items="estadoCivil"
-                    :label="'Estado Civil' + this.getConfig().asterisco"
                     v-model="informacoesPessoais.estado_civil"
                     v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('estado civil')"
-                    data-vv-name="estado civil"
+                    :error-messages="errors.collect('Estado Civil')"
+                    data-vv-name="Estado Civil"
                     item-value="id"
                     item-text="nome"
                     clearable
                     @input="$emit('input', informacoesPessoais)"
-                    ></v-select>
+                    >
+                    <template v-slot:label>
+                        Estado Civil<span class="required" v-if="getConfig().required">*</span>
+                    </template>
+                </v-select>
             </v-flex>
 
-            <v-flex xs12 sm6 md3>            
-                <v-autocomplete
-                    name="nacionalidade_id"
-                    :items="nacionalidades"
-                    :search-input.sync="autocompleteNacionalidades"
-                    :loading="loadingNacionalidades"
-                    hide-no-data
-                    clearable
-                    placeholder="Comece a digitar para pesquisar"
-                    item-text="nome"
-                    item-value="id"
-                    no-data-text="Não há registros para serem exibidos."
-                    :label="'Nacionalidade' + this.getConfig().asterisco"
+            <v-flex xs12 sm6 md3>
+                <autocomplete-field
+                    ref="autocompleteNacionalidade"
+                    v-bind:errorMessages="errors.collect(optionsNacionalidade.name)"
+                    :data-vv-name="optionsNacionalidade.name"
+                    v-validate="{required: optionsNacionalidade.required }"
+                    v-bind:options="optionsNacionalidade"
                     v-model="informacoesPessoais.nacionalidade_id"
-                    v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('nacionalidade')"
-                    data-vv-name="nacionalidade"
                     @input="$emit('input', informacoesPessoais)"
-                    ></v-autocomplete>
+                    ></autocomplete-field>
             </v-flex>
 
             <v-flex xs12 sm6 md5>
@@ -172,50 +179,48 @@
                     name="email"
                     v-model="informacoesPessoais.email"
                     label="E-mail"
-                    :error-messages="errors.collect('e-mail')"
+                    :error-messages="errors.collect('E-mail')"
                     type="email"
-                    data-vv-name="e-mail"
+                    data-vv-name="E-mail"
                     @input="$emit('input', informacoesPessoais)"
                     ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md2>
-                <vuetify-money
+                <money-field
                     ref="moneyRenda"
-                    name="renda"
+                    v-bind:errorMessages="errors.collect(optionsRenda.name)"
+                    :data-vv-name="optionsRenda.name"
+                    v-validate="{required: optionsRenda.required }"
+                    v-bind:options="optionsRenda"
                     v-model="informacoesPessoais.renda"
-                    :label="'Renda' + this.getConfig().asterisco"
-                    v-bind:validations="validations"
                     @input="$emit('input', informacoesPessoais)"
-                    v-bind:options="options"/>
-        </v-flex>
+                    ></money-field>
+            </v-flex>
 
-        <v-flex xs12 sm6 md5>
-            <v-text-field
-                name="local_trabalho"
-                v-model="informacoesPessoais.local_trabalho"
-                label="Local de Trabalho"
-                @input="$emit('input', informacoesPessoais)"
-                ></v-text-field>
-        </v-flex>
+            <v-flex xs12 sm6 md5>
+                <v-text-field
+                    name="local_trabalho"
+                    v-model="informacoesPessoais.local_trabalho"
+                    label="Local de Trabalho"
+                    @input="$emit('input', informacoesPessoais)"
+                    ></v-text-field>
+            </v-flex>
 
-        <v-flex xs12 sm6 md1>
-            <v-checkbox
-                name="ativo"
-                v-model="informacoesPessoais.ativo"
-                label="Ativo?"
-                @change="$emit('input', informacoesPessoais)"
-                ></v-checkbox>
-        </v-flex>
-    </v-layout>
-</v-form>
+            <v-flex xs12 sm6 md1>
+                <v-checkbox
+                    name="ativo"
+                    v-model="informacoesPessoais.ativo"
+                    label="Ativo?"
+                    @change="$emit('input', informacoesPessoais)"
+                    ></v-checkbox>
+            </v-flex>
+        </v-layout>
+    </v-form>
 </template>
 <script>
     export default {
         name: "informacoes-pessoais-form",
-        $_veeValidate: {
-            validator: "new"
-        },
         props: {
             value: {
                 type: [Object]
@@ -224,16 +229,7 @@
         },
         data() {
             return {
-                validations: {
-                    errormessages: "errors.collect('renda')",
-                    datavvname: "renda"
-                },
-                options: {
-                    locale: "pt-BR",
-                    prefix: "R$",
-                    precision: 2
-                },
-                informacoesPessoais: Object.assign({}, this.value), //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
+                informacoesPessoais: Object.assign({}, this.value),
                 sexo: [{
                         id: 'M',
                         nome: 'Masculino'
@@ -266,10 +262,7 @@
                         id: 'Viúvo',
                         nome: 'Viúvo'
 
-                    }],
-                nacionalidades: [],
-                loadingNacionalidades: false,
-                autocompleteNacionalidades: null
+                    }]
             };
         },
         watch: {
@@ -278,34 +271,25 @@
                     this.informacoesPessoais = Object.assign({}, this.value);
                 },
                 deep: true
+            }
+        },
+        computed: {
+            optionsNacionalidade() {
+                return {
+                    field: 'nacionalidade_id',
+                    required: this.getConfig().required,
+                    itemText: 'nome',
+                    name: 'Nacionalidade',
+                    url: 'clientes/autocomplete'
+                };
             },
-            autocompleteNacionalidades: _.debounce(
-                    function autocompleteNacionalidades(busca) {
-                        if (this.informacoesPessoais.nacionalidade_id && busca.length <= 1)
-                        {
-                            this.informacoesPessoais.nacionalidade_id = null;
-                        }
-                        if (busca) {
-                            if (this.loadingNacionalidades)
-                                return;
-
-                            if (this.informacoesPessoais.nacionalidade_id)
-                                return;
-
-                            this.loadingClientes = true;
-                            window.axios.get(`clientes/autocomplete?nacionalidade=${busca.replace(' ', '%20')}`).then(response => {
-                                this.nacionalidades = response.data;
-                            }).catch(resp => {
-                                let msgErro = '';
-                                if (resp.response.data.errors)
-                                    msgErro = resp.response.data.errors;
-                                window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
-                            }).finally(() => (this.loadingNacionalidades = false));
-                        }
-
-                    },
-                    500,
-                    )
+            optionsRenda() {
+                return {
+                    field: 'renda',
+                    required: this.getConfig().required,
+                    name: 'Renda'
+                };
+            }
         }
     };
 </script>

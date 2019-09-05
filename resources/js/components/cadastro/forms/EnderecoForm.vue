@@ -21,14 +21,17 @@
                     v-model="endereco.cep"
                     v-validate="{required: this.getConfig().required }"
                     :error-messages="errors.collect('CEP')"
-                    :label="'CEP' + this.getConfig().asterisco"
                     data-vv-name="CEP"
                     mask="#####-###"
                     return-masked-value
                     @keyup="buscar"
                     @input="$emit('input', endereco)"
                     :disabled="buscandoCep"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        CEP<span class="required" v-if="getConfig().required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md5>
@@ -36,12 +39,14 @@
                     name="logradouro"
                     v-model="endereco.logradouro"
                     v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('logradouro')"
-                    :label="'Logradouro' + this.getConfig().asterisco"
-                    data-vv-name="logradouro"
-                    required
+                    :error-messages="errors.collect('Logradouro')"
+                    data-vv-name="Logradouro"
                     @change="$emit('input', endereco)"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        Logradouro<span class="required" v-if="getConfig().required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md4>
@@ -59,26 +64,31 @@
                     name="bairro"
                     v-model="endereco.bairro"
                     v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('bairro')"
-                    :label="'Bairro' + this.getConfig().asterisco"
-                    data-vv-name="bairro"
-                    required
+                    :error-messages="errors.collect('Bairro')"
+                    data-vv-name="Bairro"
                     @change="$emit('input', endereco)"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        Bairro<span class="required" v-if="getConfig().required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
-            
+
             <v-flex xs12 sm6 md1>
                 <v-text-field
                     name="numero"
+                    ref="numero"
                     v-model="endereco.numero"
                     v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('número')"
-                    :label="'Número' + this.getConfig().asterisco"
-                    data-vv-name="número"
-                    required
+                    :error-messages="errors.collect('Número')"
+                    data-vv-name="Número"
                     type="number"
                     @change="$emit('input', endereco)"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        Número<span class="required" v-if="getConfig().required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md5>
@@ -86,12 +96,14 @@
                     name="localidade"
                     v-model="endereco.localidade"
                     v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('cidade')"
-                    :label="'Cidade' + this.getConfig().asterisco"
-                    data-vv-name="cidade"
-                    required
+                    :error-messages="errors.collect('Cidade')"
+                    data-vv-name="Cidade"
                     @change="$emit('input', endereco)"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        Cidade<span class="required" v-if="getConfig().required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md1>
@@ -99,12 +111,15 @@
                     name="uf"
                     v-model="endereco.uf"
                     v-validate="{required: this.getConfig().required }"
-                    :error-messages="errors.collect('estado')"
-                    :label="'Estado' + this.getConfig().asterisco"
-                    data-vv-name="estado"
+                    :error-messages="errors.collect('Estado')"
+                    data-vv-name="Estado"
                     mask="AA"
                     @change="$emit('input', endereco)"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        Estado<span class="required" v-if="getConfig().required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md5>
@@ -121,9 +136,6 @@
 <script>
     export default {
         name: "endereco-form",
-        $_veeValidate: {
-            validator: "new"
-        },
         props: {
             value: {
                 type: [Object]
@@ -132,7 +144,7 @@
         },
         data() {
             return {
-                endereco: Object.assign({}, this.value), //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
+                endereco: Object.assign({}, this.value),
                 naoLocalizado: false,
                 buscandoCep: false
             };
@@ -160,10 +172,13 @@
                                     self.buscandoCep = false;
                                     return;
                                 }
+                                self.$refs.numero.focus();
                                 if (self.endereco.id) {
                                     endereco.id = self.endereco.id;
                                 }
-                                self.endereco = _.mapValues(endereco, function(s){ return _.isString(s) ? s.toUpperCase() : s; });
+                                self.endereco = _.mapValues(endereco, function (s) {
+                                    return _.isString(s) ? s.toUpperCase() : s;
+                                });
                             }
                     );
                     self.buscandoCep = false;

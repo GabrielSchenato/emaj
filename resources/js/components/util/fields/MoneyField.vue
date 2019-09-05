@@ -2,29 +2,30 @@
     <div>
         <v-text-field
             v-model="modValue"
-            v-bind:label="label"
-            v-bind:name="name"
-            v-bind:placeholder="placeholder"
-            v-bind:prepend-inner-icon="prependInnerIcon"
-            v-bind:flat="flat"
-            v-bind:clearable="clearable"
-            v-bind:solo="solo"             
-            v-bind:hide-details="hideDetails"
-            v-validate="{required: required }"
-            :error-messages="errors.collect(validations ? validations.datavvname : 'valor')"
-            :data-vv-name="validations ? validations.datavvname : 'valor'"
+            v-bind:name="options.field"
+            v-bind:placeholder="options.placeholder"
+            v-bind:prepend-inner-icon="options.prependInnerIcon"
+            v-bind:flat="options.flat"
+            v-bind:clearable="options.clearable"
+            v-bind:solo="options.solo"             
+            v-bind:hide-details="options.hideDetails"
+            v-bind:error-messages="errorMessages"
             v-bind:value="compValue"
             v-on:keypress="onlyNumber"
             v-on:keyup="emit"
             v-on:change="emit"
             >
 
-            <template v-slot:prepend v-if="ajudaRenda != null">
+            <template v-slot:prepend v-if="options.help != null">
                 <v-tooltip bottom light color="success">
                     <template v-slot:activator="{ on }">
                         <v-icon v-on="on">not_listed_location</v-icon>
-                    </template>{{ ajudaRenda.msg }}
+                    </template>{{ options.help }}
                 </v-tooltip>
+            </template>
+
+            <template v-slot:label>
+                {{ options.name }}<span class="required" v-if="options.required">*</span>
             </template>
 
         </v-text-field>
@@ -34,56 +35,17 @@
 <script>
     export default {
         model: {prop: "value", event: "input"},
-        $_veeValidate: {
-            validator: "new"
-        },
         props: {
             value: {
                 type: [Number, String]
             },
-            label: {
-                type: String,
-                default: ""
-            },
-            name: {
-                type: String,
-                default: ""
-            },
-            id: {
-                type: String,
-                default: ""
-            },
-            placeholder: {
-                type: String,
-                default: ""
-            },
-            prependInnerIcon: {
-                type: String,
-                default: ""
-            },
-            flat: {
-                type: Boolean,
-                default: false
-            },
-            clearable: {
-                type: Boolean,
-                default: false
-            },
-            solo: {
-                type: Boolean,
-                default: false
-            },
-            hideDetails: {
-                type: Boolean,
-                default: false
-            },
-            validations: {
-                type: Object
-            },
-            ajudaRenda: {
-                type: Object
+            errorMessages: {
+                type: Array
             },
             options: {
+                type: [Object]
+            },
+            configurations: {
                 type: Object,
                 default: function () {
                     return {locale: "pt-BR", prefix: "R$", precision: 2};
@@ -91,8 +53,7 @@
             }
         },
         data: () => ({
-                modValue: "",
-                required: false
+                modValue: ""
             }),
         computed: {
             /* Lógica:
@@ -129,13 +90,13 @@
                             .replace(new RegExp(/[.]/, "g"), "")
                             .replace(new RegExp(",", "g"), "");
                     // Ajustar quantidade de zeros à esquerda
-                    number = number.padStart(parseInt(this.options.precision) + 1, "0");
+                    number = number.padStart(parseInt(this.configurations.precision) + 1, "0");
                     // Incluir ponto na casa correta, conforme a precisão configurada
                     number =
-                            number.substring(0, number.length - parseInt(this.options.precision)) +
+                            number.substring(0, number.length - parseInt(this.configurations.precision)) +
                             "." +
                             number.substring(
-                                    number.length - parseInt(this.options.precision),
+                                    number.length - parseInt(this.configurations.precision),
                                     number.length
                                     );
                     if (isNaN(number)) {
@@ -154,12 +115,12 @@
                     return;
                 } else {
                     // number = Number(number).toLocaleString(this.options.locale, {maximumFractionDigits: 2, minimumFractionDigits: 2, style: 'currency', currency: 'BRL'});
-                    number = Number(number).toLocaleString(this.options.locale, {
-                        maximumFractionDigits: this.options.precision,
-                        minimumFractionDigits: this.options.precision
+                    number = Number(number).toLocaleString(this.configurations.locale, {
+                        maximumFractionDigits: this.configurations.precision,
+                        minimumFractionDigits: this.configurations.precision
                     });
                 }
-                return this.options.prefix + " " + number;
+                return this.configurations.prefix + " " + number;
             }
         }
     };

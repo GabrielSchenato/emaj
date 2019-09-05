@@ -69,7 +69,7 @@ class ClientesController extends CrudController
     public function autocomplete()
     {
         $this->registro = [];
-        if (strlen($ac = request()->get('nacionalidade')) > 0) {
+        if (strlen($ac = request()->get('nacionalidade_id')) > 0) {
             $this->registro = $this->nacionalidadeRepository
                     ->getDataAutocomplete($ac);
         }
