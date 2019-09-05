@@ -14,7 +14,9 @@
                     <v-container grid-list-md>
                         <usuario-form ref="usuarioForm" v-model="usuario"></usuario-form>
                     </v-container>
-                    <small>*Indica os campos que são obrigatórios</small>
+                    <ul>
+                        <li><small><span class="required">*</span> <b>(Asterisco)</b> Indica os campos que são obrigatórios</small></li>
+                    </ul>   
                 </v-card-text>
                 <v-card-actions class="pt-0">
                     <v-spacer></v-spacer>
@@ -24,8 +26,8 @@
                     </v-btn>
 
                     <v-btn color="blue" flat="flat" @click.native="clear" :disabled="usuario.id != null">
-                        Limpar
-                        <v-icon right dark>delete_sweep</v-icon>
+                           Limpar
+                           <v-icon right dark>delete_sweep</v-icon>
                     </v-btn>
                     <v-btn color="red" flat="flat" @click.native="cancel">
                         Cancelar
@@ -85,7 +87,7 @@
                 if (this.usuario.password_confirmation) {
                     formData.append('password_confirmation', this.usuario.password_confirmation);
                 }
-                if (this.usuario.avatar) {
+                if (this.usuario.avatar && this.usuario.avatar.imageFile) {
                     formData.append('image_url', this.usuario.avatar.imageFile);
                 }
                 return formData;
@@ -135,19 +137,19 @@
             addErrors(resp) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
                 if (resp.response.data.errors.nome_completo) {
-                    this.$refs.usuarioForm.$validator.errors.add({field: 'nome completo', msg: resp.response.data.errors.nome_completo});
+                    this.$refs.usuarioForm.$validator.errors.add({field: 'Nome Completo', msg: resp.response.data.errors.nome_completo});
                 }
                 if (resp.response.data.errors.email) {
-                    this.$refs.usuarioForm.$validator.errors.add({field: 'e-mail', msg: resp.response.data.errors.email});
+                    this.$refs.usuarioForm.$validator.errors.add({field: 'E-mail', msg: resp.response.data.errors.email});
                 }
                 if (resp.response.data.errors.password) {
-                    this.$refs.usuarioForm.$validator.errors.add({field: 'senha', msg: resp.response.data.errors.password});
+                    this.$refs.usuarioForm.$validator.errors.add({field: 'Senha', msg: resp.response.data.errors.password});
                 }
                 if (resp.response.data.errors.role) {
-                    this.$refs.usuarioForm.$validator.errors.add({field: 'nível de permissão', msg: resp.response.data.errors.role});
+                    this.$refs.usuarioForm.$validator.errors.add({field: 'Nível de Permissão', msg: resp.response.data.errors.role});
                 }
                 if (resp.response.data.errors.telefone) {
-                    this.$refs.usuarioForm.$validator.errors.add({field: 'telefone', msg: resp.response.data.errors.telefone});
+                    this.$refs.usuarioForm.$validator.errors.add({field: 'Telefone', msg: resp.response.data.errors.telefone});
                 }
             }
         }
