@@ -17,15 +17,15 @@
                             ></v-text-field>
                     </v-flex>     
                     <v-flex xs12 sm6 md4>
-                        <vuetify-money
+                        <money-field
                             ref="moneyRenda"
-                            name="renda"
+                            v-bind:errorMessages="errors.collect(optionsRenda.name)"
+                            :data-vv-name="optionsRenda.name"
+                            v-validate="{required: optionsRenda.required }"
+                            v-bind:options="optionsRenda"
                             v-model="parametrosTriagem.renda"
-                            label="Renda*"
-                            v-bind:validations="validations"
                             @input="$emit('input', parametrosTriagem)"
-                            v-bind:ajudaRenda="ajudaRenda"
-                            />
+                            ></money-field>
                     </v-flex>
                 </v-layout>
             </v-form>
@@ -42,9 +42,6 @@
 <script>
     export default {
         name: "parametros-triagem-form",
-        $_veeValidate: {
-            validator: "new"
-        },
         props: {
             value: {
                 type: [Object]
@@ -52,14 +49,7 @@
         },
         data() {
             return {
-                parametrosTriagem: Object.assign({}, this.value), //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
-                validations: {
-                    errormessages: "errors.collect('renda')",
-                    datavvname: "renda"
-                },
-                ajudaRenda: {
-                    msg: "Utilizado para validar se a renda do cliente está dentro do requerido pelo EMAJ"
-                },
+                parametrosTriagem: Object.assign({}, this.value)
             };
         },
         watch: {
@@ -80,16 +70,10 @@
         },
         methods: {
             save() {
-                let isValidForm = true;
-                this.$refs.moneyRenda.required = true;
-                this.$validator.validateAll().then(valid => {
-                    isValidForm = valid;
-                    this.$refs.moneyRenda.$validator.validate('renda')
-                            .then(isValidRenda => {
-
-                                if (!isValidForm || !isValidRenda)
-                                    return;
-
+                this.$validator
+                        .validateAll()
+                        .then(valid => {
+                            if (valid) {
                                 this.$store
                                         .dispatch("saveParametrosTriagem", this.parametrosTriagem)
                                         .then((resp) => {
@@ -99,14 +83,24 @@
                                         }).catch((resp) => {
                                     this.addErrors(resp);
                                 });
-                            });
-                });
+                            }
+                        });
             },
             addErrors(resp) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
                 if (resp.response.data.errors.renda) {
-                    this.$validator.errors.add({field: 'renda', msg: resp.response.data.errors.renda});
+                    this.$validator.errors.add({field: 'Renda', msg: resp.response.data.errors.renda});
                 }
+            }
+        },
+        computed: {
+            optionsRenda() {
+                return {
+                    field: 'renda',
+                    required: true,
+                    name: 'Renda',
+                    help: 'Utilizado para validar se a renda do cliente está dentro do requerido pelo EMAJ'
+                };
             }
         }
     };
