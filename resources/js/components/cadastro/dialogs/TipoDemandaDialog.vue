@@ -15,7 +15,9 @@
                     <v-container grid-list-md>
                         <tipo-demanda-form ref="tipoDemandaForm" v-model="tipoDemanda"></tipo-demanda-form>
                     </v-container>
-                    <small>*Indica os campos que são obrigatórios</small>
+                    <ul>
+                        <li><small><span class="required">*</span> <b>(Asterisco)</b> Indica os campos que são obrigatórios</small></li>
+                    </ul>   
                 </v-card-text>
                 <v-card-actions class="pt-0">
                     <v-spacer></v-spacer>
@@ -25,8 +27,8 @@
                     </v-btn>
 
                     <v-btn color="blue" flat="flat" @click.native="clear" :disabled="tipoDemanda.id != null">
-                        Limpar
-                        <v-icon right dark>delete_sweep</v-icon>
+                           Limpar
+                           <v-icon right dark>delete_sweep</v-icon>
                     </v-btn>
                     <v-btn color="red" flat="flat" @click.native="cancel">
                         Cancelar
@@ -113,10 +115,10 @@
             addErrors(resp) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
                 if (resp.response.data.errors.nome) {
-                    this.$refs.tipoDemandaForm.$validator.errors.add({field: 'nome', msg: resp.response.data.errors.nome});
+                    this.$refs.tipoDemandaForm.$validator.errors.add({field: 'Nome', msg: resp.response.data.errors.nome});
                 }
                 if (resp.response.data.errors.descricao) {
-                    this.$refs.tipoDemandaForm.$validator.errors.add({field: 'descrição', msg: resp.response.data.errors.descricao});
+                    this.$refs.tipoDemandaForm.$validator.errors.add({field: 'Descrição', msg: resp.response.data.errors.descricao});
                 }
             }
         }
