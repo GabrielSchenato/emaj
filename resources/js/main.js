@@ -16,7 +16,6 @@ import 'es6-promise/auto'
 import './plugins/vuetify'
 import mixin from './plugins/mixin'
 import './util/filters'
-import './util/vuetify-money/';
 import _ from 'lodash';
 import '@/components'
 

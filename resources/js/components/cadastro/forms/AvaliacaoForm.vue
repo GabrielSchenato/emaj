@@ -56,7 +56,7 @@
                         <v-textarea
                             name="observacoes"
                             box
-                            label="Observações*"
+                            label="Observações"
                             auto-grow
                             v-model="avaliacao.observacoes"
                             v-validate="{required: true }"
@@ -64,7 +64,11 @@
                             data-vv-name="Observações"
                             clearable
                             @input="$emit('input', avaliacao)"
-                            ></v-textarea>
+                            >
+                            <template v-slot:label>
+                                Observações<span class="required">*</span>
+                            </template>
+                        </v-textarea>
                     </v-flex>
 
                 </v-layout>

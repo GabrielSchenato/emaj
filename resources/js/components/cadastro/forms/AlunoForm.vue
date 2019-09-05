@@ -21,13 +21,15 @@
                 <v-text-field
                     name="nome_completo"
                     v-model="aluno.nome_completo"
-                    label="Nome Completo*"
                     v-validate="'required'"
-                    :error-messages="errors.collect('nome completo')"
-                    data-vv-name="nome completo"
-                    required
+                    :error-messages="errors.collect('Nome Completo')"
+                    data-vv-name="Nome Completo"
                     @input="$emit('input', aluno)"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        Nome Completo<span class="required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md5>
@@ -35,7 +37,7 @@
                     name="email"
                     v-model="aluno.email"
                     label="E-mail"
-                    :error-messages="errors.collect('e-mail')"
+                    :error-messages="errors.collect('E-mail')"
                     data-vv-name="e-mail"
                     @input="$emit('input', aluno)"
                     ></v-text-field>
@@ -154,9 +156,6 @@
 <script>
     export default {
         name: "aluno-form",
-        $_veeValidate: {
-            validator: "new"
-        },
         props: {
             value: {
                 type: [Object]
@@ -164,7 +163,7 @@
         },
         data() {
             return {
-                aluno: Object.assign({}, this.value), //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
+                aluno: Object.assign({}, this.value),
                 disciplinas: [
                     {
                         id: 'Estágio II',

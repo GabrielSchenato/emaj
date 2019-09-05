@@ -8,16 +8,19 @@
         hide-no-data
         clearable
         :placeholder="placeholder"
-        autofocus
+        :autofocus="options.autofocus"
         :item-value="itemValue"
         :no-data-text="noDataText"
-        :label="label"
         v-model="data"
         v-bind:error-messages="errorMessages"
         @input="emit"
         :prepend-icon="prependIcon"
         @click:prepend="data != null ? edit(data) : create()"
-        ></v-autocomplete>   
+        >
+        <template v-slot:label>
+            {{ options.name }}<span class="required" v-if="options.required">*</span>
+        </template>
+    </v-autocomplete>   
 </template>
 <script>
     export default {
@@ -85,9 +88,6 @@
                     )
         },
         computed: {
-            label() {
-                return this.options.name + (this.options.required ? '*' : '');
-            },
             placeholder() {
                 return this.options.placeholder ? this.options.placeholder : 'Comece a digitar para pesquisar';
             },
@@ -106,7 +106,7 @@
             }
         },
         methods: {
-            emit(){
+            emit() {
                 this.$emit('input', this.data ? this.data : null);
             },
             prepareParams(busca) {

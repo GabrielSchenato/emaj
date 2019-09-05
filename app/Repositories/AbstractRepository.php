@@ -90,17 +90,6 @@ abstract class AbstractRepository extends BaseRepository
     }
 
     /**
-     * Método responsável por fazer a contagem de um model
-     * 
-     * @return int
-     */
-    public function count()
-    {
-        $this->applyCriteria();
-        return $this->model->count();
-    }
-
-    /**
      * Método responsável por trazer todos os registros ativos
      * 
      * @param array $columns

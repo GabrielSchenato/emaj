@@ -69,7 +69,9 @@
 
                                                                     </v-layout>
                                                                 </v-container>
-                                                                <small>*Indica os campos que são obrigatórios</small>
+                                                                <ul>
+                                                                    <li><small><span class="required">*</span> <b>(Asterisco)</b> Indica os campos que são obrigatórios</small></li>
+                                                                </ul>   
                                                             </v-card-text>
                                                         </v-card>
                                                     </v-card-text>
@@ -207,10 +209,10 @@
             addErrors(resp) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
                 if (resp.response.data.errors.nome_completo) {
-                    this.$refs.alunoForm.$validator.errors.add({field: 'nome completo', msg: resp.response.data.errors.nome_completo});
+                    this.$refs.alunoForm.$validator.errors.add({field: 'Nome Completo', msg: resp.response.data.errors.nome_completo});
                 }
                 if (resp.response.data.errors.email) {
-                    this.$refs.alunoForm.$validator.errors.add({field: 'e-mail', msg: resp.response.data.errors.email});
+                    this.$refs.alunoForm.$validator.errors.add({field: 'E-mail', msg: resp.response.data.errors.email});
                 }
             }
         }

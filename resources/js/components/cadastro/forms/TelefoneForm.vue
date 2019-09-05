@@ -15,15 +15,19 @@
                 <v-select
                     name="tipo"
                     v-model="telefone.tipo"
-                    label="Tipo*"
+                    label="Tipo"
                     v-validate="'required'"
-                    :error-messages="errors.collect('tipo')"
-                    data-vv-name="tipo"
+                    :error-messages="errors.collect('Tipo')"
+                    data-vv-name="Tipo"
                     :items="tipoTelefone"
                     item-value="id"
                     item-text="nome"
                     @input="$emit('input', telefone)"
-                    ></v-select>
+                    >
+                    <template v-slot:label>
+                        Tipo<span class="required">*</span>
+                    </template>    
+                </v-select>
             </v-flex>
 
             <v-flex xs12 sm6 md3>
@@ -31,8 +35,8 @@
                     name="descricao"
                     v-model="telefone.descricao"
                     label="Descrição"
-                    :error-messages="errors.collect('descrição')"
-                    data-vv-name="descrição"
+                    :error-messages="errors.collect('Descrição')"
+                    data-vv-name="Descrição"
                     @input="$emit('input', telefone)"
                     ></v-text-field>
             </v-flex>
@@ -41,14 +45,18 @@
                 <v-text-field
                     name="telefone"
                     v-model="telefone.telefone"
-                    label="Telefone*"
+                    label="Telefone"
                     v-validate="'required'"
-                    :error-messages="errors.collect('telefone')"
-                    data-vv-name="telefone"
+                    :error-messages="errors.collect('Telefone')"
+                    data-vv-name="Telefone"
                     return-masked-value
                     :mask="getMask(telefone.tipo)"
                     @input="$emit('input', telefone)"
-                    ></v-text-field>
+                    >
+                    <template v-slot:label>
+                        Telefone<span class="required">*</span>
+                    </template>
+                </v-text-field>
             </v-flex>
         </v-layout>
     </v-form>
@@ -56,9 +64,6 @@
 <script>
     export default {
         name: "telefone-form",
-        $_veeValidate: {
-            validator: "new"
-        },
         props: {
             value: {
                 type: [Object]
@@ -78,7 +83,7 @@
                         mask: '(##) ####-####'
 
                     }],
-                telefone: Object.assign({}, this.value) //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
+                telefone: Object.assign({}, this.value)
             };
         },
         watch: {

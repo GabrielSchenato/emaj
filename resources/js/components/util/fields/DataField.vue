@@ -13,13 +13,17 @@
         <template v-slot:activator="{ on }">
             <v-text-field
                 :value="dataFormatada"
-                :label="label"
                 readonly
                 clearable
                 v-on="on"
                 @click:clear="clearData()"
                 v-bind:error-messages="errorMessages"
-                ></v-text-field>
+                >
+
+                <template v-slot:label>
+                    {{ options.name }}<span class="required" v-if="options.required">*</span>
+                </template>
+            </v-text-field>
         </template>
         <v-date-picker 
             v-model="data"
@@ -63,9 +67,6 @@
         computed: {
             dataFormatada() {
                 return this.data ? moment(this.data).format('L') : '';
-            },
-            label() {
-                return this.options.name + (this.options.required ? '*' : '');
             }
         },
         methods: {

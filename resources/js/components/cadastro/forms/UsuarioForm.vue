@@ -1,6 +1,5 @@
 <template>
     <v-layout wrap>
-
         <v-flex xs10 offset-xs5>
             <image-input v-model="usuario.avatar">
                 <div slot="activator">
@@ -31,13 +30,15 @@
             <v-text-field
                 name="nome_completo"
                 v-model="usuario.nome_completo"
-                label="Nome Completo*"
                 v-validate="'required'"
-                :error-messages="errors.collect('nome completo')"
-                data-vv-name="nome completo"
-                required
+                :error-messages="errors.collect('Nome Completo')"
+                data-vv-name="Nome Completo"
                 @input="$emit('input', usuario)"
-                ></v-text-field>
+                >
+                <template v-slot:label>
+                    Nome Completo<span class="required">*</span>
+                </template>
+            </v-text-field>
         </v-flex>
 
 
@@ -45,57 +46,61 @@
             <v-text-field
                 name="email"
                 v-model="usuario.email"
-                label="E-mail*"
                 v-validate="'required'"
-                :error-messages="errors.collect('e-mail')"
-                data-vv-name="e-mail"
-                required
+                :error-messages="errors.collect('E-mail')"
+                data-vv-name="E-mail"
                 @input="$emit('input', usuario)"
-                ></v-text-field>
+                >
+                <template v-slot:label>
+                    E-mail<span class="required">*</span>
+                </template> 
+            </v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6 md4>
             <v-text-field
                 name="telefone"
                 v-model="usuario.telefone"
-                label="Telefone*"
                 v-validate="'required'"
-                :error-messages="errors.collect('telefone')"
-                data-vv-name="telefone"
-                required
+                :error-messages="errors.collect('Telefone')"
+                data-vv-name="Telefone"
                 mask="(##) #####-####"
                 return-masked-value
                 @input="$emit('input', usuario)"
-                ></v-text-field>
+                >
+                <template v-slot:label>
+                    Telefone<span class="required">*</span>
+                </template> 
+            </v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6 md4>
             <v-select
                 name="role"
                 :items="roles"
-                label="Nível de Permissão*"
                 v-model="usuario.role"
                 v-validate="'required'"
-                :error-messages="errors.collect('nível de permissão')"
-                data-vv-name="nível de permissão"
-                required
+                :error-messages="errors.collect('Nível de Permissão')"
+                data-vv-name="Nível de Permissão"
                 @input="$emit('input', usuario)"
                 item-value="id"
                 item-text="nome"
                 :disabled="$auth.user().role == 'secretaria' && usuario.role == 'admin'"
                 clearable
-                ></v-select>
+                >
+                <template v-slot:label>
+                    Nível de Permissão<span class="required">*</span>
+                </template> 
+            </v-select>
         </v-flex>
 
         <v-flex xs12 sm6 md4>
             <v-text-field
                 name="password"
                 v-model="usuario.password"
-                :label="'Senha' + getConfig.asterisco"
                 v-validate="{required: getConfig.required }"
-                :error-messages="errors.collect('senha')"
-                data-vv-name="senha"
-                required
+                :error-messages="errors.collect('Senha')"
+                data-vv-name="Senha"
                 @input="$emit('input', usuario)"
                 type="password"
                 :append-icon="show1 ? 'visibility' : 'visibility_off'"
@@ -105,7 +110,11 @@
                 hint="Ao menos 6 caracteres"
                 @click:append="show1 = !show1"
                 @click:append-outer="randPassword(0,0,6)"
-                ></v-text-field>
+                >
+                <template v-slot:label>
+                    Senha<span class="required" v-if="getConfig.required">*</span>
+                </template> 
+            </v-text-field>
         </v-flex>
 
 
@@ -113,11 +122,9 @@
             <v-text-field
                 name="password_confirmation"
                 v-model="usuario.password_confirmation"
-                :label="'Confirmar Senha' + getConfig.asterisco"
                 v-validate="{required: getConfig.required }"
-                :error-messages="errors.collect('confirmar senha')"
-                data-vv-name="confirmar senha"
-                required
+                :error-messages="errors.collect('Confirmar Senha')"
+                data-vv-name="Confirmar Senha"
                 @input="$emit('input', usuario)"
                 type="password"
                 :append-icon="show2 ? 'visibility' : 'visibility_off'"
@@ -125,7 +132,11 @@
                 counter
                 hint="Ao menos 6 caracteres"
                 @click:append="show2 = !show2"
-                ></v-text-field>
+                >
+                <template v-slot:label>
+                    Confirmar Senha<span class="required" v-if="getConfig.required">*</span>
+                </template> 
+            </v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6 md2>
@@ -155,9 +166,6 @@
         components: {
             ImageInput: ImageInput
         },
-        $_veeValidate: {
-            validator: "new"
-        },
         props: {
             value: {
                 type: [Object]
@@ -167,7 +175,7 @@
             return {
                 show1: false,
                 show2: false,
-                usuario: Object.assign({}, this.value), //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
+                usuario: Object.assign({}, this.value),
                 avatar: null,
                 roles: [{
                         id: 'admin',
@@ -200,8 +208,7 @@
             },
             getConfig() {
                 return {
-                    required: this.usuario.id ? false : true,
-                    asterisco: this.usuario.id ? '' : '*'
+                    required: this.usuario.id ? false : true
                 };
             }
         },

@@ -14,13 +14,16 @@
             <v-text-field
                 name="nome"
                 v-model="tipoDemanda.nome"
-                label="Nome*"
+                label="Nome"
                 v-validate="'required'"
-                :error-messages="errors.collect('nome')"
-                data-vv-name="nome"
-                required
+                :error-messages="errors.collect('Nome')"
+                data-vv-name="Nome"
                 @input="$emit('input', tipoDemanda)"
-                ></v-text-field>
+                >
+                <template v-slot:label>
+                    Nome<span class="required">*</span>
+                </template>
+            </v-text-field>
         </v-flex>
 
         <v-flex xs12 sm6 md5>
@@ -45,9 +48,6 @@
 <script>
     export default {
         name: "tipo-demanda-form",
-        $_veeValidate: {
-            validator: "new"
-        },
         props: {
             value: {
                 type: [Object]
@@ -55,7 +55,7 @@
         },
         data() {
             return {
-                tipoDemanda: Object.assign({}, this.value) //object.assign only works for shallow objects. for nested objects, use something like _.cloneDeep
+                tipoDemanda: Object.assign({}, this.value)
             };
         },
         watch: {
@@ -65,8 +65,6 @@
                 },
                 deep: true
             }
-        },
-        methods: {
         }
     };
 </script>

@@ -86,7 +86,9 @@
                                                                                     ></informacoes-pessoais-form>
                                                                             </v-layout>
                                                                         </v-container>
-                                                                        <small>*Indica os campos que são obrigatórios</small>
+                                                                        <ul>
+                                                                            <li><small><span class="required">*</span> <b>(Asterisco)</b> Indica os campos que são obrigatórios</small></li>
+                                                                        </ul>                                                                        
                                                                     </v-card-text>
                                                                 </v-card>
                                                             </v-card-text>
@@ -123,7 +125,9 @@
                                                                                 </v-layout>
                                                                             </v-container>
                                                                         </form>
-                                                                        <small>*Indica os campos que são obrigatórios</small>
+                                                                        <ul>
+                                                                            <li><small><span class="required">*</span> <b>(Asterisco)</b> Indica os campos que são obrigatórios</small></li>
+                                                                        </ul>   
                                                                     </v-card-text>
                                                                 </v-card>
                                                             </v-card-text>
@@ -163,7 +167,9 @@
                                                                                 </v-layout>
                                                                             </v-container>
                                                                         </form>
-                                                                        <small>*Indica os campos que são obrigatórios</small>
+                                                                        <ul>
+                                                                            <li><small><span class="required">*</span> <b>(Asterisco)</b> Indica os campos que são obrigatórios</small></li>
+                                                                        </ul>   
                                                                     </v-card-text>
                                                                 </v-card>
                                                             </v-card-text>
@@ -311,8 +317,7 @@
         methods: {
             getConfig() {
                 return {
-                    required: this.required(),
-                    asterisco: this.asterisco()
+                    required: this.required()
                 };
             },
             required() {
@@ -323,62 +328,35 @@
                 }
                 return true;
             },
-            asterisco() {
-                if (this.informacoesPessoais.parte_contraria) {
-                    return '';
-                } else if (this.informacoesPessoais.pre_atendimento) {
-                    return '';
-                }
-                return '*';
-            },
             informacoesPessoaisContinue() {
-                let isValidForm = true;
-                this.$refs.informacoesPessoaisForm.$refs.moneyRenda.required = this.getConfig().required;
                 this.$refs.informacoesPessoaisForm.$validator
                         .validateAll()
                         .then(valid => {
-                            isValidForm = valid;
-                            this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.validate('renda')
-                                    .then(isValidRenda => {
-
-                                        if (!isValidForm || !isValidRenda)
-                                            return;
-
-                                        this.step = 2;
-                                        this.erroInformacoesPessoais = false;
-                                    });
-
+                            if (valid) {
+                                this.step = 2;
+                                this.erroInformacoesPessoais = false;
+                            }
                         });
             },
             enderecoContinue() {
-                this.$refs.enderecoForm.$validator.validateAll().then(valid => {
-                    if (valid) {
-                        this.step = 3;
-                        this.erroEndereco = false;
-                    }
-                });
+                this.$refs.enderecoForm.$validator
+                        .validateAll()
+                        .then(valid => {
+                            if (valid) {
+                                this.step = 3;
+                                this.erroEndereco = false;
+                            }
+                        });
             },
             composicaoFamiliarContinue() {
-                let isValidForm = true;
-                let isValidValorPatrimonio = true;
-
-                this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.required = this.getConfig().required;
-                this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.required = this.getConfig().required;
-                this.$refs.composicaoFamiliarForm.$validator.validateAll().then(valid => {
-                    isValidForm = valid;
-
-                    this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.validate('valor do patrimônio')
-                            .then(valid => {
-                                isValidValorPatrimonio = valid;
-                                this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.validate('renda familiar')
-                                        .then(isValidRendaFamiliar => {
-                                            if (!isValidForm || !isValidValorPatrimonio || !isValidRendaFamiliar)
-                                                return;
-                                            this.step = 4;
-                                            this.erroComposicaoFamiliar = false;
-                                        });
-                            });
-                });
+                this.$refs.composicaoFamiliarForm.$validator
+                        .validateAll()
+                        .then(valid => {
+                            if (valid) {
+                                this.step = 4;
+                                this.erroComposicaoFamiliar = false;
+                            }
+                        });
             },
             informacoesPessoaisClear() {
                 this.informacoesPessoais = {};
@@ -400,12 +378,9 @@
                 this.erroComposicaoFamiliar = false;
                 this.erroTelefones = false;
                 this.$refs.informacoesPessoaisForm.$validator.errors.clear();
-                this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.errors.clear();
                 this.$refs.enderecoForm.$validator.errors.clear();
                 this.$refs.composicaoFamiliarForm.$validator.errors.clear();
-                this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.errors.clear();
-                this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.errors.clear();
-                this.$refs.informacoesPessoaisForm.nacionalidades = item.nacionalidade ? [item.nacionalidade] : [{id: 7, nome: 'BRASILEIRO'}];
+                this.$refs.informacoesPessoaisForm.$refs.autocompleteNacionalidade.values = item.nacionalidade ? [item.nacionalidade] : [{id: 7, nome: 'BRASILEIRO'}];
                 this.informacoesPessoais = item;
                 this.endereco = item.endereco ? item.endereco : {};
                 this.composicaoFamiliar = item.composicao_familiar ? item.composicao_familiar : {};
@@ -523,7 +498,7 @@
                 this.step = 1;
                 this.erroInformacoesPessoais = true;
                 if (data.errors.cliente.nome_completo) {
-                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'nome completo', msg: data.errors.cliente.nome_completo});
+                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'Nome Completo', msg: data.errors.cliente.nome_completo});
                 }
                 if (data.errors.cliente.cpf) {
                     this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'CPF', msg: data.errors.cliente.cpf});
@@ -532,25 +507,25 @@
                     this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'RG', msg: data.errors.cliente.rg});
                 }
                 if (data.errors.cliente.profissao) {
-                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'profissão', msg: data.errors.cliente.profissao});
+                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'Profissão', msg: data.errors.cliente.profissao});
                 }
                 if (data.errors.cliente.sexo) {
-                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'sexo', msg: data.errors.cliente.sexo});
+                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'Sexo', msg: data.errors.cliente.sexo});
                 }
                 if (data.errors.cliente.estado_civil) {
-                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'estado civil', msg: data.errors.cliente.estado_civil});
+                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'Estado Civil', msg: data.errors.cliente.estado_civil});
                 }
                 if (data.errors.cliente.email) {
-                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'e-mail', msg: data.errors.cliente.email});
+                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'E-mail', msg: data.errors.cliente.email});
                 }
                 if (data.errors.cliente.renda) {
-                    this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.errors.add({field: 'renda', msg: data.errors.cliente.renda});
+                    this.$refs.informacoesPessoaisForm.$refs.moneyRenda.$validator.errors.add({field: 'Renda', msg: data.errors.cliente.renda});
                 }
                 if (data.errors.cliente.local_trabalho) {
-                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'local de trabalho', msg: data.errors.cliente.local_trabalho});
+                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'Local de Trabalho', msg: data.errors.cliente.local_trabalho});
                 }
                 if (data.errors.cliente.nacionalidade_id) {
-                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'nacionalidade', msg: data.errors.cliente.nacionalidade_id});
+                    this.$refs.informacoesPessoaisForm.$validator.errors.add({field: 'Nacionalidade', msg: data.errors.cliente.nacionalidade_id});
                 }
 
             },
@@ -558,22 +533,22 @@
                 this.step = 2;
                 this.erroEndereco = true;
                 if (data.errors.endereco.bairro) {
-                    this.$refs.enderecoForm.$validator.errors.add({field: 'bairro', msg: data.errors.endereco.bairro});
+                    this.$refs.enderecoForm.$validator.errors.add({field: 'Bairro', msg: data.errors.endereco.bairro});
                 }
                 if (data.errors.endereco.cep) {
                     this.$refs.enderecoForm.$validator.errors.add({field: 'CEP', msg: data.errors.endereco.cep});
                 }
                 if (data.errors.endereco.numero) {
-                    this.$refs.enderecoForm.$validator.errors.add({field: 'número', msg: data.errors.endereco.numero});
+                    this.$refs.enderecoForm.$validator.errors.add({field: 'Número', msg: data.errors.endereco.numero});
                 }
                 if (data.errors.endereco.localidade) {
-                    this.$refs.enderecoForm.$validator.errors.add({field: 'cidade', msg: data.errors.endereco.localidade});
+                    this.$refs.enderecoForm.$validator.errors.add({field: 'Cidade', msg: data.errors.endereco.localidade});
                 }
                 if (data.errors.endereco.logradouro) {
-                    this.$refs.enderecoForm.$validator.errors.add({field: 'logradouro', msg: data.errors.endereco.logradouro});
+                    this.$refs.enderecoForm.$validator.errors.add({field: 'Logradouro', msg: data.errors.endereco.logradouro});
                 }
                 if (data.errors.endereco.uf) {
-                    this.$refs.enderecoForm.$validator.errors.add({field: 'estado', msg: data.errors.endereco.uf});
+                    this.$refs.enderecoForm.$validator.errors.add({field: 'Estado', msg: data.errors.endereco.uf});
                 }
 
             },
@@ -581,22 +556,22 @@
                 this.step = 3;
                 this.erroComposicaoFamiliar = true;
                 if (data.errors.composicao_familiar.renda_familiar) {
-                    this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.errors.add({field: 'renda familiar', msg: data.errors.composicao_familiar.renda_familiar});
+                    this.$refs.composicaoFamiliarForm.$refs.moneyRendaFamiliar.$validator.errors.add({field: 'Renda Familiar', msg: data.errors.composicao_familiar.renda_familiar});
                 }
                 if (data.errors.composicao_familiar.casa) {
-                    this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'casa', msg: data.errors.composicao_familiar.casa});
+                    this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'Casa', msg: data.errors.composicao_familiar.casa});
                 }
                 if (data.errors.composicao_familiar.outros_bens) {
-                    this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'outros bens', msg: data.errors.composicao_familiar.outros_bens});
+                    this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'Outros Bens', msg: data.errors.composicao_familiar.outros_bens});
                 }
                 if (data.errors.composicao_familiar.dividas) {
-                    this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'dívidas', msg: data.errors.composicao_familiar.dividas});
+                    this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'Dívidas', msg: data.errors.composicao_familiar.dividas});
                 }
                 if (data.errors.composicao_familiar.despesas) {
-                    this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'despesas', msg: data.errors.composicao_familiar.despesas});
+                    this.$refs.composicaoFamiliarForm.$validator.errors.add({field: 'Despesas', msg: data.errors.composicao_familiar.despesas});
                 }
                 if (data.errors.composicao_familiar.valor_patrimonio) {
-                    this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.errors.add({field: 'valor do patrimônio', msg: data.errors.composicao_familiar.valor_patrimonio});
+                    this.$refs.composicaoFamiliarForm.$refs.moneyValorPatrimonio.$validator.errors.add({field: 'Valor do Patrimônio', msg: data.errors.composicao_familiar.valor_patrimonio});
                 }
 
             }
