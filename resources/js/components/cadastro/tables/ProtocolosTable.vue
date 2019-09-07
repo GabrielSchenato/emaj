@@ -63,13 +63,7 @@
                                         <template v-slot:activator="{ on }">
                                             <v-btn depressed icon fab dark color="primary" small v-on="on">
                                                 <v-icon
-                                                    @click="imprimirFichaTriagem(
-                                                    {
-                                                    cliente_id: props.item.cliente_id,
-                                                    parte_contraria_id: props.item.parte_contraria_id,
-                                                    protocolo_id: props.item.id
-                                                    }
-                                                    )"
+                                                    @click="imprimirFichaTriagem(props.item)"
                                                     >print
                                                 </v-icon>
                                             </v-btn>
@@ -301,9 +295,12 @@
                     window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
                 }).finally(() => (this.loading = false));
             },
-            imprimirFichaTriagem(object) {
-                let data = {...object, ...{formato: "pdf"}};
-                this.gerarImpressao(data, "/protocolos/imprimir-ficha-triagem");
+            imprimirFichaTriagem(item) {
+                this.gerarImpressao({
+                    cliente_id: item.cliente_id,
+                    parte_contraria_id: item.parte_contraria_id,
+                    protocolo_id: item.id
+                }, "/protocolos/imprimir-ficha-triagem");
             },
             expandRow(props) {
                 props.expanded = !props.expanded;

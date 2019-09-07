@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
   |--------------------------------------------------------------------------
   | API Routes
@@ -12,10 +10,6 @@ use Illuminate\Http\Request;
   | is assigned the "api" middleware group. Enjoy building your API!
   |
  */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::prefix('v1/auth')
         ->namespace('Api\V1')
@@ -66,4 +60,7 @@ Route::prefix('v1')
             Route::put('telefones/{id}', 'Cadastro\TelefonesController@update');
             Route::get('avaliacoes-aluno/{id}', 'Cadastro\AvaliacoesController@avaliacoesAluno');
             Route::get('avaliacaoarquivos/download/{id}', 'Cadastro\AvaliacaoArquivosController@download');
+
+            Route::post('relatividadesprestadas', 'Relatorio\RelAtividadesPrestadasController');
+            Route::get('relatividadesprestadas/autocomplete', 'Relatorio\RelAtividadesPrestadasController@autocomplete');
         });

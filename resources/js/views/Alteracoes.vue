@@ -1,6 +1,8 @@
 <template>
     <v-layout row pb-2>
         <v-flex xs10 offset-xs1>
+            <versao2_1_0></versao2_1_0>
+            </br>
             <versao2_0_1></versao2_0_1>
             </br>
             <versao2_0_0></versao2_0_0>
@@ -35,6 +37,7 @@
     import Versao1_1_0 from "@/views/versoes/Versao1_1_0.vue";
     import Versao2_0_0 from "@/views/versoes/Versao2_0_0.vue";
     import Versao2_0_1 from "@/views/versoes/Versao2_0_1.vue";
+    import Versao2_1_0 from "@/views/versoes/Versao2_1_0.vue";
     export default {
         components: {
             Versao1_0_0,
@@ -47,6 +50,7 @@
             Versao1_1_0,
             Versao2_0_0,
             Versao2_0_1,
+            Versao2_1_0,
         }
     };
 </script>

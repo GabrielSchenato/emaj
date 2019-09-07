@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rodape_padrao_paisagem" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="786" leftMargin="0" rightMargin="56" topMargin="0" bottomMargin="0" uuid="0ce2f28e-0712-4401-b8dd-c5dad8d857e2">
+	<property name="ireport.zoom" value="1.4641000000000015"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="versao_sistema" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="pagina" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="usuario" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<pageFooter>
+		<band height="28">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="0" y="4" width="63" height="23" uuid="67dfdd24-f99b-47eb-a647-19cddea85f64"/>
+			</image>
+			<line>
+				<reportElement x="0" y="3" width="786" height="1" uuid="2cf28a53-f2e7-4089-9167-10bef64950e1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy HH:mm" isBlankWhenNull="false">
+				<reportElement x="715" y="4" width="71" height="11" uuid="0513a0e4-64fd-4506-9e8d-365ca54a9242"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="730" y="16" width="56" height="11" uuid="5c9638ac-e2db-44e7-98b6-d6533f5ee7bd"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página: " + $P{pagina}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="272" y="11" width="191" height="11" uuid="9bded168-fc23-44df-87d3-0fbd33e34578"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="5" width="171" height="11" uuid="7593dfdc-164b-411d-9f96-dc98eab334c1"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Relatório emitido pelo sistema do EMAJ v"+ $P{versao_sistema}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="73" y="17" width="145" height="11" uuid="7c5d7fa8-f60b-40a5-b8ca-19a33ac1dfa6"/>
+				<box leftPadding="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="html">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[&copy; Escritório Modelo de Assistência Jurídica.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="11" width="29" height="11" uuid="14159198-4922-49db-b1bc-6d4b2fbba6e9"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="html">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Usuário:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="236" y="8" width="1" height="17" uuid="36db5d25-c38e-4a51-aafc-960527d8e99e"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#3E3E3E"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

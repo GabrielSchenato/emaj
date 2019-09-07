@@ -20,6 +20,9 @@ use Illuminate\Database\Eloquent\Model;
 class TipoDemanda extends Model
 {
 
+    protected $appends = [
+        'dados_tipo_demanda'
+    ];
     protected $fillable = [
         'nome', 'descricao', 'ativo'
     ];
@@ -31,4 +34,15 @@ class TipoDemanda extends Model
     {
         return $this->hasMany(FichaTriagem::class);
     }
+
+    /**
+     * Método responsável por montar os dados do Tipo de Demanda.
+     * 
+     * @return string
+     */
+    protected function getDadosTipoDemandaAttribute()
+    {
+        return "{$this->nome} ({$this->id})";
+    }
+
 }

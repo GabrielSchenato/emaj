@@ -16,6 +16,9 @@
         @input="emit"
         :prepend-icon="prependIcon"
         @click:prepend="data != null ? edit(data) : create()"
+        :return-object="options.returnObject"
+        :multiple="options.multiple"
+        :cache-items="options.cacheItems"
         >
         <template v-slot:label>
             {{ options.name }}<span class="required" v-if="options.required">*</span>
@@ -27,7 +30,7 @@
         name: "autocomplete-field",
         props: {
             value: {
-                type: [Number, String]
+                type: [Number, String, Object, Array]
             },
             errorMessages: {
                 type: Array
@@ -67,7 +70,7 @@
                             if (this.loading)
                                 return;
 
-                            if (this.data)
+                            if (this.data && !this.options.multiple)
                                 return;
 
                             this.loading = true;
