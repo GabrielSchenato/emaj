@@ -83,6 +83,15 @@ class Cliente extends Model
     }
 
     /**
+     * Pega todos os Protocolos como Parte Contrária associados 
+     * ao cliente.
+     */
+    public function protocolos_parte_contraria()
+    {
+        return $this->hasMany(Protocolo::class, 'parte_contraria_id');
+    }
+
+    /**
      * Pega a nacionalidade que está associada a esse cliente.
      */
     public function nacionalidade()
