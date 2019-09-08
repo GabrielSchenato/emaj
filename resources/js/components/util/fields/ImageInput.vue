@@ -24,14 +24,27 @@
 <script>
     export default {
         name: 'image-input',
-        data: () => ({
+        props: {
+            value: {
+                type: [Object]
+            }
+        },
+        data() {
+            return {
+                imageInput: Object.assign({}, this.value),
                 errorDialog: null,
                 errorText: '',
                 uploadFieldName: 'file',
                 maxSize: 1024
-            }),
-        props: {
-            value: Object
+            };
+        },
+        watch: {
+            value: {
+                handler() {
+                    this.imageInput = Object.assign({}, this.value);
+                },
+                deep: true
+            }
         },
         methods: {
             launchFilePicker() {
@@ -49,8 +62,9 @@
                         this.errorDialog = true;
                         this.errorText = 'A imagem que você escolheu é muito grande! Por favor selecione uma imagem menor que 1MB';
                     } else {
-                        let imageURL = URL.createObjectURL(imageFile);
-                        this.$emit('input', {imageFile, imageURL});
+                        this.imageInput.imageURL = URL.createObjectURL(imageFile);
+                        this.imageInput.imageFile = imageFile;
+                        this.$emit('input', this.imageInput);
                     }
                 }
             }

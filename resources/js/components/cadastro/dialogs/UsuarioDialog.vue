@@ -20,7 +20,7 @@
                 </v-card-text>
                 <v-card-actions class="pt-0">
                     <v-spacer></v-spacer>
-                    <v-btn color="green" flat="flat"  type="submit">
+                    <v-btn color="green" flat="flat" type="submit">
                         Salvar
                         <v-icon right dark>check</v-icon>
                     </v-btn>
@@ -87,8 +87,8 @@
                 if (this.usuario.password_confirmation) {
                     formData.append('password_confirmation', this.usuario.password_confirmation);
                 }
-                if (this.usuario.avatar && this.usuario.avatar.imageFile) {
-                    formData.append('image_url', this.usuario.avatar.imageFile);
+                if (this.usuario.imageFile) {
+                    formData.append('image_url', this.usuario.imageFile);
                 }
                 return formData;
             },

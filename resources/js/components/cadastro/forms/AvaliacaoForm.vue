@@ -92,7 +92,9 @@
                 </v-layout>
             </v-card-text>       
         </v-card>
-        <small>*Indica os campos que são obrigatórios</small>
+        <ul>
+            <li><small><span class="required">*</span> <b>(Asterisco)</b> Indica os campos que são obrigatórios</small></li>
+        </ul>   
     </div>
 </template>
 <script>

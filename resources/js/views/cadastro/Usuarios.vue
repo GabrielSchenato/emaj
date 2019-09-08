@@ -42,7 +42,7 @@
                                     <td>{{ props.item.id }}</td>
                                     <td>
                                     <v-avatar size="32">
-                                        <img :src="'data:image/jpeg;base64,' + props.item.avatar" alt>
+                                        <img :src="props.item.avatar_url" alt>
                                     </v-avatar>
                                     </td>
                                     <td>{{ props.item.nome_completo }}</td>

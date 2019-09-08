@@ -13,7 +13,6 @@ export default [
                 color: 'green',
                 text: 'Deslogado com sucesso!'
             };
-            this.$router.replace({path: '/login'});
         }
     },
     {

@@ -83,7 +83,7 @@ class AuthController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        unset($data['role']);
+        $data['role'] = auth()->user()->role;
 
         $v = Validator::make($data, ['nome_completo' => 'required|min:5',
                     'email' => ['required', 'email', Rule::unique('usuarios')->ignore($id)],

@@ -37,7 +37,10 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
      * 
      * @var array 
      */
-    protected $appends = ['dados_usuario'];
+    protected $appends = [
+        'dados_usuario',
+        'avatar_url'
+    ];
 
     /**
      * Armazena os campos do banco de dados.
@@ -82,6 +85,18 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
     protected function getDadosUsuarioAttribute()
     {
         return "{$this->nome_completo} ({$this->id})";
+    }
+
+    /**
+     * Método responsável por retornar os dados do avatar do usuário.
+     * 
+     * @return string
+     */
+    protected function getAvatarUrlAttribute()
+    {
+        if ($this->avatar) {
+            return "data:image/jpeg;base64,{$this->avatar}";
+        }
     }
 
 }
