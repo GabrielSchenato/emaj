@@ -21,7 +21,7 @@ class TipoDemanda extends Model
 {
 
     /**
-     * Armazena o nome das variáveis que seram enviadas na api.
+     * Armazena o nome das variáveis que serão enviadas na api.
      * 
      * @var array 
      */

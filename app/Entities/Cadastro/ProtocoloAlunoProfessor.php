@@ -27,7 +27,7 @@ class ProtocoloAlunoProfessor extends Model
     protected $table = 'protocolo_alunos_professores';
 
     /**
-     * Armazena o nome das variáveis que seram enviadas na api.
+     * Armazena o nome das variáveis que serão enviadas na api.
      * 
      * @var array 
      */

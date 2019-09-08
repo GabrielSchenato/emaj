@@ -33,7 +33,7 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
     protected $table = 'usuarios';
 
     /**
-     * Armazena o nome das variáveis que seram enviadas na api.
+     * Armazena o nome das variáveis que serão enviadas na api.
      * 
      * @var array 
      */
