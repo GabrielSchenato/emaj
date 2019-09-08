@@ -20,12 +20,24 @@ class ProtocoloAlunoProfessor extends Model
 {
 
     /**
-     * The database table used by the model.
+     * O nome da tabela no banco de dados.
      *
      * @var string
      */
     protected $table = 'protocolo_alunos_professores';
-    //protected $appends = ['dados_ficha_triagem'];
+
+    /**
+     * Armazena o nome das variáveis que seram enviadas na api.
+     * 
+     * @var array 
+     */
+    protected $appends = ['dados_protocolo_aluno_professor'];
+
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'protocolo_id',
         'aluno_id',
@@ -58,35 +70,17 @@ class ProtocoloAlunoProfessor extends Model
         return $this->belongsTo(Usuario::class, 'professor_id');
     }
 
-    protected function getDadosFichaTriagemAttribute()
+    /**
+     * Método responsável por retornar os dados do protocolo aluno professor.
+     * 
+     * @return string
+     */
+    protected function getDadosProtocoloAlunoProfessorAttribute()
     {
-        $string = '';
-
-        $cliente = $this->cliente;
-        $parteContraria = $this->parte_contraria;
-        $tipoDemanda = $this->tipo_demanda;
-
-
-        if ($cliente) {
-            $string .= 'Cliente: ' . $cliente->nome_completo;
-            $string .= ' (' . $cliente->id . ')';
-        }
-        if ($parteContraria) {
-            $string .= ' - Parte Contrária: ' . $parteContraria->nome_completo;
-        }
-        if (isset($this->attributes['protocolo'])) {
-            $string .= ' - Protocolo: ' . $this->attributes['protocolo'];
-        }
-        if (isset($this->attributes['numero_processo'])) {
-            $string .= ' - N.º Processo: ' . $this->attributes['numero_processo'];
-        }
-        if ($tipoDemanda) {
-            $string .= ' - Demanda: ' . $tipoDemanda->nome;
-        }
-        if (isset($this->attributes['created_at'])) {
-            $string .= ' - Data: ' . \Carbon\Carbon::parse($this->attributes['created_at'])->format('d/m/Y');
-        }
-        return $string;
+        $aluno = "Aluno: {$this->aluno->dados_aluno} - ";
+        $professor = "Professor: {$this->professor->dados_usuario} - ";
+        $dataVinculo = 'Data Vínculo: ' . \Carbon\Carbon::parse($this->data_vinculo)->format('d/m/Y');
+        return $aluno . $professor . $dataVinculo;
     }
 
 }

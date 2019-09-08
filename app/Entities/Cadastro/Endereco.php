@@ -19,6 +19,11 @@ use Illuminate\Database\Eloquent\Model;
 class Endereco extends Model
 {
 
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'cep',
         'logradouro',
@@ -41,5 +46,5 @@ class Endereco extends Model
     {
         return $this->belongsTo(Cliente::class);
     }
-    
+
 }

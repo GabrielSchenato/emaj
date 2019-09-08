@@ -208,6 +208,7 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
             'protocolos.protocolo',
             'protocolos.numero_processo',
             'protocolos.parte_contraria_id',
+            'protocolos.tipo_demanda_id',
             'parte_contrarias.nome_completo AS nome_parte_contraria',
             'tipo_demandas.nome AS nome_tipo_demanda',
             'protocolos.status',
@@ -234,14 +235,16 @@ class ProtocoloRepositoryEloquent extends AbstractRepository implements Protocol
         if (isset($values['numero_processo'])) {
             $criteria->where('numero_processo', 'like', "%{$values['numero_processo']}%");
         }
-        if (isset($values['nome_parte_contraria'])) {
+        if (isset($values['parte_contraria_id'])) {
             $criteria->whereHas('parte_contraria', function ($criteria) use ($values) {
-                $criteria->where('nome_completo', 'like', "%{$values['nome_parte_contraria']}%");
+                $criteria->where('nome_completo', 'like', "%{$values['parte_contraria_id']}%")
+                        ->orWhere('id', '=', (int) $values['parte_contraria_id']);
             });
         }
-        if (isset($values['nome_tipo_demanda'])) {
+        if (isset($values['tipo_demanda_id'])) {
             $criteria->whereHas('tipo_demanda', function ($criteria) use ($values) {
-                $criteria->where('nome', 'like', "%{$values['nome_tipo_demanda']}%");
+                $criteria->where('nome', 'like', "%{$values['tipo_demanda_id']}%")
+                        ->orWhere('id', '=', (int) $values['tipo_demanda_id']);
             });
         }
         if (isset($values['status'])) {

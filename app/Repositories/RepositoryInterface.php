@@ -60,7 +60,7 @@ interface RepositoryInterface extends RepositoryPrettusInterface
      * 
      * @return mixed
      */
-    public function getDataIndex(int $limit = 10, array $columns = ['*'], array $order = ['id', 'desc'], array $data = []);
+    public function getDataIndex(int $limit = 10, array $columns = ['*'], array $order = ['id', 'DESC'], array $data = []);
 
     /**
      * Método responsável por retornar as regras a serem aplicadas ao criar ou editar

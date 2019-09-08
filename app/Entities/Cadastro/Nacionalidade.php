@@ -19,6 +19,11 @@ use Illuminate\Database\Eloquent\Model;
 class Nacionalidade extends Model
 {
 
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'nome'
     ];

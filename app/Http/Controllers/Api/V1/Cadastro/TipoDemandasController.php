@@ -20,6 +20,10 @@ use Emaj\Repositories\Cadastro\TipoDemandaRepository;
 class TipoDemandasController extends CrudController
 {
 
+    /**
+     *
+     * @var TipoDemandaRepository 
+     */
     protected $repository;
 
     public function __construct(TipoDemandaRepository $repository)

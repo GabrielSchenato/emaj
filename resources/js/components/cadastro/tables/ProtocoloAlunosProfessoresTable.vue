@@ -38,10 +38,18 @@
                                 :loading="loading"
                                 >
                                 <template slot="items" slot-scope="props">              
-                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.nome_aluno }}</td>
-                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.nome_professor }}</td>
-                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.data_vinculo | formataData }}</td>
-                                    <td v-bind:class="{ vermelho: !props.item.ativo }">{{ props.item.ativo | formataAtivo }}</td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">
+                                        {{ props.item.aluno.dados_aluno }}
+                                    </td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">
+                                        {{ props.item.professor.dados_usuario }}
+                                    </td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">
+                                        {{ props.item.data_vinculo | formataData }}
+                                    </td>
+                                    <td v-bind:class="{ vermelho: !props.item.ativo }">
+                                        {{ props.item.ativo | formataAtivo }}
+                                    </td>
                                     <td>
                                     <v-btn depressed outline icon fab dark color="primary" small>
                                         <v-icon @click="editar(props.item.id)">edit</v-icon>
@@ -92,14 +100,14 @@
                     headers: [
                         {
                             text: "Aluno",
-                            value: "nome_aluno",
+                            value: "aluno_id",
                             filterable: true,
                             type: 'text',
                             initial: true
                         },
                         {
                             text: "Professor",
-                            value: "nome_professor",
+                            value: "professor_id",
                             filterable: true,
                             type: 'text'
                         },

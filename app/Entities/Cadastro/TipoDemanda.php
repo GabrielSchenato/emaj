@@ -20,20 +20,25 @@ use Illuminate\Database\Eloquent\Model;
 class TipoDemanda extends Model
 {
 
+    /**
+     * Armazena o nome das variáveis que seram enviadas na api.
+     * 
+     * @var array 
+     */
     protected $appends = [
         'dados_tipo_demanda'
     ];
-    protected $fillable = [
-        'nome', 'descricao', 'ativo'
-    ];
 
     /**
-     * Pega todas as ficha de triagens associados a esse tipo de demanda.
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
      */
-    public function ficha_triagens()
-    {
-        return $this->hasMany(FichaTriagem::class);
-    }
+    protected $fillable = [
+        'nome',
+        'descricao',
+        'ativo'
+    ];
 
     /**
      * Método responsável por montar os dados do Tipo de Demanda.

@@ -76,14 +76,16 @@ class ProtocoloAlunoProfessorRepositoryEloquent extends AbstractRepository imple
     public function getBySearch(array $values)
     {
         $criteria = $this->model->newQuery();
-        if (isset($values['nome_aluno'])) {
+        if (isset($values['aluno_id'])) {
             $criteria->whereHas('aluno', function ($criteria) use ($values) {
-                $criteria->where('nome_completo', 'like', "%{$values['nome_aluno']}%");
+                $criteria->where('nome_completo', 'like', "%{$values['aluno_id']}%")
+                        ->orWhere('id', '=', (int) $values['aluno_id']);
             });
         }
-        if (isset($values['nome_professor'])) {
+        if (isset($values['professor_id'])) {
             $criteria->whereHas('professor', function ($criteria) use ($values) {
-                $criteria->where('nome_completo', 'like', "%{$values['nome_professor']}%");
+                $criteria->where('nome_completo', 'like', "%{$values['professor_id']}%")
+                        ->orWhere('id', '=', (int) $values['professor_id']);
             });
         }
         if (isset($values['data_vinculo'])) {

@@ -105,7 +105,7 @@
                 return {
                     field: 'aluno_id',
                     required: true,
-                    itemText: 'nome_completo',
+                    itemText: 'dados_aluno',
                     name: 'Aluno',
                     url: 'protocoloalunosprofessores/autocomplete',
                     helperCreateEdit: true
@@ -115,7 +115,7 @@
                 return {
                     field: 'professor_id',
                     required: true,
-                    itemText: 'nome_completo',
+                    itemText: 'dados_usuario',
                     name: 'Professor',
                     url: 'protocoloalunosprofessores/autocomplete',
                     helperCreateEdit: true

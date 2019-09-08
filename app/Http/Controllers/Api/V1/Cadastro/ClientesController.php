@@ -26,12 +26,6 @@ class ClientesController extends CrudController
      * @var ProtocoloRepository
      */
     private $protocoloRepository;
-    protected $relationships = [
-        'nacionalidade:id,nome',
-        'endereco',
-        'composicao_familiar',
-        'telefones'
-    ];
 
     /**
      * @var NacionalidadeRepository
@@ -42,6 +36,18 @@ class ClientesController extends CrudController
      * @var ClienteRepository
      */
     protected $repository;
+
+    /**
+     * Armazena os relacionamentos.
+     * 
+     * @var array 
+     */
+    protected $relationships = [
+        'nacionalidade:id,nome',
+        'endereco',
+        'composicao_familiar',
+        'telefones'
+    ];
 
     public function __construct(ClienteRepository $repository, NacionalidadeRepository $nacionalidadeRepository, ProtocoloRepository $protocoloRepository)
     {

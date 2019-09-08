@@ -20,12 +20,17 @@ class ParametroTriagem extends Model
 {
 
     /**
-     * The database table used by the model.
+     * O nome da tabela no banco de dados.
      *
      * @var string
      */
     protected $table = 'parametros_triagem';
-    
+
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'renda'
     ];

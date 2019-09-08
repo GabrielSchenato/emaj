@@ -67,6 +67,11 @@
                         icon: 'fiber_manual_record',
                         color: 'black',
                         text: 'Evolução (Relatório): Criado novo relatório "Atividades Prestadas", onde o mesmo traz o total de atendimentos por mês com seus respectivos nomes quando escolhido o tipo "Analítico" e o "Sintético" onde traz informações resumidas com o total apenas'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
+                        text: 'Evolução (Cadastro): Aplicado melhoria nos campos de busca para realizar buscar por ID (Código)'
                     }
                 ];
             },

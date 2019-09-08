@@ -2,7 +2,6 @@
 
 namespace Emaj\Entities\Cadastro;
 
-use Emaj\Entities\Movimento\FichaTriagem;
 use Emaj\Util\Functions;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +20,18 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
 
+    /**
+     * Armazena o nome das variáveis que seram enviadas na api.
+     * 
+     * @var array 
+     */
     protected $appends = ['parte_contraria', 'dados_cliente'];
+
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'pre_atendimento',
         'nome_completo',
@@ -73,31 +83,6 @@ class Cliente extends Model
     }
 
     /**
-     * Pega todos os Protocolos como Parte Contrária associados 
-     * ao cliente.
-     */
-    public function protocolos_parte_contraria()
-    {
-        return $this->hasMany(Protocolo::class, 'parte_contraria_id');
-    }
-
-    /**
-     * Pega todas as Ficha de Triagens associados ao cliente.
-     */
-    public function ficha_triagens_cliente()
-    {
-        return $this->hasMany(FichaTriagem::class, 'cliente_id');
-    }
-
-    /**
-     * Pega todas as Ficha de Triagens associados ao cliente parte contrária.
-     */
-    public function ficha_triagens_parte_contraria()
-    {
-        return $this->hasMany(FichaTriagem::class, 'parte_contraria_id');
-    }
-
-    /**
      * Pega a nacionalidade que está associada a esse cliente.
      */
     public function nacionalidade()
@@ -136,12 +121,7 @@ class Cliente extends Model
      */
     protected function getParteContrariaAttribute()
     {
-        if (($this->isEmptyCliente() 
-                || $this->isEmptyEndereco() 
-                || $this->isEmptyComposicaoFamiliar() 
-                || count($this->telefones) == 0) 
-                && $this->protocolos_cliente()->count() === 0
-                && (bool) $this->pre_atendimento == false) {
+        if (($this->isEmptyCliente() || $this->isEmptyEndereco() || $this->isEmptyComposicaoFamiliar() || count($this->telefones) == 0) && $this->protocolos_cliente()->count() === 0 && (bool) $this->pre_atendimento == false) {
             return true;
         }
         return false;

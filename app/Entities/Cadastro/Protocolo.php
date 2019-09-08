@@ -2,6 +2,7 @@
 
 namespace Emaj\Entities\Cadastro;
 
+use Carbon\Carbon;
 use Emaj\Entities\Cadastro\Cliente;
 use Emaj\Entities\Cadastro\TipoDemanda;
 use Illuminate\Database\Eloquent\Model;
@@ -21,10 +22,21 @@ use Illuminate\Database\Eloquent\Model;
 class Protocolo extends Model
 {
 
+    /**
+     * Armazena o nome das variáveis que seram enviadas na api.
+     * 
+     * @var array 
+     */
     protected $appends = [
         'dados_protocolo',
         'protocolo_alunos_professores_ativos'
     ];
+
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'cliente_id',
         'protocolo',
@@ -68,6 +80,12 @@ class Protocolo extends Model
         return $this->hasMany(ProtocoloAlunoProfessor::class, 'protocolo_id');
     }
 
+    /**
+     * Método responsável por pegar todos os protocolos aluno professor ativos deste
+     * protocolo.
+     * 
+     * @return mixed
+     */
     protected function getProtocoloAlunosProfessoresAtivosAttribute()
     {
         return $this->hasMany(ProtocoloAlunoProfessor::class, 'protocolo_id')
@@ -79,34 +97,34 @@ class Protocolo extends Model
                         ->get();
     }
 
+    /**
+     * Método responsável por retornar os dados do protocolo.
+     * 
+     * @return string
+     */
     protected function getDadosProtocoloAttribute()
     {
-        $string = '';
-
-        $cliente = $this->cliente;
-        $parteContraria = $this->parte_contraria;
-        $tipoDemanda = $this->tipo_demanda;
-
-        if (isset($this->attributes['protocolo'])) {
-            $string .= "Protocolo: {$this->attributes['protocolo']}  - ";
+        $string = "";
+        if ($this->protocolo) {
+            $string .= "Protocolo: {$this->protocolo}  - ";
         }
-        if ($cliente) {
-            $string .= "Cliente: {$cliente->nome_completo}";
-            if ($cliente->representado_assistido) {
-                $string .= " - Representado/Assistido: {$cliente->representado_assistido}";
+        if ($this->cliente) {
+            $string .= "Cliente: {$this->cliente->nome_completo}";
+            if ($this->cliente->representado_assistido) {
+                $string .= " - Representado/Assistido: {$this->cliente->representado_assistido}";
             }
         }
-        if ($parteContraria) {
-            $string .= " - Parte Contrária: {$parteContraria->nome_completo}";
+        if ($this->parte_contraria) {
+            $string .= " - Parte Contrária: {$this->parte_contraria->nome_completo}";
         }
-        if (isset($this->attributes['numero_processo'])) {
-            $string .= " - N.º Processo: {$this->attributes['numero_processo']}";
+        if ($this->numero_processo) {
+            $string .= " - N.º Processo: {$this->numero_processo}";
         }
-        if ($tipoDemanda) {
-            $string .= " - Demanda: {$tipoDemanda->nome}";
+        if ($this->tipo_demanda) {
+            $string .= " - Demanda: {$this->tipo_demanda->nome}";
         }
-        if (isset($this->attributes['created_at'])) {
-            $string .= ' - Data: ' . \Carbon\Carbon::parse($this->attributes['created_at'])->format('d/m/Y');
+        if ($this->created_at) {
+            $string .= ' - Data: ' . Carbon::parse($this->created_at)->format('d/m/Y');
         }
         return $string;
     }

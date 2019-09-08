@@ -20,6 +20,9 @@ use Emaj\Repositories\Cadastro\UsuarioRepository;
 class UsuariosController extends CrudController
 {
 
+    /**
+     * @var UsuarioRepository 
+     */
     protected $repository;
 
     public function __construct(UsuarioRepository $repository)

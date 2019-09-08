@@ -20,6 +20,10 @@ use Emaj\Repositories\Cadastro\ParametroTriagemRepository;
 class ParametrosTriagemController extends CrudController
 {
 
+    /**
+     *
+     * @var ParametroTriagemRepository 
+     */
     protected $repository;
 
     public function __construct(ParametroTriagemRepository $repository)
@@ -27,6 +31,12 @@ class ParametrosTriagemController extends CrudController
         $this->repository = $repository;
     }
 
+    /**
+     * Método responsável por buscar o registro e retornar para o front-end.
+     * 
+     * @param int $id
+     * @return mixed
+     */
     public function show($id = null)
     {
         if ($this->registro = $this->repository->first()) {

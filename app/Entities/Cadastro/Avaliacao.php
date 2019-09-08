@@ -2,7 +2,6 @@
 
 namespace Emaj\Entities\Cadastro;
 
-use Emaj\Entities\Movimento\FichaTriagem;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,12 +20,24 @@ class Avaliacao extends Model
 {
 
     /**
-     * The database table used by the model.
+     * O nome da tabela no banco de dados.
      *
      * @var string
      */
     protected $table = 'avaliacoes';
+
+    /**
+     * Armazena o nome das variáveis que seram enviadas na api.
+     * 
+     * @var array 
+     */
     protected $appends = ['quantidade_anexos'];
+
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'aluno_id',
         'protocolo_id',

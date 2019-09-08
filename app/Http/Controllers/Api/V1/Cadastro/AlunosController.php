@@ -26,17 +26,24 @@ class AlunosController extends CrudController
      * @var ProtocoloAlunoProfessorRepository
      */
     private $protocoloAlunoProfessorRepository;
+
+    /**
+     * Armazena os relacionamentos.
+     * 
+     * @var array 
+     */
     protected $relationships = [
         'avaliacoes.avaliador:id,nome_completo',
         'protocolo_alunos_professores.protocolo:id,cliente_id,protocolo,numero_processo,observacoes,ativo',
-        'protocolo_alunos_professores.protocolo.cliente:id,nome_completo,representado_assistido',
+        'protocolo_alunos_professores.protocolo.cliente:id,nome_completo,representado_assistido,cpf,rg,renda',
         'protocolo_alunos_professores.professor:id,nome_completo',
-        'ficha_triagens_aluno.cliente:id,nome_completo,representado_assistido',
-        'ficha_triagens_aluno.professor:id,nome_completo',
-        'ficha_triagens_aluno:id,aluno_id,cliente_id,professor_id,protocolo,numero_processo,ativo,outras_informacoes,created_at',
         'avaliacoes.protocolo:id,cliente_id,parte_contraria_id,tipo_demanda_id,protocolo,numero_processo,created_at',
         'avaliacoes.protocolo.cliente:id,nome_completo,representado_assistido,cpf,rg,renda'
     ];
+
+    /**
+     * @var AlunoRepository 
+     */
     protected $repository;
 
     public function __construct(AlunoRepository $repository, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository)

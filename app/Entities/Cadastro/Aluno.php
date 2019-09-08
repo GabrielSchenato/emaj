@@ -2,7 +2,6 @@
 
 namespace Emaj\Entities\Cadastro;
 
-use Emaj\Entities\Movimento\FichaTriagem;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,6 +19,18 @@ use Illuminate\Database\Eloquent\Model;
 class Aluno extends Model
 {
 
+    /**
+     * Armazena o nome das variáveis que seram enviadas na api.
+     * 
+     * @var array 
+     */
+    protected $appends = ['dados_aluno'];
+
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'nome_completo',
         'fase',
@@ -44,19 +55,21 @@ class Aluno extends Model
     }
 
     /**
-     * Pega todas as Ficha de Triagens associados ao aluno.
-     */
-    public function ficha_triagens_aluno()
-    {
-        return $this->hasMany(FichaTriagem::class, 'aluno_id')->orderBy('created_at', 'desc');
-    }
-
-    /**
      * Pega todas as avaliações associadas ao aluno.
      */
     public function avaliacoes()
     {
         return $this->hasMany(Avaliacao::class, 'aluno_id')->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * Método responsável por retornar os dados do aluno.
+     * 
+     * @return string
+     */
+    protected function getDadosAlunoAttribute()
+    {
+        return "$this->nome_completo ({$this->id})";
     }
 
 }

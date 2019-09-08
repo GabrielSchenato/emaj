@@ -20,12 +20,24 @@ class AvaliacaoArquivo extends Model
 {
 
     /**
-     * The database table used by the model.
+     * O nome da tabela no banco de dados.
      *
      * @var string
      */
     protected $table = 'avaliacao_arquivos';
+
+    /**
+     * Armazena o nome das variáveis que seram enviadas na api.
+     * 
+     * @var array 
+     */
     protected $appends = ['nome_arquivo_extensao', 'tamanho_arquivo'];
+
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'nome',
         'arquivo',
@@ -56,9 +68,9 @@ class AvaliacaoArquivo extends Model
     /**
      * Format bytes to kb, mb, gb, tb
      *
-     * @param  integer $size
-     * @param  integer $precision
-     * @return integer
+     * @param  int $size
+     * @param  int $precision
+     * @return int
      */
     private function formatBytes($size, $precision = 2)
     {

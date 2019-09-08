@@ -33,10 +33,20 @@ class ProtocolosController extends CrudController
      * @var TipoDemandaRepository
      */
     private $tipoDemandaRepository;
+
+    /**
+     * @var ProtocoloRepository 
+     */
     protected $repository;
+
+    /**
+     * Armazena os relacionamentos.
+     * 
+     * @var array 
+     */
     protected $relationships = [
         'tipo_demanda:id,nome',
-        'parte_contraria:id,nome_completo'
+        'parte_contraria:id,nome_completo,representado_assistido,cpf,rg,renda'
     ];
 
     public function __construct(ProtocoloRepository $repository, TipoDemandaRepository $tipoDemandaRepository, ClienteRepository $clienteRepository)

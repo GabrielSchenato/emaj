@@ -136,10 +136,20 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
      */
     public function getDataAutocomplete($value)
     {
-        return $this->whereLike('nome_completo', $value)
-                        ->orderBy('nome_completo', 'asc')
-                        ->limit(10)
-                        ->get(['id', 'nome_completo']);
+        $this->applyCriteria();
+        $this->applyScope();
+
+        $model = $this->model->where(function ($query) use ($value) {
+                    $query->where('nome_completo', 'LIKE', "%{$value}%")
+                    ->orWhere('id', '=', (int) $value);
+                })
+                ->orderBy('nome_completo', 'asc')
+                ->limit(10)
+                ->get(['id', 'nome_completo']);
+
+        $this->resetModel();
+
+        return $model;
     }
 
     /**

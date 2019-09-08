@@ -29,7 +29,7 @@ class PreAtendimentoCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        $model = $model->where('pre_atendimento', '=', 1);
+        $model = $model->where('pre_atendimento', '=', true);
         return $model;
     }
 }

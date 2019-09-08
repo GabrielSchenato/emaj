@@ -20,11 +20,20 @@ use Emaj\Repositories\Cadastro\AvaliacaoRepository;
 class AvaliacoesController extends CrudController
 {
 
+    /**
+     * Armazena os relacionamentos.
+     * 
+     * @var array 
+     */
     protected $relationships = [
         'avaliador:id,nome_completo',
         'protocolo:id,cliente_id,parte_contraria_id,tipo_demanda_id,protocolo,numero_processo,created_at',
         'protocolo.cliente:id,nome_completo,representado_assistido,cpf,rg,renda',
         'avaliacao_arquivos:id,nome,mimetype,extensao,tamanho,avaliacao_id'];
+
+    /**
+     * @var AvaliacaoRepository 
+     */
     protected $repository;
 
     public function __construct(AvaliacaoRepository $repository)
@@ -32,6 +41,12 @@ class AvaliacoesController extends CrudController
         $this->repository = $repository;
     }
 
+    /**
+     * Método responsável por retornar as avaliações do aluno.
+     * 
+     * @param int $idAluno
+     * @return mixed
+     */
     public function avaliacoesAluno($idAluno)
     {
         return $this->repository->getAvaliacoesByAluno($idAluno, $this->relationships());

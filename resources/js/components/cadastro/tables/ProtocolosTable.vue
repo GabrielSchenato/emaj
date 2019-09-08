@@ -46,11 +46,11 @@
                                     <td v-bind:class="{ vermelho: !props.item.ativo }" @click="expandRow(props)">
                                         {{ props.item.numero_processo }}
                                     </td>
-                                    <td v-bind:class="{ vermelho: !props.item.ativo, azul: props.item.nome_parte_contraria != null && props.item.ativo }" @click="expandRow(props)">
-                                        {{ props.item.nome_parte_contraria }}
+                                    <td v-bind:class="{ vermelho: !props.item.ativo, azul: props.item.parte_contraria != null && props.item.ativo }" @click="expandRow(props)">
+                                        {{ props.item.parte_contraria != null ? props.item.parte_contraria.dados_cliente : '' }}
                                     </td>
                                     <td v-bind:class="{ vermelho: !props.item.ativo }" @click="expandRow(props)">
-                                        {{ props.item.nome_tipo_demanda }}
+                                        {{ props.item.tipo_demanda != null ? props.item.tipo_demanda.dados_tipo_demanda : '' }}
                                     </td>
                                     <td v-bind:class="{ vermelho: !props.item.ativo }" @click="expandRow(props)">
                                         {{ props.item.status }}
@@ -174,13 +174,13 @@
                         },
                         {
                             text: "Parte Contrária",
-                            value: "nome_parte_contraria",
+                            value: "parte_contraria_id",
                             filterable: true,
                             type: 'text'
                         },
                         {
                             text: "Tipo de Demanda",
-                            value: "nome_tipo_demanda",
+                            value: "tipo_demanda_id",
                             filterable: true,
                             type: 'text'
                         },
