@@ -1,12 +1,14 @@
 export default {
     methods: {
         gerarImpressao(data, url) {
+            window.getApp.$emit("APP_LOADER", {msg: 'O relatório está sendo gerado, aguarde.'});
             window.axios({
                 url: url,
                 method: "POST",
                 responseType: "blob",
                 data: data
             }).then(response => {
+                window.getApp.$emit("APP_LOADER", {});
                 const blob = new Blob([response.data], {
                     type: response.headers["content-type"]
                 });
@@ -26,8 +28,8 @@ export default {
                 link.click();
                 link.remove();
                 window.URL.revokeObjectURL(url);
-
             }).catch((error) => {
+                window.getApp.$emit("APP_LOADER", {});
                 try {
                     const reader = new FileReader();
                     reader.onload = e => {
@@ -39,7 +41,7 @@ export default {
                     window.getApp.$emit("APP_ERROR", {msg: `Ops! Ocorreu algum erro.`, timeout: 5000});
                 }
 
-            });
+            });            
         },
         getFileNameFromHttpResponse(contentDisposition) {
             var result = contentDisposition

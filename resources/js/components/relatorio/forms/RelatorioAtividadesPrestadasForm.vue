@@ -125,7 +125,7 @@
         methods: {
             gerar() {
                 this.$validator.validateAll().then(valid => {
-                    if (valid) {
+                    if (valid) {         
                         this.gerarImpressao(this.relAtividadesPrestadas, "/relatividadesprestadas");
                     }
                 });
