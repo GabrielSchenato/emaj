@@ -63,4 +63,7 @@ Route::prefix('v1')
 
             Route::post('relatividadesprestadas', 'Relatorio\RelAtividadesPrestadasController');
             Route::get('relatividadesprestadas/autocomplete', 'Relatorio\RelAtividadesPrestadasController@autocomplete');
+            
+            Route::post('relprofessoresalunos', 'Relatorio\RelProfessoresAlunosController');
+            Route::get('relprofessoresalunos/autocomplete', 'Relatorio\RelProfessoresAlunosController@autocomplete');
         });

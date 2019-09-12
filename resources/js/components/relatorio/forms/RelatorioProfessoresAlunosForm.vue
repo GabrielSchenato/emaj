@@ -1,11 +1,12 @@
 <template>
-    <v-form @submit.prevent="gerar()"> 
+    <v-form @submit.prevent="gerar()">
         <v-card>
             <v-toolbar card prominent extended color="blue-grey darken-2" dark extension-height="15px">
-                <v-toolbar-title class="headline">Relatório das Atividades Prestadas pelo Escritório Modelo</v-toolbar-title>
+                <v-toolbar-title class="headline">Relatório do Vínculo entre Professores e Alunos</v-toolbar-title>
                 <v-spacer></v-spacer>
             </v-toolbar>
             <v-card-text>
+
                 <fieldset>
                     <legend>Filtros</legend>
                     <v-layout row wrap>
@@ -16,8 +17,8 @@
                                 :data-vv-name="optionsDataInicial.name"
                                 v-validate="{required: optionsDataInicial.required }"
                                 v-bind:options="optionsDataInicial"
-                                v-model="relAtividadesPrestadas.data_inicial"
-                                @input="$emit('input', relAtividadesPrestadas)"
+                                v-model="relProfessoresAlunos.data_inicial"
+                                @input="$emit('input', relProfessoresAlunos)"
                                 >                                    
                             </data-field>
                         </v-flex>
@@ -28,37 +29,54 @@
                                 :data-vv-name="optionsDataFinal.name"
                                 v-validate="{required: optionsDataFinal.required }"
                                 v-bind:options="optionsDataFinal"
-                                v-model="relAtividadesPrestadas.data_final"
-                                @input="$emit('input', relAtividadesPrestadas)"
+                                v-model="relProfessoresAlunos.data_final"
+                                @input="$emit('input', relProfessoresAlunos)"
                                 >                                    
                             </data-field>
                         </v-flex>
 
                         <v-flex xs12 sm6 md8>   
                             <autocomplete-field
-                                ref="autocompleteTipoDemanda"
-                                v-bind:errorMessages="errors.collect(optionsTipoDemanda.name)"
-                                :data-vv-name="optionsTipoDemanda.name"
-                                v-validate="{required: optionsTipoDemanda.required }"
-                                v-bind:options="optionsTipoDemanda"
-                                v-model="relAtividadesPrestadas.tipo_demanda_id"
-                                @input="$emit('input', relAtividadesPrestadas)"
+                                ref="autocompleteProfessor"
+                                v-bind:errorMessages="errors.collect(optionsProfessor.name)"
+                                :data-vv-name="optionsProfessor.name"
+                                v-validate="{required: optionsProfessor.required }"
+                                v-bind:options="optionsProfessor"
+                                v-model="relProfessoresAlunos.professor_id"
+                                @input="$emit('input', relProfessoresAlunos)"
+                                ></autocomplete-field>
+                        </v-flex>
+
+                        <v-flex xs12 sm6 md8>   
+                            <autocomplete-field
+                                ref="autocompleteAluno"
+                                v-bind:errorMessages="errors.collect(optionsAluno.name)"
+                                :data-vv-name="optionsAluno.name"
+                                v-validate="{required: optionsAluno.required }"
+                                v-bind:options="optionsAluno"
+                                v-model="relProfessoresAlunos.aluno_id"
+                                @input="$emit('input', relProfessoresAlunos)"
                                 ></autocomplete-field>
                         </v-flex>  
+
+                        <select-ativo-field 
+                            v-model="relProfessoresAlunos.ativo">                        
+                        </select-ativo-field>
 
                     </v-layout>            
                 </fieldset>
 
                 <relatorio-configuracoes-form 
-                    v-model="relAtividadesPrestadas" 
-                    v-bind:tipoRelatorio="true">                        
+                    v-model="relProfessoresAlunos" 
+                    v-bind:tipoRelatorio="false">                        
                 </relatorio-configuracoes-form>
+
 
             </v-card-text>
             <v-divider light></v-divider>
             <v-card-actions class="pt-3"> 
 
-                <v-btn color="blue-grey darken-4" large round type="submit" class="font-white">Gerar
+                <v-btn color="blue-grey darken-4" large round @click.native="gerar" class="font-white">Gerar
                     <v-icon right>cloud_download</v-icon>
                 </v-btn>
 
@@ -72,7 +90,7 @@
 </template>
 <script>
     export default {
-        name: "relatorio-atividades-prestadas-form",
+        name: "relatorio-professores-alunos-form",
         props: {
             value: {
                 type: [Object]
@@ -80,7 +98,7 @@
         },
         data() {
             return {
-                relAtividadesPrestadas: Object.assign({}, this.value)
+                relProfessoresAlunos: Object.assign({}, this.value)
             };
         },
         computed: {
@@ -88,24 +106,36 @@
                 return {
                     name: 'Data Inicial',
                     required: true,
-                    max: this.relAtividadesPrestadas.data_final
+                    max: this.relProfessoresAlunos.data_final
                 };
             },
             optionsDataFinal() {
                 return {
                     name: 'Data Final',
                     required: true,
-                    min: this.relAtividadesPrestadas.data_inicial
+                    min: this.relProfessoresAlunos.data_inicial
 
                 };
             },
-            optionsTipoDemanda() {
+            optionsProfessor() {
                 return {
-                    field: 'tipo_demanda_id',
+                    field: 'professor_id',
                     required: false,
-                    itemText: 'dados_tipo_demanda',
-                    name: 'Tipo de Demanda',
-                    url: 'relatividadesprestadas/autocomplete',
+                    itemText: 'dados_usuario',
+                    name: 'Professor',
+                    url: 'relprofessoresalunos/autocomplete',
+                    returnObject: true,
+                    multiple: true,
+                    cacheItems: true
+                };
+            },
+            optionsAluno() {
+                return {
+                    field: 'aluno_id',
+                    required: false,
+                    itemText: 'dados_aluno',
+                    name: 'Aluno',
+                    url: 'relprofessoresalunos/autocomplete',
                     returnObject: true,
                     multiple: true,
                     cacheItems: true
@@ -115,7 +145,7 @@
         watch: {
             value: {
                 handler() {
-                    this.relAtividadesPrestadas = Object.assign({}, this.value);
+                    this.relProfessoresAlunos = Object.assign({}, this.value);
                 },
                 deep: true
             }
@@ -124,7 +154,7 @@
             gerar() {
                 this.$validator.validateAll().then(valid => {
                     if (valid) {
-                        this.gerarImpressao(this.relAtividadesPrestadas, "/relatividadesprestadas");
+                        this.gerarImpressao(this.relProfessoresAlunos, "/relprofessoresalunos");
                     }
                 });
             }

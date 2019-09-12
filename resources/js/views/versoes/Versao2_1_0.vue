@@ -71,6 +71,11 @@
                     {
                         icon: 'fiber_manual_record',
                         color: 'black',
+                        text: 'Evolução (Relatório): Criado novo relatório "Professores e Alunos", onde o mesmo traz a quantidade e o vínculo de professores e alunos'
+                    },
+                    {
+                        icon: 'fiber_manual_record',
+                        color: 'black',
                         text: 'Evolução (Cadastro): Aplicado melhoria nos campos de busca para realizar buscar por ID (Código)'
                     }
                 ];

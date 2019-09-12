@@ -141,6 +141,15 @@ export default [
     )
   },
   {
+    path: '/relatorio/relprofessoresalunos',
+    meta: { breadcrumb: true, auth: true },
+    name: 'relatorio/relprofessoresalunos',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/relatorio/RelatorioProfessoresAlunos.vue`
+    )
+  },
+  {
     path: '/alteracoes',
     meta: { breadcrumb: true, auth: true },
     name: 'Alterações',

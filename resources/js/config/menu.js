@@ -31,7 +31,8 @@ const Menu = [
         component: 'relatorio',
         icon: 'description',
         itens: [
-            {name: 'relatividadesprestadas', title: 'Atividades Prestadas', component: 'relatorio/relatividadesprestadas', role: ['admin', 'secretaria']}
+            {name: 'relatividadesprestadas', title: 'Atividades Prestadas', component: 'relatorio/relatividadesprestadas', role: ['admin', 'secretaria']},
+            {name: 'relprofessoresalunos', title: 'Professores Alunos', component: 'relatorio/relprofessoresalunos', role: ['admin', 'secretaria']}
         ]
     },
     /*{header: 'Movimentação do Sistema'},
