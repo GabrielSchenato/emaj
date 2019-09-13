@@ -327,7 +327,7 @@ WHERE
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[DATA: ___/___/_____]]></text>
+					<text><![CDATA[DATA: ______/______/____________]]></text>
 				</staticText>
 				<textField isBlankWhenNull="false">
 					<reportElement x="1" y="56" width="523" height="64" uuid="84d95b22-7b5a-4eb5-9a42-21e7e7c6dc5b"/>
