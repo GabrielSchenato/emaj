@@ -383,7 +383,7 @@ const getVersoes = (limite) => {
  * @returns {Array}
  */
 const getVersoesOrdenado = () => {
-    return Versoes.sort((a, b) => a.id > b.id ? -1 : 1);
+    return [...Versoes].sort((a, b) => a.id > b.id ? -1 : 1);
 };
 
 /**
