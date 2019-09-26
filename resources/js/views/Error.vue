@@ -7,9 +7,9 @@
           </div>
           <div class="text-md-center">
             <h1>500</h1>
-            <h2 class="my-3 headline ">Sorry, the server is down.</h2>
+            <h2 class="my-3 headline ">Desculpe, o servidor está inoperante.</h2>
             <div>
-              <v-btn color="primary" @click="goHome">Go Home</v-btn>
+              <v-btn color="primary" @click="goHome">Voltar</v-btn>
             </div>  
           </div>
         </v-layout>
