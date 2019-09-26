@@ -68,15 +68,6 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md1>
-                <v-text-field
-                    name="fase"
-                    v-model="aluno.fase"
-                    label="Fase"
-                    @input="$emit('input', aluno)"
-                    ></v-text-field>
-            </v-flex>
-
             <v-flex xs12 sm6 md2>
                 <v-text-field
                     name="matricula"
@@ -90,13 +81,19 @@
                 <v-select
                     name="disciplina"
                     :items="disciplinas"
-                    label="Disciplina"
                     v-model="aluno.disciplina"
+                    v-validate="'required'"
+                    :error-messages="errors.collect('Disciplina')"
+                    data-vv-name="Disciplina"
                     @input="$emit('input', aluno)"
                     item-value="id"
                     item-text="nome"
                     clearable
-                    ></v-select>
+                    >
+                    <template v-slot:label>
+                        Disciplina<span class="required">*</span>
+                    </template>
+                </v-select>
             </v-flex>
 
             <v-flex xs12 sm6 md1>

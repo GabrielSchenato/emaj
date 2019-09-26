@@ -33,7 +33,6 @@ class Aluno extends Model
      */
     protected $fillable = [
         'nome_completo',
-        'fase',
         'matricula',
         'disciplina',
         'ano',

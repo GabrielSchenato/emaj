@@ -351,6 +351,9 @@ const Versoes = [
             },
             {
                 descricao: 'Adaptação (Cadastro): Aplicado melhoria no cadastro de "Aluno", onde agora possui uma nova aba "Períodos" onde é possível vincular o dia em que o aluno faz o estágio'
+            },
+            {
+                descricao: 'Adaptação (Cadastro): Aplicado melhoria no cadastro de "Aluno", removido o campo "Fase" e tornado o campo "Disciplina" obrigatório'
             }
         ],
         alteracoesInstitucional: [
