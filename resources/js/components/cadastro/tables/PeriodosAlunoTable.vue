@@ -1,14 +1,19 @@
 <template>
     <div id="pageTable">
         <v-container grid-list-xl fluid>
-            <v-layout row wrap>
+            <v-layout row wrap>                
                 <v-flex lg12>
                     <v-card>
                         <v-toolbar card color="white">
-                            <v-btn color="primary" dark @click="adicionar">Adicionar
+                            <v-btn color="primary" @click="adicionar">Adicionar
                                 <v-icon right dark>add</v-icon>
                             </v-btn>
-                            <aluno-dialog ref="alunoDialog"></aluno-dialog>
+                            <periodo-aluno-dialog
+                                ref="periodoAlunoDialog"
+                                v-bind:idAluno="idAluno"
+                                v-bind:nomeAluno="nomeAluno"
+                                >
+                            </periodo-aluno-dialog>
                             <confirm ref="confirm"></confirm>
                             <v-divider class="mx-2" inset vertical></v-divider>
                             <filter-form
@@ -22,39 +27,36 @@
                         <v-card-text class="pa-0">
                             <v-data-table
                                 :headers="complex.headers"
-                                :items="alunos"
+                                :items="periodosAluno"
                                 :pagination.sync="pagination" 
-                                :total-items="totalAlunos"
+                                :total-items="totalPeriodosAluno"
                                 :rows-per-page-items="[10,25,50,100]"
                                 class="elevation-1"
                                 item-key="id"
-                                select-all
-                                v-model="complex.selected"
                                 rows-per-page-text="Linhas por página"
                                 no-results-text="Nenhum registro correspondente encontrado"
                                 no-data-text="Não há registros para serem exibidos."
                                 :loading="loading"
                                 >
-                                <template slot="items" slot-scope="props">
+                                <template slot="items" slot-scope="props">                                       
                                     <td>
-                                    <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
+                                        {{ props.item.dados_dia_periodo_aluno }}
                                     </td>
-                                    <td>{{ props.item.id }}</td>
-                                    <td>{{ props.item.nome_completo }}</td>
-                                    <td>{{ props.item.email }}</td>
-                                    <td>{{ props.item.celular }}</td>
-                                    <td>{{ props.item.matricula }}</td>
-                                    <td>{{ props.item.ativo | formataAtivo }}</td>
                                     <td>
-                                    <v-btn depressed outline icon fab dark color="primary" small>
-                                        <v-icon @click="editar(props.item.id)">edit</v-icon>
-                                    </v-btn>
-                                    <v-btn depressed outline icon fab dark color="pink" small>
-                                        <v-icon @click="deletar(props.item)">delete</v-icon>
-                                    </v-btn>
+                                        {{ props.item.created_at | formataDataHora }}
+                                    </td>
+                                    <td>   
+                                    <v-tooltip bottom>
+                                        <template v-slot:activator="{ on }">
+                                            <v-btn depressed outline icon fab dark color="pink" small v-on="on">
+                                                <v-icon @click="deletar(props.item)">delete</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>Deletar</span>
+                                    </v-tooltip>
+
                                     </td>
                                 </template>
-
                                 <template
                                     slot="pageText"
                                     slot-scope="props"
@@ -70,62 +72,45 @@
 
 <script>
     import Confirm from "@/components/dialogs/Confirm.vue";
-    import AlunoDialog from "@/components/cadastro/dialogs/AlunoDialog.vue";
+    import PeriodoAlunoDialog from "@/components/cadastro/dialogs/PeriodoAlunoDialog.vue";
 
     export default {
         components: {
             Confirm,
-            AlunoDialog
+            PeriodoAlunoDialog
         },
-
+        props: {
+            idAluno: {
+                accept: Number,
+                required: true
+            },
+            nomeAluno: {
+                accept: String,
+                required: true
+            }
+        },
         data: () => ({
                 dialog: false,
                 search: {},
-                loading: true,
-                pagination: {descending: true},
-                alunos: [],
-                totalAlunos: 0,
+                loading: false,
+                pagination: {descending: false, sortBy: 'dia_periodo_id'},
+                periodosAluno: [],
+                totalPeriodosAluno: 0,
                 complex: {
                     selected: [],
                     headers: [
                         {
-                            text: "ID",
-                            value: "id",
-                            filterable: true,
-                            type: 'number'
-                        },
-                        {
-                            text: "Nome Completo",
-                            value: "nome_completo",
+                            text: "Período",
+                            value: "dia_periodo_id",
                             filterable: true,
                             type: 'text',
                             initial: true
                         },
                         {
-                            text: "E-mail",
-                            value: "email",
+                            text: "Criado em",
+                            value: "created_at",
                             filterable: true,
-                            type: 'text'
-                        },
-                        {
-                            text: "Celular",
-                            value: "celular",
-                            filterable: true,
-                            type: 'text',
-                            mask: '(##) #####-####'
-                        },
-                        {
-                            text: "Matricula",
-                            value: "matricula",
-                            filterable: true,
-                            type: 'text'
-                        },
-                        {
-                            text: "Ativo?",
-                            value: "ativo",
-                            filterable: true,
-                            type: 'combo',
-                            options: [{text: 'Sim', value: 1}, {text: 'Não', value: 0}]
+                            type: 'datetime'
                         },
                         {
                             text: "Ação",
@@ -145,10 +130,14 @@
         },
         methods: {
             adicionar() {
-                this.$refs.alunoDialog
+
+                this.$refs.periodoAlunoDialog
                         .open(
-                                'Adicionar um novo Aluno',
-                                {ativo: true},
+                                'Adicionar um novo Período para o Aluno',
+                                {
+                                    nome_aluno: this.nomeAluno,
+                                    aluno_id: this.idAluno
+                                },
                                 {
                                     color: "blue"
                                 }
@@ -156,35 +145,18 @@
                     if (confirm)
                         this.getData();
                 });
-            },
 
-            editar(id) {
-                this.$refs.alunoDialog.aluno = {};
-                this.$store.dispatch("getAluno", id).then(() => {
-                    this.$refs.alunoDialog
-                            .open(
-                                    'Editar um Aluno',
-                                    this.$store.state.aluno.alunoView,
-                                    {
-                                        color: "blue"
-                                    }
-                            ).then(confirm => {
-                        if (confirm)
-                            this.getData();
-                    });
-                });
             },
-
             deletar(item) {
                 this.$refs.confirm
-                        .open("Deletar " + item.nome_completo, "Você tem certeza que deseja deletar esse Aluno?", {
+                        .open("Deletar", "Você tem certeza que deseja deletar esse período do Aluno?", {
                             color: "red"
                         })
                         .then(confirm => {
                             if (confirm) {
-                                this.$store.dispatch("removeAluno", item).then(() => {
-                                    window.getApp.$emit("APP_SUCCESS", {msg: 'Deletado com sucesso!', timeout: 2000});
+                                this.$store.dispatch("removePeriodoAluno", item).then(() => {
                                     this.getData();
+                                    window.getApp.$emit("APP_SUCCESS", {msg: 'Deletado com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                                     let msgErro = '';
                                     if (resp.response.data.errors)
@@ -196,9 +168,9 @@
             },
             getData() {
                 this.loading = true;
-                this.$store.dispatch("getAlunos", this.paginationTable(this.params)).then(() => {
-                    this.alunos = this.$store.state.aluno.alunoList.data;
-                    this.totalAlunos = this.$store.state.aluno.alunoList.total;
+                window.axios.get(`diaperiodoalunos${this.paginationTable(this.params)}&aluno_id=${this.idAluno}`).then(response => {
+                    this.periodosAluno = response.data.data;
+                    this.totalPeriodosAluno = response.data.total;
                     this.loading = false;
                 }).catch((resp) => {
                     this.loading = false;

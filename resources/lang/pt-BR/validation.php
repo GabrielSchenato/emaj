@@ -142,6 +142,7 @@ return [
         'aluno_id' => 'aluno',
         'ficha_triagem_id' => 'Ficha de Triagem',
         'avaliador_id' => 'avaliador',
-        'observacoes' => 'observações'
+        'observacoes' => 'observações',
+        'dia_periodo_id' => 'Período',
     ],
 ];

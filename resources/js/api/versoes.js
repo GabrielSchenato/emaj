@@ -348,6 +348,9 @@ const Versoes = [
             },
             {
                 descricao: 'Adaptação (Padrão): Aplicado melhoria na exibição das alterações na plataforma'
+            },
+            {
+                descricao: 'Adaptação (Cadastro): Aplicado melhoria no cadastro de "Aluno", onde agora possui uma nova aba "Períodos" onde é possível vincular o dia em que o aluno faz o estágio'
             }
         ],
         alteracoesInstitucional: [

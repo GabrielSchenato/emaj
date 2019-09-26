@@ -29,29 +29,46 @@
                                         <v-flex xs12>
                                             <v-stepper v-model="step">
                                                 <v-stepper-header>
+
                                                     <v-stepper-step 
                                                         step="1"
                                                         :complete="step > 1" 
                                                         editable
                                                         >Dados do Aluno
                                                     </v-stepper-step>
+
                                                     <v-divider></v-divider>
+
                                                     <v-stepper-step
                                                         step="2"
+                                                        :complete="aluno.id != null && aluno.ativo == true"
+                                                        :editable="aluno.id != null && aluno.ativo == true"
+                                                        edit-icon="fa fa-calendar"
+                                                        >Períodos
+                                                    </v-stepper-step>
+
+                                                    <v-divider></v-divider>
+
+                                                    <v-stepper-step
+                                                        step="3"
                                                         :complete="aluno.id != null && aluno.protocolo_alunos_professores.length > 0"
                                                         :editable="aluno.id != null && aluno.protocolo_alunos_professores.length > 0"
                                                         edit-icon="fa fa-users"
                                                         >Clientes
-                                                </v-stepper-step>
-                                                <v-divider></v-divider>
-                                                <v-stepper-step
-                                                    step="3"
-                                                    :complete="aluno.id != null"
-                                                    :editable="aluno.id != null"
-                                                    edit-icon="playlist_add_check"
-                                                    >Observações
-                                            </v-stepper-step>
-                                            <v-divider></v-divider>
+                                                    </v-stepper-step>
+
+                                                    <v-divider></v-divider>
+
+                                                    <v-stepper-step
+                                                        step="4"
+                                                        :complete="aluno.id != null"
+                                                        :editable="aluno.id != null"
+                                                        edit-icon="playlist_add_check"
+                                                        >Observações
+                                                    </v-stepper-step>
+
+                                                    <v-divider></v-divider>
+
                                         </v-stepper-header>
                                         <v-stepper-items>
                                             <v-stepper-content step="1">
@@ -77,11 +94,17 @@
                                                     </v-card-text>
                                                 </v-card>
                                             </v-stepper-content>
-                                            <v-stepper-content step="2">
+                                            <v-stepper-content step="2" v-if="aluno.id">
+                                                <periodos-aluno-table 
+                                                    v-bind:idAluno="aluno.id"
+                                                    v-bind:nomeAluno="aluno.nome_completo"
+                                                    ></periodos-aluno-table>
+                                            </v-stepper-content>
+                                            <v-stepper-content step="3">
                                                 <clientes-table v-model="aluno.protocolo_alunos_professores"></clientes-table>
                                                 <small><b class="vermelho">Vermelho: </b>Indica os protocolos em que o aluno não está mais ativo</small>
                                             </v-stepper-content>
-                                            <v-stepper-content step="3">
+                                            <v-stepper-content step="4">
                                                 <avaliacoes-table 
                                                     v-model="aluno.avaliacoes" 
                                                     v-bind:idAluno="aluno.id"
@@ -129,6 +152,7 @@
 
 <script>
     import AlunoForm from "@/components/cadastro/forms/AlunoForm.vue";
+    import PeriodosAlunoTable from "@/components/cadastro/tables/PeriodosAlunoTable.vue";
     import ClientesTable from "@/components/cadastro/tables/ClientesTable.vue";
     import AvaliacoesTable from "@/components/cadastro/tables/AvaliacoesTable.vue";
 
@@ -136,7 +160,8 @@
         components: {
             AlunoForm,
             ClientesTable,
-            AvaliacoesTable
+            AvaliacoesTable,
+            PeriodosAlunoTable
         },
         data: () => ({
                 aluno: {},

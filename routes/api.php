@@ -40,6 +40,8 @@ Route::prefix('v1')
             Route::post('protocolos/imprimir-ficha-triagem', 'Cadastro\ProtocolosController@imprimirFichaTriagem');
 
             Route::get('protocoloalunosprofessores/autocomplete', 'Cadastro\ProtocoloAlunosProfessoresController@autocomplete');
+            
+            Route::get('diaperiodoalunos/autocomplete', 'Cadastro\DiaPeriodoAlunosController@autocomplete');
 
             Route::get('clientes/is-parte-contraria/{id}', 'Cadastro\ClientesController@isParteContraria');
 
@@ -52,6 +54,7 @@ Route::prefix('v1')
                 'avaliacaoarquivos' => 'Cadastro\AvaliacaoArquivosController',
                 'protocolos' => 'Cadastro\ProtocolosController',
                 'protocoloalunosprofessores' => 'Cadastro\ProtocoloAlunosProfessoresController',
+                'diaperiodoalunos' => 'Cadastro\DiaPeriodoAlunosController',
                 'fichatriagens' => 'Movimento\FichaTriagensController'
             ]);
             Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');

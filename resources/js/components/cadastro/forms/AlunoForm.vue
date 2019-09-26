@@ -4,7 +4,10 @@
             :value="!aluno.ativo"
             type="info"
             >
-            Inativando o aluno você estará também inativando o vinculo do mesmo aos protocolos.
+            <ul>
+                <li>Inativando o aluno você estará também inativando o vinculo do mesmo aos protocolos.</li>
+                <li>O vínculo do aluno com os períodos será deletado.</li>
+            </ul>  
         </v-alert> 
         <v-layout wrap>
             <v-flex xs12 sm6 md2>

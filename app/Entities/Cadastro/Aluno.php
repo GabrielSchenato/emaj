@@ -61,6 +61,14 @@ class Aluno extends Model
     {
         return $this->hasMany(Avaliacao::class, 'aluno_id')->orderBy('created_at', 'desc');
     }
+    
+    /**
+     * Os períodos que pertencem ao aluno.
+     */
+    public function dia_periodos()
+    {
+        return $this->belongsToMany(DiaPeriodo::class, 'dia_periodo_alunos');
+    }
 
     /**
      * Método responsável por retornar os dados do aluno.

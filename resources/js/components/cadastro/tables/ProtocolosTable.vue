@@ -82,7 +82,7 @@
 
                                     <v-tooltip bottom>
                                         <template v-slot:activator="{ on }">
-                                            <v-btn depressed outline icon fab dark color="pink" small v-on="on"F>
+                                            <v-btn depressed outline icon fab dark color="pink" small v-on="on">
                                                 <v-icon @click="deletar(props.item)">delete</v-icon>
                                             </v-btn>
                                         </template>

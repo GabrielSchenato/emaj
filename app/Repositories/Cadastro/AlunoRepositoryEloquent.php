@@ -27,14 +27,20 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
 {
 
     /**
+     * @var DiaPeriodoAlunoRepository
+     */
+    private $diaPeriodoAlunoRepository;
+
+    /**
      * @var ProtocoloAlunoProfessorRepository
      */
     private $protocoloAlunoProfessorRepository;
 
-    public function __construct(Container $app, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository)
+    public function __construct(Container $app, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository, DiaPeriodoAlunoRepository $diaPeriodoAlunoRepository)
     {
         parent::__construct($app);
         $this->protocoloAlunoProfessorRepository = $protocoloAlunoProfessorRepository;
+        $this->diaPeriodoAlunoRepository = $diaPeriodoAlunoRepository;
     }
 
     /**
@@ -69,7 +75,12 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
     public function update(array $attributes, $id)
     {
         try {
-            $this->inativaProtocoloAlunosProfessores($attributes, $id);
+            $ativo = isset($attributes['ativo']) ? $attributes['ativo'] : null;
+            if (!$ativo) {
+                $this->inativaProtocoloAlunosProfessores($attributes, $id);
+                $this->deleteDiaPeriodosAluno($id);
+            }
+
             $aluno = parent::update($attributes, $id);
             DB::commit();
             return $aluno;
@@ -154,23 +165,32 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
 
     /**
      * Método responsável por inativar os protocolos alunos professores quando o protocolo
-     * está sendo inativado
+     * está sendo inativado.
      *
-     * @param array $attributes
-     * @param       $id
+     * @param int $id
      *
      * @return void
      */
-    private function inativaProtocoloAlunosProfessores(array $attributes, $id)
+    private function inativaProtocoloAlunosProfessores($id)
     {
-        $ativo = isset($attributes['ativo']) ? $attributes['ativo'] : null;
+        $protocoloAlunosProfessores = $this->protocoloAlunoProfessorRepository->findByField('aluno_id', (int) $id);
+        foreach ($protocoloAlunosProfessores as $protocoloAlunoProfessor) {
+            $protocoloAlunoProfessor->ativo = false;
+            $this->protocoloAlunoProfessorRepository->update($protocoloAlunoProfessor->toArray(), $protocoloAlunoProfessor->id);
+        }
+    }
 
-        if (!$ativo) {
-            $protocoloAlunosProfessores = $this->protocoloAlunoProfessorRepository->findByField('aluno_id', (int) $id);
-            foreach ($protocoloAlunosProfessores as $protocoloAlunoProfessor) {
-                $protocoloAlunoProfessor->ativo = false;
-                $this->protocoloAlunoProfessorRepository->update($protocoloAlunoProfessor->toArray(), $protocoloAlunoProfessor->id);
-            }
+    /**
+     * Método responsável por deletar o vínculo dos períodos com o aluno quando o mesmo está
+     * sendo inativado.
+     * 
+     * @param int $id
+     */
+    private function deleteDiaPeriodosAluno($id)
+    {
+        $diaPeriodosAluno = $this->diaPeriodoAlunoRepository->findByField('aluno_id', $id);
+        foreach ($diaPeriodosAluno as $diaPeriodoAluno) {
+            $diaPeriodoAluno->delete();
         }
     }
 

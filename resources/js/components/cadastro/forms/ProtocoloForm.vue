@@ -161,7 +161,6 @@
                     'isValidProtocolo', {
                         getMessage: field => `O campo ${field} deve seguir o padrão #####/##`,
                         validate: (value) => {
-                            // value must be > zero
                             if (/^(\d{0,8}\/\d{2})$/g.test(value))
                                 return true;
                             return false;
