@@ -72,4 +72,7 @@ Route::prefix('v1')
             
             Route::post('reldiasperiodosalunos', 'Relatorio\RelDiasPeriodosAlunosController');
             Route::get('reldiasperiodosalunos/autocomplete', 'Relatorio\RelDiasPeriodosAlunosController@autocomplete');
+            
+            Route::post('relclientesprotocolos', 'Relatorio\RelClientesProtocolosController');
+            Route::get('relclientesprotocolos/autocomplete', 'Relatorio\RelClientesProtocolosController@autocomplete');
         });

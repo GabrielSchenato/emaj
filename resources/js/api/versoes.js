@@ -356,7 +356,10 @@ const Versoes = [
                 descricao: 'Adaptação (Cadastro): Aplicado melhoria no cadastro de "Aluno", removido o campo "Fase", "Ano", "Semestre" e "Turno". O campo "Disciplina" agora é obrigatório'
             },
             {
-                descricao: 'Adaptação (Relatório): Criado novo relatório "Dias e Períodos dos Alunos", onde o mesmo traz o período e a disciplina que o aluno estagia'
+                descricao: 'Evolução (Relatório): Criado novo relatório "Dias e Períodos dos Alunos", onde o mesmo traz o período e a disciplina que o aluno estagia'
+            },
+            {
+                descricao: 'Evolução (Relatório): Criado novo relatório "Clientes e Protocolos", onde o mesmo traz os protocolos ativos e inativos que um cliente possui'
             }
         ],
         alteracoesInstitucional: [

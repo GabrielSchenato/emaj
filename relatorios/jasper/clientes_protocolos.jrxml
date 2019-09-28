@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vinculo_professores_alunos" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="786" leftMargin="28" rightMargin="28" topMargin="28" bottomMargin="28" isSummaryWithPageHeaderAndFooter="true" uuid="106b4965-f7f0-4e1a-8dee-8eff9d5783cc">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="clientes_protocolos" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="786" leftMargin="28" rightMargin="28" topMargin="28" bottomMargin="28" isSummaryWithPageHeaderAndFooter="true" uuid="106b4965-f7f0-4e1a-8dee-8eff9d5783cc">
 	<property name="ireport.zoom" value="1.4641000000000006"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -8,91 +8,108 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="data_final" class="java.util.Date"/>
 	<parameter name="data_inicial" class="java.util.Date"/>
-	<parameter name="text_professor_id" class="java.lang.String"/>
 	<parameter name="caminho" class="java.lang.String"/>
-	<parameter name="professor_id" class="java.lang.String"/>
 	<parameter name="versao_sistema" class="java.lang.String"/>
 	<parameter name="usuario" class="java.lang.String"/>
 	<parameter name="titulo" class="java.lang.String"/>
-	<parameter name="text_aluno_id" class="java.lang.String"/>
-	<parameter name="aluno_id" class="java.lang.String"/>
+	<parameter name="text_cliente_id" class="java.lang.String"/>
+	<parameter name="cliente_id" class="java.lang.String"/>
 	<parameter name="ativo" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[SELECT
-	CONCAT(u.nome_completo,
-	' (',
-	u.id,
-	') ') AS professor,
-	COALESCE(pro.protocolo,
-	'Não informado') AS protocolo,
 	CONCAT(cli.nome_completo,
 	' (',
 	cli.id,
-	') ',
-	COALESCE(CONCAT('| ',
-	cli.representado_assistido),
-	'')) AS cliente,
+	') ') AS cliente,
+	representado_assistido,
+	pro.protocolo,
+	pro.numero_processo,
 	CONCAT(al.nome_completo,
 	' (',
 	al.id,
 	') ') AS aluno,
-	date_format(pap.data_vinculo,
-	'%d/%m/%Y') AS data_vinculo,
-	pap.ativo
+	CONCAT(usu.nome_completo,
+	' (',
+	usu.id,
+	') ') AS professor,
+	CONCAT(td.nome,
+	' (',
+	td.id,
+	') ') AS tipo_demanda,
+	pro.created_at,
+	pro.ativo
 FROM
-	protocolo_alunos_professores pap
-INNER JOIN usuarios u ON
-	u.id = pap.professor_id
-INNER JOIN alunos al ON
-	al.id = pap.aluno_id
+	clientes cli
 INNER JOIN protocolos pro ON
-	pro.id = pap.protocolo_id
-INNER JOIN clientes cli ON
-	cli.id = pro.cliente_id
+	pro.cliente_id = cli.id
+LEFT JOIN protocolo_alunos_professores pap ON
+	pap.protocolo_id = pro.id
+LEFT JOIN alunos al ON
+	al.id = pap.aluno_id
+LEFT JOIN usuarios usu ON
+	usu.id = pap.professor_id
+LEFT JOIN tipo_demandas td ON
+	td.id = pro.tipo_demanda_id
 WHERE
-	pap.data_vinculo >= $P{data_inicial}
-	AND pap.data_vinculo <= $P{data_final}
-	AND
 	CASE
-		WHEN $P{ativo} = 1 THEN pap.ativo
-		WHEN $P{ativo} = 2 THEN pap.ativo = FALSE
+		WHEN $P{data_inicial} IS NOT NULL THEN pro.created_at >= $P{data_inicial}
 		ELSE TRUE
 	END
 	AND
 	CASE
-		WHEN $P{professor_id} IS NOT NULL THEN u.id IN ($P!{professor_id})
+		WHEN $P{data_final} IS NOT NULL THEN pro.created_at <= $P{data_final}
 		ELSE TRUE
 	END
 	AND
 	CASE
-		WHEN $P{aluno_id} IS NOT NULL THEN al.id IN ($P!{aluno_id})
+		WHEN $P{ativo} = 1 THEN pro.ativo
+		WHEN $P{ativo} = 2 THEN pro.ativo = FALSE
+		ELSE TRUE
+	END
+	AND
+	CASE
+		WHEN $P{cliente_id} IS NOT NULL THEN cli.id IN ($P!{cliente_id})
 		ELSE TRUE
 	END
 ORDER BY
-	professor,
-	aluno]]>
+	cli.nome_completo]]>
 	</queryString>
-	<field name="professor" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="professor"/>
-	</field>
-	<field name="protocolo" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="protocolo"/>
-	</field>
 	<field name="cliente" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="cliente"/>
 	</field>
+	<field name="representado_assistido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="representado_assistido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clientes"/>
+	</field>
+	<field name="protocolo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="protocolo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="protocolos"/>
+	</field>
+	<field name="numero_processo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="numero_processo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="protocolos"/>
+	</field>
 	<field name="aluno" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="aluno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="alunos"/>
 	</field>
-	<field name="data_vinculo" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="data_vinculo"/>
+	<field name="professor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="professor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="usuarios"/>
+	</field>
+	<field name="tipo_demanda" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="tipo_demanda"/>
+	</field>
+	<field name="created_at" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="created_at"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="protocolos"/>
 	</field>
 	<field name="ativo" class="java.lang.Boolean">
 		<property name="com.jaspersoft.studio.field.label" value="ativo"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="protocolo_alunos_professores"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="protocolos"/>
 	</field>
 	<variable name="qtde_1" class="java.lang.Long" resetType="Group" resetGroup="grupo" calculation="Count">
-		<variableExpression><![CDATA[$F{aluno}]]></variableExpression>
+		<variableExpression><![CDATA[$F{created_at}]]></variableExpression>
 	</variable>
 	<group name="filtros">
 		<groupHeader>
@@ -105,8 +122,7 @@ ORDER BY
 					<textFieldExpression><![CDATA["<b>Filtros: </b>" +
 ($P{data_inicial} != null ? "<b>Data Inicial:</b> " + DATEFORMAT($P{data_inicial},"dd/MM/yyyy") + "  " : "") +
 ($P{data_final} != null ? "<b>Data Final: </b>" + DATEFORMAT($P{data_final},"dd/MM/yyyy") + "  " : "") +
-(($P{professor_id} != null && $P{text_professor_id} !=null) ? "<b>Professor(a): </b>" + $P{text_professor_id} + "  ": "") +
-(($P{aluno_id} != null && $P{text_aluno_id} !=null) ? "<b>Aluno(a): </b>" + $P{text_aluno_id} + "  ": "")+
+(($P{cliente_id} != null && $P{text_cliente_id} !=null) ? "<b>Cliente: </b>" + $P{text_cliente_id} + "  ": "") +
 "<b>Ativo?: </b> " +
 ($P{ativo} == 1 ? "Sim " : ($P{ativo} == 2 ? "Não" : "Ambos"))]]></textFieldExpression>
 				</textField>
@@ -114,7 +130,8 @@ ORDER BY
 		</groupHeader>
 	</group>
 	<group name="grupo" isReprintHeaderOnEachPage="true">
-		<groupExpression><![CDATA[$F{professor}]]></groupExpression>
+		<groupExpression><![CDATA["Cliente: " + $F{cliente} + 
+($F{representado_assistido} != null ? " Representado/Assistido: "  + $F{representado_assistido} : "" )]]></groupExpression>
 		<groupHeader>
 			<band/>
 		</groupHeader>
@@ -122,7 +139,7 @@ ORDER BY
 			<band height="38">
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				<textField>
-					<reportElement x="728" y="2" width="58" height="17" uuid="d0061d9a-6e89-450f-9d87-e2bb6d993d7b"/>
+					<reportElement x="728" y="10" width="58" height="17" uuid="d0061d9a-6e89-450f-9d87-e2bb6d993d7b"/>
 					<box>
 						<topPen lineWidth="1.0"/>
 						<leftPen lineWidth="1.0"/>
@@ -135,7 +152,7 @@ ORDER BY
 					<textFieldExpression><![CDATA[$V{qtde_1}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="656" y="2" width="72" height="17" uuid="af829342-9df8-4370-99c2-9dccbc023ab1"/>
+					<reportElement x="656" y="10" width="72" height="17" uuid="af829342-9df8-4370-99c2-9dccbc023ab1"/>
 					<box>
 						<topPen lineWidth="1.0"/>
 						<leftPen lineWidth="1.0"/>
@@ -150,12 +167,13 @@ ORDER BY
 			</band>
 		</groupFooter>
 	</group>
-	<group name="professor" isReprintHeaderOnEachPage="true">
-		<groupExpression><![CDATA[$F{professor}]]></groupExpression>
+	<group name="cliente" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA["Cliente: " + $F{cliente} + 
+($F{representado_assistido} != null ? " Representado/Assistido: "  + $F{representado_assistido} : "" )]]></groupExpression>
 		<groupHeader>
-			<band height="37">
+			<band height="35">
 				<staticText>
-					<reportElement mode="Opaque" x="234" y="20" width="65" height="15" backcolor="#B0ABAB" uuid="82e5e7a7-1b73-4b42-b3b7-d0469d94d87a"/>
+					<reportElement mode="Opaque" x="76" y="20" width="174" height="15" backcolor="#B0ABAB" uuid="82e5e7a7-1b73-4b42-b3b7-d0469d94d87a"/>
 					<box>
 						<topPen lineWidth="1.0"/>
 						<leftPen lineWidth="1.0"/>
@@ -165,10 +183,10 @@ ORDER BY
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[PROTOCOLO]]></text>
+					<text><![CDATA[N.º PROCESSO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Opaque" x="299" y="20" width="381" height="15" backcolor="#B0ABAB" uuid="fc4b10e1-8c2a-4315-8b89-82a5f939ce2b"/>
+					<reportElement mode="Opaque" x="390" y="20" width="150" height="15" backcolor="#B0ABAB" uuid="fc4b10e1-8c2a-4315-8b89-82a5f939ce2b"/>
 					<box>
 						<topPen lineWidth="1.0"/>
 						<leftPen lineWidth="1.0"/>
@@ -178,10 +196,10 @@ ORDER BY
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[CLIENTE]]></text>
+					<text><![CDATA[ALUNO(A)]]></text>
 				</staticText>
 				<staticText>
-					<reportElement mode="Opaque" x="680" y="20" width="70" height="15" backcolor="#B0ABAB" uuid="ee74aa26-88d0-4583-9174-08e8524fe7c0"/>
+					<reportElement mode="Opaque" x="540" y="20" width="130" height="15" backcolor="#B0ABAB" uuid="ee74aa26-88d0-4583-9174-08e8524fe7c0"/>
 					<box>
 						<topPen lineWidth="1.0"/>
 						<leftPen lineWidth="1.0"/>
@@ -191,7 +209,7 @@ ORDER BY
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[DATA VÍNCULO]]></text>
+					<text><![CDATA[PROFESSOR(A)]]></text>
 				</staticText>
 				<staticText>
 					<reportElement mode="Opaque" x="750" y="20" width="36" height="15" backcolor="#B0ABAB" uuid="6e276dfd-daf1-4c1f-8c94-bccfa3aef421">
@@ -214,19 +232,44 @@ ORDER BY
 						<font size="8" isBold="true"/>
 						<paragraph lineSpacingSize="1.0"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Professor(a): " + $F{professor}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Cliente: " + $F{cliente} + 
+($F{representado_assistido} != null ? " Representado/Assistido: "  + $F{representado_assistido} : "" )]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement mode="Opaque" x="14" y="20" width="220" height="15" backcolor="#B0ABAB" uuid="20107c22-db48-4ac7-bd71-1de2f9a63970">
-						<property name="com.jaspersoft.studio.unit.width" value="px"/>
-					</reportElement>
+					<reportElement mode="Opaque" x="14" y="20" width="62" height="15" backcolor="#B0ABAB" uuid="20107c22-db48-4ac7-bd71-1de2f9a63970"/>
 					<box topPadding="0" leftPadding="3">
 						<pen lineWidth="1.0" lineStyle="Solid"/>
 					</box>
-					<textElement verticalAlignment="Middle" markup="none">
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 						<font size="8" isBold="true"/>
 					</textElement>
-					<text><![CDATA[ALUNO]]></text>
+					<text><![CDATA[PROTOCOLO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="250" y="20" width="150" height="15" backcolor="#B0ABAB" uuid="3c899621-62c5-407b-92c4-8b9613eef773"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TIPO DE DEMANDA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="670" y="20" width="80" height="15" backcolor="#B0ABAB" uuid="336cdc7c-9ecd-4e47-9424-18d90ac8aa9a"/>
+					<box>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DATA]]></text>
 				</staticText>
 			</band>
 		</groupHeader>
@@ -257,37 +300,11 @@ ORDER BY
 		</band>
 	</pageHeader>
 	<detail>
-		<band height="15" splitType="Stretch">
+		<band height="26" splitType="Stretch">
 			<property name="com.jaspersoft.studio.layout"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<textField>
-				<reportElement x="234" y="-2" width="65" height="15" uuid="0024d1f7-a8f7-43f1-bca2-d012b7c1fb4b"/>
-				<box leftPadding="3">
-					<topPen lineWidth="0.25"/>
-					<leftPen lineWidth="0.25"/>
-					<bottomPen lineWidth="0.25"/>
-					<rightPen lineWidth="0.25"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{protocolo}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="299" y="-2" width="381" height="15" uuid="86dfd32c-5ac3-410b-bcbe-901921884716"/>
-				<box leftPadding="3">
-					<topPen lineWidth="0.25"/>
-					<leftPen lineWidth="0.25"/>
-					<bottomPen lineWidth="0.25"/>
-					<rightPen lineWidth="0.25"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="680" y="-2" width="70" height="15" uuid="cef3d198-0bf0-41af-b977-0d77d9570cfb"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="76" y="0" width="174" height="26" uuid="0024d1f7-a8f7-43f1-bca2-d012b7c1fb4b"/>
 				<box leftPadding="3">
 					<topPen lineWidth="0.25"/>
 					<leftPen lineWidth="0.25"/>
@@ -297,10 +314,36 @@ ORDER BY
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{data_vinculo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{numero_processo} != null ? $F{numero_processo} : "Não informado"]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="750" y="-2" width="36" height="15" uuid="9430e849-7201-4c1d-a934-6c59b64ef934"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="400" y="0" width="140" height="26" uuid="86dfd32c-5ac3-410b-bcbe-901921884716"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno} != null ? $F{aluno} : "Não informado"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="540" y="0" width="130" height="26" uuid="cef3d198-0bf0-41af-b977-0d77d9570cfb"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{professor} != null ? $F{professor} : "Não informado"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="750" y="0" width="36" height="26" uuid="9430e849-7201-4c1d-a934-6c59b64ef934"/>
 				<box leftPadding="3">
 					<topPen lineWidth="0.25"/>
 					<leftPen lineWidth="0.25"/>
@@ -312,17 +355,43 @@ ORDER BY
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ativo} ? "Sim" : "Não"]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="14" y="-2" width="220" height="15" backcolor="#CDCDCD" uuid="8e133c3c-9cba-468a-887d-6bf2af82212a">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="14" y="0" width="62" height="26" backcolor="#CDCDCD" uuid="8e133c3c-9cba-468a-887d-6bf2af82212a">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box topPadding="0" leftPadding="3">
 					<pen lineWidth="0.25" lineStyle="Solid"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{aluno}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{protocolo} != null ? $F{protocolo} : "Não informado"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="250" y="0" width="150" height="26" uuid="aee7145a-9ba3-4134-817b-a66bb7a5e923"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_demanda} != null ? $F{tipo_demanda} : "Não informado"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="670" y="0" width="80" height="26" uuid="ebb95673-9913-4df1-908d-0a34684db18f"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{created_at} != null ? DATEFORMAT($F{created_at} ,"dd/MM/yyyy") : "Não informado"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

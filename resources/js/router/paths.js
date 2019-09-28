@@ -159,6 +159,15 @@ export default [
     )
   },
   {
+    path: '/relatorio/relclientesprotocolos',
+    meta: { breadcrumb: true, auth: true },
+    name: 'relatorio/relclientesprotocolos',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/relatorio/RelatorioClientesProtocolos.vue`
+    )
+  },
+  {
     path: '/alteracoes',
     meta: { breadcrumb: true, auth: true },
     name: 'Alterações',
