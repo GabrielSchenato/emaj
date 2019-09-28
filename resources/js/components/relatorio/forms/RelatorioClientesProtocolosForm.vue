@@ -78,7 +78,7 @@
 </template>
 <script>
     export default {
-        name: "relatorio-professores-alunos-form",
+        name: "relatorio-clientes-protocolos-form",
         props: {
             value: {
                 type: [Object]
