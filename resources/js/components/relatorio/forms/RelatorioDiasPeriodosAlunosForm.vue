@@ -82,21 +82,7 @@
         },
         data() {
             return {
-                relDiasPeriodosAlunos: Object.assign({}, this.value),
-                disciplinas: [
-                    {
-                        id: 'Estágio II',
-                        nome: 'Estágio II'
-                    },
-                    {
-                        id: 'Estágio III',
-                        nome: 'Estágio III'
-                    },
-                    {
-                        id: 'Estágio IV',
-                        nome: 'Estágio IV'
-                    }
-                ]
+                relDiasPeriodosAlunos: Object.assign({}, this.value)
             };
         },
         computed: {
