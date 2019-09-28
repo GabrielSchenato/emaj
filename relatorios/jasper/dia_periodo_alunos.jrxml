@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dia_periodo_alunos" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="539" leftMargin="28" rightMargin="28" topMargin="28" bottomMargin="28" uuid="cd7e9bc2-ce80-4fb6-8bc3-f0c94b834960">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="39"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MYSQL"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="titulo" class="java.lang.String"/>
+	<parameter name="versao_sistema" class="java.lang.String"/>
+	<parameter name="caminho" class="java.lang.String"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<parameter name="dia_periodo_id" class="java.lang.String"/>
+	<parameter name="disciplina_id" class="java.lang.String"/>
+	<parameter name="aluno_id" class="java.lang.String"/>
+	<parameter name="text_dia_periodo_id" class="java.lang.String"/>
+	<parameter name="text_aluno_id" class="java.lang.String"/>
+	<parameter name="text_disciplina_id" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+	CONCAT(dp.nome,
+	' (',
+	dp.id,
+	') ') AS periodo,
+	CONCAT(dis.nome,
+	' (',
+	dis.id,
+	') ') AS disciplina,
+	CONCAT(al.nome_completo,
+	' (',
+	al.id,
+	') ') AS aluno
+FROM
+	dia_periodo_alunos dpa
+INNER JOIN dia_periodos dp ON
+	dpa.dia_periodo_id = dp.id
+INNER JOIN alunos al ON
+	al.id = dpa.aluno_id
+INNER JOIN disciplinas dis ON
+	dis.id = al.disciplina_id
+WHERE
+	CASE
+		WHEN $P{dia_periodo_id} IS NOT NULL THEN dp.id IN ($P!{dia_periodo_id})
+		ELSE TRUE
+	END
+	AND
+	CASE
+		WHEN $P{disciplina_id} IS NOT NULL THEN dis.id IN ($P!{disciplina_id})
+		ELSE TRUE
+	END
+	AND
+	CASE
+		WHEN $P{aluno_id} IS NOT NULL THEN al.id IN ($P!{aluno_id})
+		ELSE TRUE
+	END
+ORDER BY
+	dp.id,
+	dis.nome]]>
+	</queryString>
+	<field name="periodo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="periodo"/>
+	</field>
+	<field name="disciplina" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="disciplina"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value=""/>
+	</field>
+	<field name="aluno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="aluno"/>
+	</field>
+	<group name="periodo" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{periodo}]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="0" y="0" width="540" height="16" forecolor="#010101" backcolor="#CDCDCD" uuid="c941d549-6d4a-484a-abf6-d5b301c9aa97"/>
+					<box topPadding="0" leftPadding="3">
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{periodo}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="15">
+				<textField>
+					<reportElement x="0" y="0" width="540" height="15" uuid="a81a00a2-d877-4b15-a831-2e719c6f5420"/>
+					<box leftPadding="3"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Total por Período: " + $V{periodo_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="disciplina" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{disciplina}]]></groupExpression>
+		<groupHeader>
+			<band height="15">
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Opaque" x="16" y="0" width="524" height="15" forecolor="#010101" backcolor="#D7D7D7" uuid="03a5bfac-4b41-4c10-9039-21f63073be67"/>
+					<box topPadding="0" leftPadding="3">
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{disciplina}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="15">
+				<textField>
+					<reportElement x="16" y="0" width="524" height="15" uuid="ccdc95a7-7653-4f37-84a3-637d14306999"/>
+					<box leftPadding="3"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Total por Disciplina: " + $V{disciplina_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<pageHeader>
+		<band height="17" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="540" height="17" uuid="478fbcd6-5e3c-43c0-8793-7d1ae55628df"/>
+				<subreportParameter name="caminho">
+					<subreportParameterExpression><![CDATA[$P{caminho}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA[$P{titulo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="versao_sistema">
+					<subreportParameterExpression><![CDATA[$P{versao_sistema}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="usuario">
+					<subreportParameterExpression><![CDATA[$P{usuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{caminho} + "/relatorios/jasper/_cabecalho_padrao_retrato.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="15">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="540" height="15" uuid="721fd0b3-610c-466c-8dad-0cf20edfa544"/>
+				<textElement markup="html">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Filtros: </b>" +
+(($P{dia_periodo_id} != null && $P{text_dia_periodo_id} !=null) ? "<b>Período:</b> " + $P{text_dia_periodo_id}  + "  " : "") +
+(($P{disciplina_id} != null && $P{text_disciplina_id} !=null) ? "<b>Período:</b> " + $P{text_disciplina_id}  + "  " : "") +
+(($P{aluno_id} != null && $P{text_aluno_id} !=null) ? "<b>Aluno(a):</b> " + $P{text_aluno_id}  + "  " : "") ]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17">
+			<textField>
+				<reportElement x="16" y="0" width="523" height="17" uuid="be6178b2-8ebc-4f99-b975-8229e7b1f7a6">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="3">
+					<pen lineWidth="0.25" lineStyle="Dotted"/>
+					<topPen lineWidth="0.25" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.25" lineStyle="Dotted"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.25" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<subreport isUsingCache="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="540" height="28" isPrintWhenDetailOverflows="true" uuid="acb8e543-56e5-41e4-bbfe-8b742839ac11"/>
+				<subreportParameter name="pagina">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA[$P{titulo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="caminho">
+					<subreportParameterExpression><![CDATA[$P{caminho}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="versao_sistema">
+					<subreportParameterExpression><![CDATA[$P{versao_sistema}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="usuario">
+					<subreportParameterExpression><![CDATA[$P{usuario}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{caminho} + "/relatorios/jasper/_rodape_padrao_retrato.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageFooter>
+	<noData>
+		<band height="17">
+			<subreport>
+				<reportElement x="0" y="0" width="540" height="17" isPrintWhenDetailOverflows="true" uuid="8a3d2ba4-15d4-47a0-93eb-e7d30bbf7bf5"/>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA[$P{titulo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="caminho">
+					<subreportParameterExpression><![CDATA[$P{caminho}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="versao_sistema">
+					<subreportParameterExpression><![CDATA[$P{versao_sistema}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="usuario">
+					<subreportParameterExpression><![CDATA[$P{versao_sistema}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pagina">
+					<subreportParameterExpression><![CDATA[$V{PAGE_NUMBER}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{caminho} + "/relatorios/jasper/_no_data_padrao_retrato.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</noData>
+</jasperReport>

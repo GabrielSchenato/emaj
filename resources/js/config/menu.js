@@ -32,7 +32,8 @@ const Menu = [
         icon: 'description',
         itens: [
             {name: 'relatividadesprestadas', title: 'Atividades Prestadas', component: 'relatorio/relatividadesprestadas', role: ['admin', 'secretaria']},
-            {name: 'relprofessoresalunos', title: 'Professores Alunos', component: 'relatorio/relprofessoresalunos', role: ['admin', 'secretaria']}
+            {name: 'relprofessoresalunos', title: 'Professores Alunos', component: 'relatorio/relprofessoresalunos', role: ['admin', 'secretaria']},
+            {name: 'reldiasperiodosalunos', title: 'Dias e Períodos dos Alunos', component: 'relatorio/reldiasperiodosalunos', role: ['admin', 'secretaria']}
         ]
     },
     /*{header: 'Movimentação do Sistema'},

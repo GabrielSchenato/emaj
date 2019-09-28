@@ -5,6 +5,7 @@ namespace Emaj\Http\Controllers\Api\V1\Cadastro;
 use Emaj\Criteria\AlunoCriteria;
 use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\AlunoRepository;
+use Emaj\Repositories\Cadastro\DisciplinaRepository;
 use Emaj\Repositories\Cadastro\ProtocoloAlunoProfessorRepository;
 
 /**
@@ -23,6 +24,11 @@ class AlunosController extends CrudController
 {
 
     /**
+     * @var DisciplinaRepository
+     */
+    private $disciplinaRepository;
+
+    /**
      * @var ProtocoloAlunoProfessorRepository
      */
     private $protocoloAlunoProfessorRepository;
@@ -38,7 +44,8 @@ class AlunosController extends CrudController
         'protocolo_alunos_professores.protocolo.cliente:id,nome_completo,representado_assistido,cpf,rg,renda',
         'protocolo_alunos_professores.professor:id,nome_completo',
         'avaliacoes.protocolo:id,cliente_id,parte_contraria_id,tipo_demanda_id,protocolo,numero_processo,created_at',
-        'avaliacoes.protocolo.cliente:id,nome_completo,representado_assistido,cpf,rg,renda'
+        'avaliacoes.protocolo.cliente:id,nome_completo,representado_assistido,cpf,rg,renda',
+        'disciplina:id,nome'
     ];
 
     /**
@@ -46,10 +53,11 @@ class AlunosController extends CrudController
      */
     protected $repository;
 
-    public function __construct(AlunoRepository $repository, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository)
+    public function __construct(AlunoRepository $repository, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository, DisciplinaRepository $disciplinaRepository)
     {
         $this->repository = $repository;
         $this->protocoloAlunoProfessorRepository = $protocoloAlunoProfessorRepository;
+        $this->disciplinaRepository = $disciplinaRepository;
     }
 
     /**
@@ -68,6 +76,10 @@ class AlunosController extends CrudController
                 'protocolo',
                 'protocolo.cliente',
             ]);
+        }
+        if (strlen($ac = request()->get('disciplina_id')) > 0) {
+            $this->registro = $this->disciplinaRepository
+                    ->getDataAutocomplete($ac);
         }
         return $this->registro;
     }

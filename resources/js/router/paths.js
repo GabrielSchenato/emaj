@@ -150,6 +150,15 @@ export default [
     )
   },
   {
+    path: '/relatorio/reldiasperiodosalunos',
+    meta: { breadcrumb: true, auth: true },
+    name: 'relatorio/reldiasperiodosalunos',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/relatorio/RelatorioDiasPeriodosAlunos.vue`
+    )
+  },
+  {
     path: '/alteracoes',
     meta: { breadcrumb: true, auth: true },
     name: 'Alterações',

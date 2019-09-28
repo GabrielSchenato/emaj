@@ -46,7 +46,7 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md2>
+            <v-flex xs12 sm6 md3>
                 <v-text-field
                     name="celular"
                     v-model="aluno.celular"
@@ -57,7 +57,7 @@
                     ></v-text-field>
             </v-flex>
 
-            <v-flex xs12 sm6 md2>
+            <v-flex xs12 sm6 md3>
                 <v-text-field
                     name="telefone"
                     v-model="aluno.telefone"
@@ -77,60 +77,17 @@
                     ></v-text-field>
             </v-flex>            
 
-            <v-flex xs12 sm6 md2>
-                <v-select
-                    name="disciplina"
-                    :items="disciplinas"
-                    v-model="aluno.disciplina"
-                    v-validate="'required'"
-                    :error-messages="errors.collect('Disciplina')"
-                    data-vv-name="Disciplina"
+            <v-flex xs12 sm6 md4>   
+                <autocomplete-field
+                    ref="autocompleteDisciplina"
+                    v-bind:errorMessages="errors.collect(optionsDisciplina.name)"
+                    :data-vv-name="optionsDisciplina.name"
+                    v-validate="{required: optionsDisciplina.required }"
+                    v-bind:options="optionsDisciplina"
+                    v-model="aluno.disciplina_id"
                     @input="$emit('input', aluno)"
-                    item-value="id"
-                    item-text="nome"
-                    clearable
-                    >
-                    <template v-slot:label>
-                        Disciplina<span class="required">*</span>
-                    </template>
-                </v-select>
-            </v-flex>
-
-            <v-flex xs12 sm6 md1>
-                <v-text-field
-                    name="ano"
-                    v-model="aluno.ano"
-                    label="Ano"
-                    type="number"
-                    @input="$emit('input', aluno)"
-                    ></v-text-field>
-            </v-flex> 
-
-            <v-flex xs12 sm6 md2>
-                <v-select
-                    name="semestres"
-                    :items="semestres"
-                    label="Semestre"
-                    v-model="aluno.semestre"
-                    @input="$emit('input', aluno)"
-                    item-value="id"
-                    item-text="nome"
-                    clearable
-                    ></v-select>
-            </v-flex>
-
-            <v-flex xs12 sm6 md2>
-                <v-select
-                    name="turno"
-                    :items="turnos"
-                    label="Turno"
-                    v-model="aluno.turno"
-                    @input="$emit('input', aluno)"
-                    item-value="id"
-                    item-text="nome"
-                    clearable
-                    ></v-select>
-            </v-flex>
+                    ></autocomplete-field>
+            </v-flex>  
 
             <v-flex xs12 sm6 md9>
                 <v-text-field
@@ -164,41 +121,18 @@
         data() {
             return {
                 aluno: Object.assign({}, this.value),
-                disciplinas: [
-                    {
-                        id: 'Estágio II',
-                        nome: 'Estágio II'
-                    },
-                    {
-                        id: 'Estágio III',
-                        nome: 'Estágio III'
-                    },
-                    {
-                        id: 'Estágio IV',
-                        nome: 'Estágio IV'
-                    }
-                ],
-                semestres: [
-                    {
-                        id: '1',
-                        nome: '1'
-                    },
-                    {
-                        id: '2',
-                        nome: '2'
-                    }
-                ],
-                turnos: [
-                    {
-                        id: 'Matutino',
-                        nome: 'Matutino'
-                    },
-                    {
-                        id: 'Noturno',
-                        nome: 'Noturno'
-                    }
-                ]
             };
+        },
+        computed: {
+            optionsDisciplina() {
+                return {
+                    field: 'disciplina_id',
+                    required: true,
+                    itemText: 'dados_disciplina',
+                    name: 'Disciplina',
+                    url: 'alunos/autocomplete'
+                };
+            }
         },
         watch: {
             value: {

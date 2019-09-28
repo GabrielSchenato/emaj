@@ -34,10 +34,7 @@ class Aluno extends Model
     protected $fillable = [
         'nome_completo',
         'matricula',
-        'disciplina',
-        'ano',
-        'semestre',
-        'turno',
+        'disciplina_id',
         'telefone',
         'celular',
         'email',
@@ -60,13 +57,21 @@ class Aluno extends Model
     {
         return $this->hasMany(Avaliacao::class, 'aluno_id')->orderBy('created_at', 'desc');
     }
-    
+
     /**
      * Os períodos que pertencem ao aluno.
      */
     public function dia_periodos()
     {
         return $this->belongsToMany(DiaPeriodo::class, 'dia_periodo_alunos');
+    }
+
+    /**
+     * Pega a disciplina que está associada a esse aluno.
+     */
+    public function disciplina()
+    {
+        return $this->belongsTo(Disciplina::class);
     }
 
     /**

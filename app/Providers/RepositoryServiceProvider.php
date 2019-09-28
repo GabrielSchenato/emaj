@@ -32,7 +32,9 @@ use Emaj\Repositories\Cadastro\{
     DiaPeriodoRepository,
     DiaPeriodoRepositoryEloquent,
     DiaPeriodoAlunoRepository,
-    DiaPeriodoAlunoRepositoryEloquent
+    DiaPeriodoAlunoRepositoryEloquent,
+    DisciplinaRepository,
+    DisciplinaRepositoryEloquent
 };
 use Emaj\Repositories\Movimento\{
     FichaTriagemRepository,
@@ -76,6 +78,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ProtocoloAlunoProfessorRepository::class, ProtocoloAlunoProfessorRepositoryEloquent::class);
         $this->app->bind(DiaPeriodoRepository::class, DiaPeriodoRepositoryEloquent::class);
         $this->app->bind(DiaPeriodoAlunoRepository::class, DiaPeriodoAlunoRepositoryEloquent::class);
+        $this->app->bind(DisciplinaRepository::class, DisciplinaRepositoryEloquent::class);
     }
 
 }

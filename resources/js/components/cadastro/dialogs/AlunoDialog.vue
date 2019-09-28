@@ -183,6 +183,7 @@
                 this.step = 1;
                 this.aluno = item;
                 this.$refs.alunoForm.$validator.errors.clear();
+                this.$refs.alunoForm.$refs.autocompleteDisciplina.values = item.disciplina ? [item.disciplina] : [];
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;

@@ -106,7 +106,7 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
     {
         return [
             'nome_completo' => 'required|min:5',
-            'disciplina' => 'required',
+            'disciplina_id' => 'required|numeric',
             'email' => ['nullable', 'email', Rule::unique('alunos')->ignore($id)]
         ];
     }
