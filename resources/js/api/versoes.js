@@ -360,7 +360,10 @@ const Versoes = [
             },
             {
                 descricao: 'Evolução (Relatório): Criado novo relatório "Clientes e Protocolos", onde o mesmo traz os protocolos ativos e inativos que um cliente possui'
-            }
+            },
+            {
+                descricao: 'Adaptação (Cadastro): Aplicado melhoria no cadastro de "Cliente", removida a obrigatoriedade do campo "Renda"'
+            },
         ],
         alteracoesInstitucional: [
 

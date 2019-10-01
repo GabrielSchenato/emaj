@@ -143,7 +143,7 @@ class Cliente extends Model
      */
     private function isEmptyCliente()
     {
-        if (!$this->cpf || !$this->rg || !$this->profissao || !$this->sexo || !$this->estado_civil || !$this->renda) {
+        if (!$this->cpf || !$this->rg || !$this->profissao || !$this->sexo || !$this->estado_civil) {
             return true;
         }
         return false;

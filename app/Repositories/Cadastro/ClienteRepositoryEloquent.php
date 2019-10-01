@@ -206,7 +206,7 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
                 'sexo' => ['required', Rule::in(['M', 'F'])],
                 'estado_civil' => ['required', Rule::in(['Solteiro', 'Casado', 'Separado', 'Divorciado', 'Viúvo'])],
                 'email' => ['nullable', 'email', Rule::unique('clientes')->ignore($id)],
-                'renda' => 'required',
+                'renda' => 'nullable',
                 'local_trabalho' => 'nullable|max:255',
                 'nacionalidade_id' => 'required|numeric'
             ];
