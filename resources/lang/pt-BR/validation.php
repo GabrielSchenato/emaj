@@ -144,5 +144,7 @@ return [
         'avaliador_id' => 'avaliador',
         'observacoes' => 'observações',
         'dia_periodo_id' => 'Período',
+        'image_url' => 'Avatar',
+        'disciplina_id' => 'Disciplina',
     ],
 ];

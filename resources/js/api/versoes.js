@@ -344,16 +344,16 @@ const Versoes = [
                 descricao: 'Evolução (Relatório): Criado novo relatório "Professores e Alunos", onde o mesmo traz a quantidade e o vínculo de professores e alunos'
             },
             {
-                descricao: 'Evolução (Cadastro): Aplicado melhoria nos campos de busca para realizar buscar por ID (Código)'
+                descricao: 'Evolução (Cadastro): Aplicada melhoria nos campos de busca para realizar buscar por ID (Código)'
             },
             {
-                descricao: 'Adaptação (Padrão): Aplicado melhoria na exibição das alterações na plataforma'
+                descricao: 'Adaptação (Padrão): Aplicada melhoria na exibição das alterações na plataforma'
             },
             {
-                descricao: 'Adaptação (Cadastro): Aplicado melhoria no cadastro de "Aluno", onde agora possui uma nova aba "Períodos" onde é possível vincular o dia em que o aluno faz o estágio'
+                descricao: 'Adaptação (Cadastro): Aplicada melhoria no cadastro de "Aluno", onde agora possui uma nova aba "Períodos" onde é possível vincular o dia em que o aluno faz o estágio'
             },
             {
-                descricao: 'Adaptação (Cadastro): Aplicado melhoria no cadastro de "Aluno", removido o campo "Fase", "Ano", "Semestre" e "Turno". O campo "Disciplina" agora é obrigatório'
+                descricao: 'Adaptação (Cadastro): Aplicada melhoria no cadastro de "Aluno", removido o campo "Fase", "Ano", "Semestre" e "Turno". O campo "Disciplina" agora é obrigatório'
             },
             {
                 descricao: 'Evolução (Relatório): Criado novo relatório "Dias e Períodos dos Alunos", onde o mesmo traz o período e a disciplina que o aluno estagia'
@@ -362,7 +362,10 @@ const Versoes = [
                 descricao: 'Evolução (Relatório): Criado novo relatório "Clientes e Protocolos", onde o mesmo traz os protocolos ativos e inativos que um cliente possui'
             },
             {
-                descricao: 'Adaptação (Cadastro): Aplicado melhoria no cadastro de "Cliente", removida a obrigatoriedade do campo "Renda"'
+                descricao: 'Adaptação (Cadastro): Aplicada melhoria no cadastro de "Cliente", removida a obrigatoriedade do campo "Renda"'
+            },
+            {
+                descricao: 'Evolução (Cadastro): Aplicada melhoria no cadastro de "Aluno", adicionada a possibilidade de incluir uma imagem do aluno'
             },
         ],
         alteracoesInstitucional: [

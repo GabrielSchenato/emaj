@@ -90,9 +90,13 @@
                 if (this.usuario.imageFile) {
                     formData.append('image_url', this.usuario.imageFile);
                 }
+                if(this.usuario.avatar_id){
+                    formData.append('avatar_id', this.usuario.avatar_id);
+                }
                 return formData;
             },
             save() {
+                this.$refs.usuarioForm.erroAvatar = null;
                 this.$refs.usuarioForm.$validator.validateAll().then(valid => {
                     if (valid) {
                         this.$store
@@ -109,6 +113,7 @@
                 });
             },
             update() {
+                this.$refs.usuarioForm.erroAvatar = null;
                 this.$refs.usuarioForm.$validator.validateAll().then(valid => {
                     if (valid) {
                         this.$store
@@ -132,6 +137,7 @@
             },
             clear() {
                 this.usuario = {};
+                this.$refs.usuarioForm.erroAvatar = null;
                 this.$refs.usuarioForm.$validator.errors.clear();
             },
             addErrors(resp) {
@@ -150,6 +156,9 @@
                 }
                 if (resp.response.data.errors.telefone) {
                     this.$refs.usuarioForm.$validator.errors.add({field: 'Telefone', msg: resp.response.data.errors.telefone});
+                }
+                if (resp.response.data.errors.image_url) {
+                    this.$refs.usuarioForm.erroAvatar = resp.response.data.errors.image_url[0];
                 }
             }
         }

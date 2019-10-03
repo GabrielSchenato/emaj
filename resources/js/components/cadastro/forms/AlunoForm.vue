@@ -1,5 +1,34 @@
 <template>
     <div>
+
+        <v-flex xs10 offset-xs5>
+            <image-input v-model="aluno" @input="$emit('input', aluno)">
+                <div slot="activator">
+                    <v-avatar size="150px" v-ripple v-if="aluno.imageURL != null" class="mb-3">
+                        <img :src="aluno.imageURL" alt="avatar">
+                    </v-avatar>
+                    <v-avatar size="150px" v-ripple v-else-if="aluno.avatar == null" class="grey lighten-3 mb-3">
+                        <span>Click para adicionar um avatar</span>
+                    </v-avatar>
+                    <v-avatar size="150px" v-ripple v-else class="mb-3">
+                        <img :src="aluno.avatar.avatar_url" alt="avatar">
+                    </v-avatar>
+                </div>
+            </image-input>
+        </v-flex>
+
+        <v-flex xs12>
+            <div class="text-xs-center" v-if='erroAvatar'>
+                <div class="v-messages theme--light error--text">
+                    <div class="v-messages__wrapper">
+                        <div class="v-messages__message">
+                            {{ erroAvatar }}
+                        </div>                                                            
+                    </div>                                                        
+                </div>                                                    
+            </div>
+        </v-flex>
+
         <v-alert
             :value="!aluno.ativo"
             type="info"
@@ -121,6 +150,7 @@
         data() {
             return {
                 aluno: Object.assign({}, this.value),
+                erroAvatar: null
             };
         },
         computed: {

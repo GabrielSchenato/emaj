@@ -40,6 +40,11 @@
                                     <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
                                     </td>
                                     <td>{{ props.item.id }}</td>
+                                    <td>
+                                    <v-avatar size="32" v-if='props.item.avatar'>
+                                        <img :src="props.item.avatar.avatar_url" alt>
+                                    </v-avatar>
+                                    </td>
                                     <td>{{ props.item.nome_completo }}</td>
                                     <td>{{ props.item.email }}</td>
                                     <td>{{ props.item.celular }}</td>
@@ -93,6 +98,11 @@
                             value: "id",
                             filterable: true,
                             type: 'number'
+                        },
+                        {
+                            text: "Avatar",
+                            value: "avatar",
+                            sortable: false
                         },
                         {
                             text: "Nome Completo",

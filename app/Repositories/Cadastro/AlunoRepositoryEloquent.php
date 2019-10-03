@@ -27,6 +27,11 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
 {
 
     /**
+     * @var AvatarRepository
+     */
+    private $avatarRepository;
+
+    /**
      * @var DiaPeriodoAlunoRepository
      */
     private $diaPeriodoAlunoRepository;
@@ -36,11 +41,12 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
      */
     private $protocoloAlunoProfessorRepository;
 
-    public function __construct(Container $app, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository, DiaPeriodoAlunoRepository $diaPeriodoAlunoRepository)
+    public function __construct(Container $app, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository, DiaPeriodoAlunoRepository $diaPeriodoAlunoRepository, AvatarRepository $avatarRepository)
     {
         parent::__construct($app);
         $this->protocoloAlunoProfessorRepository = $protocoloAlunoProfessorRepository;
         $this->diaPeriodoAlunoRepository = $diaPeriodoAlunoRepository;
+        $this->avatarRepository = $avatarRepository;
     }
 
     /**
@@ -63,6 +69,35 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
 
     /**
      * @override
+     * Save a new entity in repository
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     *
+     * @return mixed
+     */
+    public function create(array $attributes)
+    {
+        try {
+            DB::beginTransaction();
+
+            $this->avatarRepository->saveOrUpdateAvatar($attributes);
+            $aluno = parent::create($attributes);
+            
+            DB::commit();
+            return $aluno;
+        } catch (ValidationException $ex) {
+            DB::rollback();
+            throw $ex;
+        } catch (\Exception $ex) {
+            DB::rollback();
+            throw $ex;
+        }
+    }
+    
+    /**
+     * @override
      * Update a entity in repository by id
      *
      * @throws ValidatorException
@@ -75,19 +110,49 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
     public function update(array $attributes, $id)
     {
         try {
+            DB::beginTransaction();
+            
             $ativo = isset($attributes['ativo']) ? $attributes['ativo'] : null;
             if (!$ativo) {
                 $this->inativaProtocoloAlunosProfessores($attributes, $id);
                 $this->deleteDiaPeriodosAluno($id);
             }
-
+            
+            $this->avatarRepository->saveOrUpdateAvatar($attributes);
             $aluno = parent::update($attributes, $id);
+            
             DB::commit();
             return $aluno;
         } catch (ValidationException $ex) {
             DB::rollback();
             throw $ex;
         } catch (Exception $ex) {
+            DB::rollback();
+            throw $ex;
+        }
+    }
+    
+    /**
+     * Delete a entity in repository by id
+     *
+     * @param $id
+     *
+     * @return int
+     */
+    public function delete($id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $aluno = $this->find($id);
+            $deletado = parent::delete($id);
+            if ($aluno->avatar) {
+                $this->avatarRepository->delete($aluno->avatar->id);
+            }           
+
+            DB::commit();
+            return $deletado;
+        } catch (\Exception $ex) {
             DB::rollback();
             throw $ex;
         }

@@ -35,6 +35,7 @@ class Aluno extends Model
         'nome_completo',
         'matricula',
         'disciplina_id',
+        'avatar_id',
         'telefone',
         'celular',
         'email',
@@ -72,6 +73,14 @@ class Aluno extends Model
     public function disciplina()
     {
         return $this->belongsTo(Disciplina::class);
+    }
+
+    /**
+     * Pega o avatar que está associada a esse aluno.
+     */
+    public function avatar()
+    {
+        return $this->belongsTo(Avatar::class);
     }
 
     /**

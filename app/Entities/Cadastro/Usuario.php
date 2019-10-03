@@ -38,8 +38,7 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
      * @var array 
      */
     protected $appends = [
-        'dados_usuario',
-        'avatar_url'
+        'dados_usuario'
     ];
 
     /**
@@ -52,7 +51,7 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
         'email',
         'password',
         'role',
-        'avatar',
+        'avatar_id',
         'telefone',
         'professor',
         'ativo'
@@ -88,15 +87,11 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
     }
 
     /**
-     * Método responsável por retornar os dados do avatar do usuário.
-     * 
-     * @return string
+     * Pega o avatar que está associada a esse usuário.
      */
-    protected function getAvatarUrlAttribute()
+    public function avatar()
     {
-        if ($this->avatar) {
-            return "data:image/jpeg;base64,{$this->avatar}";
-        }
+        return $this->belongsTo(Avatar::class);
     }
 
 }

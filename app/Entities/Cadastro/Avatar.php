@@ -2,11 +2,10 @@
 
 namespace Emaj\Entities\Cadastro;
 
-use Emaj\Util\Functions;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Classe da entidade Avaliação Arquivo
+ * Classe da entidade Avatar
  *
  * PHP version 7.2
  *
@@ -15,9 +14,9 @@ use Illuminate\Database\Eloquent\Model;
  * @author     Gabriel Schenato <gabriel@uniplaclages.edu.br>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @link       https://www.uniplaclages.edu.br/
- * @since      1.1.0
+ * @since      2.1.0
  */
-class AvaliacaoArquivo extends Model
+class Avatar extends Model
 {
 
     /**
@@ -25,14 +24,14 @@ class AvaliacaoArquivo extends Model
      *
      * @var string
      */
-    protected $table = 'avaliacao_arquivos';
+    protected $table = 'avatares';
 
     /**
      * Armazena o nome das variáveis que serão enviadas na api.
      * 
      * @var array 
      */
-    protected $appends = ['nome_arquivo_extensao', 'tamanho_arquivo'];
+    protected $appends = ['avatar_url'];
 
     /**
      * Armazena os campos do banco de dados.
@@ -41,29 +40,20 @@ class AvaliacaoArquivo extends Model
      */
     protected $fillable = [
         'nome',
-        'arquivo',
+        'avatar',
         'mimetype',
         'extensao',
-        'tamanho',
-        'avaliacao_id'
+        'tamanho'
     ];
 
     /**
-     * Pega a avaliação associado a esse arquivo.
+     * Método responsável por retornar os dados do avatar.
+     * 
+     * @return string
      */
-    public function avaliacao()
+    protected function getAvatarUrlAttribute()
     {
-        return $this->belongsTo(Avaliacao::class, 'avaliacao_id');
-    }
-
-    protected function getNomeArquivoExtensaoAttribute()
-    {
-        return $this->attributes['nome'] . '.' . $this->attributes['extensao'];
-    }
-
-    protected function getTamanhoArquivoAttribute()
-    {
-        return Functions::formatBytes($this->attributes['tamanho']);
+        return "data:{$this->mimetype};base64,{$this->avatar}";
     }
 
 }

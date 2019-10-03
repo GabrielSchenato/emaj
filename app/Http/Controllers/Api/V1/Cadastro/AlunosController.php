@@ -7,6 +7,7 @@ use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\AlunoRepository;
 use Emaj\Repositories\Cadastro\DisciplinaRepository;
 use Emaj\Repositories\Cadastro\ProtocoloAlunoProfessorRepository;
+use Illuminate\Http\Request;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -45,7 +46,8 @@ class AlunosController extends CrudController
         'protocolo_alunos_professores.professor:id,nome_completo',
         'avaliacoes.protocolo:id,cliente_id,parte_contraria_id,tipo_demanda_id,protocolo,numero_processo,created_at',
         'avaliacoes.protocolo.cliente:id,nome_completo,representado_assistido,cpf,rg,renda',
-        'disciplina:id,nome'
+        'disciplina:id,nome',
+        'avatar:id,avatar'
     ];
 
     /**
@@ -58,6 +60,21 @@ class AlunosController extends CrudController
         $this->repository = $repository;
         $this->protocoloAlunoProfessorRepository = $protocoloAlunoProfessorRepository;
         $this->disciplinaRepository = $disciplinaRepository;
+    }
+
+    /**
+     * Método responsável por retornar os registros para o front-end.
+     * 
+     * @param Request $request
+     * @return mixed
+     */
+    public function index(Request $request)
+    {
+        $data = $request->all();
+
+        $this->registro = $this->repository->with('avatar:id,avatar')->getDataIndex((int) $data['limit'], ['*'], $this->order($data), $data);
+
+        return $this->registro;
     }
 
     /**

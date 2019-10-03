@@ -3,11 +3,13 @@
 namespace Emaj\Repositories\Cadastro;
 
 use Emaj\Entities\Cadastro\Usuario;
+use Emaj\Exceptions\ValidationException;
 use Emaj\Mail\EdicaoUsuarioMailable;
 use Emaj\Mail\NovoUsuarioMailable;
 use Emaj\Repositories\AbstractRepository;
-use Emaj\Util\Functions;
 use Emaj\Util\Roles;
+use Illuminate\Container\Container;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -28,6 +30,17 @@ use function app;
  */
 class UsuarioRepositoryEloquent extends AbstractRepository implements UsuarioRepository
 {
+
+    /**
+     * @var AvatarRepository
+     */
+    private $avatarRepository;
+
+    public function __construct(Container $app, AvatarRepository $avatarRepository)
+    {
+        parent::__construct($app);
+        $this->avatarRepository = $avatarRepository;
+    }
 
     /**
      * Specify Model class name
@@ -59,11 +72,23 @@ class UsuarioRepositoryEloquent extends AbstractRepository implements UsuarioRep
      */
     public function create(array $attributes)
     {
-        $this->setAvatar($attributes);
-        $usuario = parent::create($attributes);
-        Mail::to($usuario->email)
-                ->send(new NovoUsuarioMailable($usuario, $attributes['password']));
-        return $usuario;
+        try {
+            DB::beginTransaction();
+
+            $this->avatarRepository->saveOrUpdateAvatar($attributes);
+            $usuario = parent::create($attributes);
+            Mail::to($usuario->email)
+                    ->send(new NovoUsuarioMailable($usuario, $attributes['password']));
+
+            DB::commit();
+            return $usuario;
+        } catch (ValidationException $ex) {
+            DB::rollback();
+            throw $ex;
+        } catch (\Exception $ex) {
+            DB::rollback();
+            throw $ex;
+        }
     }
 
     /**
@@ -79,12 +104,50 @@ class UsuarioRepositoryEloquent extends AbstractRepository implements UsuarioRep
      */
     public function update(array $attributes, $id)
     {
-        $this->setAvatar($attributes);
-        $usuario = parent::update($attributes, $id);
-        if (isset($attributes['password'])) {
-            Mail::to($usuario->email)->send(new EdicaoUsuarioMailable($usuario, $attributes['password']));
+        try {
+            DB::beginTransaction();
+
+            $this->avatarRepository->saveOrUpdateAvatar($attributes);
+            $usuario = parent::update($attributes, $id);
+            if (isset($attributes['password'])) {
+                Mail::to($usuario->email)->send(new EdicaoUsuarioMailable($usuario, $attributes['password']));
+            }
+
+            DB::commit();
+            return $usuario;
+        } catch (ValidationException $ex) {
+            DB::rollback();
+            throw $ex;
+        } catch (\Exception $ex) {
+            DB::rollback();
+            throw $ex;
         }
-        return $usuario;
+    }
+
+    /**
+     * Delete a entity in repository by id
+     *
+     * @param $id
+     *
+     * @return int
+     */
+    public function delete($id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $usuario = $this->find($id);
+            $deletado = parent::delete($id);
+            if ($usuario->avatar) {
+                $this->avatarRepository->delete($usuario->avatar->id);
+            }           
+
+            DB::commit();
+            return $deletado;
+        } catch (\Exception $ex) {
+            DB::rollback();
+            throw $ex;
+        }
     }
 
     /**
@@ -162,19 +225,6 @@ class UsuarioRepositoryEloquent extends AbstractRepository implements UsuarioRep
         $this->resetModel();
 
         return $model;
-    }
-
-    /**
-     * Método responsável por setar o avatar se estiver sendo enviado
-     * 
-     * @param array $attributes
-     */
-    private function setAvatar(&$attributes)
-    {
-        if (isset($attributes['image_url'])) {
-            $attributes['avatar'] = Functions::convertFileBinary($attributes['image_url']);
-            unset($attributes['image_url']);
-        }
     }
 
 }

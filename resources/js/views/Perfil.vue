@@ -88,16 +88,28 @@
                                                 <img :src="usuario.imageURL" alt="avatar">
                                             </v-avatar>
 
-                                            <v-avatar v-else-if="usuario.avatar_url == null" v-ripple slot="offset" class="mx-auto d-block" size="130">
+                                            <v-avatar v-else-if="usuario.avatar == null" v-ripple slot="offset" class="mx-auto d-block" size="130">
                                                 <span>Click para adicionar um avatar</span>
                                             </v-avatar>
 
                                             <v-avatar v-else v-ripple slot="offset" class="mx-auto d-block" size="130">
-                                                <img :src="usuario.avatar_url" alt="avatar">
+                                                <img :src="usuario.avatar.avatar_url" alt="avatar">
                                             </v-avatar>
-
+                                            
+                                            <div class="text-xs-center pt-3" v-if='erroAvatar'>
+                                                <div class="v-messages theme--light error--text">
+                                                    <div class="v-messages__wrapper">
+                                                        <div class="v-messages__message">
+                                                            {{ erroAvatar }}
+                                                        </div>                                                            
+                                                    </div>                                                        
+                                                </div>                                                    
+                                            </div>
+                                            
                                         </div>
+                                        
                                     </image-input>
+                                    
 
                                     <v-card-text class="text-xs-center">
                                         <h6 class="body-2 category text-gray font-weight-thin mb-3">{{ $auth.user().role | formataRole }}</h6>
@@ -125,14 +137,14 @@
 <script>
     export default {
         data: () => ({
-                usuario: {}
+                usuario: {},
+                erroAvatar: null
             }),
         created() {
             if (this.$auth.ready()) {
                 this.usuario = {
                     id: this.$auth.user().id,
                     avatar: this.$auth.user().avatar,
-                    avatar_url: this.$auth.user().avatar_url,
                     nome_completo: this.$auth.user().nome_completo,
                     telefone: this.$auth.user().telefone,
                     email: this.$auth.user().email
@@ -148,6 +160,7 @@
                             window.getApp.$emit("APP_SUCCESS", {msg: 'Dados atualizados com sucesso!', timeout: 2000});
                             this.usuario.password = '';
                             this.usuario.password_confirmation = '';
+                            this.erroAvatar = null;
                         }).catch((resp) => {
                             this.addErrors(resp);
                         });
@@ -167,6 +180,10 @@
                 if (this.usuario.imageFile) {
                     formData.append('image_url', this.usuario.imageFile);
                 }
+                if(this.usuario.avatar_id){
+                    formData.append('avatar_id', this.usuario.avatar_id);
+                }
+                
                 return formData;
             },
             addErrors(resp) {
@@ -182,6 +199,9 @@
                 }
                 if (resp.response.data.errors.telefone) {
                     this.$validator.errors.add({field: 'Telefone', msg: resp.response.data.errors.telefone});
+                }
+                if (resp.response.data.errors.image_url) {
+                    this.erroAvatar = resp.response.data.errors.image_url[0];
                 }
             }
         }
