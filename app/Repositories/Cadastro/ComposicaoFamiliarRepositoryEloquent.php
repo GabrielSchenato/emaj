@@ -59,7 +59,7 @@ class ComposicaoFamiliarRepositoryEloquent extends AbstractRepository implements
      *
      * @return mixed
      */
-    public function updateOrCreate(array $attributes, array $values = array())
+    public function updateOrCreate(array $attributes, array $values = [])
     {
         $this->limpaCamposCarro($attributes);
         $this->limpaCamposMoto($attributes);

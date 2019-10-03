@@ -82,7 +82,7 @@ abstract class AbstractRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function updateOrCreate(array $attributes, array $values = array())
+    public function updateOrCreate(array $attributes, array $values = [])
     {
         $id = isset($attributes['id']) ? $attributes['id'] : null;
         $this->validate(array_merge($attributes, $values), $id);
