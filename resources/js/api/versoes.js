@@ -369,7 +369,9 @@ const Versoes = [
             },
         ],
         alteracoesInstitucional: [
-
+            {
+                descricao: 'Evolução (Sobre): Inserido informações sobre o projeto'
+            }
         ]
     },
 ];
