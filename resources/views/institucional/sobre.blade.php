@@ -26,13 +26,34 @@
     </div>
 </section>
 
-<section class="ftco-section services-section bg-light">
-    <div class="container mt-0">
-        <div class="row justify-content-center mb-5 pb-3">
-            <div class="col-md-7 text-center heading-section ftco-animate">
-                <h2 class="mb-4">Página em construção... Aguarde</h2>
+<section class="ftco-section bg-light ftco-animate">
+    <div class="container">
+        <div class="col-md-8 container">
+            <div class="blog-entry">
+                <a href="#" class="block-20" style="background-image: url('images/si_uniplac_emaj.png');">
+                </a>
+                <div class="text p-4 float-right d-block">
+                    <div class="topper d-flex align-items-center">
+                        <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                            <span class="day">04</span>
+                        </div>
+                        <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                            <span class="yr">2019</span>
+                            <span class="mos">Outubro</span>
+                        </div>
+                    </div>
+                    <h3 class="heading mt-2"><a href="#">A plataforma do Escritório Modelo de Assistência Jurídica – EMAJ</a></h3>
+                    <p>
+                        Desenvolvida pelo acadêmico <i><b>Gabriel Silva Schenato</b></i> do curso de Sistemas de Informação para o trabalho de conclusão de curso,
+                        jutamente com a parceria do Escritório Modelo de Assistência Jurídica da Uniplac.
+                        </br>
+                        A plataforma visa facilitar o trabalho e evitar o retrabalho dos professores orietadores e secretárias que 
+                        atendem à população hipossuficiente.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
+</div>
 </section>
 @endsection
