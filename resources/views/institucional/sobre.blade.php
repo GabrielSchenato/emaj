@@ -30,25 +30,16 @@
     <div class="container">
         <div class="col-md-8 container">
             <div class="blog-entry">
-                <a href="#" class="block-20" style="background-image: url('images/si_uniplac_emaj.png');">
+                <a href="" onclick="return false;" class="block-20" style="background-image: url('images/si_uniplac_emaj.png');">
                 </a>
                 <div class="text p-4 float-right d-block">
-                    <div class="topper d-flex align-items-center">
-                        <div class="one py-2 pl-3 pr-1 align-self-stretch">
-                            <span class="day">04</span>
-                        </div>
-                        <div class="two pl-0 pr-3 py-2 align-self-stretch">
-                            <span class="yr">2019</span>
-                            <span class="mos">Outubro</span>
-                        </div>
-                    </div>
                     <h3 class="heading mt-2"><a href="#">A plataforma do Escritório Modelo de Assistência Jurídica – EMAJ</a></h3>
                     <p>
-                        Desenvolvida pelo acadêmico <i><b>Gabriel Silva Schenato</b></i> do curso de Sistemas de Informação para o trabalho de conclusão de curso,
-                        jutamente com a parceria do Escritório Modelo de Assistência Jurídica da Uniplac.
+                        Desenvolvida pelo acadêmico <i><b>Gabriel Silva Schenato</b></i> do curso de Sistemas de Informação para o trabalho de conclusão de curso no ano de 2019,
+                        juntamente com a parceria do Escritório Modelo de Assistência Jurídica da Uniplac.
                         </br>
                         A plataforma visa facilitar o trabalho e evitar o retrabalho dos professores orietadores e secretárias que 
-                        atendem à população hipossuficiente.
+                        atendem à população hipossuficiente da região.
                     </p>
                 </div>
             </div>
