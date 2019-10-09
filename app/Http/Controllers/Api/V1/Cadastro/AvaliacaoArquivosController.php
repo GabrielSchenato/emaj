@@ -20,6 +20,9 @@ use Emaj\Repositories\Cadastro\AvaliacaoArquivoRepository;
 class AvaliacaoArquivosController extends CrudController
 {
 
+    /**
+     * @var AvaliacaoArquivoRepository 
+     */
     protected $repository;
 
     public function __construct(AvaliacaoArquivoRepository $repository)
@@ -27,6 +30,12 @@ class AvaliacaoArquivosController extends CrudController
         $this->repository = $repository;
     }
 
+    /**
+     * Método responsável por gerar o download de arquivos.
+     * 
+     * @param int $id
+     * @return mixed
+     */
     public function download($id)
     {
         $this->registro = $this->repository->find($id);
@@ -41,9 +50,9 @@ class AvaliacaoArquivosController extends CrudController
             'Pragma' => 'public',
             'Expires' => '0'
         ];
-        
-        ob_end_clean();        
-        
+
+        ob_end_clean();
+
         return response()->make(base64_decode($this->registro->arquivo), 200, $headers);
     }
 

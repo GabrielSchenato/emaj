@@ -28,7 +28,15 @@ use Emaj\Repositories\Cadastro\{
     ProtocoloRepository,
     ProtocoloRepositoryEloquent,
     ProtocoloAlunoProfessorRepository,
-    ProtocoloAlunoProfessorRepositoryEloquent
+    ProtocoloAlunoProfessorRepositoryEloquent,
+    DiaPeriodoRepository,
+    DiaPeriodoRepositoryEloquent,
+    DiaPeriodoAlunoRepository,
+    DiaPeriodoAlunoRepositoryEloquent,
+    DisciplinaRepository,
+    DisciplinaRepositoryEloquent,
+    AvatarRepository,
+    AvatarRepositoryEloquent
 };
 use Emaj\Repositories\Movimento\{
     FichaTriagemRepository,
@@ -70,6 +78,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(AvaliacaoArquivoRepository::class, AvaliacaoArquivoRepositoryEloquent::class);
         $this->app->bind(ProtocoloRepository::class, ProtocoloRepositoryEloquent::class);
         $this->app->bind(ProtocoloAlunoProfessorRepository::class, ProtocoloAlunoProfessorRepositoryEloquent::class);
+        $this->app->bind(DiaPeriodoRepository::class, DiaPeriodoRepositoryEloquent::class);
+        $this->app->bind(DiaPeriodoAlunoRepository::class, DiaPeriodoAlunoRepositoryEloquent::class);
+        $this->app->bind(DisciplinaRepository::class, DisciplinaRepositoryEloquent::class);
+        $this->app->bind(AvatarRepository::class, AvatarRepositoryEloquent::class);
     }
 
 }

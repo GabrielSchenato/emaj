@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
   |--------------------------------------------------------------------------
   | API Routes
@@ -12,10 +10,6 @@ use Illuminate\Http\Request;
   | is assigned the "api" middleware group. Enjoy building your API!
   |
  */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::prefix('v1/auth')
         ->namespace('Api\V1')
@@ -46,6 +40,8 @@ Route::prefix('v1')
             Route::post('protocolos/imprimir-ficha-triagem', 'Cadastro\ProtocolosController@imprimirFichaTriagem');
 
             Route::get('protocoloalunosprofessores/autocomplete', 'Cadastro\ProtocoloAlunosProfessoresController@autocomplete');
+            
+            Route::get('diaperiodoalunos/autocomplete', 'Cadastro\DiaPeriodoAlunosController@autocomplete');
 
             Route::get('clientes/is-parte-contraria/{id}', 'Cadastro\ClientesController@isParteContraria');
 
@@ -58,6 +54,7 @@ Route::prefix('v1')
                 'avaliacaoarquivos' => 'Cadastro\AvaliacaoArquivosController',
                 'protocolos' => 'Cadastro\ProtocolosController',
                 'protocoloalunosprofessores' => 'Cadastro\ProtocoloAlunosProfessoresController',
+                'diaperiodoalunos' => 'Cadastro\DiaPeriodoAlunosController',
                 'fichatriagens' => 'Movimento\FichaTriagensController'
             ]);
             Route::get('parametrostriagem', 'Cadastro\ParametrosTriagemController@show');
@@ -66,4 +63,16 @@ Route::prefix('v1')
             Route::put('telefones/{id}', 'Cadastro\TelefonesController@update');
             Route::get('avaliacoes-aluno/{id}', 'Cadastro\AvaliacoesController@avaliacoesAluno');
             Route::get('avaliacaoarquivos/download/{id}', 'Cadastro\AvaliacaoArquivosController@download');
+
+            Route::post('relatividadesprestadas', 'Relatorio\RelAtividadesPrestadasController');
+            Route::get('relatividadesprestadas/autocomplete', 'Relatorio\RelAtividadesPrestadasController@autocomplete');
+            
+            Route::post('relprofessoresalunos', 'Relatorio\RelProfessoresAlunosController');
+            Route::get('relprofessoresalunos/autocomplete', 'Relatorio\RelProfessoresAlunosController@autocomplete');
+            
+            Route::post('reldiasperiodosalunos', 'Relatorio\RelDiasPeriodosAlunosController');
+            Route::get('reldiasperiodosalunos/autocomplete', 'Relatorio\RelDiasPeriodosAlunosController@autocomplete');
+            
+            Route::post('relclientesprotocolos', 'Relatorio\RelClientesProtocolosController');
+            Route::get('relclientesprotocolos/autocomplete', 'Relatorio\RelClientesProtocolosController@autocomplete');
         });

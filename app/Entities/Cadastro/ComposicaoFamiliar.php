@@ -20,12 +20,17 @@ class ComposicaoFamiliar extends Model
 {
 
     /**
-     * The database table used by the model.
+     * O nome da tabela no banco de dados.
      *
      * @var string
      */
     protected $table = 'composicao_familiares';
-    
+
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'renda_familiar',
         'casa',

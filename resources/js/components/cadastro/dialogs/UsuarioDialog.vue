@@ -20,7 +20,7 @@
                 </v-card-text>
                 <v-card-actions class="pt-0">
                     <v-spacer></v-spacer>
-                    <v-btn color="green" flat="flat"  type="submit">
+                    <v-btn color="green" flat="flat" type="submit">
                         Salvar
                         <v-icon right dark>check</v-icon>
                     </v-btn>
@@ -87,12 +87,16 @@
                 if (this.usuario.password_confirmation) {
                     formData.append('password_confirmation', this.usuario.password_confirmation);
                 }
-                if (this.usuario.avatar && this.usuario.avatar.imageFile) {
-                    formData.append('image_url', this.usuario.avatar.imageFile);
+                if (this.usuario.imageFile) {
+                    formData.append('image_url', this.usuario.imageFile);
+                }
+                if(this.usuario.avatar_id){
+                    formData.append('avatar_id', this.usuario.avatar_id);
                 }
                 return formData;
             },
             save() {
+                this.$refs.usuarioForm.erroAvatar = null;
                 this.$refs.usuarioForm.$validator.validateAll().then(valid => {
                     if (valid) {
                         this.$store
@@ -109,6 +113,7 @@
                 });
             },
             update() {
+                this.$refs.usuarioForm.erroAvatar = null;
                 this.$refs.usuarioForm.$validator.validateAll().then(valid => {
                     if (valid) {
                         this.$store
@@ -132,6 +137,7 @@
             },
             clear() {
                 this.usuario = {};
+                this.$refs.usuarioForm.erroAvatar = null;
                 this.$refs.usuarioForm.$validator.errors.clear();
             },
             addErrors(resp) {
@@ -150,6 +156,9 @@
                 }
                 if (resp.response.data.errors.telefone) {
                     this.$refs.usuarioForm.$validator.errors.add({field: 'Telefone', msg: resp.response.data.errors.telefone});
+                }
+                if (resp.response.data.errors.image_url) {
+                    this.$refs.usuarioForm.erroAvatar = resp.response.data.errors.image_url[0];
                 }
             }
         }

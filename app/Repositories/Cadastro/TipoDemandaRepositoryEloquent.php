@@ -94,10 +94,20 @@ class TipoDemandaRepositoryEloquent extends AbstractRepository implements TipoDe
      */
     public function getDataAutocomplete($value)
     {
-        return $this->whereLike('nome', $value)
-                        ->orderBy('nome', 'asc')
-                        ->limit(10)
-                        ->get(['id', 'nome']);
+        $this->applyCriteria();
+        $this->applyScope();
+
+        $model = $this->model->where(function ($query) use ($value) {
+                    $query->where('nome', 'LIKE', "%{$value}%")
+                    ->orWhere('id', '=', (int) $value);
+                })
+                ->orderBy('nome', 'asc')
+                ->limit(10)
+                ->get(['id', 'nome']);
+
+        $this->resetModel();
+
+        return $model;
     }
 
 }

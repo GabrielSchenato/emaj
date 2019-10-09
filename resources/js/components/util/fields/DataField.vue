@@ -8,7 +8,7 @@
         transition="scale-transition"
         offset-y
         full-width
-        min-width="290px"
+        min-width="290px"        
         >
         <template v-slot:activator="{ on }">
             <v-text-field
@@ -18,8 +18,8 @@
                 v-on="on"
                 @click:clear="clearData()"
                 v-bind:error-messages="errorMessages"
+                :autofocus="options.autofocus"
                 >
-
                 <template v-slot:label>
                     {{ options.name }}<span class="required" v-if="options.required">*</span>
                 </template>

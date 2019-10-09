@@ -20,6 +20,9 @@ use Emaj\Repositories\Cadastro\TelefoneRepository;
 class TelefonesController extends CrudController
 {
 
+    /**
+     * @var TelefoneRepository 
+     */
     protected $repository;
 
     public function __construct(TelefoneRepository $repository)

@@ -286,7 +286,7 @@
             optionsRenda() {
                 return {
                     field: 'renda',
-                    required: this.getConfig().required,
+                    required: false,
                     name: 'Renda'
                 };
             }

@@ -24,10 +24,10 @@ export default {
             });
         },
         newAluno(context, data) {
-            return window.axios.post('alunos', data);
+            return window.axios.post('alunos', data, {headers: {"content-type": "multipart/form-data"}});
         },
         updateAluno(context, data) {
-            return window.axios.put('alunos/' + data.id, data);
+            return window.axios.post('alunos/' + data.get('id'), data, {headers: {"content-type": "multipart/form-data"}});
         },
         removeAluno(context, data) {
             return window.axios.delete('alunos/' + data.id);

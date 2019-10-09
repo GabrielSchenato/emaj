@@ -6,8 +6,9 @@
         <input type="file"
                ref="file"
                :name="uploadFieldName"
+               @click='$refs.file.value = null'
                @change="onFileChange(
-               $event.target.name, $event.target.files)"
+               $event.target.name, $event.target.files);"
                style="display:none">
         <v-dialog v-model="errorDialog" max-width="450">
             <v-card>
@@ -24,14 +25,27 @@
 <script>
     export default {
         name: 'image-input',
-        data: () => ({
+        props: {
+            value: {
+                type: [Object]
+            }
+        },
+        data() {
+            return {
+                imageInput: Object.assign({}, this.value),
                 errorDialog: null,
                 errorText: '',
                 uploadFieldName: 'file',
                 maxSize: 1024
-            }),
-        props: {
-            value: Object
+            };
+        },
+        watch: {
+            value: {
+                handler() {
+                    this.imageInput = Object.assign({}, this.value);
+                },
+                deep: true
+            }
         },
         methods: {
             launchFilePicker() {
@@ -45,12 +59,13 @@
                     if (!imageFile.type.match('image.*')) {
                         this.errorDialog = true;
                         this.errorText = 'Por favor, escolha um arquivo tipo imagem';
-                    } else if (size > 1) {
+                    } else if (size > 5) {
                         this.errorDialog = true;
-                        this.errorText = 'A imagem que você escolheu é muito grande! Por favor selecione uma imagem menor que 1MB';
+                        this.errorText = 'A imagem que você escolheu é muito grande! Por favor selecione uma imagem menor que 5MB';
                     } else {
-                        let imageURL = URL.createObjectURL(imageFile);
-                        this.$emit('input', {imageFile, imageURL});
+                        this.imageInput.imageURL = URL.createObjectURL(imageFile);
+                        this.imageInput.imageFile = imageFile;
+                        this.$emit('input', this.imageInput);
                     }
                 }
             }

@@ -2,7 +2,6 @@
 
 namespace Emaj\Entities\Cadastro;
 
-use Emaj\Entities\Movimento\FichaTriagem;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,14 +19,23 @@ use Illuminate\Database\Eloquent\Model;
 class Aluno extends Model
 {
 
+    /**
+     * Armazena o nome das variáveis que serão enviadas na api.
+     * 
+     * @var array 
+     */
+    protected $appends = ['dados_aluno'];
+
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'nome_completo',
-        'fase',
         'matricula',
-        'disciplina',
-        'ano',
-        'semestre',
-        'turno',
+        'disciplina_id',
+        'avatar_id',
         'telefone',
         'celular',
         'email',
@@ -44,19 +52,45 @@ class Aluno extends Model
     }
 
     /**
-     * Pega todas as Ficha de Triagens associados ao aluno.
-     */
-    public function ficha_triagens_aluno()
-    {
-        return $this->hasMany(FichaTriagem::class, 'aluno_id')->orderBy('created_at', 'desc');
-    }
-
-    /**
      * Pega todas as avaliações associadas ao aluno.
      */
     public function avaliacoes()
     {
         return $this->hasMany(Avaliacao::class, 'aluno_id')->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * Os períodos que pertencem ao aluno.
+     */
+    public function dia_periodos()
+    {
+        return $this->belongsToMany(DiaPeriodo::class, 'dia_periodo_alunos');
+    }
+
+    /**
+     * Pega a disciplina que está associada a esse aluno.
+     */
+    public function disciplina()
+    {
+        return $this->belongsTo(Disciplina::class);
+    }
+
+    /**
+     * Pega o avatar que está associada a esse aluno.
+     */
+    public function avatar()
+    {
+        return $this->belongsTo(Avatar::class);
+    }
+
+    /**
+     * Método responsável por retornar os dados do aluno.
+     * 
+     * @return string
+     */
+    protected function getDadosAlunoAttribute()
+    {
+        return "$this->nome_completo ({$this->id})";
     }
 
 }

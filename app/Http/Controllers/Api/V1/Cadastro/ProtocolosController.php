@@ -7,7 +7,7 @@ use Emaj\Http\Controllers\CrudController;
 use Emaj\Repositories\Cadastro\ClienteRepository;
 use Emaj\Repositories\Cadastro\ProtocoloRepository;
 use Emaj\Repositories\Cadastro\TipoDemandaRepository;
-use Emaj\Util\Traits\Report;
+use Emaj\Util\Report;
 
 /**
  * Classe responsável por gerenciar a requisições das páginas
@@ -24,8 +24,6 @@ use Emaj\Util\Traits\Report;
 class ProtocolosController extends CrudController
 {
 
-    use Report;
-
     /**
      * @var ClienteRepository
      */
@@ -35,10 +33,20 @@ class ProtocolosController extends CrudController
      * @var TipoDemandaRepository
      */
     private $tipoDemandaRepository;
+
+    /**
+     * @var ProtocoloRepository 
+     */
     protected $repository;
+
+    /**
+     * Armazena os relacionamentos.
+     * 
+     * @var array 
+     */
     protected $relationships = [
         'tipo_demanda:id,nome',
-        'parte_contraria:id,nome_completo'
+        'parte_contraria:id,nome_completo,representado_assistido,cpf,rg,renda'
     ];
 
     public function __construct(ProtocoloRepository $repository, TipoDemandaRepository $tipoDemandaRepository, ClienteRepository $clienteRepository)
@@ -48,12 +56,23 @@ class ProtocolosController extends CrudController
         $this->clienteRepository = $clienteRepository;
     }
 
+    /**
+     * Método responsável por gerar a impressão da Ficha de Triagem
+     * 
+     * @return mixed
+     */
     public function imprimirFichaTriagem()
     {
-        $this->nomeRelatorio = 'ficha_triagem';
-        $this->nomeRelatorioJasper = 'ficha_triagem';
-        $this->titulo = 'Ficha de Triagem';
-        return $this->gerarImpressao();
+        if (request()->isMethod('POST')) {
+            $values = request()->all();
+            return (new Report())->setTitulo('Ficha de Triagem')
+                            ->setNomeRelatorioJasper('ficha_triagem')
+                            ->addParametros([
+                                'cliente_id' => $values['cliente_id'],
+                                'parte_contraria_id' => $values['parte_contraria_id'],
+                                'protocolo_id' => $values['protocolo_id']
+                            ])->generateReport();
+        }
     }
 
     /**

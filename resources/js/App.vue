@@ -1,129 +1,157 @@
 <template>
-  <div id="appRoot">
-    <template v-if="!$route.meta.public">
-      <v-app id="inspire" class="app">
-        <app-drawer class="app--drawer"></app-drawer>
-        <app-toolbar class="app--toolbar"></app-toolbar>
-        <v-content>
-          <!-- Page Header -->
-          <page-header v-if="$route.meta.breadcrumb"></page-header>
-          <div class="page-wrapper">
-            <router-view></router-view>
-          </div>   
-           <!-- App Footer -->
-          <v-footer height="auto" class="white pa-3 app--footer">
-            <span class="caption">&copy; {{ new Date().getFullYear() }}</span>
-            <v-spacer></v-spacer>
-            <span class="caption mr-1"> Desenvolvido por: <span class="">Gabriel Schenato</span> </span>
-          </v-footer>
-        </v-content>
-        <!-- Go to top -->
-        <app-fab></app-fab>
-        <v-navigation-drawer
-          class="setting-drawer"
-          temporary
-          right
-          v-model="rightDrawer"
-          hide-overlay
-          fixed
-          >
-        </v-navigation-drawer>        
-      </v-app>
-    </template>
-    <template v-else>
-      <transition>
-        <keep-alive>
-          <router-view :key="$route.fullpath"></router-view>
-        </keep-alive>
-      </transition>
-    </template>
-    <v-snackbar
-      :timeout="snackbar.timeout"
-      auto-height
-      top
-      right
-      multi-line
-      :color="snackbar.color"
-      v-model="snackbar.show"
-      v-bind:style="{ zIndex: 2000 }"
-    >
-      <v-icon dark>{{ snackbar.icon }}</v-icon>
-        <div id="text-snackbar">&nbsp; {{ snackbar.text }}</div>
-      <v-btn dark flat @click.native="snackbar.show = false" icon> 
-        <v-icon>close</v-icon>
-      </v-btn>
-    </v-snackbar>
-    <div id="preloader" v-if="loader.show || counter !== 0 && $auth.ready()">
-        <div id="ftco-loader" class="show">
-            <div class="loader">{{ loader.msg }}</div>
-        </div>      
+    <div id="appRoot">
+
+        <template v-if="!$route.meta.public">
+            <v-app id="inspire" class="app">
+                <app-drawer class="app--drawer"></app-drawer>
+                <app-toolbar class="app--toolbar"></app-toolbar>
+                <v-content>
+                    <!-- Page Header -->
+                    <page-header v-if="$route.meta.breadcrumb"></page-header>
+                    <div class="page-wrapper">
+                        
+                        <v-dialog
+                            v-model="loader.show || counter !== 0 && $auth.ready()"
+                            persistent
+                            width="300"
+                            transition="slide-y-transition"
+                            >
+                            <v-card
+                                color="primary"
+                                dark
+                                >
+                                <v-card-text>
+                                    <p class="text-xs-center">{{ loader.msg }}</p>
+                                    <v-progress-linear
+                                        indeterminate
+                                        color="white"
+                                        class="mb-0"
+                                        ></v-progress-linear>
+                                </v-card-text>
+                            </v-card>
+                        </v-dialog>
+
+                        <router-view></router-view>
+                    </div>   
+                    <!-- App Footer -->
+                    <v-footer height="auto" class="white pa-3 app--footer">
+                        <span class="caption">&copy; {{ new Date().getFullYear() }}</span>
+                        <v-spacer></v-spacer>
+                        <span class="caption mr-1"> Desenvolvido por: <span class="">Gabriel Schenato</span> </span>
+                    </v-footer>
+                </v-content>
+                <!-- Go to top -->
+                <app-fab></app-fab>
+                <v-navigation-drawer
+                    class="setting-drawer"
+                    temporary
+                    right
+                    v-model="rightDrawer"
+                    hide-overlay
+                    fixed
+                    >
+                </v-navigation-drawer>        
+            </v-app>
+        </template>
+
+        <template v-else>
+            <transition>
+                <keep-alive>
+                    <router-view :key="$route.fullpath"></router-view>
+                </keep-alive>
+            </transition>
+        </template>
+
+        <v-snackbar
+            :timeout="snackbar.timeout"
+            auto-height
+            top
+            right
+            multi-line
+            :color="snackbar.color"
+            v-model="snackbar.show"
+            v-bind:style="{ zIndex: 2000 }"
+            >
+            <v-icon dark>{{ snackbar.icon }}</v-icon>
+            <div id="text-snackbar">&nbsp; {{ snackbar.text }}</div>
+            <v-btn dark flat @click.native="snackbar.show = false" icon> 
+                <v-icon>close</v-icon>
+            </v-btn>
+        </v-snackbar>
+
+        <!---<div id="preloader" v-if="loader.show || counter !== 0 && $auth.ready()">
+            <div id="ftco-loader" class="show">
+                <div class="loader">{{ loader.msg }}</div>
+            </div>      
+        </div>--->
+
+
     </div>
-  </div>
 </template>
 <script>
-import AppDrawer from '@/components/AppDrawer';
-import AppToolbar from '@/components/AppToolbar';
-import AppFab from '@/components/AppFab';
-import PageHeader from '@/components/PageHeader';
-import AppEvents from  './event';
-import axios from 'axios';
-export default {
-  components: {
-    AppDrawer,
-    AppToolbar,
-    AppFab,
-    PageHeader,
-  },
-  data: () => ({
-    expanded: true,
-    rightDrawer: false,
-    counter: 0,
-    snackbar: {
-      show: false,
-      text: '',
-      color: '',
-      timeout: 3000,
-      icon: ''
-    },
-    loader: {
-        show: false,
-        msg: 'Carregando...'
-    }
-  }),
+    import AppDrawer from '@/components/AppDrawer';
+    import AppToolbar from '@/components/AppToolbar';
+    import AppFab from '@/components/AppFab';
+    import PageHeader from '@/components/PageHeader';
+    import AppEvents from  './event';
+    import axios from 'axios';
+    export default {
+        components: {
+            AppDrawer,
+            AppToolbar,
+            AppFab,
+            PageHeader
+        },
+        data: () => ({
+                expanded: true,
+                rightDrawer: false,
+                counter: 0,
+                snackbar: {
+                    show: false,
+                    text: '',
+                    color: '',
+                    timeout: 3000,
+                    icon: ''
+                },
+                loader: {
+                    show: false,
+                    msg: 'Carregando...'
+                }
+            }),
 
-  computed: {
+        computed: {
 
-  },
+        },
 
-  created () {
-    AppEvents.forEach(item => {
-      this.$on(item.name, item.callback);
-    });
-    window.getApp = this;
-  },
-  methods: {
-    openThemeSettings () {
-      this.$vuetify.goTo(0);
-      this.rightDrawer = (!this.rightDrawer);
-    }
-  },
-    mounted() {
-      axios.interceptors.request.use((config) => {
-          this.counter ++;
-          return config;
-      }, (error) => {
-          return Promise.reject(error);
-      });
-      axios.interceptors.response.use((config) => {
-          this.counter --;
-          return config;
-      }, (error) => {
-          this.counter --;
-          return Promise.reject(error);
-      });
-  }
+        created() {
+            AppEvents.forEach(item => {
+                this.$on(item.name, item.callback);
+            });
+            window.getApp = this;
+        },
+        methods: {
+            openThemeSettings() {
+                this.$vuetify.goTo(0);
+                this.rightDrawer = (!this.rightDrawer);
+            }
+        },
+        mounted() {
+            axios.interceptors.request.use((config) => {
+                this.counter++;
+                return config;
+            }, (error) => {
+                return Promise.reject(error);
+            });
+            axios.interceptors.response.use((config) => {
+                this.counter--;
+                return config;
+            }, (error) => {
+                this.counter--;
+                return Promise.reject(error);
+            });
+        }
 
-};
+    };
 </script>
 
 

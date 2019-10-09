@@ -82,7 +82,7 @@ abstract class AbstractRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function updateOrCreate(array $attributes, array $values = array())
+    public function updateOrCreate(array $attributes, array $values = [])
     {
         $id = isset($attributes['id']) ? $attributes['id'] : null;
         $this->validate(array_merge($attributes, $values), $id);
@@ -103,6 +103,7 @@ abstract class AbstractRepository extends BaseRepository
 
     /**
      * Método responsável por buscar os registros filtrando pela palavra chave
+     * utilizando a condição like.
      *
      * @param       $field
      * @param       $value
@@ -113,7 +114,9 @@ abstract class AbstractRepository extends BaseRepository
     {
         $this->applyCriteria();
         $this->applyScope();
+        
         $model = $this->model->where($field, 'LIKE', "%{$value}%");
+        
         $this->resetModel();
 
         return $this->parserResult($model);

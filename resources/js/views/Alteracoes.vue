@@ -1,56 +1,103 @@
 <template>
     <v-layout row pb-2>
         <v-flex xs10 offset-xs1>
-            <versao2_0_2></versao2_0_2>
-            </br>
-            <versao2_0_1></versao2_0_1>
-            </br>
-            <versao2_0_0></versao2_0_0>
-            </br>
-            <versao1_1_0></versao1_1_0>
-            </br>
-            <versao1_0_6></versao1_0_6>
-            </br>
-            <versao1_0_5></versao1_0_5>
-            </br>
-            <versao1_0_4></versao1_0_4>
-            </br>
-            <versao1_0_3></versao1_0_3>
-            </br>
-            <versao1_0_2></versao1_0_2>
-            </br>
-            <versao1_0_1></versao1_0_1>
-            </br>
-            <versao1_0_0></versao1_0_0>
+            <v-card>
+                <v-card-text>
+                    <fieldset>
+                        <legend>Versões</legend>
+                        <v-layout row wrap>
+
+                            <v-flex xs12 sm6 md6>
+                                <v-autocomplete
+                                    v-model="versao"
+                                    return-object                                    
+                                    :items="versoes"
+                                    hide-no-data
+                                    hide-details
+                                    item-text="nome"
+                                    item-value="id"
+                                    ></v-autocomplete>
+                            </v-flex>
+
+                        </v-layout>            
+                    </fieldset>
+
+                    <v-divider light class="pt-3"></v-divider>
+
+                    <v-card class="card--flex-toolbar">
+                        <v-toolbar card prominent>
+                            <v-toolbar-title class="body-6 black--text">{{ versao.nome }}</v-toolbar-title>
+                            <v-toolbar-title class="body-1 grey--text"><small>{{ versao.data }}</small></v-toolbar-title>                      
+                            <v-spacer></v-spacer>
+                        </v-toolbar>
+                        <v-divider></v-divider>
+                        <v-card-text>
+
+                            <h3 class="font-weight-thin font-italic">Portal</h3>
+                            <v-divider></v-divider>
+                            <br>
+
+                            <v-flex sm12>
+                                <div slot="widget-content">
+                                    <ol class="timeline timeline-activity timeline-point-sm timeline-content-right" style="position: inherit">
+                                        <li class="timeline-block" v-for="(item, index) in versao.alteracoesPortal" :key="index">
+                                            <div class="timeline-point">
+                                                <v-icon :color="item.color ? item.color : color">{{ item.icon ? item.icon : icon }}</v-icon>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <div v-html="item.descricao"></div>
+                                            </div>
+                                        </li>
+                                    </ol>              
+                                </div>        
+                            </v-flex>       
+
+                            <br>
+
+                            <h3 class="font-weight-thin font-italic">Institucional</h3>
+                            <v-divider></v-divider>      
+                            <br>
+
+                            <v-flex sm12>
+                                <div slot="widget-content">
+                                    <ol class="timeline timeline-activity timeline-point-sm timeline-content-right" style="position: inherit">
+                                        <li class="timeline-block" v-for="(item, index) in versao.alteracoesInstitucional" :key="index">
+                                            <div class="timeline-point">
+                                                <v-icon :color="item.color ? item.color : color">{{ item.icon ? item.icon : icon }}</v-icon>
+                                            </div>
+                                            <div class="timeline-content">
+                                                <div v-html="item.descricao"></div>
+                                            </div>
+                                        </li>
+                                    </ol>              
+                                </div>        
+                            </v-flex>  
+
+                        </v-card-text>
+                    </v-card>    
+                </v-card-text>
+            </v-card>
         </v-flex>
     </v-layout>        
 </template>
 
 <script>
-    import Versao1_0_0 from "@/views/versoes/Versao1_0_0.vue";
-    import Versao1_0_1 from "@/views/versoes/Versao1_0_1.vue";
-    import Versao1_0_2 from "@/views/versoes/Versao1_0_2.vue";
-    import Versao1_0_3 from "@/views/versoes/Versao1_0_3.vue";
-    import Versao1_0_4 from "@/views/versoes/Versao1_0_4.vue";
-    import Versao1_0_5 from "@/views/versoes/Versao1_0_5.vue";
-    import Versao1_0_6 from "@/views/versoes/Versao1_0_6.vue";
-    import Versao1_1_0 from "@/views/versoes/Versao1_1_0.vue";
-    import Versao2_0_0 from "@/views/versoes/Versao2_0_0.vue";
-    import Versao2_0_1 from "@/views/versoes/Versao2_0_1.vue";
-    import Versao2_0_2 from "@/views/versoes/Versao2_0_2.vue";
+    import Versoes from "@/api/versoes";
     export default {
-        components: {
-            Versao1_0_0,
-            Versao1_0_1,
-            Versao1_0_2,
-            Versao1_0_3,
-            Versao1_0_4,
-            Versao1_0_5,
-            Versao1_0_6,
-            Versao1_1_0,
-            Versao2_0_0,
-            Versao2_0_1,
-            Versao2_0_2,
+        data() {
+            return {
+                versao: {},
+                color: 'black',
+                icon: 'fiber_manual_record'
+            };
+        },
+        computed: {
+            versoes() {
+                return Versoes.getVersoesOrdenado();
+            }
+        },
+        created() {
+            this.versao = Versoes.getLastVersao();
         }
     };
 </script>

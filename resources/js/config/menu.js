@@ -23,6 +23,20 @@ const Menu = [
         role: ['admin', 'secretaria']
     },
     {divider: true},
+    {header: 'Estatísticas'},
+    {divider: true},
+    {
+        title: 'Relatórios',
+        group: 'relatorio',
+        component: 'relatorio',
+        icon: 'description',
+        itens: [
+            {name: 'relatividadesprestadas', title: 'Atividades Prestadas', component: 'relatorio/relatividadesprestadas', role: ['admin', 'secretaria']},
+            {name: 'relprofessoresalunos', title: 'Professores Alunos', component: 'relatorio/relprofessoresalunos', role: ['admin', 'secretaria']},
+            {name: 'reldiasperiodosalunos', title: 'Dias e Períodos dos Alunos', component: 'relatorio/reldiasperiodosalunos', role: ['admin', 'secretaria']},
+            {name: 'relclientesprotocolos', title: 'Clientes e Protocolos', component: 'relatorio/relclientesprotocolos', role: ['admin', 'secretaria']}
+        ]
+    },
     /*{header: 'Movimentação do Sistema'},
      {
      title: 'Movimentos',

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="_cabecalho_padrao_paisagem" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bcc05113-018a-48f4-81f8-212c3487a284">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="caminho" class="java.lang.String">
+		<defaultValueExpression><![CDATA["D:\\OneDrive\\www\\emaj"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="titulo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<pageHeader>
+		<band height="63">
+			<textField>
+				<reportElement x="0" y="39" width="786" height="15" uuid="98c93072-61e2-4ade-b4b4-98aed969ce21">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="-20" width="58" height="57" uuid="a32dc7fa-4f62-4b74-beb5-dbf13c033dc6"/>
+				<imageExpression><![CDATA[$P{caminho} + "/relatorios/img/logo_uniplac_preta.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="38" width="786" height="1" uuid="1e05608a-f844-40f0-9b2c-988d1c511548">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="54" width="786" height="1" uuid="914b8bca-69ac-42e2-a30b-949a4ca9bf9d">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="60" y="11" width="238" height="22" uuid="9611f4ec-ad2a-433a-a8ce-1900a63c8ba8"/>
+				<text><![CDATA[UNIVERSIDADE DO PLANALTO CATARINENSE]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement stretchType="RelativeToTallestObject" x="654" y="-28" width="131" height="77" uuid="d19d0ff1-414c-4393-990f-4222ce35de8c"/>
+				<imageExpression><![CDATA[$P{caminho} + "/relatorios/img/logo_emaj_preto.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+</jasperReport>

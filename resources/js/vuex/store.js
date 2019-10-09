@@ -6,6 +6,7 @@ import cliente from './modules/cliente'
 import aluno from './modules/aluno'
 import protocolo from './modules/protocolo'
 import protocoloalunosprofessores from './modules/protocoloalunosprofessores'
+import periodosaluno from './modules/periodosaluno'
 import fichatriagem from './modules/fichatriagem'
 
 export default {
@@ -18,6 +19,7 @@ export default {
         aluno: aluno,
         protocolo: protocolo,
         protocoloalunosprofessores: protocoloalunosprofessores,
+        periodosaluno: periodosaluno,
         fichatriagem: fichatriagem
     }
 }

@@ -26,20 +26,35 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
     use Notifiable;
 
     /**
-     * The database table used by the model.
+     * O nome da tabela no banco de dados.
      *
      * @var string
      */
     protected $table = 'usuarios';
-    protected $appends = ['dados_usuario'];
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * Armazena o nome das variáveis que serão enviadas na api.
+     * 
+     * @var array 
+     */
+    protected $appends = [
+        'dados_usuario'
+    ];
+
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
      */
     protected $fillable = [
-        'nome_completo', 'email', 'password', 'role', 'avatar', 'telefone', 'professor', 'ativo'
+        'nome_completo',
+        'email',
+        'password',
+        'role',
+        'avatar_id',
+        'telefone',
+        'professor',
+        'ativo'
     ];
 
     /**
@@ -62,19 +77,21 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
     }
 
     /**
-     * Pega todas as Ficha de Triagens associados ao professor.
+     * Método responsável por retornar os dados do usuário.
+     * 
+     * @return string
      */
-    public function ficha_triagens_professor()
-    {
-        return $this->hasMany(FichaTriagem::class, 'professor_id');
-    }
-
     protected function getDadosUsuarioAttribute()
     {
-        $string = '';
-        $string .= $this->attributes['nome_completo'];
-        $string .= ' (' . $this->attributes['id'] . ')';
-        return $string;
+        return "{$this->nome_completo} ({$this->id})";
+    }
+
+    /**
+     * Pega o avatar que está associada a esse usuário.
+     */
+    public function avatar()
+    {
+        return $this->belongsTo(Avatar::class);
     }
 
 }

@@ -1,19 +1,31 @@
 <template>
     <v-layout wrap>
         <v-flex xs10 offset-xs5>
-            <image-input v-model="usuario.avatar">
+            <image-input v-model="usuario" @input="$emit('input', usuario)">
                 <div slot="activator">
-                    <v-avatar size="150px" v-ripple v-if="usuario.avatar && getAvatar" class="mb-3">
-                        <img :src="getAvatar" alt="avatar">
+                    <v-avatar size="150px" v-ripple v-if="usuario.imageURL != null" class="mb-3">
+                        <img :src="usuario.imageURL" alt="avatar">
                     </v-avatar>
-                    <v-avatar size="150px" v-ripple v-else-if="!avatar" class="grey lighten-3 mb-3">
+                    <v-avatar size="150px" v-ripple v-else-if="usuario.avatar == null" class="grey lighten-3 mb-3">
                         <span>Click para adicionar um avatar</span>
                     </v-avatar>
                     <v-avatar size="150px" v-ripple v-else class="mb-3">
-                        <img :src="usuario.avatar.imageURL" alt="avatar">
+                        <img :src="usuario.avatar.avatar_url" alt="avatar">
                     </v-avatar>
                 </div>
             </image-input>
+        </v-flex>
+
+        <v-flex xs12>
+            <div class="text-xs-center" v-if='erroAvatar'>
+                <div class="v-messages theme--light error--text">
+                    <div class="v-messages__wrapper">
+                        <div class="v-messages__message">
+                            {{ erroAvatar }}
+                        </div>                                                            
+                    </div>                                                        
+                </div>                                                    
+            </div>
         </v-flex>
 
         <v-flex xs12 sm6 md2>
@@ -160,12 +172,8 @@
     </v-layout>
 </template>
 <script>
-    import ImageInput from "@/components/ImageInput.vue";
     export default {
         name: "usuario-form",
-        components: {
-            ImageInput: ImageInput
-        },
         props: {
             value: {
                 type: [Object]
@@ -175,8 +183,8 @@
             return {
                 show1: false,
                 show2: false,
+                erroAvatar: null,
                 usuario: Object.assign({}, this.value),
-                avatar: null,
                 roles: [{
                         id: 'admin',
                         nome: 'Administrador',
@@ -199,13 +207,6 @@
             }
         },
         computed: {
-            getAvatar() {
-                if (this.usuario.avatar.imageURL)
-                    return this.usuario.avatar.imageURL;
-                if (this.usuario.avatar.avatar && this.usuario.avatar)
-                    return 'data:image/jpeg;base64,' + this.usuario.avatar.avatar;
-                return null;
-            },
             getConfig() {
                 return {
                     required: this.usuario.id ? false : true

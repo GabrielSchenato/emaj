@@ -29,7 +29,7 @@ class AtivoCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        $model = $model->where('ativo', '=', 1);
+        $model = $model->where('ativo', '=', true);
         return $model;
     }
 }

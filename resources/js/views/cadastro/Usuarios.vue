@@ -41,8 +41,8 @@
                                     </td>
                                     <td>{{ props.item.id }}</td>
                                     <td>
-                                    <v-avatar size="32">
-                                        <img :src="'data:image/jpeg;base64,' + props.item.avatar" alt>
+                                    <v-avatar size="32" v-if='props.item.avatar'>
+                                        <img :src="props.item.avatar.avatar_url" alt>
                                     </v-avatar>
                                     </td>
                                     <td>{{ props.item.nome_completo }}</td>
@@ -184,16 +184,12 @@
                         this.getData();
                 });
             },
-
             editar(id) {
                 this.$store.dispatch("getUsuario", id).then(() => {
-                    let avatar = this.$store.state.usuario.usuarioView.avatar;
-                    let usuario = Object.assign({}, this.$store.state.usuario.usuarioView);
-                    usuario.avatar = {avatar};
                     this.$refs.usuarioDialog
                             .open(
                                     'Editar um Usuário',
-                                    usuario,
+                                    this.$store.state.usuario.usuarioView,
                                     {
                                         color: "blue"
                                     }

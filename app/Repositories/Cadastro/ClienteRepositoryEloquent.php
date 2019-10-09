@@ -206,7 +206,7 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
                 'sexo' => ['required', Rule::in(['M', 'F'])],
                 'estado_civil' => ['required', Rule::in(['Solteiro', 'Casado', 'Separado', 'Divorciado', 'Viúvo'])],
                 'email' => ['nullable', 'email', Rule::unique('clientes')->ignore($id)],
-                'renda' => 'required',
+                'renda' => 'nullable',
                 'local_trabalho' => 'nullable|max:255',
                 'nacionalidade_id' => 'required|numeric'
             ];
@@ -251,10 +251,21 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
      */
     public function getDataAutocomplete($value)
     {
-        return $this->whereLike('nome_completo', $value)
-                        ->orderBy('nome_completo', 'asc')
-                        ->limit(10)
-                        ->get(['id', 'nome_completo']);
+        $this->applyCriteria();
+        $this->applyScope();
+
+        $model = $this->model->where(function ($query) use ($value) {
+                    $query->where('nome_completo', 'LIKE', "%{$value}%")
+                    ->orWhere('representado_assistido', 'LIKE', "%{$value}%")
+                    ->orWhere('id', '=', (int) $value);
+                })
+                ->orderBy('nome_completo', 'asc')
+                ->limit(10)
+                ->get(['id', 'nome_completo', 'representado_assistido', 'cpf', 'rg', 'renda']);
+
+        $this->resetModel();
+
+        return $model;
     }
 
     /**

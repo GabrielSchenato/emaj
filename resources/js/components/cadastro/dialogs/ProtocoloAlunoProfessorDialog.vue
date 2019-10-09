@@ -15,7 +15,9 @@
                     <v-container grid-list-md>
                         <protocolo-aluno-professor-form ref="protocoloAlunoProfessorForm" v-model="protocoloAlunoProfessor"></protocolo-aluno-professor-form>
                     </v-container>
-                    <small>*Indica os campos que são obrigatórios</small>
+                    <ul>
+                        <li><small><span class="required">*</span> <b>(Asterisco)</b> Indica os campos que são obrigatórios</small></li>
+                    </ul>   
                 </v-card-text>
                 <v-card-actions class="pt-0">
                     <v-spacer></v-spacer>

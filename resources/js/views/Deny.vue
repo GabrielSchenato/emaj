@@ -7,9 +7,9 @@
           </div>          
           <div class="text-md-center">
             <h1>403</h1>
-            <h2 class="my-3 headline ">Sorry, access denied.</h2>
+            <h2 class="my-3 headline ">Desculpe, acesso negado.</h2>
             <div>
-              <v-btn color="primary" @click="goHome">Go Home</v-btn>
+              <v-btn color="primary" @click="goHome">Voltar</v-btn>
             </div>  
           </div>
         </v-layout>

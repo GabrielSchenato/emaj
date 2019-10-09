@@ -2,6 +2,7 @@
 
 namespace Emaj\Entities\Cadastro;
 
+use Emaj\Util\Functions;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,12 +21,24 @@ class AvaliacaoArquivo extends Model
 {
 
     /**
-     * The database table used by the model.
+     * O nome da tabela no banco de dados.
      *
      * @var string
      */
     protected $table = 'avaliacao_arquivos';
+
+    /**
+     * Armazena o nome das variáveis que serão enviadas na api.
+     * 
+     * @var array 
+     */
     protected $appends = ['nome_arquivo_extensao', 'tamanho_arquivo'];
+
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'nome',
         'arquivo',
@@ -50,26 +63,7 @@ class AvaliacaoArquivo extends Model
 
     protected function getTamanhoArquivoAttribute()
     {
-        return $this->formatBytes($this->attributes['tamanho']);
-    }
-
-    /**
-     * Format bytes to kb, mb, gb, tb
-     *
-     * @param  integer $size
-     * @param  integer $precision
-     * @return integer
-     */
-    private function formatBytes($size, $precision = 2)
-    {
-        if ($size > 0) {
-            $size = (int) $size;
-            $base = log($size) / log(1024);
-            $suffixes = array(' bytes', ' KB', ' MB', ' GB', ' TB');
-
-            return round(pow(1024, $base - floor($base)), $precision) . $suffixes[floor($base)];
-        }
-        return $size;
+        return Functions::formatBytes($this->attributes['tamanho']);
     }
 
 }

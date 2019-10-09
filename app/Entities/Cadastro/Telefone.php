@@ -19,6 +19,11 @@ use Illuminate\Database\Eloquent\Model;
 class Telefone extends Model
 {
 
+    /**
+     * Armazena os campos do banco de dados.
+     * 
+     * @var array 
+     */
     protected $fillable = [
         'tipo',
         'descricao',
@@ -33,5 +38,5 @@ class Telefone extends Model
     {
         return $this->belongsTo(Cliente::class);
     }
-    
+
 }

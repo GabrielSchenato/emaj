@@ -73,7 +73,7 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        $user = $this->repository->find(Auth::user()->id);
+        $user = $this->repository->with('avatar')->find(Auth::user()->id);
         return response()->json([
                     'status' => 'success',
                     'data' => $user
@@ -83,20 +83,10 @@ class AuthController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        unset($data['role']);
-
-        $v = Validator::make($data, ['nome_completo' => 'required|min:5',
-                    'email' => ['required', 'email', Rule::unique('usuarios')->ignore($id)],
-                    'password' => 'required|min:6|confirmed',
-                    'avatar' => 'nullable',
-                    'telefone' => 'required|min:8']);
-        if ($v->fails()) {
-            return response()->json([
-                        'status' => 'error',
-                        'errors' => $v->errors()
-                            ], 422);
-        }
-        return $this->repository->update($data, $id);
+        $data['role'] = auth()->user()->role;
+        $usuario = $this->repository->update($data, $id);
+        $usuario->avatar;
+        return $usuario;
     }
 
     public function refresh()

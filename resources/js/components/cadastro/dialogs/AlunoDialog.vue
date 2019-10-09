@@ -29,106 +29,132 @@
                                         <v-flex xs12>
                                             <v-stepper v-model="step">
                                                 <v-stepper-header>
+
                                                     <v-stepper-step 
                                                         step="1"
                                                         :complete="step > 1" 
                                                         editable
+                                                        :rules="[() => !erroDadosAluno]"
                                                         >Dados do Aluno
+                                                        <small v-if="erroDadosAluno">Existem erros, por favor verifique!</small>
                                                     </v-stepper-step>
+
                                                     <v-divider></v-divider>
+
                                                     <v-stepper-step
                                                         step="2"
-                                                        :complete="aluno.id != null && aluno.protocolo_alunos_professores.length > 0"
-                                                        :editable="aluno.id != null && aluno.protocolo_alunos_professores.length > 0"
-                                                        edit-icon="fa fa-users"
-                                                        >Clientes
+                                                        :complete="aluno.id != null && aluno.ativo == true"
+                                                        :editable="aluno.id != null && aluno.ativo == true"
+                                                        edit-icon="fa fa-calendar"
+                                                        >Períodos
                                                 </v-stepper-step>
+
                                                 <v-divider></v-divider>
+
                                                 <v-stepper-step
                                                     step="3"
-                                                    :complete="aluno.id != null"
-                                                    :editable="aluno.id != null"
-                                                    edit-icon="playlist_add_check"
-                                                    >Observações
+                                                    :complete="aluno.id != null && aluno.protocolo_alunos_professores.length > 0"
+                                                    :editable="aluno.id != null && aluno.protocolo_alunos_professores.length > 0"
+                                                    edit-icon="fa fa-users"
+                                                    >Clientes
                                             </v-stepper-step>
+
                                             <v-divider></v-divider>
-                                        </v-stepper-header>
-                                        <v-stepper-items>
-                                            <v-stepper-content step="1">
-                                                <v-card>
-                                                    <v-card-text>
-                                                        <v-card>
-                                                            <v-card-text>
-                                                                <v-container grid-list-md>
-                                                                    <v-layout wrap>
 
-                                                                        <aluno-form 
-                                                                            ref="alunoForm"
-                                                                            v-model="aluno"
-                                                                            ></aluno-form>
+                                            <v-stepper-step
+                                                step="4"
+                                                :complete="aluno.id != null"
+                                                :editable="aluno.id != null"
+                                                edit-icon="playlist_add_check"
+                                                >Observações
+                                        </v-stepper-step>
 
-                                                                    </v-layout>
-                                                                </v-container>
-                                                                <ul>
-                                                                    <li><small><span class="required">*</span> <b>(Asterisco)</b> Indica os campos que são obrigatórios</small></li>
-                                                                </ul>   
-                                                            </v-card-text>
-                                                        </v-card>
-                                                    </v-card-text>
-                                                </v-card>
-                                            </v-stepper-content>
-                                            <v-stepper-content step="2">
-                                                <clientes-table v-model="aluno.protocolo_alunos_professores"></clientes-table>
-                                                <small><b class="vermelho">Vermelho: </b>Indica os protocolos em que o aluno não está mais ativo</small>
-                                            </v-stepper-content>
-                                            <v-stepper-content step="3">
-                                                <avaliacoes-table 
-                                                    v-model="aluno.avaliacoes" 
-                                                    v-bind:idAluno="aluno.id"
-                                                    v-bind:nomeAluno="aluno.nome_completo"
-                                                    >                                                        
-                                                </avaliacoes-table>
+                                        <v-divider></v-divider>
 
-                                                <ul>
-                                                    <li><small><b>Dica: </b>Clique na linha para expandir e visualizar mais informações</small></li>
-                                                </ul>
+                                    </v-stepper-header>
+                                    <v-stepper-items>
+                                        <v-stepper-content step="1">
+                                            <v-card>
+                                                <v-card-text>
+                                                    <v-card>
+                                                        <v-card-text>
+                                                            <v-container grid-list-md>
+                                                                <v-layout wrap>
 
-                                            </v-stepper-content>
-                                        </v-stepper-items>
-                                    </v-stepper>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
+                                                                    <aluno-form 
+                                                                        ref="alunoForm"
+                                                                        v-model="aluno"
+                                                                        ></aluno-form>
 
-                    </v-card-text>
-                    <v-card-actions class="pt-0">
-                        <v-spacer></v-spacer>
+                                                                </v-layout>
+                                                            </v-container>
+                                                            <ul>
+                                                                <li><small><span class="required">*</span> <b>(Asterisco)</b> Indica os campos que são obrigatórios</small></li>
+                                                            </ul>   
+                                                        </v-card-text>
+                                                    </v-card>
+                                                </v-card-text>
+                                            </v-card>
+                                        </v-stepper-content>
+                                        <v-stepper-content step="2" v-if="aluno.id">
+                                            <periodos-aluno-table 
+                                                v-bind:idAluno="aluno.id"
+                                                v-bind:nomeAluno="aluno.nome_completo"
+                                                ></periodos-aluno-table>
+                                        </v-stepper-content>
+                                        <v-stepper-content step="3">
+                                            <clientes-table v-model="aluno.protocolo_alunos_professores"></clientes-table>
+                                            <small><b class="vermelho">Vermelho: </b>Indica os protocolos em que o aluno não está mais ativo</small>
+                                        </v-stepper-content>
+                                        <v-stepper-content step="4">
+                                            <avaliacoes-table 
+                                                v-model="aluno.avaliacoes" 
+                                                v-bind:idAluno="aluno.id"
+                                                v-bind:nomeAluno="aluno.nome_completo"
+                                                >                                                        
+                                            </avaliacoes-table>
 
-                        <v-btn color="green" flat="flat" type="submit">
-                            Salvar
-                            <v-icon right dark>check</v-icon>
-                        </v-btn>
+                                            <ul>
+                                                <li><small><b>Dica: </b>Clique na linha para expandir e visualizar mais informações</small></li>
+                                            </ul>
 
-                        <v-btn color="blue" flat="flat" @click.native="clear" :disabled="aluno.id != null">
-                               Limpar
-                               <v-icon right dark>delete_sweep</v-icon>
-                        </v-btn>
+                                        </v-stepper-content>
+                                    </v-stepper-items>
+                                </v-stepper>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
 
-                        <v-btn color="red" flat="flat" @click.native="cancel">
-                            Cancelar
-                            <v-icon right dark>cancel</v-icon>
-                        </v-btn>
-                    </v-card-actions>
-                </v-form>
-            </v-card>
-        </v-card-text>
-    </v-card>
+                </v-card-text>
+                <v-card-actions class="pt-0">
+                    <v-spacer></v-spacer>
+
+                    <v-btn color="green" flat="flat" type="submit">
+                        Salvar
+                        <v-icon right dark>check</v-icon>
+                    </v-btn>
+
+                    <v-btn color="blue" flat="flat" @click.native="clear" :disabled="aluno.id != null">
+                           Limpar
+                           <v-icon right dark>delete_sweep</v-icon>
+                    </v-btn>
+
+                    <v-btn color="red" flat="flat" @click.native="cancel">
+                        Cancelar
+                        <v-icon right dark>cancel</v-icon>
+                    </v-btn>
+                </v-card-actions>
+            </v-form>
+        </v-card>
+    </v-card-text>
+</v-card>
 </v-dialog>
 </v-layout>
 </template>
 
 <script>
     import AlunoForm from "@/components/cadastro/forms/AlunoForm.vue";
+    import PeriodosAlunoTable from "@/components/cadastro/tables/PeriodosAlunoTable.vue";
     import ClientesTable from "@/components/cadastro/tables/ClientesTable.vue";
     import AvaliacoesTable from "@/components/cadastro/tables/AvaliacoesTable.vue";
 
@@ -136,7 +162,8 @@
         components: {
             AlunoForm,
             ClientesTable,
-            AvaliacoesTable
+            AvaliacoesTable,
+            PeriodosAlunoTable
         },
         data: () => ({
                 aluno: {},
@@ -144,6 +171,7 @@
                 resolve: null,
                 reject: null,
                 formTitle: null,
+                erroDadosAluno: false,
                 options: {
                     color: "primary",
                     width: 1000,
@@ -154,21 +182,60 @@
         methods: {
             open(title, item, options) {
                 this.dialog = true;
+                this.erroDadosAluno = false;
                 this.formTitle = title;
                 this.step = 1;
                 this.aluno = item;
                 this.$refs.alunoForm.$validator.errors.clear();
+                this.$refs.alunoForm.$refs.autocompleteDisciplina.values = item.disciplina ? [item.disciplina] : [];
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;
                     this.reject = reject;
                 });
             },
+            getFormData() {
+                const formData = new FormData();
+                if (this.aluno.id) {
+                    formData.append('id', this.aluno.id);
+                    formData.append('_method', 'PUT');
+                }
+                if (this.aluno.nome_completo) {
+                    formData.append('nome_completo', this.aluno.nome_completo);
+                }
+                if (this.aluno.disciplina_id) {
+                    formData.append('disciplina_id', this.aluno.disciplina_id);
+                }
+                if (this.aluno.celular) {
+                    formData.append('celular', this.aluno.celular);
+                }
+                if (this.aluno.telefone) {
+                    formData.append('telefone', this.aluno.telefone);
+                }
+                if (this.aluno.observacoes) {
+                    formData.append('observacoes', this.aluno.observacoes);
+                }
+                if (this.aluno.matricula) {
+                    formData.append('matricula', this.aluno.matricula);
+                }
+                if (this.aluno.email) {
+                    formData.append('email', this.aluno.email);
+                }
+                formData.append('ativo', this.aluno.ativo ? 1 : 0);
+                if (this.aluno.imageFile) {
+                    formData.append('image_url', this.aluno.imageFile);
+                }
+                if (this.aluno.avatar_id) {
+                    formData.append('avatar_id', this.aluno.avatar_id);
+                }
+                return formData;
+            },
             save() {
+                this.$refs.alunoForm.erroAvatar = null;
                 this.$refs.alunoForm.$validator.validateAll().then(valid => {
                     if (valid) {
                         this.$store
-                                .dispatch("newAluno", this.aluno)
+                                .dispatch("newAluno", this.getFormData())
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
@@ -177,16 +244,17 @@
                                 }).catch((resp) => {
                             this.addErrors(resp);
                         });
-
-
+                        return;
                     }
+                    this.erroDadosAluno = true;
                 });
             },
             update() {
+                this.$refs.alunoForm.erroAvatar = null;
                 this.$refs.alunoForm.$validator.validateAll().then(valid => {
                     if (valid) {
                         this.$store
-                                .dispatch("updateAluno", this.aluno)
+                                .dispatch("updateAluno", this.getFormData())
                                 .then(() => {
                                     this.resolve(true);
                                     this.dialog = false;
@@ -195,12 +263,16 @@
                                 }).catch((resp) => {
                             this.addErrors(resp);
                         });
+                        return;
                     }
+                    this.erroDadosAluno = true;
                 });
             },
             cancel() {
                 this.resolve(false);
                 this.dialog = false;
+                this.$refs.alunoForm.aluno = {};
+                this.$refs.alunoForm.$validator.errors.clear();
             },
             clear() {
                 this.aluno = {};
@@ -213,6 +285,12 @@
                 }
                 if (resp.response.data.errors.email) {
                     this.$refs.alunoForm.$validator.errors.add({field: 'E-mail', msg: resp.response.data.errors.email});
+                }
+                if (resp.response.data.errors.disciplina_id) {
+                    this.$refs.alunoForm.$validator.errors.add({field: 'Disciplina', msg: resp.response.data.errors.disciplina_id});
+                }
+                if (resp.response.data.errors.image_url) {
+                    this.$refs.alunoForm.erroAvatar = resp.response.data.errors.image_url[0];
                 }
             }
         }

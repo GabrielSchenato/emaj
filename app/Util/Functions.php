@@ -55,4 +55,42 @@ class Functions
         return basename($file->getClientOriginalName(), '.' . $file->getClientOriginalExtension());
     }
 
+    public static function compressImage(UploadedFile $imageUrl, $quality)
+    {
+        switch ($imageUrl->getMimeType()) {
+            case 'image/jpeg':
+                $image = imagecreatefromjpeg($imageUrl);
+                break;
+            case 'image/gif':
+                $image = imagecreatefromgif($imageUrl);
+                break;
+            case 'image/png':
+                $image = imagecreatefrompng($imageUrl);
+                break;
+            default:
+                break;
+        }
+        imagejpeg($image, $imageUrl->getRealPath(), $quality);
+        return new UploadedFile($imageUrl->getRealPath(), $imageUrl->getClientOriginalName(), 'jpeg');
+    }
+    
+    /**
+     * Formata bytes para kb, mb, gb, tb
+     *
+     * @param  int $size
+     * @param  int $precision
+     * @return int
+     */
+    public static function formatBytes($size, $precision = 2)
+    {
+        if ($size > 0) {
+            $size = (int) $size;
+            $base = log($size) / log(1024);
+            $suffixes = [' bytes', ' KB', ' MB', ' GB', ' TB'];
+
+            return round(pow(1024, $base - floor($base)), $precision) . $suffixes[floor($base)];
+        }
+        return $size;
+    }
+
 }

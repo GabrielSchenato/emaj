@@ -33,7 +33,17 @@ class ProtocoloAlunosProfessoresController extends CrudController
      * @var AlunoRepository
      */
     private $alunoRepository;
+
+    /**
+     * @var ProtocoloAlunoProfessorRepository 
+     */
     protected $repository;
+
+    /**
+     * Armazena os relacionamentos.
+     * 
+     * @var array 
+     */
     protected $relationships = [
         'aluno:id,nome_completo',
         'professor:id,nome_completo'];

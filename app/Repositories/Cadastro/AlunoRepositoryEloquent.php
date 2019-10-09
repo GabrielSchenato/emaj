@@ -27,14 +27,26 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
 {
 
     /**
+     * @var AvatarRepository
+     */
+    private $avatarRepository;
+
+    /**
+     * @var DiaPeriodoAlunoRepository
+     */
+    private $diaPeriodoAlunoRepository;
+
+    /**
      * @var ProtocoloAlunoProfessorRepository
      */
     private $protocoloAlunoProfessorRepository;
 
-    public function __construct(Container $app, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository)
+    public function __construct(Container $app, ProtocoloAlunoProfessorRepository $protocoloAlunoProfessorRepository, DiaPeriodoAlunoRepository $diaPeriodoAlunoRepository, AvatarRepository $avatarRepository)
     {
         parent::__construct($app);
         $this->protocoloAlunoProfessorRepository = $protocoloAlunoProfessorRepository;
+        $this->diaPeriodoAlunoRepository = $diaPeriodoAlunoRepository;
+        $this->avatarRepository = $avatarRepository;
     }
 
     /**
@@ -57,6 +69,35 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
 
     /**
      * @override
+     * Save a new entity in repository
+     *
+     * @throws ValidatorException
+     *
+     * @param array $attributes
+     *
+     * @return mixed
+     */
+    public function create(array $attributes)
+    {
+        try {
+            DB::beginTransaction();
+
+            $this->avatarRepository->saveOrUpdateAvatar($attributes);
+            $aluno = parent::create($attributes);
+            
+            DB::commit();
+            return $aluno;
+        } catch (ValidationException $ex) {
+            DB::rollback();
+            throw $ex;
+        } catch (\Exception $ex) {
+            DB::rollback();
+            throw $ex;
+        }
+    }
+    
+    /**
+     * @override
      * Update a entity in repository by id
      *
      * @throws ValidatorException
@@ -69,14 +110,49 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
     public function update(array $attributes, $id)
     {
         try {
-            $this->inativaProtocoloAlunosProfessores($attributes, $id);
+            DB::beginTransaction();
+            
+            $ativo = isset($attributes['ativo']) ? $attributes['ativo'] : null;
+            if (!$ativo) {
+                $this->inativaProtocoloAlunosProfessores($attributes, $id);
+                $this->deleteDiaPeriodosAluno($id);
+            }
+            
+            $this->avatarRepository->saveOrUpdateAvatar($attributes);
             $aluno = parent::update($attributes, $id);
+            
             DB::commit();
             return $aluno;
         } catch (ValidationException $ex) {
             DB::rollback();
             throw $ex;
         } catch (Exception $ex) {
+            DB::rollback();
+            throw $ex;
+        }
+    }
+    
+    /**
+     * Delete a entity in repository by id
+     *
+     * @param $id
+     *
+     * @return int
+     */
+    public function delete($id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $aluno = $this->find($id);
+            $deletado = parent::delete($id);
+            if ($aluno->avatar) {
+                $this->avatarRepository->delete($aluno->avatar->id);
+            }           
+
+            DB::commit();
+            return $deletado;
+        } catch (\Exception $ex) {
             DB::rollback();
             throw $ex;
         }
@@ -95,6 +171,7 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
     {
         return [
             'nome_completo' => 'required|min:5',
+            'disciplina_id' => 'required|numeric',
             'email' => ['nullable', 'email', Rule::unique('alunos')->ignore($id)]
         ];
     }
@@ -136,31 +213,50 @@ class AlunoRepositoryEloquent extends AbstractRepository implements AlunoReposit
      */
     public function getDataAutocomplete($value)
     {
-        return $this->whereLike('nome_completo', $value)
-                        ->orderBy('nome_completo', 'asc')
-                        ->limit(10)
-                        ->get(['id', 'nome_completo']);
+        $this->applyCriteria();
+        $this->applyScope();
+
+        $model = $this->model->where(function ($query) use ($value) {
+                    $query->where('nome_completo', 'LIKE', "%{$value}%")
+                    ->orWhere('id', '=', (int) $value);
+                })
+                ->orderBy('nome_completo', 'asc')
+                ->limit(10)
+                ->get(['id', 'nome_completo']);
+
+        $this->resetModel();
+
+        return $model;
     }
 
     /**
      * Método responsável por inativar os protocolos alunos professores quando o protocolo
-     * está sendo inativado
+     * está sendo inativado.
      *
-     * @param array $attributes
-     * @param       $id
+     * @param int $id
      *
      * @return void
      */
-    private function inativaProtocoloAlunosProfessores(array $attributes, $id)
+    private function inativaProtocoloAlunosProfessores($id)
     {
-        $ativo = isset($attributes['ativo']) ? $attributes['ativo'] : null;
+        $protocoloAlunosProfessores = $this->protocoloAlunoProfessorRepository->findByField('aluno_id', (int) $id);
+        foreach ($protocoloAlunosProfessores as $protocoloAlunoProfessor) {
+            $protocoloAlunoProfessor->ativo = false;
+            $this->protocoloAlunoProfessorRepository->update($protocoloAlunoProfessor->toArray(), $protocoloAlunoProfessor->id);
+        }
+    }
 
-        if (!$ativo) {
-            $protocoloAlunosProfessores = $this->protocoloAlunoProfessorRepository->findByField('aluno_id', (int) $id);
-            foreach ($protocoloAlunosProfessores as $protocoloAlunoProfessor) {
-                $protocoloAlunoProfessor->ativo = false;
-                $this->protocoloAlunoProfessorRepository->update($protocoloAlunoProfessor->toArray(), $protocoloAlunoProfessor->id);
-            }
+    /**
+     * Método responsável por deletar o vínculo dos períodos com o aluno quando o mesmo está
+     * sendo inativado.
+     * 
+     * @param int $id
+     */
+    private function deleteDiaPeriodosAluno($id)
+    {
+        $diaPeriodosAluno = $this->diaPeriodoAlunoRepository->findByField('aluno_id', $id);
+        foreach ($diaPeriodosAluno as $diaPeriodoAluno) {
+            $diaPeriodoAluno->delete();
         }
     }
 

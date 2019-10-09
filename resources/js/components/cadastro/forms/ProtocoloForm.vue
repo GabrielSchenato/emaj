@@ -90,7 +90,7 @@
             <v-card-text class="">   
                 <v-layout wrap>
 
-                    <v-flex xs12 sm6 md6>   
+                    <v-flex xs12 sm6 md12>   
                         <autocomplete-field
                             ref="autocompleteParteContraria"
                             v-bind:errorMessages="errors.collect(optionsParteContraria.name)"
@@ -104,7 +104,7 @@
                             ></autocomplete-field>
                     </v-flex>
 
-                    <v-flex xs12 sm6 md6>   
+                    <v-flex xs12 sm6 md12>   
                         <autocomplete-field
                             ref="autocompleteTipoDemanda"
                             v-bind:errorMessages="errors.collect(optionsTipoDemanda.name)"
@@ -161,7 +161,6 @@
                     'isValidProtocolo', {
                         getMessage: field => `O campo ${field} deve seguir o padrão #####/##`,
                         validate: (value) => {
-                            // value must be > zero
                             if (/^(\d{0,8}\/\d{2})$/g.test(value))
                                 return true;
                             return false;
@@ -173,7 +172,7 @@
                 return {
                     field: 'parte_contraria_id',
                     required: false,
-                    itemText: 'nome_completo',
+                    itemText: 'dados_cliente',
                     name: 'Parte Contrária',
                     url: 'protocolos/autocomplete',
                     helperCreateEdit: true
@@ -183,7 +182,7 @@
                 return {
                     field: 'tipo_demanda_id',
                     required: false,
-                    itemText: 'nome',
+                    itemText: 'dados_tipo_demanda',
                     name: 'Tipo de Demanda',
                     url: 'protocolos/autocomplete',
                     helperCreateEdit: true

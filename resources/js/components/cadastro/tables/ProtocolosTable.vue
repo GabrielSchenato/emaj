@@ -46,11 +46,11 @@
                                     <td v-bind:class="{ vermelho: !props.item.ativo }" @click="expandRow(props)">
                                         {{ props.item.numero_processo }}
                                     </td>
-                                    <td v-bind:class="{ vermelho: !props.item.ativo, azul: props.item.nome_parte_contraria != null && props.item.ativo }" @click="expandRow(props)">
-                                        {{ props.item.nome_parte_contraria }}
+                                    <td v-bind:class="{ vermelho: !props.item.ativo, azul: props.item.parte_contraria != null && props.item.ativo }" @click="expandRow(props)">
+                                        {{ props.item.parte_contraria != null ? props.item.parte_contraria.dados_cliente : '' }}
                                     </td>
                                     <td v-bind:class="{ vermelho: !props.item.ativo }" @click="expandRow(props)">
-                                        {{ props.item.nome_tipo_demanda }}
+                                        {{ props.item.tipo_demanda != null ? props.item.tipo_demanda.dados_tipo_demanda : '' }}
                                     </td>
                                     <td v-bind:class="{ vermelho: !props.item.ativo }" @click="expandRow(props)">
                                         {{ props.item.status }}
@@ -63,13 +63,7 @@
                                         <template v-slot:activator="{ on }">
                                             <v-btn depressed icon fab dark color="primary" small v-on="on">
                                                 <v-icon
-                                                    @click="imprimirFichaTriagem(
-                                                    {
-                                                    cliente_id: props.item.cliente_id,
-                                                    parte_contraria_id: props.item.parte_contraria_id,
-                                                    protocolo_id: props.item.id
-                                                    }
-                                                    )"
+                                                    @click="imprimirFichaTriagem(props.item)"
                                                     >print
                                                 </v-icon>
                                             </v-btn>
@@ -88,7 +82,7 @@
 
                                     <v-tooltip bottom>
                                         <template v-slot:activator="{ on }">
-                                            <v-btn depressed outline icon fab dark color="pink" small v-on="on"F>
+                                            <v-btn depressed outline icon fab dark color="pink" small v-on="on">
                                                 <v-icon @click="deletar(props.item)">delete</v-icon>
                                             </v-btn>
                                         </template>
@@ -180,13 +174,13 @@
                         },
                         {
                             text: "Parte Contrária",
-                            value: "nome_parte_contraria",
+                            value: "parte_contraria_id",
                             filterable: true,
                             type: 'text'
                         },
                         {
                             text: "Tipo de Demanda",
-                            value: "nome_tipo_demanda",
+                            value: "tipo_demanda_id",
                             filterable: true,
                             type: 'text'
                         },
@@ -301,9 +295,12 @@
                     window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro. ' + msgErro, timeout: 4500});
                 }).finally(() => (this.loading = false));
             },
-            imprimirFichaTriagem(object) {
-                let data = {...object, ...{formato: "pdf"}};
-                this.gerarImpressao(data, "/protocolos/imprimir-ficha-triagem");
+            imprimirFichaTriagem(item) {
+                this.gerarImpressao({
+                    cliente_id: item.cliente_id,
+                    parte_contraria_id: item.parte_contraria_id,
+                    protocolo_id: item.id
+                }, "/protocolos/imprimir-ficha-triagem");
             },
             expandRow(props) {
                 props.expanded = !props.expanded;

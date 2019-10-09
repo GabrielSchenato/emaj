@@ -29,7 +29,9 @@
                     </v-flex>
                 </v-layout>
             </v-form>
-            <small>*Indica os campos que são obrigatórios</small>
+            <ul>
+                <li><small><span class="required">*</span> <b>(Asterisco)</b> Indica os campos que são obrigatórios</small></li>
+            </ul>   
         </v-card-text>
         <v-card-actions class="pt-0">
             <v-spacer></v-spacer>

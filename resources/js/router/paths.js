@@ -132,6 +132,42 @@ export default [
     )
   },
   {
+    path: '/relatorio/relatividadesprestadas',
+    meta: { breadcrumb: true, auth: true },
+    name: 'relatorio/relatividadesprestadas',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/relatorio/RelatorioAtividadesPrestadas.vue`
+    )
+  },
+  {
+    path: '/relatorio/relprofessoresalunos',
+    meta: { breadcrumb: true, auth: true },
+    name: 'relatorio/relprofessoresalunos',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/relatorio/RelatorioProfessoresAlunos.vue`
+    )
+  },
+  {
+    path: '/relatorio/reldiasperiodosalunos',
+    meta: { breadcrumb: true, auth: true },
+    name: 'relatorio/reldiasperiodosalunos',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/relatorio/RelatorioDiasPeriodosAlunos.vue`
+    )
+  },
+  {
+    path: '/relatorio/relclientesprotocolos',
+    meta: { breadcrumb: true, auth: true },
+    name: 'relatorio/relclientesprotocolos',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      `@/views/relatorio/RelatorioClientesProtocolos.vue`
+    )
+  },
+  {
     path: '/alteracoes',
     meta: { breadcrumb: true, auth: true },
     name: 'Alterações',
