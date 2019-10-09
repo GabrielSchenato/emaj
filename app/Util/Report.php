@@ -73,12 +73,12 @@ class Report
     private function getDatabaseConnection()
     {
         return [
-            'driver' => env('DB_CONNECTION'),
-            'host' => env('DB_HOST'),
-            'port' => env('DB_PORT'),
-            'username' => env('DB_USERNAME'),
-            'password' => env('DB_PASSWORD'),
-            'database' => env('DB_DATABASE'),
+            'driver' => config('database.connections.mysql.driver'),
+            'host' => config('database.connections.mysql.host'),
+            'port' => config('database.connections.mysql.port'),
+            'username' => config('database.connections.mysql.username'),
+            'password' => config('database.connections.mysql.password'),
+            'database' => config('database.connections.mysql.database'),
         ];
     }
 
