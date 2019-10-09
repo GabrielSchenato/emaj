@@ -45,7 +45,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-3 col-lg-2 text-center">
+<!--            <div class="col-md-3 col-lg-2 text-center">
                 <a href="{{ route('institucional.simular_triagem') }}">
                     <div class="practice-area ftco-animate">
                         <div class="icon d-flex justify-content-center align-items-center">
@@ -54,7 +54,7 @@
                         <h3><a href="#">Simular Triagem</a></h3>
                     </div>
                 </a>
-            </div>
+            </div>-->
         </div>
     </div>
 </section>
