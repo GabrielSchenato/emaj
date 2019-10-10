@@ -332,7 +332,7 @@ const Versoes = [
     {
         id: 12,
         nome: 'v2.1.0',
-        data: '30 de setembro de 2019',
+        data: '10 de outubro de 2019',
         alteracoesPortal: [
             {
                 descricao: 'Evolução (Relatório): Criado novo módulo "Relatórios"'
