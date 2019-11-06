@@ -1,10 +1,8 @@
-const Versoes = [
-    {
+const Versoes = [{
         id: 1,
         nome: 'v1.0.0',
         data: '13 de maio de 2019',
-        alteracoesPortal: [
-            {
+        alteracoesPortal: [{
                 descricao: 'Evolução (Cadastro): Criado área para o cadastro de "Usuários"'
             },
             {
@@ -32,8 +30,7 @@ const Versoes = [
                 descricao: 'Evolução (Alterações): Criado área para a visualização das alterações na plataforma"'
             }
         ],
-        alteracoesInstitucional: [
-            {
+        alteracoesInstitucional: [{
                 descricao: 'Evolução (Início): Criado página "Início" com conteúdos sobre o EMAJ'
             },
             {
@@ -51,8 +48,7 @@ const Versoes = [
         id: 2,
         nome: 'v1.0.1',
         data: '20 de maio de 2019',
-        alteracoesPortal: [
-            {
+        alteracoesPortal: [{
                 descricao: 'Adaptação (Cadastro): Removido a obrigatoriedade do campo "Descrição" no cadastro de telefones do cliente'
             },
             {
@@ -79,8 +75,7 @@ const Versoes = [
         id: 3,
         nome: 'v1.0.2',
         data: '22 de maio de 2019',
-        alteracoesPortal: [
-            {
+        alteracoesPortal: [{
                 descricao: 'Correção (Cadastro): Aplicada correção nos campos "Renda", "Renda Familiar" e "Valor Patrimônio", corrigindo dessa forma o campo moeda no cadastro do "Cliente"'
             },
             {
@@ -104,8 +99,7 @@ const Versoes = [
         id: 4,
         nome: 'v1.0.3',
         data: '28 de maio de 2019',
-        alteracoesPortal: [
-            {
+        alteracoesPortal: [{
                 descricao: 'Adaptação (Movimento): Aplicada melhoria na impressão da "Ficha de Triagem", aumentando o campo "Local Trabalho"'
             },
             {
@@ -156,8 +150,7 @@ const Versoes = [
         id: 5,
         nome: 'v1.0.4',
         data: '10 de junho de 2019',
-        alteracoesPortal: [
-            {
+        alteracoesPortal: [{
                 descricao: 'Adaptação (Movimento): Aplicada melhoria na impressão da "Ficha de Triagem", diminuindo o tamanho da impressão'
             },
             {
@@ -167,18 +160,15 @@ const Versoes = [
                 descricao: 'Adaptação (Cadastro): Aplicada melhoria em todas as grids, melhorando o filtro de busca do registros'
             }
         ],
-        alteracoesInstitucional: [
-            {
-                descricao: 'Correção (Início): Aplicada correção na tela "Início", corrigindo dessa forma o horário de funcionamento'
-            }
-        ]
+        alteracoesInstitucional: [{
+            descricao: 'Correção (Início): Aplicada correção na tela "Início", corrigindo dessa forma o horário de funcionamento'
+        }]
     },
     {
         id: 6,
         nome: 'v1.0.5',
         data: '27 de junho de 2019',
-        alteracoesPortal: [
-            {
+        alteracoesPortal: [{
                 descricao: 'Adaptação (Movimento): Aplicada melhoria na listagem de Ficha de Triagens, destacando de vermelho o nome da Parte Contrária'
             },
             {
@@ -193,8 +183,7 @@ const Versoes = [
         id: 7,
         nome: 'v1.0.6',
         data: '23 de julho de 2019',
-        alteracoesPortal: [
-            {
+        alteracoesPortal: [{
                 descricao: 'Adaptação (Alterações): Aplicada melhoria na listagem de alterações da plataforma'
             },
             {
@@ -209,8 +198,7 @@ const Versoes = [
         id: 8,
         nome: 'v1.1.0',
         data: '31 de julho de 2019',
-        alteracoesPortal: [
-            {
+        alteracoesPortal: [{
                 descricao: 'Adaptação (Padrão): Aplicada melhoria na tela de Login da plataforma'
             },
             {
@@ -226,8 +214,7 @@ const Versoes = [
                 descricao: 'Adaptação (Movimento): Adicionado máscara no campo "Número Processo"'
             }
         ],
-        alteracoesInstitucional: [
-            {
+        alteracoesInstitucional: [{
                 descricao: 'Adaptação (Institucional): Aplicada melhoria na logo da Uniplac e do EMAJ'
             },
             {
@@ -245,8 +232,7 @@ const Versoes = [
         id: 9,
         nome: 'v2.0.0',
         data: '26 de agosto de 2019',
-        alteracoesPortal: [
-            {
+        alteracoesPortal: [{
                 descricao: 'Adaptação (Cadastro): Aplicada melhoria na tela de "Alunos" na aba "Avaliações" para quando clicar na linha expandir a mesma e mostrar mais informações sobre a avaliação'
             },
             {
@@ -294,18 +280,15 @@ const Versoes = [
                 descricao: 'Adaptação (Cadastro): Aplicada melhoria no cadastro de "Cliente", na aba "Protocolos", no campo "Protocolo" validando o mesmo para só permitir salvar se o valor estiver seguindo o padrão #####/##'
             }
         ],
-        alteracoesInstitucional: [
-            {
-                descricao: 'Adaptação (Início): Alterada a forma de buscar as estatísticas da Ficha de Triagem para Protocolos'
-            }
-        ]
+        alteracoesInstitucional: [{
+            descricao: 'Adaptação (Início): Alterada a forma de buscar as estatísticas da Ficha de Triagem para Protocolos'
+        }]
     },
     {
         id: 10,
         nome: 'v2.0.1',
         data: '05 de setembro de 2019',
-        alteracoesPortal: [
-            {
+        alteracoesPortal: [{
                 descricao: 'Adaptação (Cadastro): Aplicada melhoria nos campos obrigatórios para melhor visibilidade dos mesmos'
             },
             {
@@ -320,11 +303,9 @@ const Versoes = [
         id: 11,
         nome: 'v2.0.2',
         data: '13 de setembro de 2019',
-        alteracoesPortal: [
-            {
-                descricao: 'Adaptação (Cadastro): Aplicada melhoria na impressão da "Ficha de Triagem", aumentando dessa forma o tamanho do campo "Data" para facilitar a escrita dos professores'
-            }
-        ],
+        alteracoesPortal: [{
+            descricao: 'Adaptação (Cadastro): Aplicada melhoria na impressão da "Ficha de Triagem", aumentando dessa forma o tamanho do campo "Data" para facilitar a escrita dos professores'
+        }],
         alteracoesInstitucional: [
 
         ]
@@ -333,8 +314,7 @@ const Versoes = [
         id: 12,
         nome: 'v2.1.0',
         data: '10 de outubro de 2019',
-        alteracoesPortal: [
-            {
+        alteracoesPortal: [{
                 descricao: 'Evolução (Relatório): Criado novo módulo "Relatórios"'
             },
             {
@@ -368,11 +348,19 @@ const Versoes = [
                 descricao: 'Evolução (Cadastro): Aplicada melhoria no cadastro de "Aluno", adicionada a possibilidade de incluir uma imagem do aluno'
             },
         ],
-        alteracoesInstitucional: [
-            {
-                descricao: 'Evolução (Sobre): Inserido informações sobre o projeto'
-            }
-        ]
+        alteracoesInstitucional: [{
+            descricao: 'Evolução (Sobre): Inserido informações sobre o projeto'
+        }]
+    },
+    {
+        id: 13,
+        nome: 'v2.1.1',
+        data: '06 de novembro de 2019',
+        alteracoesPortal: [{
+                descricao: 'Adaptação (Cadastro): Aplicado ajuste na listagem de "Clientes" para mostrar os nomes dos mesmos em negrito quando todos os protocolos estão inativos'
+            },
+        ],
+        alteracoesInstitucional: []
     },
 ];
 
@@ -415,7 +403,7 @@ const getLastVersao = () => {
     return _.last(Versoes);
 };
 
-export default{
+export default {
     Versoes,
     getVersoes,
     getVersaoById,

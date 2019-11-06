@@ -25,7 +25,7 @@ class Cliente extends Model
      * 
      * @var array 
      */
-    protected $appends = ['parte_contraria', 'dados_cliente'];
+    protected $appends = ['parte_contraria', 'dados_cliente', 'is_todos_protocolos_inativos'];
 
     /**
      * Armazena os campos do banco de dados.
@@ -136,6 +136,24 @@ class Cliente extends Model
         return false;
     }
 
+
+    /**
+     * Pega todos os Protocolos como Parte Contrária associados 
+     * ao cliente.
+     */
+    public function getIsTodosProtocolosInativosAttribute()
+    {
+        $quantidadeProtocolos =  $this->hasMany(Protocolo::class, 'cliente_id')
+            ->count();
+        if ($quantidadeProtocolos === 0) {
+            return false;
+        }
+        $quantidadeProtocolosInativos =  $this->hasMany(Protocolo::class, 'cliente_id')
+            ->where('ativo', '=', false)
+            ->count();
+        return $quantidadeProtocolos === $quantidadeProtocolosInativos;
+    }
+
     /**
      * Método responsável por verificar se existem os dados do cliente.
      * 
@@ -176,5 +194,4 @@ class Cliente extends Model
         }
         return false;
     }
-
 }

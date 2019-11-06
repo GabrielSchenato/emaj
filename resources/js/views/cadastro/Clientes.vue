@@ -40,7 +40,7 @@
                                     <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
                                     </td>
                                     <td>{{ props.item.id }}</td>
-                                    <td>{{ props.item.nome_completo }}</td>
+                                    <td v-bind:class="{ 'font-weight-bold': props.item.is_todos_protocolos_inativos }">{{ props.item.nome_completo }}</td>
                                     <td>{{ props.item.cpf }}</td>
                                     <td>{{ props.item.rg }}</td>
                                     <td>{{ props.item.renda | formataMoeda}}</td>
@@ -62,6 +62,9 @@
                                     slot-scope="props"
                                     >Mostrando {{ props.pageStart }} - {{ props.pageStop }} de {{ props.itemsLength }}</template>
                             </v-data-table>
+                            <ul class="pa-2 ma-3">
+                               <li><small><b>Dica: </b>Nomes de clientes em <b>negrito</b> indica que todos os protocolos do mesmo estão inativos</small></li>
+                            </ul>
                         </v-card-text>
                     </v-card>
                 </v-flex>
