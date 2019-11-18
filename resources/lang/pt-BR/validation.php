@@ -146,5 +146,6 @@ return [
         'dia_periodo_id' => 'Período',
         'image_url' => 'Avatar',
         'disciplina_id' => 'Disciplina',
+        'protocolo_id' => 'Protocolo'
     ],
 ];

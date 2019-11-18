@@ -362,6 +362,16 @@ const Versoes = [{
         ],
         alteracoesInstitucional: []
     },
+    {
+        id: 14,
+        nome: 'v2.1.2',
+        data: '18 de novembro de 2019',
+        alteracoesPortal: [{
+                descricao: 'Correção (Cadastro): Aplicada correção no cadastro de "Alunos" na aba "Observações", corrindo o campo "Protocolo" que em algumas situações não carregava corretamente'
+            },
+        ],
+        alteracoesInstitucional: []
+    },
 ];
 
 /**

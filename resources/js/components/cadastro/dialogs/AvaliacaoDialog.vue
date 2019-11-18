@@ -63,7 +63,7 @@
                 this.dialog = true;
                 this.formTitle = title;
                 this.avaliacao = item;
-                this.$refs.avaliacaoForm.autocompleteProtocolos = item.protocolo ? [item.protocolo] : [];
+                this.$refs.avaliacaoForm.$refs.autocompleteProtocolos.values = item.protocolo ? [item] : [];
                 this.options = Object.assign(this.options, options);
                 return new Promise((resolve, reject) => {
                     this.resolve = resolve;
@@ -117,13 +117,13 @@
             },
             addErrors(resp) {
                 window.getApp.$emit("APP_ERROR", {msg: 'Ops! Ocorreu algum erro.', timeout: 2000});
-                if (resp.response.data.errors.protocolo) {
-                    this.$refs.avaliacaoForm.$validator.errors.add({field: 'Ficha de Triagem', msg: resp.response.data.errors.ficha_triagem_id});
+                if (resp.response.data.errors.protocolo_id) {
+                    this.$refs.avaliacaoForm.$validator.errors.add({field: 'Protocolo', msg: resp.response.data.errors.protocolo_id});
                 }
-                if (resp.response.data.errors.cliente_id) {
-                    this.$refs.avaliacaoForm.$validator.errors.add({field: 'Data', msg: resp.response.data.errors.Data});
+                if (resp.response.data.errors.data) {
+                    this.$refs.avaliacaoForm.$validator.errors.add({field: 'Data', msg: resp.response.data.errors.data});
                 }
-                if (resp.response.data.errors.cliente_parte_contraria) {
+                if (resp.response.data.errors.observacoes) {
                     this.$refs.avaliacaoForm.$validator.errors.add({field: 'Observações', msg: resp.response.data.errors.observacoes});
                 }
             }
