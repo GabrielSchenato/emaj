@@ -372,6 +372,16 @@ const Versoes = [{
         ],
         alteracoesInstitucional: []
     },
+    {
+        id: 15,
+        nome: 'v2.1.3',
+        data: '21 de fevereiro de 2020',
+        alteracoesPortal: [{
+                descricao: 'Correção (Cadastro): Aplicada correção no cadastro de "Alunos", para que quando criado um novo registro não feche a tela para continuar o cadastro do mesmo'
+            },
+        ],
+        alteracoesInstitucional: []
+    }
 ];
 
 /**

@@ -53,8 +53,8 @@
 
                                                 <v-stepper-step
                                                     step="3"
-                                                    :complete="aluno.id != null && aluno.protocolo_alunos_professores.length > 0"
-                                                    :editable="aluno.id != null && aluno.protocolo_alunos_professores.length > 0"
+                                                    :complete="aluno.id != null && aluno.protocolo_alunos_professores && aluno.protocolo_alunos_professores.length > 0"
+                                                    :editable="aluno.id != null && aluno.protocolo_alunos_professores && aluno.protocolo_alunos_professores.length > 0"
                                                     edit-icon="fa fa-users"
                                                     >Clientes
                                             </v-stepper-step>
@@ -236,10 +236,11 @@
                     if (valid) {
                         this.$store
                                 .dispatch("newAluno", this.getFormData())
-                                .then(() => {
+                                .then((resp) => {
                                     this.resolve(true);
-                                    this.dialog = false;
-                                    this.aluno = {};
+                                    this.aluno = resp.data;
+                                    this.step = 2;
+                                    this.erroDadosAluno = false;
                                     window.getApp.$emit("APP_SUCCESS", {msg: 'Dados salvo com sucesso!', timeout: 2000});
                                 }).catch((resp) => {
                             this.addErrors(resp);
