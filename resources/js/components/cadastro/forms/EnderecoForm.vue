@@ -19,7 +19,7 @@
                 <v-text-field
                     name="cep"
                     v-model="endereco.cep"
-                    v-validate="{required: this.getConfig().required }"
+                    v-validate="{required: false }"
                     :error-messages="errors.collect('CEP')"
                     data-vv-name="CEP"
                     mask="#####-###"
@@ -29,7 +29,7 @@
                     :disabled="buscandoCep"
                     >
                     <template v-slot:label>
-                        CEP<span class="required" v-if="getConfig().required">*</span>
+                        CEP<span class="required" v-if="false">*</span>
                     </template>
                 </v-text-field>
             </v-flex>
@@ -38,13 +38,13 @@
                 <v-text-field
                     name="logradouro"
                     v-model="endereco.logradouro"
-                    v-validate="{required: this.getConfig().required }"
+                    v-validate="{required: false }"
                     :error-messages="errors.collect('Logradouro')"
                     data-vv-name="Logradouro"
                     @change="$emit('input', endereco)"
                     >
                     <template v-slot:label>
-                        Logradouro<span class="required" v-if="getConfig().required">*</span>
+                        Logradouro<span class="required" v-if="false">*</span>
                     </template>
                 </v-text-field>
             </v-flex>
@@ -63,13 +63,13 @@
                 <v-text-field
                     name="bairro"
                     v-model="endereco.bairro"
-                    v-validate="{required: this.getConfig().required }"
+                    v-validate="{required: false }"
                     :error-messages="errors.collect('Bairro')"
                     data-vv-name="Bairro"
                     @change="$emit('input', endereco)"
                     >
                     <template v-slot:label>
-                        Bairro<span class="required" v-if="getConfig().required">*</span>
+                        Bairro<span class="required" v-if="false">*</span>
                     </template>
                 </v-text-field>
             </v-flex>
@@ -79,14 +79,14 @@
                     name="numero"
                     ref="numero"
                     v-model="endereco.numero"
-                    v-validate="{required: this.getConfig().required }"
+                    v-validate="{required: false }"
                     :error-messages="errors.collect('Número')"
                     data-vv-name="Número"
                     type="number"
                     @change="$emit('input', endereco)"
                     >
                     <template v-slot:label>
-                        Número<span class="required" v-if="getConfig().required">*</span>
+                        Número<span class="required" v-if="false">*</span>
                     </template>
                 </v-text-field>
             </v-flex>
@@ -95,13 +95,13 @@
                 <v-text-field
                     name="localidade"
                     v-model="endereco.localidade"
-                    v-validate="{required: this.getConfig().required }"
+                    v-validate="{required: false }"
                     :error-messages="errors.collect('Cidade')"
                     data-vv-name="Cidade"
                     @change="$emit('input', endereco)"
                     >
                     <template v-slot:label>
-                        Cidade<span class="required" v-if="getConfig().required">*</span>
+                        Cidade<span class="required" v-if="false">*</span>
                     </template>
                 </v-text-field>
             </v-flex>
@@ -110,14 +110,14 @@
                 <v-text-field
                     name="uf"
                     v-model="endereco.uf"
-                    v-validate="{required: this.getConfig().required }"
+                    v-validate="{required: false }"
                     :error-messages="errors.collect('Estado')"
                     data-vv-name="Estado"
                     mask="AA"
                     @change="$emit('input', endereco)"
                     >
                     <template v-slot:label>
-                        Estado<span class="required" v-if="getConfig().required">*</span>
+                        Estado<span class="required" v-if="false">*</span>
                     </template>
                 </v-text-field>
             </v-flex>

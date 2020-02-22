@@ -52,12 +52,12 @@ LEFT JOIN tipo_demandas td ON
 	td.id = pro.tipo_demanda_id
 WHERE
 	CASE
-		WHEN $P{data_inicial} IS NOT NULL THEN pro.created_at >= $P{data_inicial}
+		WHEN $P{data_inicial} IS NOT NULL THEN date(pro.created_at) >= $P{data_inicial}
 		ELSE TRUE
 	END
 	AND
 	CASE
-		WHEN $P{data_final} IS NOT NULL THEN pro.created_at <= $P{data_final}
+		WHEN $P{data_final} IS NOT NULL THEN date(pro.created_at) <= $P{data_final}
 		ELSE TRUE
 	END
 	AND

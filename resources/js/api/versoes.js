@@ -379,6 +379,9 @@ const Versoes = [{
         alteracoesPortal: [{
                 descricao: 'Correção (Cadastro): Aplicada correção no cadastro de "Alunos", para que quando criado um novo registro não feche a tela para continuar o cadastro do mesmo'
             },
+            {
+                descricao: 'Correção (Cadastro): Aplicada correção no cadastro de "Clientes", removendo a obrigatoriedade de vários campos'
+            },
         ],
         alteracoesInstitucional: []
     }

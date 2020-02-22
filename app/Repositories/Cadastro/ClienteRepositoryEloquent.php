@@ -241,7 +241,7 @@ class ClienteRepositoryEloquent extends AbstractRepository implements ClienteRep
         } else if (isset($data['pre_atendimento']) && $data['pre_atendimento']) {
             return false;
         }
-        return true;
+        return false;
     }
 
     /**

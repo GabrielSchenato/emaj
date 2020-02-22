@@ -48,8 +48,7 @@
                     required: true,
                     itemText: 'dados_dia_periodo',
                     name: 'Período',
-                    url: 'diaperiodoalunos/autocomplete',
-                    autofocus: true
+                    url: 'diaperiodoalunos/autocomplete'
                 };
             }
         },

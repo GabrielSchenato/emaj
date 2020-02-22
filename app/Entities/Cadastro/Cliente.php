@@ -130,7 +130,7 @@ class Cliente extends Model
      */
     protected function getParteContrariaAttribute()
     {
-        if (($this->isEmptyCliente() || $this->isEmptyEndereco() || $this->isEmptyComposicaoFamiliar() || count($this->telefones) == 0) && $this->protocolos_cliente()->count() === 0 && (bool) $this->pre_atendimento == false) {
+        if (($this->isEmptyCliente() || count($this->telefones) == 0) && $this->protocolos_cliente()->count() === 0 && (bool) $this->pre_atendimento == false) {
             return true;
         }
         return false;

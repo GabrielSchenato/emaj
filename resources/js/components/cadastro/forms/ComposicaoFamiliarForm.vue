@@ -27,7 +27,7 @@
                 <v-select
                     name="casa"
                     v-model="composicaoFamiliar.casa"
-                    v-validate="{required: this.getConfig().required }"
+                    v-validate="{required: false }"
                     :error-messages="errors.collect('Casa')"
                     data-vv-name="Casa"
                     :items="tipoCasa"
@@ -37,7 +37,7 @@
                     @input="$emit('input', composicaoFamiliar)"
                     >
                     <template v-slot:label>
-                        Casa<span class="required" v-if="getConfig().required">*</span>
+                        Casa<span class="required" v-if="false">*</span>
                     </template>
                 </v-select>
             </v-flex>
@@ -136,13 +136,13 @@
                 <v-text-field
                     name="outros_bens"
                     v-model="composicaoFamiliar.outros_bens"
-                    v-validate="{required: this.getConfig().required }"
+                    v-validate="{required: false }"
                     :error-messages="errors.collect('Outros Bens')"
                     data-vv-name="Outros Bens"
                     @input="$emit('input', composicaoFamiliar)"
                     >
                     <template v-slot:label>
-                        Outros Bens<span class="required" v-if="getConfig().required">*</span>
+                        Outros Bens<span class="required" v-if="false">*</span>
                     </template>
                 </v-text-field>
             </v-flex>
@@ -151,13 +151,13 @@
                 <v-text-field
                     name="dividas"
                     v-model="composicaoFamiliar.dividas"
-                    v-validate="{required: this.getConfig().required }"
+                    v-validate="{required: false }"
                     :error-messages="errors.collect('Dívidas')"
                     data-vv-name="Dívidas"
                     @input="$emit('input', composicaoFamiliar)"
                     >
                     <template v-slot:label>
-                        Dívidas<span class="required" v-if="getConfig().required">*</span>
+                        Dívidas<span class="required" v-if="false">*</span>
                     </template>
                 </v-text-field>
             </v-flex>
@@ -166,13 +166,13 @@
                 <v-text-field
                     name="despesas"
                     v-model="composicaoFamiliar.despesas"
-                    v-validate="{required: this.getConfig().required }"
+                    v-validate="{required: false }"
                     :error-messages="errors.collect('Despesas')"
                     data-vv-name="Despesas"
                     @input="$emit('input', composicaoFamiliar)"
                     >
                     <template v-slot:label>
-                        Despesas<span class="required" v-if="getConfig().required">*</span>
+                        Despesas<span class="required" v-if="false">*</span>
                     </template>
                 </v-text-field>
             </v-flex>
@@ -254,14 +254,14 @@
             optionsRendaFamiliar() {
                 return {
                     field: 'renda_familiar',
-                    required: this.getConfig().required,
+                    required: false,
                     name: 'Renda Familiar'
                 };
             },
             optionsValorPatrimonio() {
                 return {
                     field: 'valor_patrimonio',
-                    required: this.getConfig().required,
+                    required: false,
                     name: 'Valor do Patrimônio'
                 };
             }
