@@ -28,5 +28,4 @@ class AddColumnProfessorUsuarios extends Migration
     {
         Schema::dropColumn('professor');
     }
-
 }

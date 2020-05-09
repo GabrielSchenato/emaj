@@ -21,10 +21,10 @@ class CreateDiaPeriodoAlunosTable extends Migration
             $table->bigInteger('dia_periodo_id')->unsigned();
 
             $table->foreign('aluno_id')->references('id')->on('alunos')
-                    ->onDelete('cascade');
+                ->onDelete('cascade');
 
             $table->foreign('dia_periodo_id')->references('id')->on('dia_periodos')
-                    ->onDelete('cascade');
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -38,5 +38,4 @@ class CreateDiaPeriodoAlunosTable extends Migration
     {
         Schema::dropIfExists('dia_periodo_alunos');
     }
-
 }

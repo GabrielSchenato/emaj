@@ -16,7 +16,7 @@ class RemoveColumnsFromAlunosTable extends Migration
         Schema::table('alunos', function (Blueprint $table) {
             $table->dropColumn('ano');
             $table->dropColumn('semestre');
-            $table->dropColumn('turno');            
+            $table->dropColumn('turno');
         });
     }
 

@@ -25,3 +25,5 @@ nbproject/
 relatorios/jasper/.project
 relatorios/jasper/.gitignore
 relatorios/jasper/.settings/
+_ide_helper_models.php
+_ide_helper.php

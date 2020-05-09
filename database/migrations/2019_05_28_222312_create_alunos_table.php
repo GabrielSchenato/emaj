@@ -41,5 +41,4 @@ class CreateAlunosTable extends Migration
     {
         Schema::dropIfExists('alunos');
     }
-
 }

@@ -28,5 +28,4 @@ class AddColumnAtivoFichaTriagens extends Migration
     {
         Schema::dropColumn('ativo');
     }
-
 }

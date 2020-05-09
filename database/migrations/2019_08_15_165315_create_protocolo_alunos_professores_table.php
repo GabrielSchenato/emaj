@@ -42,5 +42,4 @@ class CreateProtocoloAlunosProfessoresTable extends Migration
     {
         Schema::dropIfExists('protocolo_alunos_professores');
     }
-
 }

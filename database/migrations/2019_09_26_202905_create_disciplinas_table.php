@@ -30,5 +30,4 @@ class CreateDisciplinasTable extends Migration
     {
         Schema::dropIfExists('disciplinas');
     }
-
 }

@@ -2,6 +2,8 @@
 
 use Emaj\Entities\Cadastro\Usuario;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +23,10 @@ $factory->define(Usuario::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => Hash::make('123456'),
-        'role' => $roles[random_int(0,1)],
+        'role' => $roles[random_int(0, 1)],
         'avatar' => null,
         'telefone' => $faker->numerify('(##) #####-####'),
         'ativo' => $faker->boolean,
-        'remember_token' => str_random(10),
+        'remember_token' => Str::random(10),
     ];
 });

@@ -31,5 +31,4 @@ class CreateTipoStatusTable extends Migration
     {
         Schema::dropIfExists('tipo_status');
     }
-
 }

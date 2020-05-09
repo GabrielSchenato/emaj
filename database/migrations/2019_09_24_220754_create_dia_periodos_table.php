@@ -32,5 +32,4 @@ class CreateDiaPeriodosTable extends Migration
     {
         Schema::dropIfExists('dia_periodos');
     }
-
 }

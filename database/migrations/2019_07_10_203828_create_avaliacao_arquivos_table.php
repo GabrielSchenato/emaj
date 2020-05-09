@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateAvaliacaoArquivosTable extends Migration
 {
@@ -38,5 +39,4 @@ class CreateAvaliacaoArquivosTable extends Migration
     {
         Schema::dropIfExists('avaliacao_arquivos');
     }
-
 }

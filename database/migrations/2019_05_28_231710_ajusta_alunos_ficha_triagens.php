@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class AjustaAlunosFichaTriagens extends Migration
 {
@@ -40,5 +41,4 @@ class AjustaAlunosFichaTriagens extends Migration
     {
         //
     }
-
 }

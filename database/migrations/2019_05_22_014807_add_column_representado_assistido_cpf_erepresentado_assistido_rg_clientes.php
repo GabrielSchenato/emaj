@@ -30,5 +30,4 @@ class AddColumnRepresentadoAssistidoCpfErepresentadoAssistidoRgClientes extends 
         Schema::dropColumn('representado_assistido_cpf');
         Schema::dropColumn('representado_assistido_rg');
     }
-
 }

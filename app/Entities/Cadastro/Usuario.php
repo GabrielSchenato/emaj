@@ -2,7 +2,6 @@
 
 namespace Emaj\Entities\Cadastro;
 
-use Emaj\Entities\Movimento\FichaTriagem;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -93,5 +92,4 @@ class Usuario extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return $this->belongsTo(Avatar::class);
     }
-
 }

@@ -37,5 +37,4 @@ class AddColumnDisciplinaIdOnAlunosTable extends Migration
             $table->dropColumn('disciplina_id');
         });
     }
-
 }

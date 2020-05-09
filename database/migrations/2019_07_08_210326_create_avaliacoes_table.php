@@ -22,7 +22,7 @@ class CreateAvaliacoesTable extends Migration
 
             $table->unsignedBigInteger('ficha_triagem_id')->nullable();
             $table->foreign('ficha_triagem_id')->references('id')->on('ficha_triagens');
-            
+
             $table->unsignedBigInteger('avaliador_id');
             $table->foreign('avaliador_id')->references('id')->on('usuarios');
 
@@ -42,5 +42,4 @@ class CreateAvaliacoesTable extends Migration
     {
         Schema::dropIfExists('avaliacoes');
     }
-
 }

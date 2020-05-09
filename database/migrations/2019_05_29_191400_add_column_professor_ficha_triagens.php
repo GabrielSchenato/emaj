@@ -29,5 +29,4 @@ class AddColumnProfessorFichaTriagens extends Migration
     {
         //
     }
-
 }

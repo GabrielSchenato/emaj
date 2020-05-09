@@ -28,5 +28,4 @@ class AddColumnNumeroProcessoFichaTriagens extends Migration
     {
         Schema::dropColumn('numero_processo');
     }
-
 }

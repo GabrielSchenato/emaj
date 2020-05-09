@@ -32,5 +32,4 @@ class AddColumnAvatarIdOnUsuariosTable extends Migration
             $table->dropColumn('avatar_id');
         });
     }
-
 }

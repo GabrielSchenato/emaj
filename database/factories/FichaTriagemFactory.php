@@ -17,7 +17,7 @@ use Faker\Generator as Faker;
 $factory->define(FichaTriagem::class, function (Faker $faker) {
     $cliente_id = \Emaj\Entities\Cadastro\Cliente::inRandomOrder()->first();
     $parte_contraria_id = \Emaj\Entities\Cadastro\Cliente::where('id', '<>', $cliente_id)->inRandomOrder()->first();
-    if(!$faker->boolean){
+    if (!$faker->boolean) {
         $parte_contraria_id = null;
     }
     return [
@@ -28,7 +28,6 @@ $factory->define(FichaTriagem::class, function (Faker $faker) {
         'parte_contraria_id' => $parte_contraria_id,
         'nome_aluno' => $faker->name,
         'nome_professor' => $faker->name,
-        'tipo_status_id' => \Emaj\Entities\Cadastro\TipoStatus::inRandomOrder()->first(),
         'outras_informacoes' => $faker->sentence
     ];
 });

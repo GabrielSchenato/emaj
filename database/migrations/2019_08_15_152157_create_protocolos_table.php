@@ -45,5 +45,4 @@ class CreateProtocolosTable extends Migration
     {
         Schema::dropIfExists('protocolos');
     }
-
 }

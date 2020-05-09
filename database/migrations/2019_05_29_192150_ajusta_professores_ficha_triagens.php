@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class AjustaProfessoresFichaTriagens extends Migration
 {
@@ -29,14 +30,14 @@ class AjustaProfessoresFichaTriagens extends Migration
                         FROM ficha_triagens
                         WHERE nome_professor IS NOT NULL
                         GROUP BY nome_professor;");
-                                   
+
         DB::statement(' UPDATE ficha_triagens
                         SET professor_id =
                           (SELECT id
                            FROM usuarios
                            WHERE nome_completo = nome_professor)
                         WHERE nome_professor IS NOT NULL;');
-        
+
         Schema::table('ficha_triagens', function (Blueprint $table) {
             $table->dropColumn('nome_professor');
         });
@@ -51,5 +52,4 @@ class AjustaProfessoresFichaTriagens extends Migration
     {
         //
     }
-
 }

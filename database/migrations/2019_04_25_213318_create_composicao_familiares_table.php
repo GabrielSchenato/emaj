@@ -45,5 +45,4 @@ class CreateComposicaoFamiliaresTable extends Migration
     {
         Schema::dropIfExists('composicao_familiares');
     }
-
 }

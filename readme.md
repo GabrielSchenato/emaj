@@ -7,7 +7,7 @@
 
 ## Construido utilizando:
 
-- [Laravel 5.8]().
+- [Laravel 6]().
 - [VueJS]().
 
 ## License

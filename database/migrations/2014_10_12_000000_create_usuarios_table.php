@@ -3,6 +3,7 @@
 use Emaj\Util\Roles;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUsuariosTable extends Migration
@@ -39,5 +40,4 @@ class CreateUsuariosTable extends Migration
     {
         Schema::dropIfExists('usuarios');
     }
-
 }

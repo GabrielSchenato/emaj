@@ -33,11 +33,10 @@ class TiposCasa
     /**
      * Método responsável por retornar a lista de casas.
      * 
-     * @return string
+     * @return array
      */
     public static function getTiposCasa()
     {
         return self::$valores;
     }
-
 }

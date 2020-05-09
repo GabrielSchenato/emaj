@@ -28,5 +28,4 @@ class DropColumnFaseOnTableAlunos extends Migration
     {
         //
     }
-
 }

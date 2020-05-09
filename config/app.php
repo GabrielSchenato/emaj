@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Escritório Modelo de Assistência Jurídica - EMAJ'),
-    
+
     /*
     |--------------------------------------------------------------------------
     | Application Email
@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -192,7 +192,7 @@ return [
          */
 
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
-        
+
         /*
          * Application Service Providers...
          */

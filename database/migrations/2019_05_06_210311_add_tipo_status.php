@@ -15,10 +15,10 @@ class AddTipoStatus extends Migration
     public function up()
     {
         DB::table('tipo_status')->insert(
-                [
-                    ['nome' => 'Ajuizado', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-                    ['nome' => 'Não Ajuizado', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-                ]
+            [
+                ['nome' => 'Ajuizado', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+                ['nome' => 'Não Ajuizado', 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ]
         );
     }
 
@@ -31,5 +31,4 @@ class AddTipoStatus extends Migration
     {
         //
     }
-
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class AlterColumnsParaImportacaoLegadoDb extends Migration
 {
@@ -28,5 +29,4 @@ class AlterColumnsParaImportacaoLegadoDb extends Migration
     {
         //
     }
-
 }

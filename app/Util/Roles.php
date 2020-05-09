@@ -31,11 +31,10 @@ class Roles
     /**
      * Método responsável por retornar a lista de regras.
      * 
-     * @return string
+     * @return array
      */
     public static function getRoles()
     {
         return self::$valores;
     }
-
 }

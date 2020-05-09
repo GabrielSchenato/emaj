@@ -15,11 +15,11 @@ class AddDisciplinas extends Migration
     public function up()
     {
         DB::table('disciplinas')->insert(
-                [
-                    ['nome' => 'ESTÁGIO II', 'created_at' => Carbon::now()],
-                    ['nome' => 'ESTÁGIO III', 'created_at' => Carbon::now()],
-                    ['nome' => 'ESTÁGIO IV', 'created_at' => Carbon::now()]
-                ]
+            [
+                ['nome' => 'ESTÁGIO II', 'created_at' => Carbon::now()],
+                ['nome' => 'ESTÁGIO III', 'created_at' => Carbon::now()],
+                ['nome' => 'ESTÁGIO IV', 'created_at' => Carbon::now()]
+            ]
         );
     }
 
@@ -32,5 +32,4 @@ class AddDisciplinas extends Migration
     {
         //
     }
-
 }

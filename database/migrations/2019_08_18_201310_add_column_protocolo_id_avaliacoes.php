@@ -29,5 +29,4 @@ class AddColumnProtocoloIdAvaliacoes extends Migration
     {
         Schema::dropColumn('protocolo_id');
     }
-
 }

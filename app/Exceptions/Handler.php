@@ -6,7 +6,6 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
@@ -18,7 +17,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-            //
+        //
     ];
 
     /**
@@ -36,6 +35,8 @@ class Handler extends ExceptionHandler
      *
      * @param  \Exception  $exception
      * @return void
+     * 
+     * @throws \Exception
      */
     public function report(Exception $exception)
     {
@@ -47,23 +48,24 @@ class Handler extends ExceptionHandler
      *
      * @param  Request  $request
      * @param  \Exception  $exception
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Exception
      */
     public function render($request, Exception $exception)
     {
         if ($request->is("api/*")) {
             if ($exception instanceof ValidationException) {
                 return response()->json([
-                            'status' => 'error',
-                            'errors' => $exception->errors()
-                                ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
+                    'status' => 'error',
+                    'errors' => $exception->errors()
+                ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
             }
             return response()->json([
-                        'status' => 'error',
-                        'errors' => $exception->getMessage()
-                            ], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
+                'status' => 'error',
+                'errors' => $exception->getMessage()
+            ], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
         return parent::render($request, $exception);
     }
-
 }
