@@ -1,4 +1,4 @@
-<p align="center"><img src="https://uniplaclages.edu.br/assets/img/logo.png"></p>
+<p align="center"><img src="https://old.uniplaclages.edu.br/assets/img/logo.png"></p>
 
 
 ## Sobre o projeto
